@@ -152,13 +152,13 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
               depth: spec.depth,
               bevelEnabled: true,
               bevelSegments: 4,
-              steps: 2,
-              bevelSize: 2.5,
-              bevelThickness: 2.5
+              steps: 1,
+              bevelSize: 2,
+              bevelThickness: 2
             };
 
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-            geometry.center();
+            // DO NOT call geometry.center() here, to preserve relative coordinate harmony of SVG paths!
 
             const material = new THREE.MeshStandardMaterial({
               color: spec.color,
@@ -166,11 +166,12 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
               roughness: spec.roughness,
               wireframe: false,
               emissive: 0x000000,
-              emissiveIntensity: 0.0
+              emissiveIntensity: 0.0,
+              side: THREE.DoubleSide
             });
 
             const mesh = new THREE.Mesh(geometry, material);
-            mesh.scale.set(0.32, -0.32, 0.32); // Invert Y from SVG coords
+            mesh.scale.set(0.26, -0.26, 0.26); // Invert Y from SVG coords
             mesh.position.z = spec.zOffset;
             mesh.castShadow = true;
             mesh.receiveShadow = true;
@@ -185,6 +186,14 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
             meshes.push(mesh);
           });
         });
+
+        // Compute bounding box of entire emblem and center the group perfectly at (0, 0, 0)
+        const box = new THREE.Box3().setFromObject(layersGroup);
+        const center = new THREE.Vector3();
+        box.getCenter(center);
+        layersGroup.position.x = -center.x;
+        layersGroup.position.y = -center.y;
+        layersGroup.position.z = -center.z;
 
         meshesRef.current = meshes;
         setIsLoading(false);
@@ -219,8 +228,16 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
 
     window.addEventListener('resize', handleResize);
 
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
       if (renderer.domElement && containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);
@@ -315,44 +332,44 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
         </div>
 
         {/* View Controls Toolbar */}
-        <div className="pointer-events-auto flex items-center gap-2 bg-slate-900/85 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 shadow-lg">
+        <div className="pointer-events-auto flex items-center gap-2 bg-slate-900/90 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 shadow-lg">
           <button
             onClick={() => setAutoRotate(!autoRotate)}
             title={autoRotate ? "Jeda Rotasi Otomatis" : "Mulai Rotasi Otomatis"}
-            className={`p-2 rounded-xl text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all ${
               autoRotate ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <RotateCw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin' : ''}`} style={{ animationDuration: '6s' }} />
-            <span className="hidden sm:inline">Rotasi</span>
+            <span>Rotasi</span>
           </button>
 
           <button
             onClick={() => setIsExploded(!isExploded)}
             title="Tampilan Meledak / Pemisahan Layer (Exploded View)"
-            className={`p-2 rounded-xl text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all ${
               isExploded ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Pisah Layer</span>
+            <span>Pisah Layer</span>
           </button>
 
           <button
             onClick={() => setIsWireframe(!isWireframe)}
             title="Tampilkan Jaring Geometri (Wireframe Mode)"
-            className={`p-2 rounded-xl text-xs flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all ${
               isWireframe ? 'bg-amber-400 text-slate-950 font-bold' : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <Box className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Wireframe</span>
+            <span>Wireframe</span>
           </button>
 
           <button
             onClick={resetCamera}
             title="Atur Ulang Sudut Kamera"
-            className="p-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
+            className="p-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-slate-800 transition-all shrink-0"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>

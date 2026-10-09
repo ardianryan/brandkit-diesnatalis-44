@@ -45,42 +45,42 @@ export default function Navbar({ theme, setTheme, onSelectSection }) {
         {/* Right Action: Theme Switcher & Status */}
         <div className="flex items-center gap-3">
           {/* Light/Dark/System Theme Selector */}
-          <div className="flex items-center bg-slate-800/60 dark:bg-slate-900/80 p-1 rounded-xl border border-white/10 shadow-inner">
+          <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-white/10 shadow-inner">
             <button
               onClick={() => setTheme('light')}
               title="Mode Terang (Light Mode)"
-              className={`p-1.5 rounded-lg text-xs flex items-center gap-1 transition-all ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 whitespace-nowrap transition-all ${
                 theme === 'light'
                   ? 'bg-amber-400 text-slate-950 font-bold shadow-md'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
               <Sun className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px]">Terang</span>
+              <span className="text-[11px]">Terang</span>
             </button>
             <button
               onClick={() => setTheme('dark')}
               title="Mode Gelap (Dark Mode)"
-              className={`p-1.5 rounded-lg text-xs flex items-center gap-1 transition-all ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 whitespace-nowrap transition-all ${
                 theme === 'dark'
                   ? 'bg-amber-400 text-slate-950 font-bold shadow-md'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
               <Moon className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px]">Gelap</span>
+              <span className="text-[11px]">Gelap</span>
             </button>
             <button
               onClick={() => setTheme('system')}
               title="Sistem Otomatis (Default by System)"
-              className={`p-1.5 rounded-lg text-xs flex items-center gap-1 transition-all ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 whitespace-nowrap transition-all ${
                 theme === 'system'
                   ? 'bg-amber-400 text-slate-950 font-bold shadow-md'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
               <Laptop className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px]">Sistem</span>
+              <span className="text-[11px]">Sistem</span>
             </button>
           </div>
 
