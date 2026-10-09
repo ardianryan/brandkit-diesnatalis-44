@@ -84,7 +84,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.25;
     rendererRef.current = renderer;
@@ -144,7 +144,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
         ];
 
         paths.forEach((path, index) => {
-          const shapes = SVGLoader.createShapes(path);
+          const shapes = path.toShapes(true);
           const spec = layerSpecs[index % layerSpecs.length];
 
           shapes.forEach((shape) => {

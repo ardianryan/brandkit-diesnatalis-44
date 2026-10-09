@@ -1,4 +1,4 @@
-@import url('/tokens/design-tokens.css');
+@import "tailwindcss";
 
 /* ==========================================================================
    Base Theme Variables (Light, Dark, and System Adaptation)
