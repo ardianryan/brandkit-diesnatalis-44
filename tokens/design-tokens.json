@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json.schemastore.org/design-tokens",
+  "name": "Dies Natalis 44 Brand Tokens",
+  "version": "1.0.0",
+  "color": {
+    "primary": {
+      "deepAmber": {
+        "value": "#D48911",
+        "type": "color",
+        "description": "Base/shadow gold facet - represents solid foundation, maturity, and authority",
+        "rgb": "rgb(212, 137, 17)",
+        "cmyk": "15, 50, 100, 10"
+      },
+      "marigold": {
+        "value": "#E09D17",
+        "type": "color",
+        "description": "Mid-tone warm gold - represents dynamic energy and creative spirit",
+        "rgb": "rgb(224, 157, 23)",
+        "cmyk": "10, 40, 100, 5"
+      },
+      "vividGold": {
+        "value": "#F5C538",
+        "type": "color",
+        "description": "Vibrant accent gold - represents intellectual brilliance and optimism",
+        "rgb": "rgb(245, 197, 56)",
+        "cmyk": "3, 22, 88, 0"
+      },
+      "champagne": {
+        "value": "#F7D160",
+        "type": "color",
+        "description": "Highlight top gold - represents vision, enlightenment, and golden era",
+        "rgb": "rgb(247, 209, 96)",
+        "cmyk": "1, 16, 70, 0"
+      },
+      "paleCanary": {
+        "value": "#FDF39D",
+        "type": "color",
+        "description": "Specular tip glint highlight from Coolors palette",
+        "rgb": "rgb(253, 243, 157)",
+        "cmyk": "0, 4, 38, 1"
+      },
+      "bronzeShadow": {
+        "value": "#B6580B",
+        "type": "color",
+        "description": "Bronze crease shadow for 3D overlapping ribbons",
+        "rgb": "rgb(182, 88, 11)",
+        "cmyk": "0, 52, 94, 29"
+      },
+      "deepRust": {
+        "value": "#7D1B05",
+        "type": "color",
+        "description": "Deep rust accent from Coolors palette",
+        "rgb": "rgb(125, 27, 5)",
+        "cmyk": "0, 78, 96, 51"
+      },
+      "obsidianMahogany": {
+        "value": "#310603",
+        "type": "color",
+        "description": "Obsidian mahogany luxury dark background from Coolors palette",
+        "rgb": "rgb(49, 6, 3)",
+        "cmyk": "0, 88, 94, 81"
+      },
+      "midnightPurple": {
+        "value": "#360538",
+        "type": "color",
+        "description": "Imperial midnight purple dark background from Coolors palette",
+        "rgb": "rgb(54, 5, 56)",
+        "cmyk": "4, 91, 0, 78"
+      }
+    },
+    "neutral": {
+      "obsidian": { "value": "#0B0F19", "type": "color", "description": "Primary luxury dark background" },
+      "navy": { "value": "#0F172A", "type": "color", "description": "Dark text and deep card background" },
+      "slate": { "value": "#334155", "type": "color", "description": "Dark borders and secondary headers" },
+      "muted": { "value": "#64748B", "type": "color", "description": "Secondary subtext and metadata" },
+      "border": { "value": "#E2E8F0", "type": "color", "description": "Subtle borders and dividers" },
+      "alabaster": { "value": "#F8FAFC", "type": "color", "description": "Light background surface" },
+      "white": { "value": "#FFFFFF", "type": "color", "description": "Pure white surface and light text" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+      "body": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+      "formal": "'Cinzel', 'Playfair Display', Georgia, serif"
+    },
+    "fontWeight": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "black": 900
+    }
+  }
+}

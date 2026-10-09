@@ -1,0 +1,24 @@
+# Dependencies & Build Outputs
+node_modules/
+dist/
+build/
+.cache/
+
+# Skill Folders & Agent Configs
+.gemini/
+.claude/
+.agents/
+scratch/
+
+# OS & Environment
+.DS_Store
+*.pem
+.env
+.env.local
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/

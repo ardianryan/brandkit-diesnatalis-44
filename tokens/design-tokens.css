@@ -1,0 +1,44 @@
+/**
+ * Dies Natalis 44 - Official Design Tokens
+ */
+:root {
+  /* Brand Palette (Official Coolors Spec) */
+  --brand-gold-deep: #D48911;
+  --brand-gold-marigold: #E09D17;
+  --brand-gold-vivid: #F5C538;
+  --brand-gold-champagne: #F7D160;
+  --brand-gold-canary: #FDF39D;
+  --brand-bronze-shadow: #B6580B;
+  --brand-deep-rust: #7D1B05;
+  --brand-obsidian-mahogany: #310603;
+  --brand-midnight-purple: #360538;
+
+  /* Metallic Gradient */
+  --brand-gold-gradient: linear-gradient(135deg, #B6580B 0%, #D48911 30%, #E09D17 60%, #F5C538 85%, #F7D160 100%);
+  --brand-gold-gradient-radial: radial-gradient(circle at top left, #F7D160, #E09D17, #D48911, #B6580B);
+
+  /* Neutrals & Surfaces */
+  --color-obsidian: #0B0F19;
+  --color-navy: #0F172A;
+  --color-charcoal: #1E293B;
+  --color-slate: #334155;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
+  --color-border-dark: #1E293B;
+  --color-alabaster: #F8FAFC;
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
+
+  /* Spacing & Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-gold: 0 10px 25px -5px rgba(212, 137, 17, 0.25);
+  --shadow-elevated: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
