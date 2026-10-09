@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { RotateCw, Maximize2, Minimize2, Eye, Box, Sparkles, Layers, RefreshCw, Compass } from 'lucide-react';
 
 const COMPONENT_DETAILS = {
@@ -76,7 +77,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
 
     // 2. Camera
     const camera = new THREE.PerspectiveCamera(45, width / height, 1, 3000);
-    camera.position.set(0, 0, 750);
+    camera.position.set(0, 0, 480);
     cameraRef.current = camera;
 
     // 3. Renderer
@@ -86,8 +87,13 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.35;
     rendererRef.current = renderer;
+
+    // Studio Environment Reflections for Realistic PBR Metal
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+    scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
 
     containerRef.current.appendChild(renderer.domElement);
 
@@ -98,11 +104,11 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
     controls.autoRotate = autoRotate;
     controls.autoRotateSpeed = 1.8;
     controls.maxDistance = 1400;
-    controls.minDistance = 300;
+    controls.minDistance = 200;
     controlsRef.current = controls;
 
     // 5. Lighting Setup (Cinematic Gold Studio)
-    const ambientLight = new THREE.AmbientLight(0xfff5e6, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xfff5e6, 1.5);
     scene.add(ambientLight);
 
     const dirLight1 = new THREE.DirectionalLight(0xffeedd, 3.5);
@@ -110,7 +116,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
     dirLight1.castShadow = true;
     scene.add(dirLight1);
 
-    const dirLight2 = new THREE.DirectionalLight(0xd48911, 2.0);
+    const dirLight2 = new THREE.DirectionalLight(0xd48911, 2.5);
     dirLight2.position.set(-500, -300, -400);
     scene.add(dirLight2);
 
@@ -118,7 +124,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
     rimLight.position.set(0, 600, -500);
     scene.add(rimLight);
 
-    const pointLight = new THREE.PointLight(0xf5c538, 3.0, 1000);
+    const pointLight = new THREE.PointLight(0xf5c538, 3.5, 1200);
     pointLight.position.set(0, 0, 350);
     scene.add(pointLight);
 
@@ -137,10 +143,10 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
 
         // Color & Depth definitions for the 4 facets of V6
         const layerSpecs = [
-          { name: 'base', color: 0xB6580B, depth: 32, zOffset: 0, roughness: 0.28, metalness: 0.88, component: 'acceleration' },
-          { name: 'marigold', color: 0xE09B17, depth: 38, zOffset: 6, roughness: 0.22, metalness: 0.90, component: 'twin44' },
-          { name: 'vivid', color: 0xF5C538, depth: 44, zOffset: 12, roughness: 0.18, metalness: 0.92, component: 'spine' },
-          { name: 'champagne', color: 0xFDF39D, depth: 48, zOffset: 18, roughness: 0.14, metalness: 0.94, component: 'eagle' }
+          { name: 'base', color: 0xB6580B, depth: 32, zOffset: 0, roughness: 0.28, metalness: 0.65, component: 'acceleration' },
+          { name: 'marigold', color: 0xE09B17, depth: 38, zOffset: 6, roughness: 0.22, metalness: 0.70, component: 'twin44' },
+          { name: 'vivid', color: 0xF5C538, depth: 44, zOffset: 12, roughness: 0.18, metalness: 0.75, component: 'spine' },
+          { name: 'champagne', color: 0xFDF39D, depth: 48, zOffset: 18, roughness: 0.15, metalness: 0.80, component: 'eagle' }
         ];
 
         paths.forEach((path, index) => {
@@ -165,13 +171,13 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
               metalness: spec.metalness,
               roughness: spec.roughness,
               wireframe: false,
-              emissive: 0x000000,
-              emissiveIntensity: 0.0,
+              emissive: 0x331a00,
+              emissiveIntensity: 0.15,
               side: THREE.DoubleSide
             });
 
             const mesh = new THREE.Mesh(geometry, material);
-            mesh.scale.set(0.26, -0.26, 0.26); // Invert Y from SVG coords
+            mesh.scale.set(0.22, -0.22, 0.22); // Invert Y from SVG coords
             mesh.position.z = spec.zOffset;
             mesh.castShadow = true;
             mesh.receiveShadow = true;
@@ -307,7 +313,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
 
   const resetCamera = () => {
     if (cameraRef.current && controlsRef.current) {
-      cameraRef.current.position.set(0, 0, 750);
+      cameraRef.current.position.set(0, 0, 480);
       controlsRef.current.target.set(0, 0, 0);
       controlsRef.current.update();
     }
