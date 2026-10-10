@@ -2,18 +2,16 @@
 
   <defs>
     <linearGradient id="aversaGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#F5C538"/>
-      <stop offset="30%" stop-color="#E09B17"/>
-      <stop offset="70%" stop-color="#B6580B"/>
-      <stop offset="100%" stop-color="#7D1B05"/>
+      <stop offset="0%" stop-color="#E09B17"/>
+      <stop offset="25%" stop-color="#F5C538"/>
+      <stop offset="55%" stop-color="#F5C538"/>
+      <stop offset="85%" stop-color="#E09B17"/>
+      <stop offset="100%" stop-color="#B6580B"/>
     </linearGradient>
     <linearGradient id="aversaHighlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FDF39D" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#F7D160" stop-opacity="0.60"/>
+      <stop offset="0%" stop-color="#FDF39D" stop-opacity="0.88"/>
+      <stop offset="100%" stop-color="#F7D160" stop-opacity="0.55"/>
     </linearGradient>
-    <filter id="aversaDropShadow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#310603" flood-opacity="0.40"/>
-    </filter>
   </defs>
   <g transform="translate(220.0, 1651.4) scale(0.6138)">
     <g id="aversa-letters-black">
@@ -26,8 +24,8 @@
     </g>
   </g>
   <line x1="2290.0" y1="1500" x2="2290.0" y2="2500" stroke="#64748B" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="2290.0" cy="2000" r="10" fill="#0B0F19"/>
+  <circle cx="2290.0" cy="2000" r="10" fill="#F5C538"/>
   <text x="2420.0" y="1880" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="124" fill="#0B0F19" letter-spacing="14">DIES NATALIS 44</text>
   <text x="2420.0" y="2060" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="82" fill="#1E293B" letter-spacing="8">SMA NEGERI 1 GEDEG</text>
-  <text x="2420.0" y="2190" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="48" fill="#64748B" letter-spacing="6">KABUPATEN MOJOKERTO • EST. 1980</text>
+  <text x="2420.0" y="2190" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="48" fill="#1E293B" letter-spacing="6">KABUPATEN MOJOKERTO • EST. 1980</text>
 </svg>

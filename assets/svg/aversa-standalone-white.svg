@@ -2,18 +2,16 @@
 
   <defs>
     <linearGradient id="aversaGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#F5C538"/>
-      <stop offset="30%" stop-color="#E09B17"/>
-      <stop offset="70%" stop-color="#B6580B"/>
-      <stop offset="100%" stop-color="#7D1B05"/>
+      <stop offset="0%" stop-color="#E09B17"/>
+      <stop offset="25%" stop-color="#F5C538"/>
+      <stop offset="55%" stop-color="#F5C538"/>
+      <stop offset="85%" stop-color="#E09B17"/>
+      <stop offset="100%" stop-color="#B6580B"/>
     </linearGradient>
     <linearGradient id="aversaHighlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FDF39D" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#F7D160" stop-opacity="0.60"/>
+      <stop offset="0%" stop-color="#FDF39D" stop-opacity="0.88"/>
+      <stop offset="100%" stop-color="#F7D160" stop-opacity="0.55"/>
     </linearGradient>
-    <filter id="aversaDropShadow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#310603" flood-opacity="0.40"/>
-    </filter>
   </defs>
   <g transform="translate(250.0, 1245.8) scale(0.9758)">
     <g id="aversa-letters-white">
