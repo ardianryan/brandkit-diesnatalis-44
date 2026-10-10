@@ -10,12 +10,13 @@ Repositori ini memuat seluruh berkas master logo vektor matematis, dokumentasi a
 ## Daftar Isi
 1. [Anatomi & Makna Filosofis Lambang (Visual Breakdown)](#anatomi--makna-filosofis-lambang-visual-breakdown)
 2. [Brand Identity Kit & Implementasi Merchandise](#brand-identity-kit--implementasi-merchandise)
-3. [Metodologi Tracing & Alat Komputasi](#metodologi-tracing--alat-komputasi)
-4. [Riwayat Evolusi Perancangan (Sketsa ke V6)](#riwayat-evolusi-perancangan-sketsa-ke-v6)
-5. [Sistem Palet Warna Resmi (Coolors Spec)](#sistem-palet-warna-resmi-coolors-spec)
-6. [Struktur Repositori & Katalog Aset Master](#struktur-repositori--katalog-aset-master)
-7. [Cara Menjalankan Skrip Generator Python](#cara-menjalankan-skrip-generator-python)
-8. [Hak Cipta & Lisensi Kepemilikan](#hak-cipta--lisensi-kepemilikan)
+3. [Logotype Resmi AVERSA (Tema Dies Natalis ke-44)](#logotype-resmi-aversa-tema-dies-natalis-ke-44)
+4. [Metodologi Tracing & Alat Komputasi](#metodologi-tracing--alat-komputasi)
+5. [Riwayat Evolusi Perancangan (Sketsa ke V6)](#riwayat-evolusi-perancangan-sketsa-ke-v6)
+6. [Sistem Palet Warna Resmi (Coolors Spec)](#sistem-palet-warna-resmi-coolors-spec)
+7. [Struktur Repositori & Katalog Aset Master](#struktur-repositori--katalog-aset-master)
+8. [Cara Menjalankan Skrip Generator Python](#cara-menjalankan-skrip-generator-python)
+9. [Hak Cipta & Lisensi Kepemilikan](#hak-cipta--lisensi-kepemilikan)
 
 ---
 
@@ -143,6 +144,28 @@ Berikut adalah panduan standarisasi penerapan identitas visual pada berbagai atr
   - **Finishing**: Lapisan cat enamel hitam halus dengan kubah resin bening protektif (*Epoxy Dome*).
   - **Dimensi**: Diameter **30 mm**, ketebalan 2,5 mm, dilengkapi klip pengunci kupu-kupu ganda (*double butterfly clutch*).
   - **Peruntukan**: Cendera mata kehormatan untuk dewan guru, tamu VVIP, kepala sekolah purna tugas, dan pengurus inti OSIS.
+
+---
+
+## Logotype Resmi AVERSA (Tema Dies Natalis ke-44)
+
+"**AVERSA**" adalah tajuk utama dan nama tema resmi perayaan Dies Natalis ke-44 SMA Negeri 1 Gedeg. Melalui citra gambar tangan asli ([aversa handdraw.png](aversa%20handdraw.png)), tipografi cair dinamis (*fluid molten gold bubble typography*) ini telah direkonstruksi secara komputasional menggunakan interpolasi kurva Bezier kubik $C^1$ bergradasi palet emas Coolors dengan pantulan kilau cahaya mengilap (*specular highlights*).
+
+### 1. Logotype Vertikal Resmi (Dies Natalis 44 • SMA Negeri 1 Gedeg)
+![AVERSA Logotype Vertical](assets/png/aversa-logotype-vertical.png)
+
+### 2. Logotype Horisontal Resmi
+![AVERSA Logotype Horizontal](assets/png/aversa-logotype-horizontal.png)
+
+### 3. Full Brand Combination (Simbol Master V6 + AVERSA + Identitas Sekolah)
+![AVERSA Brand Combination Lockup](assets/png/aversa-brand-combination.png)
+
+* **Katalog Berkas AVERSA**:
+  - `assets/svg/aversa-standalone-color.svg` & `.png`: Tipografi cair AVERSA mandiri.
+  - `assets/svg/aversa-standalone-black.svg` & `white.svg`: Varian monokrom untuk cap dinas dan sablon 1 warna.
+  - `assets/svg/aversa-logotype-vertical.svg` & `.png`: Susunan vertikal sentral.
+  - `assets/svg/aversa-logotype-horizontal.svg` & `.png`: Susunan horizontal banner.
+  - `assets/svg/aversa-brand-combination.svg` & `.png`: Integrasi utuh Simbol Rajawali V6 + Wordmark AVERSA.
 
 ---
 

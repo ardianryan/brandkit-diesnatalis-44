@@ -108,10 +108,30 @@ Area aman di sekeliling lambang wajib dijaga sekurang-kurangnya sebesar **$X = \
 | `assets/svg/logo-monochrome-white.svg` | SVG | Monochrome Inverted | Penempatan di atas foto / latar gelap |
 | `assets/svg/logo-with-grid.svg` | SVG | Blueprint Grid | Pedoman konstruksi geometris rasio emas |
 | `assets/png/logo-color-2048.png` | PNG | Raster Ultra-HD | Cetak offset resolusi tinggi 2048x2048 px |
+| `assets/svg/aversa-standalone-color.svg` | SVG | Wordmark | Tipografi cair emas murni tema AVERSA |
+| `assets/svg/aversa-logotype-vertical.svg` | SVG | Logotype Vertical | Susunan bertingkat AVERSA & Dies Natalis 44 |
+| `assets/svg/aversa-logotype-horizontal.svg` | SVG | Logotype Horizontal | Susunan mendatar AVERSA & SMAN 1 Gedeg |
+| `assets/svg/aversa-brand-combination.svg` | SVG | Brand Combination | Integrasi utuh Simbol Rajawali V6 + AVERSA |
+| `assets/png/aversa-logotype-vertical.png` | PNG | Raster Ultra-HD | Logotype vertikal resmi transparan 2048 px |
+| `assets/png/aversa-brand-combination.png` | PNG | Raster Ultra-HD | Kombinasi identitas lengkap transparan 2048 px |
 
 ---
 
-## 7. PENERAPAN BRAND KIT & CENDERA MATA RESMI
+## 7. LOGOTYPE RESMI AVERSA (TEMA DIES NATALIS KE-44)
+
+"**AVERSA**" merupakan tajuk dan tema perayaan Dies Natalis ke-44 SMA Negeri 1 Gedeg. Tipografi karya tangan (*hand-drawn lettering*) AVERSA telah direkonstruksi secara komputasional menggunakan kurva Bezier kubik $C^1$ mulus dengan perpaduan gradasi emas dan pantulan kilau (*specular highlights*).
+
+### A. Panduan Tata Letak Logotype AVERSA
+1. **AVERSA Wordmark Mandiri**:
+   Digunakan pada aplikasi yang telah memiliki lambang rajawali secara terpisah, atau sebagai elemen tipografi artistik utama pada spanduk panggung dan latar belakang video.
+2. **AVERSA Logotype Vertikal**:
+   Susunan sentral bertingkat di mana tipografi AVERSA bertindak sebagai tajuk utama, didukung teks institusi "DIES NATALIS 44" dan "SMA NEGERI 1 GEDEG" dengan tipografi *Geometric Sans-Serif*.
+3. **AVERSA Brand Combination**:
+   Perpaduan tertinggi identitas resmi: Lambang Rajawali V6 diletakkan di puncak, diikuti oleh Logotype AVERSA, garis pemisah keemasan, dan identitas almamater.
+
+---
+
+## 8. PENERAPAN BRAND KIT & CENDERA MATA RESMI
 
 Berikut adalah panduan teknis implementasi identitas visual pada berbagai atribut dan cendera mata resmi:
 
