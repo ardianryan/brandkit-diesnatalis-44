@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1450" width="100%" height="100%">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Cinzel:wght@700;900&display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .cinzel { font-family: 'Cinzel', Georgia, serif; }
+    ]]></style>
+  </defs>
+  <rect width="2400" height="1450" fill="#16081A"/>
+  <!-- Header Bar -->
+  <g id="header">
+    <rect width="2400" height="160" fill="#240729"/>
+    <line x1="0" y1="160" x2="2400" y2="160" stroke="#F5C538" stroke-width="3" opacity="0.8"/>
+    <text x="80" y="65" fill="#FFEAA0" font-size="20" font-weight="700" letter-spacing="4" class="cinzel">SMA NEGERI 1 GEDEG • 1982–2026</text>
+    <text x="80" y="115" fill="#FFFFFF" font-size="36" font-weight="900" letter-spacing="1">DIES NATALIS KE-44 — OFFICIAL COLOR PALETTE SPECIFICATION</text>
+    <g transform="translate(1920, 45)">
+      <rect width="400" height="70" rx="35" fill="#3D1445" stroke="#F5C538" stroke-width="2"/>
+      <circle cx="40" cy="35" r="14" fill="#F5C538"/>
+      <text x="70" y="32" fill="#FFEAA0" font-size="14" font-weight="800" letter-spacing="2">W3C DESIGN TOKEN SYSTEM</text>
+      <text x="70" y="52" fill="#E2D4E6" font-size="12" font-weight="600">Golden Harmony &amp; Velvet Stage</text>
+    </g>
+  </g>
+  <!-- 8 Main Chromatic Swatch Columns -->
+  <g id="col-1-310603">
+    <rect x="0.0" y="160" width="300.0" height="1100" fill="#310603"/>
+    <g transform="rotate(-90, 150.0, 655.0)">
+      <text x="150.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="46" font-weight="900" letter-spacing="3">#310603</text>
+    </g>
+    <g transform="translate(24.0, 200)">
+      <text x="0" y="24" fill="#FFFFFF" font-size="20" font-weight="900" letter-spacing="0.5">Obsidian Mahogany</text>
+      <text x="0" y="48" fill="#F7D160" font-size="13" font-weight="700" letter-spacing="0.5">Deep Shadow &amp; Silhouette</text>
+    </g>
+    <g transform="translate(20.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#000000" opacity="0.25"/>
+      <text x="18" y="34" fill="#FFFFFF" font-size="13" font-weight="800">RGB: <tspan font-weight="600">49, 6, 3</tspan></text>
+      <text x="18" y="62" fill="#FFFFFF" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">48, 88, 76, 75</tspan></text>
+      <text x="18" y="90" fill="#FFFFFF" font-size="13" font-weight="800">HSL: <tspan font-weight="600">4°, 88%, 10%</tspan></text>
+      <text x="18" y="120" fill="#F7D160" font-size="12" font-weight="800">INDEX #1 OF 8</text>
+    </g>
+  </g>
+  <g id="col-2-7D1B05">
+    <rect x="300.0" y="160" width="300.0" height="1100" fill="#7D1B05"/>
+    <line x1="300.0" y1="160" x2="300.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 450.0, 655.0)">
+      <text x="450.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="46" font-weight="900" letter-spacing="3">#7D1B05</text>
+    </g>
+    <g transform="translate(324.0, 200)">
+      <text x="0" y="24" fill="#FFFFFF" font-size="20" font-weight="900" letter-spacing="0.5">Deep Crimson Rust</text>
+      <text x="0" y="48" fill="#FDF39D" font-size="13" font-weight="700" letter-spacing="0.5">Fire Core &amp; Depth</text>
+    </g>
+    <g transform="translate(320.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#000000" opacity="0.25"/>
+      <text x="18" y="34" fill="#FFFFFF" font-size="13" font-weight="800">RGB: <tspan font-weight="600">125, 27, 5</tspan></text>
+      <text x="18" y="62" fill="#FFFFFF" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">24, 96, 100, 27</tspan></text>
+      <text x="18" y="90" fill="#FFFFFF" font-size="13" font-weight="800">HSL: <tspan font-weight="600">11°, 92%, 25%</tspan></text>
+      <text x="18" y="120" fill="#FDF39D" font-size="12" font-weight="800">INDEX #2 OF 8</text>
+    </g>
+  </g>
+  <g id="col-3-B6580B">
+    <rect x="600.0" y="160" width="300.0" height="1100" fill="#B6580B"/>
+    <line x1="600.0" y1="160" x2="600.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 750.0, 655.0)">
+      <text x="750.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="46" font-weight="900" letter-spacing="3">#B6580B</text>
+    </g>
+    <g transform="translate(624.0, 200)">
+      <text x="0" y="24" fill="#FFFFFF" font-size="20" font-weight="900" letter-spacing="0.5">Rich Amber Bronze</text>
+      <text x="0" y="48" fill="#FFE885" font-size="13" font-weight="700" letter-spacing="0.5">Facet Crease &amp; Warm Shadow</text>
+    </g>
+    <g transform="translate(620.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#000000" opacity="0.25"/>
+      <text x="18" y="34" fill="#FFFFFF" font-size="13" font-weight="800">RGB: <tspan font-weight="600">182, 88, 11</tspan></text>
+      <text x="18" y="62" fill="#FFFFFF" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">18, 73, 100, 7</tspan></text>
+      <text x="18" y="90" fill="#FFFFFF" font-size="13" font-weight="800">HSL: <tspan font-weight="600">27°, 89%, 38%</tspan></text>
+      <text x="18" y="120" fill="#FFE885" font-size="12" font-weight="800">INDEX #3 OF 8</text>
+    </g>
+  </g>
+  <g id="col-4-E09D17">
+    <rect x="900.0" y="160" width="300.0" height="1100" fill="#E09D17"/>
+    <line x1="900.0" y1="160" x2="900.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 1050.0, 655.0)">
+      <text x="1050.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#200401" font-size="46" font-weight="900" letter-spacing="3">#E09D17</text>
+    </g>
+    <g transform="translate(924.0, 200)">
+      <text x="0" y="24" fill="#200401" font-size="20" font-weight="900" letter-spacing="0.5">Marigold Warm Gold</text>
+      <text x="0" y="48" fill="#4A1803" font-size="13" font-weight="700" letter-spacing="0.5">Primary Body &amp; Ribbon Mid</text>
+    </g>
+    <g transform="translate(920.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#FFFFFF" opacity="0.35"/>
+      <text x="18" y="34" fill="#200401" font-size="13" font-weight="800">RGB: <tspan font-weight="600">224, 157, 23</tspan></text>
+      <text x="18" y="62" fill="#200401" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">9, 39, 99, 0</tspan></text>
+      <text x="18" y="90" fill="#200401" font-size="13" font-weight="800">HSL: <tspan font-weight="600">40°, 81%, 48%</tspan></text>
+      <text x="18" y="120" fill="#4A1803" font-size="12" font-weight="800">INDEX #4 OF 8</text>
+    </g>
+  </g>
+  <g id="col-5-F5C538">
+    <rect x="1200.0" y="160" width="300.0" height="1100" fill="#F5C538"/>
+    <line x1="1200.0" y1="160" x2="1200.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 1350.0, 655.0)">
+      <text x="1350.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#260601" font-size="46" font-weight="900" letter-spacing="3">#F5C538</text>
+    </g>
+    <g transform="translate(1224.0, 200)">
+      <text x="0" y="24" fill="#260601" font-size="20" font-weight="900" letter-spacing="0.5">Vivid Royal Gold</text>
+      <text x="0" y="48" fill="#5C2003" font-size="13" font-weight="700" letter-spacing="0.5">Medial Spine &amp; Brilliance</text>
+    </g>
+    <g transform="translate(1220.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#FFFFFF" opacity="0.35"/>
+      <text x="18" y="34" fill="#260601" font-size="13" font-weight="800">RGB: <tspan font-weight="600">245, 197, 56</tspan></text>
+      <text x="18" y="62" fill="#260601" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">3, 21, 84, 0</tspan></text>
+      <text x="18" y="90" fill="#260601" font-size="13" font-weight="800">HSL: <tspan font-weight="600">45°, 90%, 59%</tspan></text>
+      <text x="18" y="120" fill="#5C2003" font-size="12" font-weight="800">INDEX #5 OF 8</text>
+    </g>
+  </g>
+  <g id="col-6-F7D160">
+    <rect x="1500.0" y="160" width="300.0" height="1100" fill="#F7D160"/>
+    <line x1="1500.0" y1="160" x2="1500.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 1650.0, 655.0)">
+      <text x="1650.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#2B0702" font-size="46" font-weight="900" letter-spacing="3">#F7D160</text>
+    </g>
+    <g transform="translate(1524.0, 200)">
+      <text x="0" y="24" fill="#2B0702" font-size="20" font-weight="900" letter-spacing="0.5">Champagne Highlight</text>
+      <text x="0" y="48" fill="#632505" font-size="13" font-weight="700" letter-spacing="0.5">Apex Crest &amp; Beam Light</text>
+    </g>
+    <g transform="translate(1520.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#FFFFFF" opacity="0.35"/>
+      <text x="18" y="34" fill="#2B0702" font-size="13" font-weight="800">RGB: <tspan font-weight="600">247, 209, 96</tspan></text>
+      <text x="18" y="62" fill="#2B0702" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">2, 16, 68, 0</tspan></text>
+      <text x="18" y="90" fill="#2B0702" font-size="13" font-weight="800">HSL: <tspan font-weight="600">45°, 90%, 67%</tspan></text>
+      <text x="18" y="120" fill="#632505" font-size="12" font-weight="800">INDEX #6 OF 8</text>
+    </g>
+  </g>
+  <g id="col-7-FDF39D">
+    <rect x="1800.0" y="160" width="300.0" height="1100" fill="#FDF39D"/>
+    <line x1="1800.0" y1="160" x2="1800.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 1950.0, 655.0)">
+      <text x="1950.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#330802" font-size="46" font-weight="900" letter-spacing="3">#FDF39D</text>
+    </g>
+    <g transform="translate(1824.0, 200)">
+      <text x="0" y="24" fill="#330802" font-size="20" font-weight="900" letter-spacing="0.5">Pale Canary Vanilla</text>
+      <text x="0" y="48" fill="#692906" font-size="13" font-weight="700" letter-spacing="0.5">Specular Tip &amp; Starlight Glint</text>
+    </g>
+    <g transform="translate(1820.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#FFFFFF" opacity="0.35"/>
+      <text x="18" y="34" fill="#330802" font-size="13" font-weight="800">RGB: <tspan font-weight="600">253, 243, 157</tspan></text>
+      <text x="18" y="62" fill="#330802" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">1, 2, 44, 0</tspan></text>
+      <text x="18" y="90" fill="#330802" font-size="13" font-weight="800">HSL: <tspan font-weight="600">54°, 96%, 80%</tspan></text>
+      <text x="18" y="120" fill="#692906" font-size="12" font-weight="800">INDEX #7 OF 8</text>
+    </g>
+  </g>
+  <g id="col-8-360538">
+    <rect x="2100.0" y="160" width="300.0" height="1100" fill="#360538"/>
+    <line x1="2100.0" y1="160" x2="2100.0" y2="1260" stroke="#000000" stroke-width="1.5" opacity="0.15"/>
+    <g transform="rotate(-90, 2250.0, 655.0)">
+      <text x="2250.0" y="655.0" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="46" font-weight="900" letter-spacing="3">#360538</text>
+    </g>
+    <g transform="translate(2124.0, 200)">
+      <text x="0" y="24" fill="#FFFFFF" font-size="20" font-weight="900" letter-spacing="0.5">Midnight Imperial Plum</text>
+      <text x="0" y="48" fill="#F7D160" font-size="13" font-weight="700" letter-spacing="0.5">Velvet Stage &amp; Gala Background</text>
+    </g>
+    <g transform="translate(2120.0, 1095)">
+      <rect width="260.0" height="145" rx="14" fill="#000000" opacity="0.25"/>
+      <text x="18" y="34" fill="#FFFFFF" font-size="13" font-weight="800">RGB: <tspan font-weight="600">54, 5, 56</tspan></text>
+      <text x="18" y="62" fill="#FFFFFF" font-size="13" font-weight="800">CMYK: <tspan font-weight="600">72, 98, 38, 56</tspan></text>
+      <text x="18" y="90" fill="#FFFFFF" font-size="13" font-weight="800">HSL: <tspan font-weight="600">298°, 84%, 12%</tspan></text>
+      <text x="18" y="120" fill="#F7D160" font-size="12" font-weight="800">INDEX #8 OF 8</text>
+    </g>
+  </g>
+  <!-- Theatrical Supporting Accent Palette Bar -->
+  <g id="accent-palette-bar" transform="translate(0, 1260)">
+    <rect width="2400" height="130" fill="#19061F"/>
+    <line x1="0" y1="0" x2="2400" y2="0" stroke="#F5C538" stroke-width="2" opacity="0.6"/>
+    <text x="80" y="52" fill="#FFEAA0" font-size="16" font-weight="800" letter-spacing="2" class="cinzel">PALET AKSEN PENDUKUNG TEATER FANTASI</text>
+    <text x="80" y="82" fill="#D3BCD9" font-size="14" font-weight="600">Nuansa Sinematik Panggung &amp; Ornamen Festival</text>
+    <g transform="translate(800.0, 20)">
+      <rect width="482.7" height="90" rx="16" fill="#A0D9CA" stroke="#FFFFFF" stroke-width="1.5" opacity="0.95"/>
+      <text x="24" y="34" fill="#113B32" font-size="18" font-weight="900">#A0D9CA</text>
+      <text x="24" y="56" fill="#113B32" font-size="13" font-weight="800">Confectionery Mint</text>
+      <text x="24" y="74" fill="#113B32" font-size="11" font-weight="600" opacity="0.85">Whimsical Swirl &amp; Poster Fan Accent</text>
+    </g>
+    <g transform="translate(1306.7, 20)">
+      <rect width="482.7" height="90" rx="16" fill="#F5B8CB" stroke="#FFFFFF" stroke-width="1.5" opacity="0.95"/>
+      <text x="24" y="34" fill="#4A1226" font-size="18" font-weight="900">#F5B8CB</text>
+      <text x="24" y="56" fill="#4A1226" font-size="13" font-weight="800">Cotton Candy Pink</text>
+      <text x="24" y="74" fill="#4A1226" font-size="11" font-weight="600" opacity="0.85">Whimsical Bonbon &amp; Floral Accent</text>
+    </g>
+    <g transform="translate(1813.3, 20)">
+      <rect width="482.7" height="90" rx="16" fill="#FFF5D6" stroke="#FFFFFF" stroke-width="1.5" opacity="0.95"/>
+      <text x="24" y="34" fill="#4A3205" font-size="18" font-weight="900">#FFF5D6</text>
+      <text x="24" y="56" fill="#4A3205" font-size="13" font-weight="800">Vanilla Custard Cream</text>
+      <text x="24" y="74" fill="#4A3205" font-size="11" font-weight="600" opacity="0.85">Soft Warm Poster Background</text>
+    </g>
+  </g>
+  <!-- Footer -->
+  <g id="footer" transform="translate(0, 1390)">
+    <rect width="2400" height="60" fill="#0F0314"/>
+    <text x="80" y="36" fill="#8E7896" font-size="13" font-weight="600">SMAN 1 Gedeg Brand Identity © 2026 • Official Master Palette • All Rights Reserved</text>
+    <text x="2320" y="36" text-anchor="end" fill="#F5C538" font-size="13" font-weight="700">PENGGANTI RESMI COOLORS.JPEG • HIGH RESOLUTION VECTOR STANDARDS</text>
+  </g>
+</svg>

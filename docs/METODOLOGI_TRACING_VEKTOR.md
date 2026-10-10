@@ -17,7 +17,7 @@ Proses rekonstruksi bertumpu pada tiga berkas masukan primer yang disediakan ole
 
 1. **`raw draw.jpeg`**: Sketsa pensil grafit asli pada kertas gambar. Berkas ini merekam konsep visual orisinal figur kembar angka 44, arah hadap paruh burung rajawali, serta lingkaran pandu manual awal.
 2. **`digital hand draw.PNG`**: Lukisan tangan digital raster berwarna (RGB 24-bit). Berkas ini menentukan batas siluet luar, sebaran bidang warna, dan arah pancaran gradasi api.
-3. **`coolors.jpeg`**: Dokumen acuan palet warna resmi (*Master Chromatic Palette*) yang menetapkan nilai heksadesimal delapan warna standar almamater.
+3. **`brand-color-palette-guide`** (`assets/brandkit_elements/svg/brand-color-palette-guide.svg`): Dokumen acuan palet warna resmi (*Master Chromatic Palette*) yang menetapkan nilai heksadesimal delapan warna standar almamater (menggantikan berkas acuan awal `coolors.jpeg`).
 
 ---
 
@@ -122,7 +122,6 @@ Seluruh berkas produksi master tersimpan secara rapi dalam struktur repositori b
 diesnat44project/
 ├── raw draw.jpeg                         # Sketsa pensil asli di atas kertas
 ├── digital hand draw.PNG                 # Sketsa digital raster berwarna
-├── coolors.jpeg                          # Dokumen palet warna resmi almamater
 ├── LICENSE                               # Dokumen lisensi tertutup (Proprietary)
 ├── README.md                             # Ringkasan utama repositori
 │

@@ -201,9 +201,11 @@ Perancangan identitas visual ini melalui enam tahapan proses kreatif:
 
 ---
 
-## Sistem Palet Warna Resmi (Coolors Spec)
+## Sistem Palet Warna Resmi (Master Chromatic Palette)
 
-Palet warna resmi dikalibrasi mengacu pada dokumen `coolors.jpeg`:
+Palet warna resmi almamater dikalibrasi mengacu pada bagan master `assets/brandkit_elements/png/brand-color-palette-guide.png` dan `assets/svg/brand-color-palette.svg`:
+
+![Papan Panduan Palet Warna Resmi](assets/brandkit_elements/png/brand-color-palette-guide.png)
 
 | Nama Warna | Kode Hex | RGB | CMYK | Karakter & Peruntukan |
 | :--- | :--- | :--- | :--- | :--- |
@@ -224,7 +226,6 @@ Palet warna resmi dikalibrasi mengacu pada dokumen `coolors.jpeg`:
 diesnat44project/
 ├── raw draw.jpeg                         # Sketsa pensil asli di atas kertas
 ├── digital hand draw.PNG                 # Sketsa digital raster berwarna
-├── coolors.jpeg                          # Dokumen palet warna resmi almamater
 ├── LICENSE                               # Dokumen lisensi kepemilikan tertutup (Proprietary)
 ├── README.md                             # Ringkasan utama repositori (berkas ini)
 │

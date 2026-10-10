@@ -53,35 +53,113 @@ Lambang Dies Natalis ke-44 SMA Negeri 1 Gedeg menyatukan sinergi figur kembar an
 
 ---
 
-## 3. SISTEM PALET WARNA RESMI (*COOLORS SPECIFICATION*)
+## 3. SISTEM PALET WARNA RESMI (*OFFICIAL CHROMATIC SPECIFICATION*)
 
-Palet warna dikalibrasi secara presisi mengacu pada dokumen resmi `coolors.jpeg`:
+Palet warna resmi almamater dikalibrasi secara presisi mengacu pada bagan master vektor **`assets/brandkit_elements/svg/brand-color-palette-guide.svg`** dan **`assets/brandkit_elements/png/brand-color-palette-guide.png`** (resmi menggantikan berkas acuan awal `coolors.jpeg`):
 
-### A. Palet Faset Emas Lambang Utama
+![Papan Panduan Palet Warna Resmi](../assets/brandkit_elements/png/brand-color-palette-guide.png)
 
-| Nama Warna | Sampel | HEX | RGB | CMYK | Peran & Penggunaan |
-|---|---|---|---|---|---|
-| **Obsidian Mahogany** | 🟫 | `#310603` | `49, 6, 3` | `48, 88, 76, 75` | Batas siluet terdalam, kontras monokrom pekat |
-| **Crimson Fire** | 🟥 | `#7D1B05` | `125, 27, 5` | `24, 96, 100, 27` | Pangkal lidah api berkobar, bayangan kedalaman |
-| **Bronze Shadow** | 🟫 | `#B6580B` | `182, 88, 11` | `18, 73, 100, 7` | Transisi hangat lekukan lipatan faset 3D |
-| **Marigold Gold** | 🟧 | `#E09B17` | `224, 155, 23` | `9, 39, 99, 0` | Warna inti tubuh angka 44 dan sayap almamater |
-| **Vivid Gold** | 🟨 | `#F5C538` | `245, 197, 56` | `3, 21, 84, 0` | Tulang punggung (*medial spine*) & aksen utama |
-| **Champagne Gold** | 🟨 | `#F7D160` | `247, 209, 96` | `2, 16, 68, 0` | Puncak lengkung cahaya dan siluet paruh |
-| **Canary Glow** | 🟨 | `#FDF39D` | `253, 243, 157` | `1, 2, 44, 0` | Pendaran tertinggi ujung api & tatapan mata |
-| **Midnight Plum** | 🟪 | `#360538` | `54, 5, 56` | `72, 98, 38, 56` | Latar belakang beludru panggung gala & cinderamata |
+### A. Palet Inti Emas & Mahoni (*Core Chromatic Palette*)
+
+| Index | Nama Warna Resmi | Sampel | HEX | Nilai RGB | Nilai CMYK | Nilai HSL | Peran & Penggunaan Baku |
+|:---:|---|:---:|---|---|---|---|---|
+| **#1** | **Obsidian Mahogany** | 🟫 | `#310603` | `49, 6, 3` | `48, 88, 76, 75` | `4°, 88%, 10%` | Batas siluet terdalam, kontur faset 3D, teks kontras gelap |
+| **#2** | **Deep Crimson Rust** | 🟥 | `#7D1B05` | `125, 27, 5` | `24, 96, 100, 27` | `11°, 92%, 25%` | Pangkal lidah api berkobar, bayangan kedalaman faset |
+| **#3** | **Rich Amber Bronze** | 🟫 | `#B6580B` | `182, 88, 11` | `18, 73, 100, 7` | `27°, 89%, 38%` | Transisi lipatan pita keemasan & bayangan hangat |
+| **#4** | **Marigold Warm Gold** | 🟧 | `#E09D17` | `224, 157, 23` | `9, 39, 99, 0` | `40°, 81%, 48%` | Warna tubuh utama angka 44 & sayap almamater |
+| **#5** | **Vivid Royal Gold** | 🟨 | `#F5C538` | `245, 197, 56` | `3, 21, 84, 0` | `45°, 90%, 59%` | Tulang punggung tengah (*medial spine*) & pendaran utama |
+| **#6** | **Champagne Highlight** | 🟨 | `#F7D160` | `247, 209, 96` | `2, 16, 68, 0` | `45°, 90%, 67%` | Puncak lengkung cahaya, aksen kilau, siluet paruh |
+| **#7** | **Pale Canary Vanilla** | 🟨 | `#FDF39D` | `253, 243, 157` | `1, 2, 44, 0` | `54°, 96%, 80%` | Pendaran tertinggi ujung api, bintang stardust, kilau mata |
+| **#8** | **Midnight Imperial Plum**| 🟪 | `#360538` | `54, 5, 56` | `72, 98, 38, 56` | `298°, 84%, 12%`| Latar belakang beludru panggung gala & cinderamata mewah |
+
+### B. Palet Aksen Teater Fantasi (*Whimsical Confectionery Stage Accents*)
+Digunakan khusus untuk elemen latar belakang festival, feed media sosial interaktif, dan ornamen modular panggung:
+* **Confectionery Mint (`#A0D9CA` / RGB `160, 217, 202`)**: Bilah spiral kincir (*pinwheel*) latar panggung teater, ornamen daun gula, dan aksen sejuk.
+* **Cotton Candy Pink (`#F5B8CB` / RGB `245, 184, 203`)**: Pembungkus permen bonbon, kelopak mawar gula, dan ornamen hangat festival.
+* **Vanilla Custard Cream (`#FFF5D6` / RGB `255, 245, 214`)**: Sinar kontras spiral kincir, latar belakang lembut kartu pengumuman.
 
 ---
 
-## 4. SISTEM TIPOGRAFI (*TYPOGRAPHY*)
+## 4. SISTEM TIPOGRAFI & PEDOMAN PENYELARASAN FONT (*TYPOGRAPHY GUIDELINES*)
 
-### A. Tipografi Utama: **Plus Jakarta Sans**
-*Font sans-serif modern berstandar internasional.*
-* **Judul Utama (*Title / Headline*)**: *Plus Jakarta Sans ExtraBold (800)*
-* **Subjudul / Kategori**: *Plus Jakarta Sans SemiBold (600)*
-* **Teks Bodi (*Body Text*)**: *Plus Jakarta Sans Regular (400)*
+Identitas visual Dies Natalis ke-44 mengadopsi sistem tipografi berjenjang yang tegas untuk menjaga wibawa akademik almamater sekaligus memancarkan kemegahan perayaan.
 
-### B. Tipografi Aksentuasi Seremonial: **Cinzel**
-*Font serif berkarakter Romawi klasik untuk plakat kenegaraan, piagam penghargaan, dan cap stempel resmi.*
+### A. Tiga Pilar Font Resmi Almamater
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│  1. PLUS JAKARTA SANS (Font Utama Korporat & Digital)                  │
+│     Modern • Geometris Bersih • Sangat Terbaca di Layar & Cetak        │
+├────────────────────────────────────────────────────────────────────────┤
+│  2. CINZEL (Font Seremonial, Piagam & Tiket Emas)                      │
+│     Klasik Romawi • Huruf Kapital Berjarak • Marwah Akademik 44 Tahun   │
+├────────────────────────────────────────────────────────────────────────┤
+│  3. PLAYFAIR DISPLAY & AVERSA LETTERING (Font Teatrikal Festival)      │
+│     Transisional Kontras Tinggi • Estetika Teater Fantasi & Tajuk Seni │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+#### 1. Font Utama: **Plus Jakarta Sans**
+* **Lisensi & Sumber**: Google Fonts (SIL Open Font License)
+* **Karakteristik**: Tipografi sans-serif geometris kontemporer berstandar internasional dengan rasio *x-height* optimal sehingga memiliki keterbacaan (*legibility*) prima pada media cetak berukuran mikro maupun layar gawai beresolusi tinggi.
+* **Pembagian Bobot & Peruntukan**:
+  - **ExtraBold (800) / Black (900)**: Judul Utama (*Main Title*), Tajuk Poster Publikasi, Headline Spanduk Panggung.
+  - **Bold (700) / SemiBold (600)**: Sub-judul Bab (*Section Heading*), Label Tombol, Nama Bidang Panitia, Penanda Kategori.
+  - **Medium (500) / Regular (400)**: Naskah Narasi (*Body Text*), Deskripsi Acara, Notula Rapat, Paragraf Surat Resmi.
+
+#### 2. Font Aksentuasi Seremonial: **Cinzel**
+* **Lisensi & Sumber**: Google Fonts (SIL Open Font License)
+* **Karakteristik**: Tipografi serif yang berakar pada proporsi prasasti Romawi klasik abad ke-1 Masehi. Digunakan untuk menegaskan marwah, prestise, dan usia emas 44 tahun SMA Negeri 1 Gedeg.
+* **Aturan Penggunaan**:
+  - **Format Wajib**: Selalu menggunakan huruf kapital seluruhnya (**ALL CAPS**).
+  - **Spasi Antar-Huruf (*Tracking / Letter-Spacing*)**: Wajib diberikan pelonggaran spasi minimal **+150 hingga +250** (atau `4px` hingga `10px` pada CSS/vektor). Dilarang merapatkan huruf Cinzel (*negative tracking*).
+  - **Peruntukan Baku**:
+    1. Lencana Tiket Emas (*Golden Ticket Badge*).
+    2. Piagam Penghargaan Kejuaraan & Sertifikat Kelulusan.
+    3. Surat Undangan Resmi Tamu Kehormatan / VIP.
+    4. Plakat Cendera Mata Logam & Grafir Batu Prasasti.
+    5. Cap Stempel dan Tata Naskah Dinas Khusus.
+
+#### 3. Font Teatrikal Festival & Tajuk Pentas: **Playfair Display & AVERSA Logotype**
+* **Karakteristik**: Serif transisional dramatis dengan kontras ketebalan batang ekstrem (*high stroke contrast*) dan bentuk kaligrafi kurva cair karya tangan (*hand-drawn Bezier*).
+* **Peruntukan**: Tajuk pentas seni "AVERSA", tema panggung malam inagurasi, dan sampul tiket festival.
+
+---
+
+### B. Matriks Pasangan Font (*Font Pairing Matrix*)
+
+| Skenario Penerapan | Font Tajuk / Display | Font Sub-judul | Font Teks Bodi | Karakter Suasana |
+|---|---|---|---|---|
+| **Publikasi Dinas & Administrasi** | Plus Jakarta Sans 800 | Plus Jakarta Sans 600 | Plus Jakarta Sans 400 | Formal, Modern, Bersih |
+| **Piagam, Plakat & Tiket Emas** | Cinzel Bold (Tracking +200) | Cinzel SemiBold (Caps) | Plus Jakarta Sans 500 | Agung, Bergengsi, Klasik |
+| **Panggung Festival & Medsos AVERSA** | AVERSA Master / Playfair 900 | Plus Jakarta Sans 700 | Plus Jakarta Sans 400 | Sinematik, Dinamis, Meriah |
+
+---
+
+### C. Skala Hierarki Tipografi (*Type Scale Standards*)
+
+| Tingkatan Hierarki | Ukuran Web/Desktop | Ukuran Cetak/A4 | Bobot Font | Letter-Spacing | Line-Height |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **Display Hero** | `56px – 72px` | `36pt – 48pt` | 800 / 900 | `-0.02em` | `1.1` |
+| **Heading 1 (H1)** | `40px – 48px` | `26pt – 30pt` | 800 | `-0.01em` | `1.15` |
+| **Heading 2 (H2)** | `28px – 32px` | `18pt – 22pt` | 700 | `0em` | `1.25` |
+| **Heading 3 (H3)** | `20px – 24px` | `14pt – 16pt` | 600 | `0em` | `1.3` |
+| **Body Large** | `18px` | `12pt` | 400 / 500 | `+0.01em` | `1.6` |
+| **Body Standard** | `15px – 16px` | `10pt – 11pt` | 400 | `0em` | `1.6` |
+| **Caption / Metadata** | `12px – 13px` | `8pt – 9pt` | 500 | `+0.04em` | `1.5` |
+| **Ceremonial Caps (Cinzel)** | `18px – 28px` | `12pt – 18pt` | 700 | `+0.20em (lebar)` | `1.4` |
+
+---
+
+### D. Aturan Kepatuhan & Larangan Tipografi (*Typography Governance*)
+
+1. **Aturan Maksimum 2 Keluarga Font**: Dalam satu karya desain (poster, lembar kerja, atau banner), dilarang menggunakan lebih dari dua jenis *font family* secara bersamaan guna mencegah kekacauan visual.
+2. **Larangan Distorsi Aspek Rasio**: Dilarang menarik teks secara tidak proporsional (*horizontal stretching / vertical squashing*). Jika teks terlalu panjang, kurangi ukuran font (*font-size*) atau ubah susunan kalimat.
+3. **Penyelarasan Warna & Rasio Kontras (WCAG)**:
+   - Teks gelap di atas latar terang: Wajib menggunakan **Obsidian Mahogany (`#310603`)** atau **Deep Rust (`#7D1B05`)**. Hindari warna abu-abu pudar.
+   - Teks terang di atas latar gelap: Wajib menggunakan **Champagne (`#F7D160`)** atau **Pale Canary (`#FDF39D`)** dengan rasio kontras keterbacaan minimal **7:1** (WCAG AAA).
+4. **Larangan Font Liar**: Dilarang keras menggunakan font dekoratif umum seperti *Comic Sans, Papyrus, Brush Script, Arial, atau Jokerman* pada seluruh atribut resmi Dies Natalis ke-44.
+
 
 ---
 

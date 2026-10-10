@@ -1,6 +1,6 @@
 {
   "name": "Dies Natalis 44 Brand Tokens",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "color": {
     "primary": {
       "deepAmber": {
@@ -34,7 +34,7 @@
       "paleCanary": {
         "value": "#FDF39D",
         "type": "color",
-        "description": "Specular tip glint highlight from Coolors palette",
+        "description": "Specular tip glint highlight from Master palette",
         "rgb": "rgb(253, 243, 157)",
         "cmyk": "0, 4, 38, 1"
       },
@@ -48,23 +48,43 @@
       "deepRust": {
         "value": "#7D1B05",
         "type": "color",
-        "description": "Deep rust accent from Coolors palette",
+        "description": "Deep rust crimson fire accent from Master palette",
         "rgb": "rgb(125, 27, 5)",
         "cmyk": "0, 78, 96, 51"
       },
       "obsidianMahogany": {
         "value": "#310603",
         "type": "color",
-        "description": "Obsidian mahogany luxury dark background from Coolors palette",
+        "description": "Obsidian mahogany luxury dark background from Master palette",
         "rgb": "rgb(49, 6, 3)",
         "cmyk": "0, 88, 94, 81"
       },
       "midnightPurple": {
         "value": "#360538",
         "type": "color",
-        "description": "Imperial midnight purple dark background from Coolors palette",
+        "description": "Imperial midnight purple dark velvet stage background",
         "rgb": "rgb(54, 5, 56)",
         "cmyk": "4, 91, 0, 78"
+      }
+    },
+    "theatrical": {
+      "confectioneryMint": {
+        "value": "#A0D9CA",
+        "type": "color",
+        "description": "Theatrical whimsical pinwheel spiral and candy accent",
+        "rgb": "rgb(160, 217, 202)"
+      },
+      "cottonCandyPink": {
+        "value": "#F5B8CB",
+        "type": "color",
+        "description": "Theatrical confectionery pink and bonbon wrapper accent",
+        "rgb": "rgb(245, 184, 203)"
+      },
+      "vanillaCustard": {
+        "value": "#FFF5D6",
+        "type": "color",
+        "description": "Theatrical warm cream backdrop and spiral contrast ray",
+        "rgb": "rgb(255, 245, 214)"
       }
     },
     "neutral": {
@@ -79,9 +99,11 @@
   },
   "typography": {
     "fontFamily": {
+      "primary": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
       "display": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
       "body": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
-      "formal": "'Cinzel', 'Playfair Display', Georgia, serif"
+      "ceremonial": "'Cinzel', 'Playfair Display', Georgia, serif",
+      "theatrical": "'Playfair Display', Georgia, serif"
     },
     "fontWeight": {
       "regular": 400,
@@ -90,6 +112,16 @@
       "bold": 700,
       "extrabold": 800,
       "black": 900
+    },
+    "scale": {
+      "displayHero": { "fontSize": "64px", "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": 900 },
+      "heading1": { "fontSize": "48px", "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": 800 },
+      "heading2": { "fontSize": "32px", "lineHeight": "1.25", "letterSpacing": "0em", "fontWeight": 700 },
+      "heading3": { "fontSize": "24px", "lineHeight": "1.3", "letterSpacing": "0em", "fontWeight": 600 },
+      "bodyLarge": { "fontSize": "18px", "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": 400 },
+      "body": { "fontSize": "16px", "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": 400 },
+      "caption": { "fontSize": "13px", "lineHeight": "1.5", "letterSpacing": "0.04em", "fontWeight": 500 },
+      "ceremonialCaps": { "fontSize": "18px", "lineHeight": "1.4", "letterSpacing": "0.22em", "fontWeight": 700 }
     }
   }
 }
