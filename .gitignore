@@ -8,6 +8,7 @@ build/
 .gemini/
 .claude/
 .agents/
+.reference/
 scratch/
 
 # OS & Environment

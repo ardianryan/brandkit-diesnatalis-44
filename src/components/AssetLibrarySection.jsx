@@ -86,7 +86,6 @@ const ASSET_ITEMS = [
 
 export default function AssetLibrarySection() {
   const [filter, setFilter] = useState('all');
-  const [copiedPath, setCopiedPath] = useState(null);
 
   const filteredAssets = ASSET_ITEMS.filter((item) => {
     if (filter === 'all') return true;
@@ -103,15 +102,15 @@ export default function AssetLibrarySection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-500 text-xs font-bold uppercase tracking-wider mb-4">
             <FileCode className="w-3.5 h-3.5" />
             Pustaka Aset Vektor &amp; Raster
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black title-primary tracking-tight mb-4">
             Berkas Master V6 Resolusi Tinggi <br />
             <span className="text-gold-gradient">Siap Pakai untuk Seluruh Media</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-themed-secondary text-sm sm:text-base leading-relaxed">
             Akses langsung ke seluruh berkas vektor SVG matematis dan raster PNG berkualitas ultra-tinggi untuk keperluan publikasi resmi SMA Negeri 1 Gedeg.
           </p>
         </div>
@@ -132,7 +131,7 @@ export default function AssetLibrarySection() {
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 filter === btn.id
                   ? 'bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/20 scale-105'
-                  : 'glass-panel border-white/10 text-slate-300 hover:text-white hover:border-amber-400/40'
+                  : 'card-themed border-[var(--border-subtle)] text-themed-secondary hover:text-amber-500 hover:border-amber-400/40'
               }`}
             >
               {btn.label}
@@ -148,33 +147,33 @@ export default function AssetLibrarySection() {
             return (
               <div
                 key={asset.filename}
-                className="group glass-panel rounded-3xl p-5 border border-white/10 hover:border-amber-400/40 transition-all duration-300 flex flex-col justify-between"
+                className="group card-themed rounded-3xl p-5 border border-[var(--border-card)] hover:border-amber-400/50 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Thumbnail stage */}
-                  <div className={`aspect-square rounded-2xl mb-4 p-6 flex items-center justify-center relative overflow-hidden border border-white/5 transition-transform group-hover:scale-[1.02] ${
-                    isDarkBackgroundAsset ? 'bg-slate-900' : 'bg-slate-950/70'
+                  <div className={`aspect-square rounded-2xl mb-4 p-6 flex items-center justify-center relative overflow-hidden border border-[var(--border-subtle)] transition-transform group-hover:scale-[1.02] ${
+                    isDarkBackgroundAsset ? 'bg-slate-900' : 'bg-[var(--bg-secondary)]'
                   }`}>
                     <img
                       src={asset.path}
                       alt={asset.name}
                       className="max-h-full max-w-full object-contain filter drop-shadow-md"
                     />
-                    <span className="absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-950/80 text-amber-400 border border-amber-500/30">
+                    <span className="absolute top-3 left-3 text-[10px] font-bold px-2 py-0.5 rounded-md bg-[var(--bg-primary)] text-amber-500 border border-amber-500/30">
                       {asset.badge}
                     </span>
                   </div>
 
-                  <h4 className="font-serif font-bold text-base text-white group-hover:text-amber-300 transition-colors mb-1">
+                  <h4 className="font-serif font-bold text-base title-primary group-hover:text-amber-500 transition-colors mb-1">
                     {asset.name}
                   </h4>
-                  <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                  <p className="text-xs text-themed-secondary mb-4 leading-relaxed">
                     {asset.desc}
                   </p>
                 </div>
 
                 {/* Actions */}
-                <div className="pt-4 border-t border-white/5 space-y-2">
+                <div className="pt-4 border-t border-[var(--border-subtle)] space-y-2">
                   <a
                     href={asset.path}
                     download={asset.filename}
@@ -188,7 +187,7 @@ export default function AssetLibrarySection() {
                     href={asset.path}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full py-1.5 rounded-lg text-[11px] font-semibold text-slate-400 hover:text-white text-center block transition-colors"
+                    className="w-full py-1.5 rounded-lg text-[11px] font-semibold text-themed-secondary hover:text-amber-500 text-center block transition-colors"
                   >
                     Buka Berkas di Tab Baru
                   </a>

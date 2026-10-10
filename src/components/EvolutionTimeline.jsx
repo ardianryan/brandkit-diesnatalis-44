@@ -57,29 +57,29 @@ export default function EvolutionTimeline() {
             <History className="w-3.5 h-3.5" />
             Riwayat Pembuatan Lambang
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black title-primary tracking-tight mb-4">
             Dari Goresan Tangan Pensil <br />
             <span className="text-gold-gradient">Hingga Presisi Vektor V6 Master</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-themed-secondary text-sm sm:text-base leading-relaxed">
             Perjalanan perancangan identitas visual Dies Natalis ke-44 mendokumentasikan setiap fase evolusi estetika—mulai dari sketsa pensil mentah, lukisan digital pertama, hingga kalibrasi vektor geometris tingkat lanjut.
           </p>
         </div>
 
         {/* Interactive Comparison Preview Box */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-amber-500/20 mb-16">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-white/10">
+        <div className="card-themed p-6 sm:p-8 rounded-3xl border border-amber-500/20 mb-16 shadow-2xl">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-[var(--border-subtle)]">
             <div>
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">
+              <span className="text-xs font-bold text-amber-500 dark:text-amber-400 uppercase tracking-wider block mb-1">
                 Navigasi Tahapan Perancangan
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold title-primary">
                 {TIMELINE_STEPS[activeTab].title} — {TIMELINE_STEPS[activeTab].subtitle}
               </h3>
             </div>
             
             {/* Tab Switcher */}
-            <div className="flex flex-wrap gap-2 bg-slate-900/90 p-1.5 rounded-2xl border border-white/10">
+            <div className="flex flex-wrap gap-2 card-themed p-1.5 rounded-2xl border border-[var(--border-subtle)]">
               {TIMELINE_STEPS.map((s, idx) => (
                 <button
                   key={s.step}
@@ -87,7 +87,7 @@ export default function EvolutionTimeline() {
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                     activeTab === idx
                       ? 'bg-amber-400 text-slate-950 shadow-md'
-                      : 'text-slate-400 hover:text-white'
+                      : 'text-themed-secondary hover:text-[var(--text-primary)]'
                   }`}
                 >
                   Tahap {s.step}
@@ -99,7 +99,7 @@ export default function EvolutionTimeline() {
           {/* Active Tab Spotlight */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Visual Preview */}
-            <div className="lg:col-span-7 relative group rounded-2xl overflow-hidden bg-slate-950/80 border border-white/10 aspect-video flex items-center justify-center p-4">
+            <div className="lg:col-span-7 relative group rounded-2xl overflow-hidden card-themed aspect-video flex items-center justify-center p-4">
               <img
                 src={TIMELINE_STEPS[activeTab].image}
                 alt={TIMELINE_STEPS[activeTab].title}
@@ -116,30 +116,30 @@ export default function EvolutionTimeline() {
 
             {/* Explanation & Technical Specs */}
             <div className="lg:col-span-5 space-y-4">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 inline-block">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 inline-block">
                 {TIMELINE_STEPS[activeTab].tag}
               </span>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm text-themed-secondary leading-relaxed">
                 {TIMELINE_STEPS[activeTab].description}
               </p>
               
-              <div className="bg-slate-900/80 rounded-2xl p-4 border border-white/10 space-y-2">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 block mb-2">
+              <div className="card-themed rounded-2xl p-4 border border-[var(--border-subtle)] space-y-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-500 dark:text-amber-400 block mb-2">
                   Spesifikasi Teknis Tahapan:
                 </span>
                 {TIMELINE_STEPS[activeTab].specs.map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
-                    <Check className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <div key={i} className="flex items-center gap-2 text-xs text-themed-secondary">
+                    <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 flex items-center justify-between text-xs text-slate-400">
+              <div className="pt-2 flex items-center justify-between text-xs text-themed-secondary">
                 <span>Status Proses: Terarsip Aman</span>
                 <button
                   onClick={() => setActiveTab((prev) => (prev + 1) % TIMELINE_STEPS.length)}
-                  className="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
+                  className="text-amber-500 hover:text-amber-600 dark:hover:text-amber-300 font-bold flex items-center gap-1"
                 >
                   <span>Tahap Selanjutnya</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -155,14 +155,14 @@ export default function EvolutionTimeline() {
             <div
               key={item.step}
               onClick={() => setActiveTab(index)}
-              className={`group glass-panel rounded-3xl p-5 border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+              className={`group card-themed rounded-3xl p-5 border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
                 activeTab === index
-                  ? 'border-amber-400 ring-2 ring-amber-400/30 bg-slate-900/90'
-                  : 'border-white/10 hover:border-amber-500/40'
+                  ? 'border-amber-500 ring-2 ring-amber-400/30'
+                  : 'hover:border-amber-500/40'
               }`}
             >
               <div>
-                <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950/80 mb-4 border border-white/5 flex items-center justify-center p-2">
+                <div className="relative aspect-video rounded-2xl overflow-hidden card-themed mb-4 flex items-center justify-center p-2">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -173,15 +173,15 @@ export default function EvolutionTimeline() {
                   </span>
                 </div>
 
-                <h4 className="font-serif font-bold text-base text-white group-hover:text-amber-300 transition-colors mb-1">
+                <h4 className="font-serif font-bold text-base title-primary group-hover:text-amber-500 transition-colors mb-1">
                   {item.title}
                 </h4>
-                <p className="text-xs text-slate-400 mb-3 leading-snug">
+                <p className="text-xs text-themed-secondary mb-3 leading-snug">
                   {item.subtitle}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-semibold text-amber-400">
+              <div className="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] font-semibold text-amber-500">
                 <span>{item.tag}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
