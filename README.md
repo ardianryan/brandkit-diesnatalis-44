@@ -306,11 +306,11 @@ Keberhasilan perancangan identitas visual ini merupakan hasil sinergi artistik l
 
 | Peran Artistik & Spesialisasi | Nama Kreator | Afiliasi / Angkatan | Kontribusi Visual & Deskripsi Karya Seni |
 | :--- | :--- | :--- | :--- |
-| **Creative Director & Project Initiator** | **Ryan Ardian** | Almamater SMAN 1 Gedeg | Penggagas inisiatif proyek, pengarah artistik (*art direction*), orkestrasi perancangan identitas visual terpadu, dan supervisi standar *brand kit*. |
+| **Creative Director & Project Initiator** | **Ryan Ardian** | Guru SMAN 1 Gedeg | Penggagas inisiatif proyek, pengarah artistik (*art direction*), orkestrasi perancangan identitas visual terpadu, dan supervisi standar *brand kit*. |
 | **Lead Concept Artist & Traditional Sketch Visualizer** | **Putri Nur Azizah** | Angkatan '42 (XII 6) | Kreator sketsa tangan analog asli (*raw graphite concept art*). Merumuskan gestur figuratif elang rajawali, proporsi angka kembar 44, serta anatomi dasar lambang utama di atas kertas grafit. |
 | **Custom Lettering Artist & Fluid Typographer** | **Naysila Zahra Alsabella** | Angkatan '43 (XI 1) | Perancang tipografi tangan tema (*hand-drawn theme wordmark*). Menggubah seni tipografi gelembung cair (*liquid molten bubble lettering*) AVERSA yang dinamis, ekspresif, dan ceria. |
 | **Digital Colorists & Visual Rendering Artists** | **Culvar Zamiiryaser Setyaji**<br>**Farel Indra Febrihansen** | Angkatan '42 (XI 4)<br>Angkatan '42 (XI 4) | Seniman olah rona & pencahayaan digital (*digital painting & shading*). Mengembangkan translasi warna raster awal, distribusi gradasi api, dan kedalaman dimensional sketsa manual. |
-| **Lead Vector Reconstructionist & Precision Geometry Engineer** | **Ryan Ardian** | Almamater SMAN 1 Gedeg | Rekonstruksi vektor komputasional matematis ($C^1/C^2$ *cubic Bézier splines*), perbaikan simetri *medial spine*, kurasi palet Coolors resmi, isolasi alpha murni, dan arsitek berkas master SVG/PNG beresolusi tak terbatas. |
+| **Lead Vector Reconstructionist & Precision Geometry Engineer** | **Ryan Ardian** | Guru SMAN 1 Gedeg | Rekonstruksi vektor komputasional matematis ($C^1/C^2$ *cubic Bézier splines*), perbaikan simetri *medial spine*, kurasi palet Coolors resmi, isolasi alpha murni, dan arsitek berkas master SVG/PNG beresolusi tak terbatas. |
 
 ---
 
