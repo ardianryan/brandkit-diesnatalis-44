@@ -330,10 +330,12 @@ def get_golden_ticket_badge_svg():
           fill="none" stroke="#7A3403" stroke-width="3"/>
 
     <!-- Teks Tipografi Ukir Emas: DIES NATALIS 44 -->
-    <g fill="#4A1C02" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', serif">
-      <text x="500" y="210" font-size="34" letter-spacing="12" font-weight="bold">SMAN 1 GEDEG • 1982-2026</text>
-      <text x="500" y="320" font-size="105" font-weight="900" letter-spacing="8" fill="#3D1501">DIES NATALIS</text>
-      <text x="500" y="420" font-size="70" font-weight="bold" fill="#7A3403" letter-spacing="16">★ KE-44 ★</text>
+    <g fill="#4A1C02" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', Georgia, serif">
+      <text x="500" y="215" font-size="22" letter-spacing="6" font-weight="bold" fill="#542102">SMAN 1 GEDEG • 1982-2026</text>
+      <line x1="260" y1="240" x2="740" y2="240" stroke="#7A3403" stroke-width="2" opacity="0.6"/>
+      <text x="500" y="325" font-size="64" font-weight="900" letter-spacing="4" fill="#3D1501">DIES NATALIS</text>
+      <line x1="320" y1="355" x2="680" y2="355" stroke="#7A3403" stroke-width="2" opacity="0.6"/>
+      <text x="500" y="420" font-size="44" font-weight="bold" fill="#692802" letter-spacing="10">★ KE-44 ★</text>
     </g>
 
     <!-- Ornamen Roset Bintang Sudut -->
