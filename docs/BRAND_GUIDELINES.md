@@ -195,11 +195,22 @@ Area aman di sekeliling lambang wajib dijaga sekurang-kurangnya sebesar **$X = \
 
 ---
 
-## 7. LOGOTYPE RESMI AVERSA (TEMA DIES NATALIS KE-44)
+## 7. LOGOTYPE RESMI & FILOSOFI AVERSA (TEMA DIES NATALIS KE-44)
 
 "**AVERSA**" merupakan tajuk dan tema perayaan Dies Natalis ke-44 SMA Negeri 1 Gedeg. Tipografi karya tangan (*hand-drawn lettering*) AVERSA telah direkonstruksi secara komputasional menggunakan kurva Bezier kubik $C^1$ mulus dengan perpaduan gradasi emas dan pantulan kilau (*specular highlights*).
 
-### A. Panduan Tata Letak Logotype AVERSA
+### A. Filosofi Tema AVERSA
+Nama dan tema **AVERSA** mengusung 4 (empat) pilar filosofis luhur bagi seluruh civitas akademika SMA Negeri 1 Gedeg:
+1. **Semangat untuk Terus Berkembang (*Continuous Growth*)**:
+   Dorongan internal tanpa henti untuk senantiasa mengasah potensi diri, memperluas wawasan intelektual, serta beradaptasi secara dinamis terhadap tantangan zaman.
+2. **Memiliki Visi yang Jelas (*Clear Vision*)**:
+   Arah kompas masa depan yang terukur, fokus pada capaian prestasi akademik dan karakter luhur almamater, sejalan dengan tatapan tajam burung rajawali ke ufuk kanan atas.
+3. **Membangun Solidaritas (*Unwavering Solidarity*)**:
+   Ikatan persaudaraan erat, inklusif, dan saling mendukung antarsiswa, guru, alumni, serta masyarakat dalam bingkai kebersamaan keluarga besar SMAN 1 Gedeg.
+4. **Berani Mewujudkan Perubahan Melalui Tindakan Nyata (*Courage to Act*)**:
+   Ketegasan sikap untuk tidak sekadar bermimpi atau berwacana, melainkan berani melangkah, berinovasi, dan melahirkan karya nyata yang berdampak positif bagi nusa dan bangsa.
+
+### B. Panduan Tata Letak Logotype AVERSA
 1. **AVERSA Wordmark Mandiri**:
    Digunakan pada aplikasi yang telah memiliki lambang rajawali secara terpisah, atau sebagai elemen tipografi artistik utama pada spanduk panggung dan latar belakang video.
 2. **AVERSA Logotype Vertikal**:

@@ -15,8 +15,8 @@ Tujuan utama dari rekonstruksi ini adalah mengonversi sketsa manual yang bersifa
 
 Proses rekonstruksi bertumpu pada tiga berkas masukan primer yang disediakan oleh almamater:
 
-1. **`raw draw.jpeg`**: Sketsa pensil grafit asli pada kertas gambar. Berkas ini merekam konsep visual orisinal figur kembar angka 44, arah hadap paruh burung rajawali, serta lingkaran pandu manual awal.
-2. **`digital hand draw.PNG`**: Lukisan tangan digital raster berwarna (RGB 24-bit). Berkas ini menentukan batas siluet luar, sebaran bidang warna, dan arah pancaran gradasi api.
+1. **`raw-draw.jpeg`**: Sketsa pensil grafit asli pada kertas gambar. Berkas ini merekam konsep visual orisinal figur kembar angka 44, arah hadap paruh burung rajawali, serta lingkaran pandu manual awal.
+2. **`digital-hand-draw.png`**: Lukisan tangan digital raster berwarna (RGB 24-bit). Berkas ini menentukan batas siluet luar, sebaran bidang warna, dan arah pancaran gradasi api.
 3. **`brand-color-palette-guide`** (`assets/brandkit_elements/svg/brand-color-palette-guide.svg`): Dokumen acuan palet warna resmi (*Master Chromatic Palette*) yang menetapkan nilai heksadesimal delapan warna standar almamater (menggantikan berkas acuan awal `coolors.jpeg`).
 
 ---
@@ -42,7 +42,7 @@ Seluruh proses penarikan garis dan kalibrasi kurva dikerjakan secara komputasion
 Proses pengolahan berlangsung melalui empat tahapan utama:
 
 ```
-[raw draw.jpeg] & [digital hand draw.PNG]
+[raw-draw.jpeg] & [digital-hand-draw.png]
                    │
                    ▼ (Tahap 1: Pengolahan Citra Digital)
       [Binerisasi Otsu & Deteksi Tepi Canny]
@@ -120,8 +120,9 @@ Seluruh berkas produksi master tersimpan secara rapi dalam struktur repositori b
 
 ```text
 diesnat44project/
-├── raw draw.jpeg                         # Sketsa pensil asli di atas kertas
-├── digital hand draw.PNG                 # Sketsa digital raster berwarna
+├── raw-draw.jpeg                         # Sketsa pensil asli di atas kertas
+├── digital-hand-draw.png                 # Sketsa digital raster berwarna
+├── aversa-handdraw.png                   # Sketsa gambar tangan tipografi AVERSA
 ├── LICENSE                               # Dokumen lisensi tertutup (Proprietary)
 ├── README.md                             # Ringkasan utama repositori
 │

@@ -177,7 +177,7 @@ def contour_to_svg_path(contour_pts, max_bezier_err=1.8, is_silhouette=False):
 
 print('=== DIES NATALIS 44 - V6 DETAILED MASTER GENERATOR ===')
 print('Reading master raster digital hand draw.PNG...')
-raster_path = 'digital hand draw.PNG' if os.path.exists('digital hand draw.PNG') else 'IMG_2172.PNG'
+raster_path = 'digital-hand-draw.png' if os.path.exists('digital-hand-draw.png') else ('digital hand draw.PNG' if os.path.exists('digital hand draw.PNG') else 'IMG_2172.PNG')
 img = cv2.imread(raster_path)
 is_fg = np.any(img < 240, axis=2).astype(np.uint8) * 255
 

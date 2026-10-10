@@ -31,7 +31,7 @@ print('All 9 V6 PNGs rendered successfully.')
 print('\n=== CHROMATIC METRICS VERIFICATION ===')
 v6_master_png = 'v6_detailing/png/logo-v6-master.png'
 v5_master_png = 'v5_revisi/png/logo-v5-master.png'
-orig_png = 'digital hand draw.PNG' if os.path.exists('digital hand draw.PNG') else 'IMG_2172.PNG'
+orig_png = 'digital-hand-draw.png' if os.path.exists('digital-hand-draw.png') else ('digital hand draw.PNG' if os.path.exists('digital hand draw.PNG') else 'IMG_2172.PNG')
 
 orig = cv2.imread(orig_png)
 v5 = cv2.imread(v5_master_png)

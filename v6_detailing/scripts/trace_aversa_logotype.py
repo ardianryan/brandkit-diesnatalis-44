@@ -70,7 +70,9 @@ def smooth_contour(cnt, epsilon=2.2, s_factor=3.0, num_points=260):
     except Exception:
         return pts
 
-def extract_aversa_vector_data(image_path="aversa handdraw.png"):
+def extract_aversa_vector_data(image_path=None):
+    if image_path is None:
+        image_path = "aversa-handdraw.png" if os.path.exists("aversa-handdraw.png") else "aversa handdraw.png"
     img = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
     if img is None:
         raise FileNotFoundError(f"Cannot load image {image_path}")

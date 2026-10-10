@@ -150,7 +150,13 @@ Berikut adalah panduan standarisasi penerapan identitas visual pada berbagai atr
 
 ## Logotype Resmi AVERSA (Tema Dies Natalis ke-44)
 
-"**AVERSA**" adalah tajuk utama dan nama tema resmi perayaan Dies Natalis ke-44 SMA Negeri 1 Gedeg. Melalui citra gambar tangan asli ([aversa handdraw.png](aversa%20handdraw.png)), tipografi cair dinamis (*fluid molten gold bubble typography*) ini telah direkonstruksi secara komputasional menggunakan interpolasi kurva Bezier kubik $C^1$ bergradasi palet emas Coolors dengan pantulan kilau cahaya mengilap (*specular highlights*).
+"**AVERSA**" adalah tajuk utama dan nama tema resmi perayaan Dies Natalis ke-44 SMA Negeri 1 Gedeg. Melambangkan semangat civitas akademika untuk:
+1. **Terus berkembang (*continuous growth*)** dalam mengasah keunggulan dan kompetensi diri;
+2. **Memiliki visi yang jelas (*clear vision*)** menggapai masa depan berlandaskan budi pekerti luhur;
+3. **Membangun solidaritas (*unwavering solidarity*)** yang kokoh antarsiswa, guru, dan alumni;
+4. **Berani mewujudkan perubahan melalui tindakan nyata (*courage to act*)** demi kejayaan almamater.
+
+Melalui citra gambar tangan asli ([aversa-handdraw.png](aversa-handdraw.png)), tipografi cair dinamis (*fluid molten gold bubble typography*) ini telah direkonstruksi secara komputasional menggunakan interpolasi kurva Bezier kubik $C^1$ bergradasi palet emas master dengan pantulan kilau cahaya mengilap (*specular highlights*).
 
 ### 1. Logotype Vertikal Resmi (Dies Natalis 44 • SMA Negeri 1 Gedeg)
 ![AVERSA Logotype Vertical](assets/png/aversa-logotype-vertical.png)
@@ -192,8 +198,8 @@ Perancangan identitas visual ini melalui enam tahapan proses kreatif:
 
 | Tahapan | Berkas Masukan / Hasil | Deskripsi Teknis |
 | :--- | :--- | :--- |
-| **01. Sketsa Pensil Awal** | `raw draw.jpeg` | Sketsa tangan pensil grafit asli di atas kertas gambar. Berisi proporsi dasar angka kembar 44, arah paruh rajawali, dan lingkaran pandu manual. |
-| **02. Lukisan Tangan Digital** | `digital hand draw.PNG` | Pewarnaan tangan digital raster (RGB 24-bit). Menentukan sebaran gradasi api, kontras paruh, dan transisi ketebalan siluet. |
+| **01. Sketsa Pensil Awal** | `raw-draw.jpeg` | Sketsa tangan pensil grafit asli di atas kertas gambar. Berisi proporsi dasar angka kembar 44, arah paruh rajawali, dan lingkaran pandu manual. |
+| **02. Lukisan Tangan Digital** | `digital-hand-draw.png` | Pewarnaan tangan digital raster (RGB 24-bit). Menentukan sebaran gradasi api, kontras paruh, dan transisi ketebalan siluet. |
 | **03. Vektor Kontur Awal (V1–V2)** | `archive/v1/`, `archive/v2/` | Ekstraksi kontur biner otomatis awal. Masih ditemukan sudut tajam bergerigi pada lengkungan ekor. |
 | **04. Blueprint Geometris (V3)** | `archive/v3/` | Penerapan grid busur lingkaran rasio keemasan pada sayap dan kepala rajawali. |
 | **05. Kalibrasi Line-Cut & Ekor (V4–V5)**| `archive/v4/`, `archive/v5/` | Penyetaraan celah antar-garis (*kerning gap*) dan perbaikan kelengkungan ujung ekor agar tidak kaku. |
@@ -224,8 +230,9 @@ Palet warna resmi almamater dikalibrasi mengacu pada bagan master `assets/brandk
 
 ```text
 diesnat44project/
-├── raw draw.jpeg                         # Sketsa pensil asli di atas kertas
-├── digital hand draw.PNG                 # Sketsa digital raster berwarna
+├── raw-draw.jpeg                         # Sketsa pensil asli di atas kertas
+├── digital-hand-draw.png                 # Sketsa digital raster berwarna
+├── aversa-handdraw.png                   # Sketsa gambar tangan tipografi AVERSA
 ├── LICENSE                               # Dokumen lisensi kepemilikan tertutup (Proprietary)
 ├── README.md                             # Ringkasan utama repositori (berkas ini)
 │
