@@ -225,7 +225,7 @@ def generate_mockup_tumbler():
     # Typography Engraved underneath
     t_draw.text((t_cx, lt_y + logo_tumbler_size + 24), "DIES NATALIS 44", fill=C_GOLD_VIVID, font=f_sub, anchor="mt")
     t_draw.text((t_cx, lt_y + logo_tumbler_size + 62), "SMA NEGERI 1 GEDEG", fill=C_CHAMPAGNE, font=f_spec_val, anchor="mt")
-    t_draw.text((t_cx, lt_y + logo_tumbler_size + 98), "EST. 1980 • MOJOKERTO", fill=(190, 195, 205), font=f_badge, anchor="mt")
+    t_draw.text((t_cx, lt_y + logo_tumbler_size + 98), "EST. 1982 • MOJOKERTO", fill=(190, 195, 205), font=f_badge, anchor="mt")
     
     bg = Image.alpha_composite(bg, tumbler)
     draw = ImageDraw.Draw(bg)
@@ -349,7 +349,7 @@ def generate_mockup_lanyard():
     l_draw.text((id_x + id_w // 2, id_y + 552), "KOORDINATOR PELAKSANA", fill=(10, 12, 20), font=f_spec_val, anchor="mm")
     
     l_draw.text((id_x + id_w // 2, id_y + 605), "DIVISI PUBLIKASI & DOKUMENTASI", fill=C_CHAMPAGNE, font=f_body, anchor="mt")
-    l_draw.text((id_x + id_w // 2, id_y + 640), "ID: DN44-SMAN1G-2024-001", fill=(148, 163, 184), font=f_badge, anchor="mt")
+    l_draw.text((id_x + id_w // 2, id_y + 640), "ID: DN44-SMAN1G-2026-001", fill=(148, 163, 184), font=f_badge, anchor="mt")
     
     # Barcode representation
     l_draw.rectangle([id_x + 80, id_y + 700, id_x + id_w - 80, id_y + 760], fill=(240, 245, 255, 255))
@@ -416,7 +416,7 @@ def generate_mockup_totebag():
     tb_cx = tb_x + tb_w // 2
     i_draw.text((tb_cx, tb_ly + tb_logo_size + 24), "DIES NATALIS KE-44", fill=C_MAHOGANY, font=f_sub, anchor="mt")
     i_draw.text((tb_cx, tb_ly + tb_logo_size + 64), "SMA NEGERI 1 GEDEG", fill=C_BRONZE, font=f_spec_val, anchor="mt")
-    i_draw.text((tb_cx, tb_ly + tb_logo_size + 104), "1980 – 2024 • MOJOKERTO", fill=(120, 100, 90), font=f_badge, anchor="mt")
+    i_draw.text((tb_cx, tb_ly + tb_logo_size + 104), "1982 – 2026 • MOJOKERTO", fill=(120, 100, 90), font=f_badge, anchor="mt")
 
     # 2. ENAMEL PIN 24K ON VELVET CARD (Right)
     pin_cx = 1480

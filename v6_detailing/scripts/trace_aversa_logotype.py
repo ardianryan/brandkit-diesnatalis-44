@@ -279,7 +279,7 @@ def create_logotype_vertical_svg(data, mode="color"):
     lines.append(f'  <circle cx="{cx}" cy="{line_y}" r="8" fill="{PALETTE["gold_vivid"]}"/>')
     lines.append(f'  <text x="{cx}" y="{ty1}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="124" fill="{text_color_main}" letter-spacing="18">DIES NATALIS 44</text>')
     lines.append(f'  <text x="{cx}" y="{ty2}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="84" fill="{text_color_sub}" letter-spacing="10">SMA NEGERI 1 GEDEG</text>')
-    lines.append(f'  <text x="{cx}" y="{ty3}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="46" fill="{text_color_sub}" letter-spacing="8">1980 – 2024 • KABUPATEN MOJOKERTO</text>')
+    lines.append(f'  <text x="{cx}" y="{ty3}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="46" fill="{text_color_sub}" letter-spacing="8">1982 – 2026 • KABUPATEN MOJOKERTO</text>')
     
     lines.append('</svg>')
     return "\n".join(lines)
@@ -339,7 +339,7 @@ def create_logotype_horizontal_svg(data, mode="color"):
     tx_start = div_x + 130
     lines.append(f'  <text x="{tx_start}" y="{cy - 120}" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="124" fill="{text_color_main}" letter-spacing="14">DIES NATALIS 44</text>')
     lines.append(f'  <text x="{tx_start}" y="{cy + 60}" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="82" fill="{text_color_sub}" letter-spacing="8">SMA NEGERI 1 GEDEG</text>')
-    lines.append(f'  <text x="{tx_start}" y="{cy + 190}" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="48" fill="{text_color_sub}" letter-spacing="6">KABUPATEN MOJOKERTO • EST. 1980</text>')
+    lines.append(f'  <text x="{tx_start}" y="{cy + 190}" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="48" fill="{text_color_sub}" letter-spacing="6">KABUPATEN MOJOKERTO • EST. 1982</text>')
     
     lines.append('</svg>')
     return "\n".join(lines)
@@ -400,7 +400,7 @@ def create_brand_combination_svg(data):
     lines.append(f'  <circle cx="{cx}" cy="{line_y}" r="8" fill="{PALETTE["gold_vivid"]}"/>')
     lines.append(f'  <text x="{cx}" y="{ty1}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="116" fill="{PALETTE["marigold"]}" letter-spacing="18">DIES NATALIS 44</text>')
     lines.append(f'  <text x="{cx}" y="{ty2}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="80" fill="{PALETTE["bronze"]}" letter-spacing="10">SMA NEGERI 1 GEDEG</text>')
-    lines.append(f'  <text x="{cx}" y="{ty3}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="46" fill="{PALETTE["bronze"]}" letter-spacing="8">1980 – 2024 • MOJOKERTO</text>')
+    lines.append(f'  <text x="{cx}" y="{ty3}" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="46" fill="{PALETTE["bronze"]}" letter-spacing="8">1982 – 2026 • MOJOKERTO</text>')
     
     lines.append('</svg>')
     return "\n".join(lines)
