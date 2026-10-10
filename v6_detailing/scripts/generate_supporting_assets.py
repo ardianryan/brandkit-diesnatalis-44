@@ -1,13 +1,14 @@
 """
 Skrip Generator Aset Penyerta Brand Kit Resmi
-Tema: Willy Wonka's Golden Confectionery x Dies Natalis ke-44 SMA Negeri 1 Gedeg
+Kategori: Supporting Brand Assets (Aset Ornamen & Kanvas Pendukung)
+Proyek: Dies Natalis ke-44 SMA Negeri 1 Gedeg (1982 – 2026)
 Palet Warna: Coolors Resmi (Midnight Plum, Obsidian Mahogany, Crimson Fire, Bronze, Marigold, Vivid Gold, Champagne, Canary)
 
 Menghasilkan:
-1. Wonka Magic Burst Rays (Pancaran Kerucut Cahaya Sihir)
+1. Magic Burst Rays (Pancaran Kerucut Cahaya Teater/Panggung)
 2. Floating Magic Ribbons & Waves (Pita-pita Meliuk Melayang)
-3. Wonka Swirl Badges & Confectionery Rosettes (Pusaran Gula & Payung Wonka)
-4. Magic Sparkles & Stardust Clusters (Bintang Kilau Sihir 4-Sudut)
+3. Confectionery Swirl Rosette (Pusaran Karamel & Roset Penomoran)
+4. Magic Sparkles & Stardust Clusters (Bintang Kilau 4-Sudut)
 5. Geometric Watermark Arcs (Garis Pandu Busur Piagam/Sertifikat)
 6. Preset Canvas Backgrounds (Feed 2048x2048 & Story 1080x1920)
 """
@@ -46,14 +47,14 @@ def render_svg_to_png(svg_path, out_png, width, height):
     subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # ==========================================
-# 1. WONKA MAGIC BURST RAYS (KERUCUT SINAR SIHIR)
+# 1. MAGIC BURST RAYS (KERUCUT SINAR PANGGUNG)
 # ==========================================
-def generate_magic_burst_svg(canvas_w=2400, canvas_h=2400, mode="warm_gold"):
+def generate_magic_burst_svg(canvas_w=2400, canvas_h=2400):
     cx = canvas_w / 2.0
-    cy = canvas_h * 0.92  # Origin near bottom like magic hat
+    cy = canvas_h * 0.92
     
     num_rays = 28
-    spread_angle = math.radians(88) # Cone angle ~88 degrees pointing upwards
+    spread_angle = math.radians(88)
     start_angle = -math.pi/2 - spread_angle/2
     angle_step = spread_angle / num_rays
     
@@ -77,13 +78,11 @@ def generate_magic_burst_svg(canvas_w=2400, canvas_h=2400, mode="warm_gold"):
         '  <g id="magic-cone-rays">'
     ]
     
-    # Outer ambient fan
     cone_p1 = f"{cx} {cy}"
     cone_p2 = f"{cx - math.sin(spread_angle/2)*2600:.1f} {cy - math.cos(spread_angle/2)*2600:.1f}"
     cone_p3 = f"{cx + math.sin(spread_angle/2)*2600:.1f} {cy - math.cos(spread_angle/2)*2600:.1f}"
     lines.append(f'    <polygon points="{cone_p1} {cone_p2} {cone_p3}" fill="url(#coreGlow)" opacity="0.6"/>')
     
-    # Ray blades
     for i in range(num_rays):
         a1 = start_angle + i * angle_step
         a2 = a1 + (angle_step * 0.55 if i % 2 == 0 else angle_step * 0.35)
@@ -99,10 +98,8 @@ def generate_magic_burst_svg(canvas_w=2400, canvas_h=2400, mode="warm_gold"):
         op = 0.85 if i % 2 == 0 else 0.5
         lines.append(f'    <polygon points="{poly}" fill="url(#rayGradWarm)" opacity="{op:.2f}"/>')
         
-    # Floating stardust particles within the cone
     np.random.seed(44)
     for _ in range(65):
-        # generate random radius and angle
         ang = start_angle + np.random.uniform(0.05, 0.95) * spread_angle
         rad = np.random.uniform(200, 2000)
         px = cx + math.cos(ang) * rad
@@ -119,7 +116,7 @@ def generate_magic_burst_svg(canvas_w=2400, canvas_h=2400, mode="warm_gold"):
 # ==========================================
 # 2. FLOATING MAGIC RIBBONS & WAVES
 # ==========================================
-def generate_magic_ribbon_svg(canvas_w=2400, canvas_h=1200, style="gold_crimson"):
+def generate_magic_ribbon_svg(canvas_w=2400, canvas_h=1200):
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {canvas_w} {canvas_h}" width="{canvas_w}" height="{canvas_h}">',
@@ -140,22 +137,18 @@ def generate_magic_ribbon_svg(canvas_w=2400, canvas_h=1200, style="gold_crimson"
         '  <g id="magic-ribbons">'
     ]
     
-    # Ribbon 1 - Main broad dynamic wave
     p1 = "M 100 850 C 500 150, 950 1150, 1450 450 C 1800 -50, 2150 750, 2350 350 " \
          "L 2300 420 C 2100 820, 1750 20, 1400 520 C 900 1220, 450 220, 100 920 Z"
     lines.append(f'    <path d="{p1}" fill="url(#ribbonGrad1)" opacity="0.95" />')
     
-    # Ribbon 2 - Upper slender accent crest
     p2 = "M 120 780 C 520 80, 970 1080, 1470 380 C 1820 -120, 2170 680, 2370 280 " \
          "L 2350 310 C 2150 710, 1800 -90, 1450 410 C 950 1110, 500 110, 120 810 Z"
     lines.append(f'    <path d="{p2}" fill="url(#ribbonGrad2)" opacity="0.85" />')
     
-    # Secondary cross-stream ribbon
     p3 = "M 200 300 C 600 700, 1200 200, 1700 850 C 1950 1150, 2200 900, 2320 750 " \
          "L 2300 780 C 2180 930, 1930 1180, 1680 880 C 1180 230, 580 730, 200 330 Z"
     lines.append(f'    <path d="{p3}" fill="{PALETTE["marigold"]}" opacity="0.65" />')
     
-    # Ribbon sparkles along the crest
     for (sx, sy, sz) in [
         (480, 150, 18), (950, 1100, 14), (1420, 420, 22), 
         (1800, 80, 20), (2150, 720, 16), (1180, 240, 15)
@@ -170,9 +163,9 @@ def generate_magic_ribbon_svg(canvas_w=2400, canvas_h=1200, style="gold_crimson"
     return "\n".join(lines)
 
 # ==========================================
-# 3. WONKA SWIRL BADGE & CONFECTIONERY ROSETTE
+# 3. CONFECTIONERY SWIRL ROSETTE
 # ==========================================
-def generate_wonka_swirl_svg(canvas_dim=2000):
+def generate_swirl_svg(canvas_dim=2000):
     cx = canvas_dim / 2.0
     cy = canvas_dim / 2.0
     r_outer = 850.0
@@ -197,21 +190,17 @@ def generate_wonka_swirl_svg(canvas_dim=2000):
         '  <g id="confectionery-swirl">'
     ]
     
-    # Outer gold rim
     lines.append(f'    <circle cx="{cx}" cy="{cy}" r="{r_outer + 35}" fill="url(#swirlGold)" stroke="{PALETTE["mahogany"]}" stroke-width="8"/>')
     lines.append(f'    <circle cx="{cx}" cy="{cy}" r="{r_outer + 15}" fill="{PALETTE["plum"]}"/>')
     
-    # Swirling blades (umbrella / spiral candy effect)
     for i in range(num_blades):
         a_start = (i / num_blades) * 2 * math.pi
         a_end = ((i + 1) / num_blades) * 2 * math.pi
         
-        # Spiraling control points
         x0, y0 = cx, cy
         x1 = cx + math.cos(a_start) * r_outer
         y1 = cy + math.sin(a_start) * r_outer
         
-        # Arching curvature
         cp_ang = a_start + 0.42
         cpx = cx + math.cos(cp_ang) * (r_outer * 0.6)
         cpy = cy + math.sin(cp_ang) * (r_outer * 0.6)
@@ -223,7 +212,6 @@ def generate_wonka_swirl_svg(canvas_dim=2000):
         fill_col = "url(#swirlGold)" if (i % 2 == 0) else "url(#swirlPlum)"
         lines.append(f'    <path d="{d}" fill="{fill_col}"/>')
         
-    # Central medallion button
     lines.append(f'    <circle cx="{cx}" cy="{cy}" r="170" fill="url(#swirlGold)" stroke="{PALETTE["plum"]}" stroke-width="12"/>')
     lines.append(f'    <circle cx="{cx}" cy="{cy}" r="120" fill="{PALETTE["crimson"]}"/>')
     lines.append(f'    <circle cx="{cx}" cy="{cy}" r="65" fill="{PALETTE["canary"]}"/>')
@@ -249,9 +237,8 @@ def generate_sparkles_cluster_svg(canvas_dim=2000):
         '  <g id="sparkle-clusters">'
     ]
     
-    # Collection of retro 4-point star coordinates & sizes
     stars = [
-        (1000, 1000, 240, 1.0),  # King star
+        (1000, 1000, 240, 1.0),
         (650, 680, 140, 0.9),
         (1420, 620, 160, 0.95),
         (1380, 1380, 130, 0.85),
@@ -267,19 +254,13 @@ def generate_sparkles_cluster_svg(canvas_dim=2000):
     ]
     
     for (sx, sy, sz, op) in stars:
-        # Four-point sharp bezier star
         r_inner = sz * 0.16
         lines.append(f'  <g transform="translate({sx}, {sy})" opacity="{op}">')
-        d_star = f"M 0 {-sz} Q 0 {-r_inner} {r_inner} 0 Q 0 {-r_inner} 0 {-sz} Z " \
-                 f"M 0 {-sz} Q 0 0 {sz} 0 Q 0 0 0 {sz} Q 0 0 {-sz} 0 Q 0 0 0 {-sz} Z"
-        # Pure 4-point diamond star curve
         pure_star = f"M 0 {-sz} Q {r_inner} {-r_inner} {sz} 0 Q {r_inner} {r_inner} 0 {sz} Q {-r_inner} {r_inner} {-sz} 0 Q {-r_inner} {-r_inner} 0 {-sz} Z"
         lines.append(f'    <path d="{pure_star}" fill="url(#sparkleGrad)" />')
-        # Center core burst
         lines.append(f'    <circle cx="0" cy="0" r="{sz*0.14:.1f}" fill="#FFFFFF" />')
         lines.append('  </g>')
         
-    # Floating stardust specks
     np.random.seed(99)
     for _ in range(80):
         px = np.random.uniform(150, 1850)
@@ -294,7 +275,7 @@ def generate_sparkles_cluster_svg(canvas_dim=2000):
     return "\n".join(lines)
 
 # ==========================================
-# 5. GEOMETRIC BLUEPRINT WATERMARK ARCS (PIAGAM / SERTIFIKAT)
+# 5. GEOMETRIC BLUEPRINT WATERMARK ARCS
 # ==========================================
 def generate_watermark_arcs_svg(canvas_w=2800, canvas_h=2000, color_mode="gold"):
     lines = [
@@ -305,26 +286,20 @@ def generate_watermark_arcs_svg(canvas_w=2800, canvas_h=2000, color_mode="gold")
     
     stroke_col = PALETTE["gold_vivid"] if color_mode == "gold" else PALETTE["plum"]
     
-    # Center origin for left & right wings
     c1x, c1y = 400.0, 1000.0
     c2x, c2y = 2400.0, 1000.0
     
-    # Draw series of concentric harmonic arcs
     radii = [250, 420, 600, 800, 1020, 1260, 1520, 1800, 2100]
     for r in radii:
         op = max(0.12, 0.45 - (r / 5000.0))
         lines.append(f'    <circle cx="{c1x}" cy="{c1y}" r="{r}" fill="none" stroke="{stroke_col}" stroke-width="2.5" opacity="{op:.2f}" stroke-dasharray="12,12"/>')
         lines.append(f'    <circle cx="{c2x}" cy="{c2y}" r="{r}" fill="none" stroke="{stroke_col}" stroke-width="2.5" opacity="{op:.2f}" stroke-dasharray="12,12"/>')
         
-    # Central golden ratio axis lines
     lines.append(f'    <line x1="{canvas_w/2}" y1="100" x2="{canvas_w/2}" y2="{canvas_h-100}" stroke="{stroke_col}" stroke-width="3" opacity="0.4" stroke-dasharray="8,8"/>')
     lines.append(f'    <line x1="200" y1="{canvas_h/2}" x2="{canvas_w-200}" y2="{canvas_h/2}" stroke="{stroke_col}" stroke-width="3" opacity="0.4" stroke-dasharray="8,8"/>')
-    
-    # 45-degree diagonal alignment guides
     lines.append(f'    <line x1="200" y1="200" x2="{canvas_w-200}" y2="{canvas_h-200}" stroke="{stroke_col}" stroke-width="2" opacity="0.25"/>')
     lines.append(f'    <line x1="{canvas_w-200}" y1="200" x2="200" y2="{canvas_h-200}" stroke="{stroke_col}" stroke-width="2" opacity="0.25"/>')
     
-    # Diamond intersections
     for rx in [600, 1000, 1400]:
         lines.append(f'    <polygon points="{canvas_w/2},{canvas_h/2 - rx} {canvas_w/2 + rx},{canvas_h/2} {canvas_w/2},{canvas_h/2 + rx} {canvas_w/2 - rx},{canvas_h/2}" fill="none" stroke="{stroke_col}" stroke-width="2" opacity="0.2"/>')
         
@@ -333,7 +308,7 @@ def generate_watermark_arcs_svg(canvas_w=2800, canvas_h=2000, color_mode="gold")
     return "\n".join(lines)
 
 # ==========================================
-# 6. WONKA CANVAS BACKGROUND PRESETS
+# 6. CANVAS BACKGROUND PRESETS
 # ==========================================
 def generate_background_svg(width=2048, height=2048, theme="deep_plum_stage"):
     lines = [
@@ -386,25 +361,20 @@ def generate_background_svg(width=2048, height=2048, theme="deep_plum_stage"):
     
     if theme == "deep_plum_stage":
         lines.append(f'  <rect width="{width}" height="{height}" fill="url(#stageGlow)"/>')
-        # Center magic cone spotlight
         poly = f"{width*0.5},{height*0.95} {width*0.1},{height*0.05} {width*0.9},{height*0.05}"
         lines.append(f'  <polygon points="{poly}" fill="url(#warmSpotlight)"/>')
-        # Subtle vignette border
         lines.append(f'  <rect x="50" y="50" width="{width-100}" height="{height-100}" fill="none" stroke="{PALETTE["gold_vivid"]}" stroke-width="2.5" opacity="0.35"/>')
         lines.append(f'  <rect x="75" y="75" width="{width-150}" height="{height-150}" fill="none" stroke="{PALETTE["champagne"]}" stroke-width="1.5" opacity="0.2"/>')
     elif theme == "amber_caramel_sunset":
         lines.append(f'  <rect width="{width}" height="{height}" fill="url(#amberGlow)"/>')
-        # Swirling soft wave at the bottom
         p_wave = f"M 0 {height*0.75} Q {width*0.25} {height*0.65} {width*0.5} {height*0.8} T {width} {height*0.72} L {width} {height} L 0 {height} Z"
         lines.append(f'  <path d="{p_wave}" fill="{PALETTE["plum"]}" opacity="0.85"/>')
         lines.append(f'  <rect x="40" y="40" width="{width-80}" height="{height-80}" fill="none" stroke="{PALETTE["canary"]}" stroke-width="2" opacity="0.4"/>')
     elif theme == "golden_ticket_gala":
         lines.append(f'  <rect width="{width}" height="{height}" fill="url(#ticketGala)"/>')
-        # Ornate luxury golden frame
         pad = 80
         lines.append(f'  <rect x="{pad}" y="{pad}" width="{width-pad*2}" height="{height-pad*2}" fill="none" stroke="url(#goldBorder)" stroke-width="10"/>')
         lines.append(f'  <rect x="{pad+25}" y="{pad+25}" width="{width-(pad+25)*2}" height="{height-(pad+25)*2}" fill="none" stroke="{PALETTE["gold_vivid"]}" stroke-width="3" stroke-dasharray="14,14" opacity="0.65"/>')
-        # 4 Corner corner rosettes
         for cx, cy in [(pad, pad), (width-pad, pad), (pad, height-pad), (width-pad, height-pad)]:
             lines.append(f'  <circle cx="{cx}" cy="{cy}" r="22" fill="url(#goldBorder)"/>')
             lines.append(f'  <circle cx="{cx}" cy="{cy}" r="12" fill="{PALETTE["plum"]}"/>')
@@ -413,7 +383,7 @@ def generate_background_svg(width=2048, height=2048, theme="deep_plum_stage"):
     return "\n".join(lines)
 
 def main():
-    base_dir = "assets/brandkit_wonka"
+    base_dir = "assets/brandkit_elements"
     svg_dir = os.path.join(base_dir, "svg")
     png_dir = os.path.join(base_dir, "png")
     bg_dir = os.path.join(base_dir, "backgrounds")
@@ -423,14 +393,14 @@ def main():
     os.makedirs(bg_dir, exist_ok=True)
     
     print("==========================================================")
-    print(" GENERATING WONKA BRAND KIT ASSETS (DIES NATALIS 44)")
+    print(" GENERATING SUPPORTING BRAND KIT ASSETS (DIES NATALIS 44)")
     print("==========================================================")
     
-    # 1. Wonka Magic Burst Rays
-    print("\n[1/6] Generating Wonka Magic Burst Rays...")
+    # 1. Magic Burst Rays
+    print("\n[1/6] Generating Magic Burst Rays...")
     burst_svg = generate_magic_burst_svg(2400, 2400)
-    burst_svg_file = os.path.join(svg_dir, "wonka-magic-burst-rays.svg")
-    burst_png_file = os.path.join(png_dir, "wonka-magic-burst-rays.png")
+    burst_svg_file = os.path.join(svg_dir, "magic-burst-rays.svg")
+    burst_png_file = os.path.join(png_dir, "magic-burst-rays.png")
     with open(burst_svg_file, "w") as f:
         f.write(burst_svg)
     render_svg_to_png(burst_svg_file, burst_png_file, 2400, 2400)
@@ -439,18 +409,18 @@ def main():
     # 2. Floating Magic Ribbons & Waves
     print("\n[2/6] Generating Floating Magic Ribbons & Waves...")
     ribbon_svg = generate_magic_ribbon_svg(2400, 1200)
-    ribbon_svg_file = os.path.join(svg_dir, "wonka-floating-magic-ribbons.svg")
-    ribbon_png_file = os.path.join(png_dir, "wonka-floating-magic-ribbons.png")
+    ribbon_svg_file = os.path.join(svg_dir, "floating-magic-ribbons.svg")
+    ribbon_png_file = os.path.join(png_dir, "floating-magic-ribbons.png")
     with open(ribbon_svg_file, "w") as f:
         f.write(ribbon_svg)
     render_svg_to_png(ribbon_svg_file, ribbon_png_file, 2400, 1200)
     print(f"✓ {ribbon_svg_file} & {ribbon_png_file}")
     
-    # 3. Wonka Swirl Badges & Rosettes
-    print("\n[3/6] Generating Wonka Swirl Confectionery Rosette...")
-    swirl_svg = generate_wonka_swirl_svg(2000)
-    swirl_svg_file = os.path.join(svg_dir, "wonka-confectionery-swirl-badge.svg")
-    swirl_png_file = os.path.join(png_dir, "wonka-confectionery-swirl-badge.png")
+    # 3. Confectionery Swirl Rosette
+    print("\n[3/6] Generating Confectionery Swirl Rosette...")
+    swirl_svg = generate_swirl_svg(2000)
+    swirl_svg_file = os.path.join(svg_dir, "confectionery-swirl-badge.svg")
+    swirl_png_file = os.path.join(png_dir, "confectionery-swirl-badge.png")
     with open(swirl_svg_file, "w") as f:
         f.write(swirl_svg)
     render_svg_to_png(swirl_svg_file, swirl_png_file, 2000, 2000)
@@ -459,8 +429,8 @@ def main():
     # 4. Magic Sparkles & Stardust Clusters
     print("\n[4/6] Generating Magic Sparkles & Stardust Clusters...")
     sparkle_svg = generate_sparkles_cluster_svg(2000)
-    sparkle_svg_file = os.path.join(svg_dir, "wonka-magic-sparkles-cluster.svg")
-    sparkle_png_file = os.path.join(png_dir, "wonka-magic-sparkles-cluster.png")
+    sparkle_svg_file = os.path.join(svg_dir, "magic-sparkles-cluster.svg")
+    sparkle_png_file = os.path.join(png_dir, "magic-sparkles-cluster.png")
     with open(sparkle_svg_file, "w") as f:
         f.write(sparkle_svg)
     render_svg_to_png(sparkle_svg_file, sparkle_png_file, 2000, 2000)
@@ -470,22 +440,22 @@ def main():
     print("\n[5/6] Generating Geometric Blueprint Watermark Arcs...")
     for cmode in ["gold", "plum"]:
         wm_svg = generate_watermark_arcs_svg(2800, 2000, color_mode=cmode)
-        wm_svg_file = os.path.join(svg_dir, f"wonka-watermark-arcs-{cmode}.svg")
-        wm_png_file = os.path.join(png_dir, f"wonka-watermark-arcs-{cmode}.png")
+        wm_svg_file = os.path.join(svg_dir, f"watermark-arcs-{cmode}.svg")
+        wm_png_file = os.path.join(png_dir, f"watermark-arcs-{cmode}.png")
         with open(wm_svg_file, "w") as f:
             f.write(wm_svg)
         render_svg_to_png(wm_svg_file, wm_png_file, 2800, 2000)
         print(f"✓ {wm_svg_file} & {wm_png_file}")
         
     # 6. Preset Backgrounds (Feed 2048x2048 & Story 1080x1920)
-    print("\n[6/6] Generating Official Wonka Background Presets...")
+    print("\n[6/6] Generating Official Background Presets...")
     bg_configs = [
-        ("deep_plum_stage", "wonka-bg-deep-plum-stage", 2048, 2048),
-        ("deep_plum_stage", "wonka-bg-deep-plum-stage-story", 1080, 1920),
-        ("amber_caramel_sunset", "wonka-bg-amber-sunset", 2048, 2048),
-        ("amber_caramel_sunset", "wonka-bg-amber-sunset-story", 1080, 1920),
-        ("golden_ticket_gala", "wonka-bg-golden-ticket-gala", 2048, 2048),
-        ("golden_ticket_gala", "wonka-bg-golden-ticket-gala-story", 1080, 1920)
+        ("deep_plum_stage", "bg-deep-plum-stage", 2048, 2048),
+        ("deep_plum_stage", "bg-deep-plum-stage-story", 1080, 1920),
+        ("amber_caramel_sunset", "bg-amber-sunset", 2048, 2048),
+        ("amber_caramel_sunset", "bg-amber-sunset-story", 1080, 1920),
+        ("golden_ticket_gala", "bg-golden-ticket-gala", 2048, 2048),
+        ("golden_ticket_gala", "bg-golden-ticket-gala-story", 1080, 1920)
     ]
     
     for (theme, name, w, h) in bg_configs:
@@ -507,8 +477,6 @@ def main():
         im = Image.open(check_png)
         arr = np.array(im)
         alpha = arr[:, :, 3]
-        rgb = arr[alpha > 128, :3]
-        pale_white = ((rgb[:, 0] > 248) & (rgb[:, 1] > 248) & (rgb[:, 2] > 248)).sum()
         print(f"{os.path.basename(check_png)}: Alpha pixels={(alpha>0).sum()} | Pure transparent={(alpha==0).sum()}")
 
 if __name__ == "__main__":

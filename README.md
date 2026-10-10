@@ -241,7 +241,7 @@ diesnat44project/
 │   │   ├── logo-symbol-color.png         # Raster 1024x1024 px transparansi alfa
 │   │   ├── logo-color-2048.png           # Raster 2048x2048 px resolusi cetak
 │   │   └── logo-with-grid.png            # Visualisasi cetak grid konstruksi
-│   ├── brandkit_wonka/                   # Aset Penyerta Edisi Magis Willy Wonka
+│   ├── brandkit_elements/                # Aset Penyerta & Ornamen Brand Kit
 │   │   ├── svg/                          # Vektor ornamen (Burst, Ribbons, Swirl, Sparkles)
 │   │   ├── png/                          # PNG transparan resolusi tinggi (Canva-ready)
 │   │   └── backgrounds/                  # Preset kanvas latar resmi (Feed 1:1 & Story 9:16)
@@ -264,7 +264,7 @@ diesnat44project/
 │       ├── render_and_verify_v6.py       # Skrip penguji rendering & ekspor PNG
 │       ├── generate_anatomy_diagrams.py  # Skrip generator diagram anatomi visual
 │       ├── trace_dies_natalis_and_44.py  # Skrip tracing logotype bubble modular
-│       └── generate_wonka_brandkit.py    # Skrip generator aset penyerta tema Wonka
+│       └── generate_supporting_assets.py # Skrip generator aset penyerta & kanvas
 │
 ├── tokens/                               # Spesifikasi token desain resmi
 │   ├── design-tokens.json                # Nilai token format JSON W3C
@@ -280,7 +280,7 @@ diesnat44project/
 └── docs/                                 # Dokumentasi komprehensif
     ├── BRAND_GUIDELINES.md               # Buku pedoman tata cara penggunaan identitas
     ├── METODOLOGI_TRACING_VEKTOR.md      # Metodologi teknis tracing & algoritma kurva
-    └── WONKA_BRAND_ASSET_GUIDE.md        # Panduan aset penyerta & hirarki warna Wonka
+    └── SUPPORTING_ASSETS_GUIDE.md        # Panduan aset penyerta & hirarki warna kanvas
 ```
 
 ---
