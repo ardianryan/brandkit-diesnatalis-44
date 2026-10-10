@@ -1,6 +1,18 @@
 import os
+from typing import TypedDict
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+
+class Callout(TypedDict):
+    num: str
+    title: str
+    tag: str
+    desc: list[str]
+    color: tuple[int, int, int]
+    target: tuple[int, int]
+    card_box: tuple[int, int, int, int]
+    dot_pos: tuple[int, int]
+    anchor: str
 
 def create_anatomy_diagrams():
     os.makedirs("assets/anatomy", exist_ok=True)
@@ -66,7 +78,7 @@ def create_anatomy_diagrams():
     
     # 5 Anatomical Callout Points
     # Format: target_x, target_y, card_x, card_y, align, num, title, tag, desc_lines
-    callouts = [
+    callouts: list[Callout] = [
         {
             "num": "01",
             "title": "Kepala & Tatapan Rajawali",
