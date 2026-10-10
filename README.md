@@ -8,7 +8,7 @@ Repositori ini memuat seluruh berkas master logo vektor matematis, dokumentasi a
 > [!TIP]
 > **Akses Cepat Unduhan Aset (Google Drive)**:
 > Seluruh paket berkas master desain (vektor SVG, raster PNG transparansi ultra-tinggi, elemen *Canva-ready*, latar *story/feed*, serta visualisasi mockup produk) dapat diunduh langsung melalui tautan Google Drive resmi:
-> 🔗 **[Unduh Brand Kit Resmi (Google Drive)](https://s.sman1gedeg.sch.id/Arkesa-BrandKit)** (`https://s.sman1gedeg.sch.id/Arkesa-BrandKit`)
+> 🔗 **[Unduh Brand Kit Resmi (Google Drive)](https://s.sman1gedeg.sch.id/Aversa-BrandKit)** (`https://s.sman1gedeg.sch.id/Aversa-BrandKit`)
 
 ---
 
@@ -234,7 +234,7 @@ Palet warna resmi almamater dikalibrasi mengacu pada bagan master `assets/brandk
 ## Struktur Repositori & Katalog Aset Master
 
 > [!NOTE]
-> Untuk mengunduh seluruh bundel aset master (ZIP lengkap tanpa perlu melakukan kloning git), silakan akses Google Drive resmi melalui: **[s.sman1gedeg.sch.id/Arkesa-BrandKit](https://s.sman1gedeg.sch.id/Arkesa-BrandKit)**.
+> Untuk mengunduh seluruh bundel aset master (ZIP lengkap tanpa perlu melakukan kloning git), silakan akses Google Drive resmi melalui: **[s.sman1gedeg.sch.id/Aversa-BrandKit](https://s.sman1gedeg.sch.id/Aversa-BrandKit)**.
 
 ```text
 diesnat44project/
