@@ -111,7 +111,33 @@ Area aman di sekeliling lambang wajib dijaga sekurang-kurangnya sebesar **$X = \
 
 ---
 
-## 7. ATURAN PENGGUNAAN & LARANGAN (*DO'S & DON'TS*)
+## 7. PENERAPAN BRAND KIT & CENDERA MATA RESMI
+
+Berikut adalah panduan teknis implementasi identitas visual pada berbagai atribut dan cendera mata resmi:
+
+### A. Kaos Polo Panitia & T-Shirt Peserta
+![Mockup Kaos Polo & T-Shirt Resmi](../assets/mockups/mockup_kaos_polo.jpg)
+* **Polo Shirt**: Bahan Lacoste Cotton Pique 24s hitam dof dengan bordir komputer benang rayon emas diameter 65 mm di dada kiri.
+* **T-Shirt**: Bahan Cotton Combed 30s Reaktif dengan sablon plastisol emas metalik.
+
+### B. Tumbler Termal Stainless Steel
+![Mockup Tumbler Stainless Steel](../assets/mockups/mockup_tumbler.jpg)
+* **Bahan**: Double-wall vacuum insulated stainless steel 304, kapasitas 500 ml, finishing matte powder coated hitam atau plum.
+* **Teknik**: Grafir laser serat (laser engraving) atau cetak UV timbul emas tinggi 80 mm terpusat vertikal.
+
+### C. Tali Lanyard & Kartu Identitas Panitia
+![Mockup Lanyard & ID Card Panitia](../assets/mockups/mockup_lanyard_idcard.jpg)
+* **Lanyard**: Pita satin kilap lebar 20 mm, panjang 90 cm, cetak sublimasi bolak-balik warna Midnight Plum (`#360538`) dengan kait putar nikel.
+* **ID Card**: Kartu PVC tebal 0,8 mm laminasi dof standar ISO CR-80.
+
+### D. Tas Jinjing Kanvas & Lencana Pin Logam 24K
+![Mockup Tote Bag Kanvas & Enamel Pin](../assets/mockups/mockup_totebag_pin.jpg)
+* **Tote Bag**: Kanvas katun organik 14 oz (Natural Broken White), sablon plastisol emas lebar 20 cm.
+* **Enamel Pin**: Logam zinc alloy die-struck sepuhan emas murni 24K, cat enamel hitam, kubah resin bening, diameter 30 mm dengan klip kupu-kupu ganda.
+
+---
+
+## 8. ATURAN PENGGUNAAN & LARANGAN (*DO'S & DON'TS*)
 
 * ❌ **Dilarang menarik proporsi secara tidak proporsional (*stretch / squash*)**.
 * ❌ **Dilarang mengubah arah hadap rajawali atau memutar sudut kemiringan lambang**.
@@ -123,8 +149,8 @@ Area aman di sekeliling lambang wajib dijaga sekurang-kurangnya sebesar **$X = \
 
 ---
 
-## 8. STATUS HAK CIPTA & LISENSI
+## 9. STATUS HAK CIPTA & LISENSI
 
-Seluruh karya grafis, lambang, skrip komputasi, dan dokumentasi ini dilindungi oleh undang-undang hak cipta. 
+Seluruh karya grafis, lambang, skrip komputasi, dan dokumentasi ini dilindungi oleh undang-undang hak cipta Republik Indonesia. 
 
 Status lisensi adalah **PROPRIETARY / ALL RIGHTS RESERVED (LISENSI TERTUTUP EKSKLUSIF)** milik **SMA Negeri 1 Gedeg** dan **Ardian Ryan**. Dilarang keras menyalin, memperjualbelikan, atau memanfaatkan materi ini untuk kepentingan pihak ketiga tanpa persetujuan tertulis resmi.

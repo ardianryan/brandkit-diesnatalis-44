@@ -1,65 +1,162 @@
-# Identitas Visual & Rekonstruksi Vektor Master V6
-## Dies Natalis ke-44 SMA Negeri 1 Gedeg
+# Identitas Visual & Panduan Brand Kit Dies Natalis ke-44
+## SMA Negeri 1 Gedeg, Kabupaten Mojokerto
 
-Selamat datang di repositori resmi **Brand Identity & Rekonstruksi Vektor Dies Natalis ke-44 SMA Negeri 1 Gedeg** (Kabupaten Mojokerto, Jawa Timur). 
+Selamat datang di repositori resmi **Brand Identity Kit & Rekonstruksi Vektor Master V6 Dies Natalis ke-44 SMA Negeri 1 Gedeg**. 
 
-Repositori ini memuat seluruh berkas master lambang resmi beresolusi tinggi, dokumentasi metodologi penarikan garis (*vector tracing*), analisis geometris kurva Bezier, spesifikasi palet warna Coolors, dan pedoman penerapan identitas almamater.
+Repositori ini memuat seluruh berkas master logo vektor matematis, dokumentasi anatomi dan filosofi beranotasi visual, metodologi penarikan garis (*vector tracing*), sistem palet warna resmi Coolors, serta pedoman implementasi *merchandise* resmi (kaos polo, botol minum tumbler, tali lanyard, tas kanvas, dan lencana pin emas).
 
 ---
 
 ## Daftar Isi
-1. [Filosofi Lambang Resmi](#filosofi-lambang-resmi)
-2. [Metodologi Tracing & Alat Komputasi](#metodologi-tracing--alat-komputasi)
-3. [Riwayat Evolusi Perancangan (Sketsa ke V6)](#riwayat-evolusi-perancangan-sketsa-ke-v6)
-4. [Sistem Palet Warna Resmi (Coolors Spec)](#sistem-palet-warna-resmi-coolors-spec)
-5. [Struktur Repositori & Katalog Aset](#struktur-repositori--katalog-aset)
-6. [Cara Menjalankan Skrip Generator Python](#cara-menjalankan-skrip-generator-python)
-7. [Pedoman Penerapan & Cendera Mata](#pedoman-penerapan--cendera-mata)
+1. [Anatomi & Makna Filosofis Lambang (Visual Breakdown)](#anatomi--makna-filosofis-lambang-visual-breakdown)
+2. [Brand Identity Kit & Implementasi Merchandise](#brand-identity-kit--implementasi-merchandise)
+3. [Metodologi Tracing & Alat Komputasi](#metodologi-tracing--alat-komputasi)
+4. [Riwayat Evolusi Perancangan (Sketsa ke V6)](#riwayat-evolusi-perancangan-sketsa-ke-v6)
+5. [Sistem Palet Warna Resmi (Coolors Spec)](#sistem-palet-warna-resmi-coolors-spec)
+6. [Struktur Repositori & Katalog Aset Master](#struktur-repositori--katalog-aset-master)
+7. [Cara Menjalankan Skrip Generator Python](#cara-menjalankan-skrip-generator-python)
 8. [Hak Cipta & Lisensi Kepemilikan](#hak-cipta--lisensi-kepemilikan)
 
 ---
 
-## Filosofi Lambang Resmi
+## Anatomi & Makna Filosofis Lambang (Visual Breakdown)
 
-Lambang Dies Natalis ke-44 SMA Negeri 1 Gedeg memadukan unsur tradisi almamater, ketegasan karakter, dan visi masa depan. Setiap lekukan garis kurva dibangun secara matematis untuk mencerminkan nilai luhur institusi:
+Lambang Dies Natalis ke-44 SMA Negeri 1 Gedeg dibangun dari perpaduan harmonis antara figur kembar angka 44, siluet kepala rajawali, kobaran api abadi, dan akselerasi sayap aerodinamis.
 
-```
-          ▲ Puncak Visi Intelektual Rajawali
-         / \
-        /   \  Tatapan Tegas Visioner Masa Depan
-       │  4  │ Sinergi Angka Kembar 44
-        \   /  Lidah Api Abadi Berkobar
-         \_/   Fondasi Karakter & Integritas SMAN 1 Gedeg
-```
+Berikut adalah diagram diagnostik anatomi lengkap yang memetakan setiap zona lambang:
 
-### 1. Sinergi Angka Kembar 44
-Bentuk dasar lambang menyatukan dua figur angka empat yang saling bertaut dinamis. Figur kembar ini melambangkan keselarasan, persatuan civitas akademika, kedewasaan institusi selama 44 tahun dalam membina generasi bangsa, serta kebersamaan antargenerasi guru, karyawan, siswa, dan alumni.
+![Diagram Anatomi & Filosofi Lengkap Master V6](assets/anatomy/diagram_anatomi_lengkap.png)
 
-### 2. Kepala dan Tatapan Tajam Rajawali
-Pada bagian puncak lambang terpahat siluet kepala rajawali yang menatap tegas ke arah kanan atas. Simbol ini mengekspresikan kewibawaan almamater, ketajaman intelektual, keteguhan hati, dan keberanian civitas akademika dalam meraih prestasi tingkat nasional maupun global.
+---
 
-### 3. Lidah Api Abadi Berkobar
-Lekukan yang mengalir dari dasar hingga puncak lambang melambangkan lidah api abadi. Api merepresentasikan semangat belajar yang tidak pernah padam, daya lenting (*resilience*) menghadapi tantangan zaman, kreativitas tanpa henti, dan energi kepemimpinan yang menerangi lingkungan sekitar.
+### Rincian Bagian & Makna Filosofis Terperinci:
 
-### 4. Akselerasi Kurva Aerodinamis
-Sayap luar dirancang dengan kelengkungan aerodinamis yang meluncur cepat ke arah kanan atas. Arah ini melambangkan orientasi masa depan, percepatan transformasi pendidikan, dan kemajuan yang berkesinambungan (*continuous advancement*).
+#### 1. Kepala & Tatapan Visioner Rajawali (Zona Puncak Kiri Atas)
+![Fokus Anatomi 01 - Kepala Rajawali](assets/anatomy/fokus_01_kepala_tatapan_rajawali.png)
 
-### 5. Harmoni Tulang Punggung Medial (*Symmetrical Medial Spine*)
-Pada pembaruan versi **V6 Master Final**, tulang punggung tengah (*medial spine*) disempurnakan dengan busur lingkaran konsentris simetris 100%. Harmoni garis ini menghasilkan dimensi visual trimatra (3D) yang anggun, kokoh, dan bebas dari distorsi sudut tajam.
+* **Lokasi Anatomi**: Terletak pada puncak figur angka 4 sisi kiri, ditandai siluet paruh melengkung tajam dan mata elang yang mengarah ke kanan atas.
+* **Makna Filosofis**:
+  - **Ketajaman Intelektual**: Mencerminkan visi keilmuan civitas akademika yang tajam dalam membaca peluang masa depan di era transformasi digital.
+  - **Kewibawaan & Ketegasan Moral**: Sikap teguh tanpa kompromi dalam menegakkan integritas, kejujuran akademik, dan tata krama luhur.
+  - **Orientasi Masa Depan**: Tatapan yang mengarah ke kuadran kanan atas menyimbolkan keberanian melangkah menyongsong masa keemasan almamater.
+
+---
+
+#### 2. Figur Kembar Angka 44 (Zona Inti Lambang)
+![Fokus Anatomi 02 - Figur Kembar Angka 44](assets/anatomy/fokus_02_figur_kembar_angka_44.png)
+
+* **Lokasi Anatomi**: Struktur inti yang membentuk kesatuan lambang secara menyeluruh melalui dua figur angka 4 yang saling menopang dan mengunci secara simetris.
+* **Makna Filosofis**:
+  - **44 Tahun Perjalanan Bersejarah**: Menandai usia ke-44 tahun dedikasi SMA Negeri 1 Gedeg dalam melahirkan putra-putri bangsa yang berprestasi dan berdaya saing tinggi.
+  - **Kedewasaan & Stabilitas Institusi**: Angka 4 pertama berdiri kokoh sebagai fondasi tradisi, sedangkan angka 4 kedua melesat sebagai akselerasi kemajuan zaman.
+  - **Persatuan Antargenerasi**: Simbol keharmonisan ikatan kekeluargaan antarpendidik, tenaga kependidikan, siswa aktif, dan alumni lintas angkatan.
+
+---
+
+#### 3. Lidah Api Abadi Berkobar (Zona Dasar & Tubuh Bawah)
+![Fokus Anatomi 03 - Lidah Api Abadi Berkobar](assets/anatomy/fokus_03_lidah_api_abadi_berkobar.png)
+
+* **Lokasi Anatomi**: Sulur kurva dinamis yang mengalir membubung dari pangkal bawah lambang hingga ke sayap atas dengan gradasi tembaga dan merah marun.
+* **Makna Filosofis**:
+  - **Semangat Belajar Pantang Padam**: Api menyimbolkan rasa haus akan ilmu pengetahuan dan gairah berkarya yang tak pernah redup di hati warga sekolah.
+  - **Resiliensi & Daya Lenting**: Daya tahan tinggi dalam menghadapi berbagai ujian, perubahan kurikulum, serta rintangan zaman tanpa pernah menyerah.
+  - **Energi Penerang**: Api kebajikan yang membimbing, menghangatkan, dan memberikan kontribusi nyata bagi masyarakat sekitar.
+
+---
+
+#### 4. Akselerasi Sayap Aerodinamis (Zona Sayap Kanan Atas)
+![Fokus Anatomi 04 - Akselerasi Sayap Aerodinamis](assets/anatomy/fokus_04_akselerasi_sayap_aerodinamis.png)
+
+* **Lokasi Anatomi**: Sayap terluar dengan kelengkungan aerodinamis yang menyapu kencang ke sudut kanan atas dengan sudut kemiringan $45^\circ$.
+* **Makna Filosofis**:
+  - **Akselerasi Prestasi**: Percepatan capaian prestasi akademik, sains, seni, dan olahraga di kancah regional maupun nasional.
+  - **Transformasi Berkelanjutan**: Penolakan terhadap stagnasi; institusi senantiasa bergerak dinamis dan adaptif terhadap kemajuan sains dan teknologi global.
+
+---
+
+#### 5. Symmetrical Medial Spine (Tulang Punggung Tengah V6)
+![Fokus Anatomi 05 - Symmetrical Medial Spine](assets/anatomy/fokus_05_symmetrical_medial_spine.png)
+
+* **Lokasi Anatomi**: Garis pemisah tengah yang membentang di antara figur faset kiri dan kanan, membentuk tulang punggung simetris berbusur konsentris.
+* **Keunggulan Geometri V6**:
+  - **Simetri 100% Murni**: Memperbaiki lengkungan ekor dan tulang punggung versi terdahulu yang masih kaku, menghasilkan ilusi trimatra (3D) faset yang rapi, bersih, dan bebas cacat sudut.
+  - **Keseimbangan Karakter**: Menghubungkan tradisi luhur almamater dengan sayap inovasi modern dalam harmoni rasio keemasan.
+
+---
+
+## Brand Identity Kit & Implementasi Merchandise
+
+Berikut adalah panduan standarisasi penerapan identitas visual pada berbagai atribut dan cendera mata resmi Dies Natalis ke-44 SMA Negeri 1 Gedeg:
+
+### 1. Kaos Berkerah Panitia (Polo Shirt) & T-Shirt Resmi
+![Mockup Kaos Polo & T-Shirt Resmi](assets/mockups/mockup_kaos_polo.jpg)
+
+* **Spesifikasi Material**:
+  - **Polo Shirt**: Bahan *Lacoste Cotton Pique 24s* lembut, berpori adem, dan menyerap keringat.
+  - **T-Shirt Peserta**: Bahan *Cotton Combed 30s Reaktif* hitam pekat (*Jet Black*).
+* **Teknik Aplikasi Lambang**:
+  - **Dada Kiri**: Bordir komputer presisi (*High-Density Computerized Embroidery*) menggunakan benang rayon emas berkilau (*Metallic Gold Rayon Thread*) dengan ketebalan bordir 10.000 tusukan (*stitches*). Diameter lambang: **65 mm**.
+  - **Lengan Kanan**: Teks bordir horizontal "SMA NEGERI 1 GEDEG".
+  - **Bagian Belakang (T-Shirt)**: Sablon plastisol emas metalik dengan teks tajuk "DIES NATALIS KE-44 — KEMULIAAN PRESTASI, API INTEGRITAS".
+* **Warna Kain Resmi yang Diizinkan**:
+  - Hitam Pekat (*Jet Black* / `#0B0F19`) — **Warna Utama Panitia**
+  - Merah Marun Gelap (*Obsidian Mahogany* / `#310603`) — **Warna Pengurus Inti**
+  - Putih Gading (*Broken White*) — **Warna Civitas Guru**
+
+---
+
+### 2. Botol Minum Termal Stainless Steel (Tumbler)
+![Mockup Tumbler Stainless Steel](assets/mockups/mockup_tumbler.jpg)
+
+* **Spesifikasi Material**:
+  - Tabung *Double-Wall Vacuum Insulated Stainless Steel 304* berkapasitas 500 ml dengan lapisan luar dof (*Matte Powder Coated*).
+* **Teknik Aplikasi Lambang**:
+  - **Laser Engraving (Grafir Laser Serat)**: Mengikis lapisan hitam hingga memunculkan dasar logam perak/kuningan emas di bawahnya.
+  - **Opsi Cetak UV High-Gloss Emas**: Cetak timbul tinta UV warna emas (*Gold Foil UV Print*) tahan gores dan tahan cuci suhu tinggi.
+* **Dimensi Grafir**: Tinggi lambang **80 mm**, terpusat vertikal pada bodi botol bagian depan.
+* **Warna Bodi Tumbler**: Hitam Dof (*Matte Black*) atau Ungu Gelap (*Midnight Plum*).
+
+---
+
+### 3. Tali Lanyard & Kartu Tanda Pengenal (ID Card)
+![Mockup Lanyard & ID Card Panitia](assets/mockups/mockup_lanyard_idcard.jpg)
+
+* **Spesifikasi Material Lanyard**:
+  - Pita satin polyester kilap halus lebar **20 mm**, panjang **90 cm**, dilengkapi stopper pengaman hitam dan kait putar logam nikel (*metal oval hook*).
+* **Teknik Cetak Lanyard**:
+  - Cetak sublimasi penuh bolak-balik (*double-sided heat transfer sublimation*) warna dasar *Midnight Plum* (`#360538`) dengan tulisan teks emas "DIES NATALIS 44 • SMAN 1 GEDEG".
+* **Spesifikasi ID Card**:
+  - Kartu plastik PVC tebal **0,8 mm** (standar ISO CR-80, ukuran $85{,}6 \times 54 \text{ mm}$) dengan laminasi dof (*matte finish*).
+  - Bagian atas memuat lambang warna emas V6, foto peserta/panitia, nama lengkap, nomor identitas panitia, serta kode batang keamanan.
+
+---
+
+### 4. Tas Jinjing Kanvas (Tote Bag) & Pin Enamel Sepuh Emas
+![Mockup Tote Bag Kanvas & Enamel Pin](assets/mockups/mockup_totebag_pin.jpg)
+
+* **Spesifikasi Tas Jinjing (Tote Bag)**:
+  - **Material**: Kanvas katun organik tebal 14 oz (*Natural Broken White* atau *Obsidian Black*), dimensi $38 \times 42 \text{ cm}$ dengan tali jinjing 60 cm.
+  - **Teknik Cetak**: Sablon pasta plastisol emas berkilau (*Metallic Gold Plastisol Print*) tahan cuci, atau foil emas panas (*hot-stamping gold foil*).
+  - **Ukuran Cetak**: Lebar lambang **20 cm** terpusat di bagian depan tas.
+* **Spesifikasi Lencana Pin Enamel (Enamel Pin Badge)**:
+  - **Material**: Logam *Zinc Alloy Die-Struck* dengan sepuhan emas murni 24 karat (*24K Gold Electroplating*).
+  - **Finishing**: Lapisan cat enamel hitam halus dengan kubah resin bening protektif (*Epoxy Dome*).
+  - **Dimensi**: Diameter **30 mm**, ketebalan 2,5 mm, dilengkapi klip pengunci kupu-kupu ganda (*double butterfly clutch*).
+  - **Peruntukan**: Cendera mata kehormatan untuk dewan guru, tamu VVIP, kepala sekolah purna tugas, dan pengurus inti OSIS.
 
 ---
 
 ## Metodologi Tracing & Alat Komputasi
 
-Seluruh proses digitalisasi dan kalibrasi kurva dari sketsa pensil manual hingga vektor master V6 dikerjakan secara komputasional (*algorithmic vectorization*) menggunakan ekosistem **Python 3.10+**.
+Digitalisasi dan kalibrasi lambang dari goresan pensil manual ke vektor matematis V6 dikerjakan secara komputasional (*algorithmic vectorization*) menggunakan ekosistem **Python 3.10+**.
 
-### Perangkat Lunak & Pustaka (*Tools & Libraries*):
-* **OpenCV (`cv2`)**: Digunakan untuk pengolahan citra digital tahap awal, mencakup pemisahan latar belakang kertas (*Otsu thresholding*), perataan kontras (*CLAHE*), dan ekstraksi kontur piksel (`cv2.findContours`).
-* **NumPy**: Digunakan untuk kalkulasi matriks koordinat $(x, y)$, perhitungan jarak euklides, dan normalisasi vektor tangen antartitik lengkung.
-* **SciPy (`scipy.interpolate`)**: Digunakan untuk interpolasi *spline* dan penyesuaian parameter kurva Bezier kubik guna menjamin kontinuitas lengkungan (*$C^1$ smooth continuity*).
-* **svgwrite**: Digunakan untuk menyusun sintaks XML SVG vektor murni berstandar W3C beresolusi tak terbatas (*lossless scaling*).
-* **CairoSVG**: Digunakan untuk merender berkas SVG menjadi berkas raster cetak PNG ultra-tinggi (2048x2048 piksel) dengan transparansi alfa sempurna.
-* **Matplotlib**: Digunakan untuk inspeksi kisi-kisi matematis (*geometric construction grid inspection*) pada busur rasio keemasan.
+### Perangkat Lunak & Pustaka Komputasi:
+* **OpenCV (`cv2`)**: Pengolahan citra raster (penyesuaian kontras adaptif CLAHE, binerisasi ambang batas Otsu, dan ekstraksi batas piksel `cv2.findContours`).
+* **NumPy**: Pengolahan matriks titik koordinat $(x, y)$, perhitungan vektor tangen antartitik, dan normalisasi kanvas resolusi $2048 \times 2048$ piksel.
+* **SciPy (`scipy.interpolate`)**: Penghalusan titik poligon menjadi kurva Bezier kubik (*cubic Bezier spline fitting*) guna menjamin kontinuitas lengkungan ($C^1$ *continuity*).
+* **svgwrite**: Pustaka pembangun struktur XML SVG vektor murni berstandar W3C beresolusi tak terbatas (*infinite vector resolution*).
+* **CairoSVG**: Mesin perender untuk menghasilkan berkas raster cetak PNG ultra-tinggi (2048x2048 piksel) dengan transparansi alfa bersih.
+* **Matplotlib**: Inspeksi visual kisi-kisi matematis (*geometric construction grid inspection*).
 
 Dokumentasi matematis dan algoritma lengkap dapat dibaca pada [docs/METODOLOGI_TRACING_VEKTOR.md](docs/METODOLOGI_TRACING_VEKTOR.md).
 
@@ -67,12 +164,12 @@ Dokumentasi matematis dan algoritma lengkap dapat dibaca pada [docs/METODOLOGI_T
 
 ## Riwayat Evolusi Perancangan (Sketsa ke V6)
 
-Perancangan identitas visual ini melalui enam tahapan iterasi:
+Perancangan identitas visual ini melalui enam tahapan proses kreatif:
 
 | Tahapan | Berkas Masukan / Hasil | Deskripsi Teknis |
 | :--- | :--- | :--- |
 | **01. Sketsa Pensil Awal** | `raw draw.jpeg` | Sketsa tangan pensil grafit asli di atas kertas gambar. Berisi proporsi dasar angka kembar 44, arah paruh rajawali, dan lingkaran pandu manual. |
-| **02. Lukisan Tangan Digital** | `digital hand draw.PNG` | Pewarnaan tangan digital berbasis raster (RGB 24-bit). Menentukan sebaran gradasi api, kontras paruh, dan transisi ketebalan siluet. |
+| **02. Lukisan Tangan Digital** | `digital hand draw.PNG` | Pewarnaan tangan digital raster (RGB 24-bit). Menentukan sebaran gradasi api, kontras paruh, dan transisi ketebalan siluet. |
 | **03. Vektor Kontur Awal (V1–V2)** | `archive/v1/`, `archive/v2/` | Ekstraksi kontur biner otomatis awal. Masih ditemukan sudut tajam bergerigi pada lengkungan ekor. |
 | **04. Blueprint Geometris (V3)** | `archive/v3/` | Penerapan grid busur lingkaran rasio keemasan pada sayap dan kepala rajawali. |
 | **05. Kalibrasi Line-Cut & Ekor (V4–V5)**| `archive/v4/`, `archive/v5/` | Penyetaraan celah antar-garis (*kerning gap*) dan perbaikan kelengkungan ujung ekor agar tidak kaku. |
@@ -82,7 +179,7 @@ Perancangan identitas visual ini melalui enam tahapan iterasi:
 
 ## Sistem Palet Warna Resmi (Coolors Spec)
 
-Palet warna resmi dikalibrasi secara presisi mengacu pada dokumen `coolors.jpeg`:
+Palet warna resmi dikalibrasi mengacu pada dokumen `coolors.jpeg`:
 
 | Nama Warna | Kode Hex | RGB | CMYK | Karakter & Peruntukan |
 | :--- | :--- | :--- | :--- | :--- |
@@ -97,7 +194,7 @@ Palet warna resmi dikalibrasi secara presisi mengacu pada dokumen `coolors.jpeg`
 
 ---
 
-## Struktur Repositori & Katalog Aset
+## Struktur Repositori & Katalog Aset Master
 
 ```text
 diesnat44project/
@@ -116,15 +213,28 @@ diesnat44project/
 │   │   ├── logo-monochrome-black.svg     # Versi monokrom hitam pekat
 │   │   ├── logo-monochrome-white.svg     # Versi monokrom putih bersih (Inverted)
 │   │   └── logo-with-grid.svg            # Konstruksi kurva & lingkaran rasio emas
-│   └── png/                              # Berkas raster PNG resolusi ultra-tinggi
-│       ├── logo-symbol-color.png         # Raster 1024x1024 px transparansi alfa
-│       ├── logo-color-2048.png           # Raster 2048x2048 px resolusi cetak
-│       └── logo-with-grid.png            # Visualisasi cetak grid konstruksi
+│   ├── png/                              # Berkas raster PNG resolusi ultra-tinggi
+│   │   ├── logo-symbol-color.png         # Raster 1024x1024 px transparansi alfa
+│   │   ├── logo-color-2048.png           # Raster 2048x2048 px resolusi cetak
+│   │   └── logo-with-grid.png            # Visualisasi cetak grid konstruksi
+│   ├── anatomy/                          # Diagram anatomi dan gambar fokus bagian logo
+│   │   ├── diagram_anatomi_lengkap.png   # Diagram master anatomi lengkap beranotasi
+│   │   ├── fokus_01_kepala_tatapan_rajawali.png
+│   │   ├── fokus_02_figur_kembar_angka_44.png
+│   │   ├── fokus_03_lidah_api_abadi_berkobar.png
+│   │   ├── fokus_04_akselerasi_sayap_aerodinamis.png
+│   │   └── fokus_05_symmetrical_medial_spine.png
+│   └── mockups/                          # Visualisasi produk dan brand identity kit
+│       ├── mockup_kaos_polo.jpg          # Mockup kaos polo & t-shirt resmi
+│       ├── mockup_tumbler.jpg            # Mockup tumbler stainless steel grafir emas
+│       ├── mockup_lanyard_idcard.jpg     # Mockup lanyard satin & kartu panitia
+│       └── mockup_totebag_pin.jpg        # Mockup tote bag kanvas & pin enamel emas 24K
 │
-├── v6_detailing/                         # Sumber kode dan skrip generator V6
+├── v6_detailing/                         # Kode komputasi vektor master V6
 │   └── scripts/
 │       ├── generate_v6_master.py         # Skrip Python pembangun seluruh aset SVG V6
-│       └── render_and_verify_v6.py       # Skrip penguji rendering & ekspor PNG
+│       ├── render_and_verify_v6.py       # Skrip penguji rendering & ekspor PNG
+│       └── generate_anatomy_diagrams.py  # Skrip generator diagram anatomi visual
 │
 ├── tokens/                               # Spesifikasi token desain resmi
 │   ├── design-tokens.json                # Nilai token format JSON W3C
@@ -146,24 +256,21 @@ diesnat44project/
 
 ## Cara Menjalankan Skrip Generator Python
 
-Untuk mereproduksi seluruh berkas SVG dan PNG master secara mandiri dari terminal:
+Untuk mereproduksi seluruh berkas SVG, PNG, dan diagram anatomi secara mandiri dari terminal:
 
 ```bash
 # 1. Pasang pustaka dependensi Python
-pip install opencv-python numpy scipy svgwrite cairosvg matplotlib
+pip install opencv-python numpy scipy svgwrite cairosvg matplotlib Pillow
 
 # 2. Jalankan skrip pembangun vektor master V6
 python3 v6_detailing/scripts/generate_v6_master.py
 
 # 3. Jalankan skrip verifikasi rendering dan ekspor PNG 2048px
 python3 v6_detailing/scripts/render_and_verify_v6.py
+
+# 4. Jalankan skrip pembuat diagram anatomi visual
+python3 v6_detailing/scripts/generate_anatomy_diagrams.py
 ```
-
----
-
-## Pedoman Penerapan & Cendera Mata
-
-Pedoman lengkap mengenai ukuran minimum (*minimum size*), zona bebas (*clear space*), aturan bordir kaos polo, sablon totebag, lencana pin enamel sepuh emas 24K, dan plakat akrilik dapat dipelajari secara rinci pada [docs/BRAND_GUIDELINES.md](docs/BRAND_GUIDELINES.md).
 
 ---
 
