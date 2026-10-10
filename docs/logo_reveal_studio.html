@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Reveal Studio 60 FPS • Dies Natalis ke-44 SMAN 1 Gedeg (AVERSA)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0A020C;
+      --velvet-deep: #1C0521;
+      --velvet-plum: #360538;
+      --gold-primary: #F5C538;
+      --gold-bright: #FFEAA0;
+      --gold-deep: #E09D17;
+      --card-bg: rgba(28, 5, 33, 0.75);
+      --card-border: rgba(245, 197, 56, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(54, 9, 56, 0.45) 0%, transparent 65%),
+        radial-gradient(circle at 85% 85%, rgba(224, 157, 23, 0.12) 0%, transparent 50%);
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      background: rgba(245, 197, 56, 0.12);
+      border: 1px solid rgba(245, 197, 56, 0.4);
+      border-radius: 999px;
+      color: var(--gold-bright);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #FFF9D2 0%, #F5C538 50%, #E09D17 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #D6BDDF;
+      line-height: 1.5;
+    }
+
+    /* Main Player Container */
+    .studio-container {
+      width: 100%;
+      max-width: 1120px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(245, 197, 56, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Viewport Area */
+    .viewport-box {
+      width: 100%;
+      height: 560px;
+      background: #000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+      border-radius: 6px;
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    /* Ratio Modes */
+    .viewport-box[data-ratio="16:9"] canvas {
+      width: 960px;
+      height: 540px;
+    }
+    .viewport-box[data-ratio="9:16"] canvas {
+      width: 304px;
+      height: 540px;
+    }
+    .viewport-box[data-ratio="4:5"] canvas {
+      width: 432px;
+      height: 540px;
+    }
+
+    /* Watermark Indicator */
+    .viewport-tag {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      background: rgba(14, 2, 18, 0.8);
+      border: 1px solid rgba(245, 197, 56, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--gold-bright);
+      pointer-events: none;
+    }
+
+    /* Control Panel */
+    .controls-bar {
+      padding: 16px 24px;
+      background: rgba(14, 2, 18, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Timeline Scrubber */
+    .timeline-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .time-readout {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--gold-bright);
+      min-width: 80px;
+    }
+
+    .scrubber {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .scrubber::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-primary);
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .scrubber::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+    }
+
+    /* Action Buttons Row */
+    .buttons-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #F5C538 0%, #E09D17 100%);
+      color: #1C0521;
+      box-shadow: 0 4px 14px rgba(245, 197, 56, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(245, 197, 56, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #E2E8F0;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+    }
+
+    .btn-toggle.active {
+      background: rgba(245, 197, 56, 0.2);
+      border-color: var(--gold-primary);
+      color: var(--gold-bright);
+    }
+
+    /* Ratio Picker */
+    .ratio-pills {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ratio-btn {
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #94A3B8;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .ratio-btn.active {
+      background: var(--gold-primary);
+      color: #1C0521;
+      box-shadow: 0 2px 8px rgba(245, 197, 56, 0.3);
+    }
+
+    /* Download Card section */
+    .downloads-section {
+      width: 100%;
+      max-width: 1120px;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .download-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .download-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .dc-info h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold-bright);
+      margin-bottom: 4px;
+    }
+
+    .dc-info p {
+      font-size: 12px;
+      color: #CBD5E1;
+      line-height: 1.4;
+    }
+
+    .dc-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(245, 197, 56, 0.15);
+      color: var(--gold-primary);
+      margin-top: 4px;
+    }
+
+    .dc-btn {
+      padding: 8px 14px;
+      background: rgba(245, 197, 56, 0.12);
+      border: 1px solid var(--gold-primary);
+      border-radius: 8px;
+      color: var(--gold-bright);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .dc-btn:hover {
+      background: var(--gold-primary);
+      color: #1C0521;
+    }
+
+    @media (max-width: 768px) {
+      .viewport-box {
+        height: 380px;
+      }
+      .viewport-box[data-ratio="16:9"] canvas {
+        width: 100%;
+        height: auto;
+      }
+      .buttons-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge-top">DIES NATALIS 44 • AVERSA</div>
+    <h1>LOGO REVEAL STUDIO 60 FPS</h1>
+    <p class="subtitle">
+      Studio Pratinjau Video Interaktif &amp; Generator Format Resmi • 16:9 Lanskap (Panggung/YouTube), 9:16 Vertikal (Reels/TikTok/Story), dan 4:5 (Instagram Feed).
+    </p>
+  </header>
+
+  <div class="studio-container">
+    <div class="viewport-box" id="viewportBox" data-ratio="16:9">
+      <div class="viewport-tag" id="viewportTag">16:9 LANSKAP • 1920×1080 • 60 FPS</div>
+      <canvas id="revealCanvas" width="1920" height="1080"></canvas>
+    </div>
+
+    <div class="controls-bar">
+      <!-- Scrubber -->
+      <div class="timeline-container">
+        <span class="time-readout" id="timeCurrent">00:00.0</span>
+        <input type="range" class="scrubber" id="timelineScrubber" min="0" max="11" step="0.01" value="0">
+        <span class="time-readout" id="timeTotal">00:11.0</span>
+      </div>
+
+      <!-- Controls Row -->
+      <div class="buttons-row">
+        <!-- Play / Pause / Replay -->
+        <div class="btn-group">
+          <button class="btn btn-primary" id="btnPlay">▶ Putar Reveal</button>
+          <button class="btn btn-secondary" id="btnRestart">↺ Ulangi</button>
+          <button class="btn btn-secondary btn-toggle" id="btnSound">🔊 Suara: AKTIF</button>
+        </div>
+
+        <!-- Ratio Switcher -->
+        <div class="ratio-pills">
+          <button class="ratio-btn active" data-r="16:9">16:9 Lanskap</button>
+          <button class="ratio-btn" data-r="9:16">9:16 Vertikal</button>
+          <button class="ratio-btn" data-r="4:5">4:5 Feed</button>
+        </div>
+
+        <!-- Export Recording / Fullscreen -->
+        <div class="btn-group">
+          <button class="btn btn-secondary" id="btnRecord">⏺ Rekam Canvas (WebM)</button>
+          <button class="btn btn-secondary" id="btnFullscreen">⛶ Layar Penuh</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Ready MP4 Cards -->
+  <div class="downloads-section">
+    <!-- Card 1: 16:9 -->
+    <div class="download-card">
+      <div class="dc-info">
+        <h3>16:9 Lanskap (Full HD)</h3>
+        <p>Proyektor Panggung, Video YouTube, &amp; Bumper Presentasi</p>
+        <div class="dc-badge">1920×1080 • 11 DETIK • MP4</div>
+      </div>
+      <a href="../assets/video/logo_reveal_16x9.mp4" download class="dc-btn">
+        ⬇ Unduh MP4
+      </a>
+    </div>
+
+    <!-- Card 2: 9:16 -->
+    <div class="download-card">
+      <div class="dc-info">
+        <h3>9:16 Vertikal (Full HD)</h3>
+        <p>Instagram Reels, TikTok, &amp; WhatsApp/Instagram Story</p>
+        <div class="dc-badge">1080×1920 • 11 DETIK • MP4</div>
+      </div>
+      <a href="../assets/video/logo_reveal_9x16.mp4" download class="dc-btn">
+        ⬇ Unduh MP4
+      </a>
+    </div>
+
+    <!-- Card 3: 4:5 -->
+    <div class="download-card">
+      <div class="dc-info">
+        <h3>4:5 Portrait (HD Feed)</h3>
+        <p>Postingan Feed Instagram Tanpa Terpotong (Optimal Crop)</p>
+        <div class="dc-badge">1080×1350 • 11 DETIK • MP4</div>
+      </div>
+      <a href="../assets/video/logo_reveal_4x5.mp4" download class="dc-btn">
+        ⬇ Unduh MP4
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // AUDIO SYNTHESIZER (WEB AUDIO API)
+    // ==========================================
+    class CinematicAudioSynth {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      triggerBuild(time) {
+        if (!this.enabled || !this.ctx) return;
+        const now = this.ctx.currentTime;
+        
+        // Sub-bass drone crescendo
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(45, now);
+        osc.frequency.exponentialRampToValueAtTime(70, now + 4.5);
+        
+        // Lowpass filter
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(80, now);
+        filter.frequency.exponentialRampToValueAtTime(450, now + 4.5);
+
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.35, now + 4.4);
+        gain.gain.linearRampToValueAtTime(0.001, now + 4.6);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 4.6);
+      }
+
+      triggerImpact() {
+        if (!this.enabled || !this.ctx) return;
+        const now = this.ctx.currentTime;
+
+        // 1. Massive Sub-Drop (Impact Boom)
+        const boomOsc = this.ctx.createOscillator();
+        const boomGain = this.ctx.createGain();
+        boomOsc.type = 'sine';
+        boomOsc.frequency.setValueAtTime(120, now);
+        boomOsc.frequency.exponentialRampToValueAtTime(28, now + 1.8);
+
+        boomGain.gain.setValueAtTime(0.8, now);
+        boomGain.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
+
+        boomOsc.connect(boomGain);
+        boomGain.connect(this.ctx.destination);
+        boomOsc.start(now);
+        boomOsc.stop(now + 2.6);
+
+        // 2. Sparkling stardust chime chord
+        const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C5, E5, G5, C6, E6
+        notes.forEach((freq, idx) => {
+          const chime = this.ctx.createOscillator();
+          const chimeGain = this.ctx.createGain();
+          chime.type = 'sine';
+          chime.frequency.setValueAtTime(freq, now + idx * 0.08);
+
+          chimeGain.gain.setValueAtTime(0.12, now + idx * 0.08);
+          chimeGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 1.2);
+
+          chime.connect(chimeGain);
+          chimeGain.connect(this.ctx.destination);
+
+          chime.start(now + idx * 0.08);
+          chime.stop(now + idx * 0.08 + 1.3);
+        });
+      }
+
+      triggerChordSwell() {
+        if (!this.enabled || !this.ctx) return;
+        const now = this.ctx.currentTime;
+
+        // Warm brass/pad chord
+        const padNotes = [261.63, 329.63, 392.00, 523.25]; // C4 chord
+        padNotes.forEach((freq) => {
+          const pad = this.ctx.createOscillator();
+          const padGain = this.ctx.createGain();
+          pad.type = 'triangle';
+          pad.frequency.setValueAtTime(freq, now);
+
+          padGain.gain.setValueAtTime(0.01, now);
+          padGain.gain.linearRampToValueAtTime(0.15, now + 1.2);
+          padGain.gain.exponentialRampToValueAtTime(0.001, now + 4.0);
+
+          pad.connect(padGain);
+          padGain.connect(this.ctx.destination);
+
+          pad.start(now);
+          pad.stop(now + 4.1);
+        });
+      }
+    }
+
+    const sound = new CinematicAudioSynth();
+
+    // ==========================================
+    // CANVAS VISUAL ENGINE (60 FPS)
+    // ==========================================
+    const canvas = document.getElementById('revealCanvas');
+    const ctx = canvas.getContext('2d');
+    const viewportBox = document.getElementById('viewportBox');
+    const viewportTag = document.getElementById('viewportTag');
+
+    // UI elements
+    const btnPlay = document.getElementById('btnPlay');
+    const btnRestart = document.getElementById('btnRestart');
+    const btnSound = document.getElementById('btnSound');
+    const btnRecord = document.getElementById('btnRecord');
+    const btnFullscreen = document.getElementById('btnFullscreen');
+    const scrubber = document.getElementById('timelineScrubber');
+    const timeCurrent = document.getElementById('timeCurrent');
+    const ratioBtns = document.querySelectorAll('.ratio-btn');
+
+    // Load Logo Image
+    const logoImg = new Image();
+    logoImg.src = '../assets/png/logo-color-2048.png';
+
+    let currentRatio = '16:9';
+    let isPlaying = false;
+    let currentTime = 0; // 0 to 11.0 seconds
+    const DURATION = 11.0;
+    let lastTimestamp = 0;
+    let impactTriggered = false;
+    let chordTriggered = false;
+
+    // Ratios configuration
+    const RATIO_CONFIGS = {
+      '16:9': { w: 1920, h: 1080, label: '16:9 LANSKAP • 1920×1080 • 60 FPS' },
+      '9:16': { w: 1080, h: 1920, label: '9:16 VERTIKAL • 1080×1920 • 60 FPS' },
+      '4:5':  { w: 1080, h: 1350, label: '4:5 FEED PORTRAIT • 1080×1350 • 60 FPS' }
+    };
+
+    // Stardust Spiral Particles
+    const NUM_PARTICLES = 180;
+    const particles = [];
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      particles.push({
+        baseAngle: Math.random() * Math.PI * 2,
+        baseDistNorm: 0.25 + Math.random() * 0.75,
+        speed: 0.6 + Math.random() * 0.9,
+        size: 2 + Math.random() * 4,
+        color: ['#FFEAA0', '#F5C538', '#E09D17', '#FFFFFF'][Math.floor(Math.random() * 4)],
+        alpha: 0.3 + Math.random() * 0.7
+      });
+    }
+
+    // Burst Particles
+    const NUM_BURST = 70;
+    const burstParticles = [];
+    for (let i = 0; i < NUM_BURST; i++) {
+      burstParticles.push({
+        angle: Math.random() * Math.PI * 2,
+        speedNorm: 0.15 + Math.random() * 0.45,
+        size: 2 + Math.random() * 5,
+        color: ['#FFEAA0', '#FFFFFF', '#F5C538'][Math.floor(Math.random() * 3)]
+      });
+    }
+
+    function setRatio(ratioKey) {
+      currentRatio = ratioKey;
+      const cfg = RATIO_CONFIGS[ratioKey];
+      canvas.width = cfg.w;
+      canvas.height = cfg.h;
+      viewportBox.setAttribute('data-ratio', ratioKey);
+      viewportTag.textContent = cfg.label;
+      drawFrame(currentTime);
+    }
+
+    function drawFrame(t) {
+      const W = canvas.width;
+      const H = canvas.height;
+      const cx = W / 2;
+
+      // Layout coordinates based on aspect ratio
+      let cyLogo, logoTargetSize, fontAversaSize, fontSubSize, fontMetaSize, yAversa, ySub, yMeta;
+
+      if (W > H) { // 16:9
+        cyLogo = H * 0.44;
+        logoTargetSize = H * 0.55;
+        fontAversaSize = Math.round(H * 0.082);
+        fontSubSize = Math.round(H * 0.030);
+        fontMetaSize = Math.round(H * 0.024);
+        yAversa = H * 0.75;
+        ySub = H * 0.85;
+        yMeta = H * 0.90;
+      } else if (H / W > 1.6) { // 9:16
+        cyLogo = H * 0.42;
+        logoTargetSize = W * 0.72;
+        fontAversaSize = Math.round(W * 0.125);
+        fontSubSize = Math.round(W * 0.042);
+        fontMetaSize = Math.round(W * 0.034);
+        yAversa = H * 0.65;
+        ySub = H * 0.73;
+        yMeta = H * 0.78;
+      } else { // 4:5
+        cyLogo = H * 0.43;
+        logoTargetSize = W * 0.62;
+        fontAversaSize = Math.round(W * 0.105);
+        fontSubSize = Math.round(W * 0.037);
+        fontMetaSize = Math.round(W * 0.030);
+        yAversa = H * 0.69;
+        ySub = H * 0.78;
+        yMeta = H * 0.83;
+      }
+
+      // 1. CLEAR & RADIAL BACKGROUND
+      ctx.clearRect(0, 0, W, H);
+      const bgGrad = ctx.createRadialGradient(cx, H / 2, 0, cx, H / 2, Math.max(W, H) * 0.75);
+      bgGrad.addColorStop(0, '#360938');
+      bgGrad.addColorStop(0.55, '#1C0521');
+      bgGrad.addColorStop(1, '#0B010E');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // ==========================================
+      // PHASE 1 & 2: VORTEX PARTICLES & GATHERING GLOW (0.0s - 4.5s)
+      // ==========================================
+      if (t < 4.8) {
+        const prog = Math.min(1.0, t / 4.4);
+        particles.forEach(p => {
+          const curDist = (p.baseDistNorm * W) * (1.0 - prog * 0.85 * p.speed);
+          const curAngle = p.baseAngle + prog * 4.5 * p.speed;
+          const px = cx + curDist * Math.cos(curAngle);
+          const py = cyLogo + curDist * Math.sin(curAngle) * 0.7;
+
+          let fade = Math.min(1.0, t / 1.0);
+          if (t > 4.2) fade *= Math.max(0.0, (4.8 - t) / 0.6);
+
+          ctx.beginPath();
+          ctx.arc(px, py, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha * fade;
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1.0;
+      }
+
+      // Central Gathering Amber Energy Glow (0.5s - 4.6s)
+      if (t >= 0.5 && t <= 4.6) {
+        const glowProg = Math.min(1.0, (t - 0.5) / 3.8);
+        const glowR = logoTargetSize * 0.45 * (0.6 + 0.4 * glowProg);
+        let glowAlpha = 0.55 * Math.sin(glowProg * Math.PI * 0.5);
+        if (t > 4.2) glowAlpha *= Math.max(0.0, (4.6 - t) / 0.4);
+
+        const radGrad = ctx.createRadialGradient(cx, cyLogo, 0, cx, cyLogo, glowR);
+        radGrad.addColorStop(0, 'rgba(255, 234, 160, ' + glowAlpha + ')');
+        radGrad.addColorStop(0.4, 'rgba(245, 197, 56, ' + (glowAlpha * 0.6) + ')');
+        radGrad.addColorStop(1, 'rgba(245, 197, 56, 0)');
+
+        ctx.fillStyle = radGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cyLogo, glowR, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Anamorphic Beam Sweep (3.0s - 4.5s)
+      if (t >= 3.0 && t <= 4.5) {
+        const beamProg = (t - 3.0) / 1.5;
+        const beamX = W * (beamProg * 1.4 - 0.2);
+        const beamAlpha = Math.sin(beamProg * Math.PI);
+
+        // Horizontal laser bar
+        ctx.fillStyle = `rgba(255, 234, 160, ${beamAlpha * 0.45})`;
+        ctx.fillRect(0, cyLogo - 4, W, 8);
+
+        // Center flare hotspot
+        const flareGrad = ctx.createRadialGradient(beamX, cyLogo, 0, beamX, cyLogo, 160);
+        flareGrad.addColorStop(0, `rgba(255, 255, 255, ${beamAlpha})`);
+        flareGrad.addColorStop(0.3, `rgba(245, 197, 56, ${beamAlpha * 0.6})`);
+        flareGrad.addColorStop(1, 'rgba(245, 197, 56, 0)');
+        ctx.fillStyle = flareGrad;
+        ctx.beginPath();
+        ctx.ellipse(beamX, cyLogo, 180, 45, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // ==========================================
+      // PHASE 3: SHOCKWAVE, IMPACT & FULL LOGO (4.5s - 6.5s)
+      // ==========================================
+      if (t >= 4.5) {
+        const impactT = t - 4.5;
+
+        // 1. Expanding Shockwave Rings
+        if (impactT < 1.8) {
+          const swProg = impactT / 1.8;
+          const swR = swProg * W * 0.75;
+          const swAlpha = 0.85 * Math.pow(1.0 - swProg, 1.6);
+          const swW = Math.max(2, 6 * (1.0 - swProg));
+
+          ctx.strokeStyle = `rgba(255, 234, 160, ${swAlpha})`;
+          ctx.lineWidth = swW;
+          ctx.beginPath();
+          ctx.arc(cx, cyLogo, swR, 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Echo Ring
+          const swR2 = swR * 0.7;
+          ctx.strokeStyle = `rgba(245, 197, 56, ${swAlpha * 0.6})`;
+          ctx.lineWidth = Math.max(1, swW - 2);
+          ctx.beginPath();
+          ctx.arc(cx, cyLogo, swR2, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        // 2. Outward Burst Particles
+        if (impactT < 2.5) {
+          const bpProg = impactT / 2.5;
+          const bpAlpha = Math.max(0, 1.0 - Math.pow(bpProg, 1.3));
+          burstParticles.forEach(bp => {
+            const bDist = (bp.speedNorm * W) * (1 - (1 - bpProg) * (1 - bpProg));
+            const bx = cx + bDist * Math.cos(bp.angle);
+            const by = cyLogo + bDist * Math.sin(bp.angle);
+
+            ctx.beginPath();
+            ctx.arc(bx, by, Math.max(1, bp.size * (1 - bpProg * 0.5)), 0, Math.PI * 2);
+            ctx.fillStyle = bp.color;
+            ctx.globalAlpha = bpAlpha;
+            ctx.fill();
+          });
+          ctx.globalAlpha = 1.0;
+        }
+
+        // 3. Render Logo with Spring Scale & Fade-in
+        const scaleSpring = 1.0 + 0.14 * Math.exp(-impactT * 3.5) * Math.cos(impactT * 9.0);
+        const lSize = logoTargetSize * scaleSpring;
+        const logoAlpha = Math.min(1.0, impactT / 0.3);
+
+        ctx.save();
+        ctx.globalAlpha = logoAlpha;
+        if (logoImg.complete && logoImg.naturalWidth > 0) {
+          ctx.drawImage(logoImg, cx - lSize / 2, cyLogo - lSize / 2, lSize, lSize);
+        }
+        ctx.restore();
+
+        // 4. Specular Diagonal Light Band Gleam (5.2s - 7.0s)
+        if (t >= 5.2 && t <= 7.0) {
+          const gleamProg = (t - 5.2) / 1.8;
+          const gleamOffset = -lSize * 0.8 + gleamProg * (lSize * 2.2);
+
+          ctx.save();
+          // Clip to approximate logo circle
+          ctx.beginPath();
+          ctx.arc(cx, cyLogo, lSize * 0.48, 0, Math.PI * 2);
+          ctx.clip();
+
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+          ctx.beginPath();
+          ctx.moveTo(cx + gleamOffset, cyLogo - lSize / 2);
+          ctx.lineTo(cx + gleamOffset + 60, cyLogo - lSize / 2);
+          ctx.lineTo(cx + gleamOffset + 60 - lSize / 2, cyLogo + lSize / 2);
+          ctx.lineTo(cx + gleamOffset - lSize / 2, cyLogo + lSize / 2);
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      // ==========================================
+      // PHASE 4: TYPOGRAPHY ELEVATION (6.5s - 9.0s)
+      // ==========================================
+      if (t >= 6.5) {
+        const typoT = t - 6.5;
+        const typoAlpha = Math.min(1.0, typoT / 1.2);
+        const ySlide = 18 * Math.pow(1.0 - Math.min(1.0, typoT / 1.5), 3);
+
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // 1. AVERSA Wordmark
+        ctx.font = `900 ${fontAversaSize}px 'Cinzel', serif`;
+        ctx.fillStyle = '#FFEAA0';
+        ctx.globalAlpha = typoAlpha;
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+        ctx.shadowBlur = 18;
+        ctx.shadowOffsetY = 4;
+        ctx.fillText('AVERSA', cx, yAversa + ySlide);
+
+        // 2. Filigree Divider Line (7.0s)
+        if (typoT >= 0.5) {
+          const divProg = Math.min(1.0, (typoT - 0.5) / 1.0);
+          const divLen = W * 0.35 * Math.pow(divProg, 0.7);
+          const yDiv = (yAversa + ySub) / 2 + ySlide;
+
+          ctx.strokeStyle = `rgba(245, 197, 56, ${divProg * 0.75})`;
+          ctx.lineWidth = 2;
+          ctx.shadowBlur = 0;
+
+          ctx.beginPath();
+          ctx.moveTo(cx - divLen, yDiv);
+          ctx.lineTo(cx - 18, yDiv);
+          ctx.moveTo(cx + 18, yDiv);
+          ctx.lineTo(cx + divLen, yDiv);
+          ctx.stroke();
+
+          // Diamond Node
+          ctx.fillStyle = '#FFEAA0';
+          ctx.beginPath();
+          ctx.moveTo(cx, yDiv - 5);
+          ctx.lineTo(cx + 5, yDiv);
+          ctx.lineTo(cx, yDiv + 5);
+          ctx.lineTo(cx - 5, yDiv);
+          ctx.closePath();
+          ctx.fill();
+        }
+
+        // 3. Subtitles (7.3s)
+        if (typoT >= 0.8) {
+          const subProg = Math.min(1.0, (typoT - 0.8) / 1.0);
+          ctx.globalAlpha = subProg;
+
+          // DIES NATALIS KE-44 SMAN 1 GEDEG
+          ctx.font = `800 ${fontSubSize}px 'Plus Jakarta Sans', sans-serif`;
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('DIES NATALIS KE-44 SMAN 1 GEDEG', cx, ySub + ySlide);
+
+          // 1982—2026 • ADHI DHARMA EKAPRAYA
+          ctx.font = `600 ${fontMetaSize}px 'Plus Jakarta Sans', sans-serif`;
+          ctx.fillStyle = '#F5C538';
+          ctx.fillText('1982—2026 • ADHI DHARMA EKAPRAYA', cx, yMeta + ySlide);
+        }
+        ctx.restore();
+      }
+
+      // ==========================================
+      // PHASE 5: CELESTIAL TWINKLE (7.5s - 11.0s)
+      // ==========================================
+      if (t >= 7.5) {
+        const twinkleT = t - 7.5;
+        const glintPts = [
+          { x: cx + logoTargetSize * 0.16, y: cyLogo - logoTargetSize * 0.28 },
+          { x: cx - logoTargetSize * 0.18, y: cyLogo - logoTargetSize * 0.22 },
+          { x: cx + logoTargetSize * 0.25, y: cyLogo + logoTargetSize * 0.05 }
+        ];
+
+        glintPts.forEach((pt, idx) => {
+          const phase = Math.sin(twinkleT * 5.0 + idx * 2.1);
+          if (phase > 0.3) {
+            const sz = 16 * ((phase - 0.3) / 0.7);
+            const a = (phase - 0.3) / 0.7;
+
+            ctx.save();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${a})`;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(pt.x - sz, pt.y);
+            ctx.lineTo(pt.x + sz, pt.y);
+            ctx.moveTo(pt.x, pt.y - sz);
+            ctx.lineTo(pt.x, pt.y + sz);
+            ctx.stroke();
+
+            ctx.fillStyle = '#FFEAA0';
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        });
+      }
+
+      // Impact Flash at 4.5s
+      if (t >= 4.5 && t <= 4.85) {
+        const flashProg = (t - 4.5) / 0.35;
+        const flashA = 0.75 * Math.pow(1.0 - flashProg, 2.0);
+        ctx.fillStyle = `rgba(255, 248, 220, ${flashA})`;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      // Cinematic Vignette / Fade to Black (10.0s - 11.0s)
+      if (t >= 10.0) {
+        const fadeProg = Math.min(1.0, (t - 10.0) / 1.0);
+        ctx.fillStyle = `rgba(11, 1, 14, ${fadeProg})`;
+        ctx.fillRect(0, 0, W, H);
+      }
+    }
+
+    // ==========================================
+    // ANIMATION & AUDIO SYNC LOOP
+    // ==========================================
+    function loop(timestamp) {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const dt = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+
+      if (isPlaying) {
+        currentTime += dt;
+
+        // Sound triggers
+        if (currentTime >= 4.5 && !impactTriggered) {
+          sound.triggerImpact();
+          impactTriggered = true;
+        }
+        if (currentTime >= 6.5 && !chordTriggered) {
+          sound.triggerChordSwell();
+          chordTriggered = true;
+        }
+
+        if (currentTime >= DURATION) {
+          currentTime = DURATION;
+          isPlaying = false;
+          btnPlay.textContent = '▶ Putar Reveal';
+        }
+
+        scrubber.value = currentTime;
+        updateTimeReadout();
+      }
+
+      drawFrame(currentTime);
+      requestAnimationFrame(loop);
+    }
+
+    function updateTimeReadout() {
+      const sec = Math.floor(currentTime);
+      const ms = Math.floor((currentTime % 1) * 10);
+      timeCurrent.textContent = `00:${sec.toString().padStart(2, '0')}.${ms}`;
+    }
+
+    // ==========================================
+    // CONTROLS & LISTENERS
+    // ==========================================
+    btnPlay.addEventListener('click', () => {
+      sound.init();
+      if (!isPlaying) {
+        if (currentTime >= DURATION - 0.1) {
+          currentTime = 0;
+          impactTriggered = false;
+          chordTriggered = false;
+        }
+        isPlaying = true;
+        btnPlay.textContent = '⏸ Jeda';
+        if (currentTime < 4.0) {
+          sound.triggerBuild(currentTime);
+        }
+      } else {
+        isPlaying = false;
+        btnPlay.textContent = '▶ Putar Reveal';
+      }
+    });
+
+    btnRestart.addEventListener('click', () => {
+      sound.init();
+      currentTime = 0;
+      impactTriggered = false;
+      chordTriggered = false;
+      scrubber.value = 0;
+      updateTimeReadout();
+      isPlaying = true;
+      btnPlay.textContent = '⏸ Jeda';
+      sound.triggerBuild(0);
+    });
+
+    btnSound.addEventListener('click', () => {
+      sound.enabled = !sound.enabled;
+      btnSound.textContent = sound.enabled ? '🔊 Suara: AKTIF' : '🔇 Suara: MATI';
+      btnSound.classList.toggle('active', sound.enabled);
+    });
+
+    scrubber.addEventListener('input', (e) => {
+      currentTime = parseFloat(e.target.value);
+      updateTimeReadout();
+      drawFrame(currentTime);
+    });
+
+    ratioBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        ratioBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        setRatio(btn.dataset.r);
+      });
+    });
+
+    btnFullscreen.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        viewportBox.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    // ==========================================
+    // MEDIARECORDER CANVAS VIDEO EXPORT
+    // ==========================================
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    btnRecord.addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        btnRecord.textContent = '⏺ Rekam Canvas (WebM)';
+        return;
+      }
+
+      sound.init();
+      currentTime = 0;
+      impactTriggered = false;
+      chordTriggered = false;
+      isPlaying = true;
+      btnPlay.textContent = '⏸ Jeda';
+      sound.triggerBuild(0);
+
+      const stream = canvas.captureStream(60);
+      recordedChunks = [];
+      
+      const options = { mimeType: 'video/webm; codecs=vp9' };
+      try {
+        mediaRecorder = new MediaRecorder(stream, options);
+      } catch (e) {
+        mediaRecorder = new MediaRecorder(stream);
+      }
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) recordedChunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `logo_reveal_${currentRatio.replace(':', 'x')}_studio.webm`;
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      mediaRecorder.start();
+      btnRecord.textContent = '⏹ Berhenti & Unduh...';
+
+      // Automatically stop recording after duration
+      setTimeout(() => {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+          mediaRecorder.stop();
+          btnRecord.textContent = '⏺ Rekam Canvas (WebM)';
+        }
+      }, (DURATION + 0.5) * 1000);
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        btnPlay.click();
+      }
+    });
+
+    // Start Loop
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>
