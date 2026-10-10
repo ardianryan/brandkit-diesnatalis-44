@@ -5,6 +5,11 @@ Selamat datang di repositori resmi **Brand Identity Kit & Rekonstruksi Vektor Ma
 
 Repositori ini memuat seluruh berkas master logo vektor matematis, dokumentasi anatomi dan filosofi beranotasi visual, metodologi penarikan garis (*vector tracing*), sistem palet warna resmi Coolors, serta pedoman implementasi *merchandise* resmi (kaos polo, botol minum tumbler, tali lanyard, tas kanvas, dan lencana pin emas).
 
+> [!TIP]
+> **Akses Cepat Unduhan Aset (Google Drive)**:
+> Seluruh paket berkas master desain (vektor SVG, raster PNG transparansi ultra-tinggi, elemen *Canva-ready*, latar *story/feed*, serta visualisasi mockup produk) dapat diunduh langsung melalui tautan Google Drive resmi:
+> 🔗 **[Unduh Brand Kit Resmi (Google Drive)](https://s.sman1gedeg.sch.id/Arkesa-BrandKit)** (`https://s.sman1gedeg.sch.id/Arkesa-BrandKit`)
+
 ---
 
 ## Daftar Isi
@@ -227,6 +232,9 @@ Palet warna resmi almamater dikalibrasi mengacu pada bagan master `assets/brandk
 ---
 
 ## Struktur Repositori & Katalog Aset Master
+
+> [!NOTE]
+> Untuk mengunduh seluruh bundel aset master (ZIP lengkap tanpa perlu melakukan kloning git), silakan akses Google Drive resmi melalui: **[s.sman1gedeg.sch.id/Arkesa-BrandKit](https://s.sman1gedeg.sch.id/Arkesa-BrandKit)**.
 
 ```text
 diesnat44project/
