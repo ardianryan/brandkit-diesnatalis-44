@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bonbon-body" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFB3D9"/>
+      <stop offset="35%" stop-color="#F472B6"/>
+      <stop offset="70%" stop-color="#C026D3"/>
+      <stop offset="100%" stop-color="#701A75"/>
+    </radialGradient>
+    <linearGradient id="candy-gold-ribbon" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="50%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#B6580B"/>
+    </linearGradient>
+    <filter id="bonbon-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#240228" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#bonbon-shadow)">
+    <!-- Sayap Kuncup Kiri (Left Crimped Wrapper) -->
+    <path d="M 330 300
+             C 270 200, 160 140, 80 180
+             C 120 250, 110 350, 80 420
+             C 160 460, 270 400, 330 300 Z"
+          fill="#F472B6" opacity="0.95"/>
+    <path d="M 80 180 L 330 300 L 80 420" fill="none" stroke="#701A75" stroke-width="6" opacity="0.3"/>
+
+    <!-- Sayap Kuncup Kanan (Right Crimped Wrapper) -->
+    <path d="M 670 300
+             C 730 200, 840 140, 920 180
+             C 880 250, 890 350, 920 420
+             C 840 460, 730 400, 670 300 Z"
+          fill="#F472B6" opacity="0.95"/>
+    <path d="M 920 180 L 670 300 L 920 420" fill="none" stroke="#701A75" stroke-width="6" opacity="0.3"/>
+
+    <!-- Pita Emas Pengikat Kiri -->
+    <rect x="315" y="240" width="30" height="120" rx="8" fill="url(#candy-gold-ribbon)"/>
+    <!-- Pita Emas Pengikat Kanan -->
+    <rect x="655" y="240" width="30" height="120" rx="8" fill="url(#candy-gold-ribbon)"/>
+
+    <!-- Badan Permen Oval Buncit (Center Bonbon) -->
+    <ellipse cx="500" cy="300" rx="200" ry="140" fill="url(#bonbon-body)"/>
+
+    <!-- Pola Ulir Emas & Putih pada Badan Permen -->
+    <path d="M 420 165 C 470 220, 470 380, 420 435" fill="none" stroke="#FAF3DE" stroke-width="18" opacity="0.75" stroke-linecap="round"/>
+    <path d="M 500 160 C 550 220, 550 380, 500 440" fill="none" stroke="#F5C538" stroke-width="18" opacity="0.85" stroke-linecap="round"/>
+    <path d="M 580 165 C 630 220, 630 380, 580 435" fill="none" stroke="#FAF3DE" stroke-width="18" opacity="0.75" stroke-linecap="round"/>
+
+    <!-- Highlight Refleksi Manis -->
+    <ellipse cx="460" cy="230" rx="80" ry="25" fill="#FFFFFF" opacity="0.45" transform="rotate(-15, 460, 230)"/>
+  </g>
+</svg>

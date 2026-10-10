@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="stick-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E2D9C8"/>
+      <stop offset="40%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#FDFBF7"/>
+      <stop offset="100%" stop-color="#C5BAA5"/>
+    </linearGradient>
+    <filter id="loli-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#1F0422" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#loli-shadow)">
+    <!-- Gagang Stik Lolipop -->
+    <rect x="480" y="480" width="40" height="650" rx="20" fill="url(#stick-grad)"/>
+    <!-- Spiral Stripe pada Gagang Stik -->
+    <g opacity="0.85">
+      <path d="M 480 540 L 520 580 L 520 620 L 480 580 Z" fill="#E09D17"/>
+      <path d="M 480 660 L 520 700 L 520 740 L 480 700 Z" fill="#E09D17"/>
+      <path d="M 480 780 L 520 820 L 520 860 L 480 820 Z" fill="#E09D17"/>
+      <path d="M 480 900 L 520 940 L 520 980 L 480 940 Z" fill="#E09D17"/>
+      <path d="M 480 1020 L 520 1060 L 520 1100 L 480 1060 Z" fill="#E09D17"/>
+    </g>
+
+    <!-- Piringan Lolipop Spiral Utama -->
+    <g transform="translate(500, 380)">
+      <circle cx="0" cy="0" r="320" fill="#FAF3DE"/>
+
+      <!-- Bilah Spiral Warna-Warni Pastel & Magenta -->
+      <!-- Menggunakan 12 sektor spiral melengkung -->
+      <path d="M 0 0 C 120 40, 240 180, 277 160 C 314 140, 320 60, 320 0 Z" fill="#F472B6"/>
+      <path d="M 0 0 C 40 120, 180 240, 160 277 C 140 314, 60 320, 0 320 Z" fill="#6CC1AA"/>
+      <path d="M 0 0 C -40 120, -180 240, -160 277 C -140 314, -60 320, 0 320 Z" fill="#FAF3DE"/>
+      <path d="M 0 0 C -120 40, -240 180, -277 160 C -314 140, -320 60, -320 0 Z" fill="#9333EA"/>
+      <path d="M 0 0 C -120 -40, -240 -180, -277 -160 C -314 -140, -320 -60, -320 0 Z" fill="#F472B6"/>
+      <path d="M 0 0 C -40 -120, -180 -240, -160 -277 C -140 -314, -60 -320, 0 -320 Z" fill="#6CC1AA"/>
+      <path d="M 0 0 C 40 -120, 180 -240, 160 -277 C 140 -314, 60 -320, 0 -320 Z" fill="#FAF3DE"/>
+      <path d="M 0 0 C 120 -40, 240 -180, 277 -160 C 314 -140, 320 -60, 320 0 Z" fill="#9333EA"/>
+
+      <!-- Spiral Garis Kontur Meliuk Menambah Kedalaman -->
+      <path d="M 0 0 C 80 20, 180 80, 220 180 C 260 280, 160 310, 80 310" fill="none" stroke="#E09D17" stroke-width="12" opacity="0.6"/>
+      <path d="M 0 0 C -80 -20, -180 -80, -220 -180 C -260 -280, -160 -310, -80 -310" fill="none" stroke="#E09D17" stroke-width="12" opacity="0.6"/>
+
+      <!-- Kilau Gula Refleksi Kaca (Sugar Gloss) -->
+      <path d="M -180 -180 C -120 -280, 80 -300, 180 -220 C 120 -240, -60 -240, -180 -180 Z" fill="#FFFFFF" opacity="0.45"/>
+      <circle cx="-120" cy="-140" r="28" fill="#FFFFFF" opacity="0.6"/>
+    </g>
+
+    <!-- Pita Kupu-Kupu Emas di Bawah Piringan -->
+    <g transform="translate(500, 700)">
+      <polygon points="0,0 -80,-40 -70,20 0,0" fill="#E09D17"/>
+      <polygon points="0,0 80,-40 70,20 0,0" fill="#E09D17"/>
+      <circle cx="0" cy="0" r="16" fill="#F5C538"/>
+    </g>
+  </g>
+</svg>

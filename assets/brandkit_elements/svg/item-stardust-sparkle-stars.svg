@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <defs>
+    <radialGradient id="sparkle-gold-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="20%" stop-color="#FFFAD0"/>
+      <stop offset="50%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#F5C538" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g>
+    <!-- Bintang Utama Pusat Besar (4-Point Retro Star) -->
+    <g transform="translate(500, 500)">
+      <circle cx="0" cy="0" r="180" fill="url(#sparkle-gold-glow)"/>
+      <polygon points="0,-240 28,-35 240,0 28,35 0,240 -28,35 -240,0 -28,-35" fill="#FFFAD0"/>
+      <polygon points="0,-160 18,-25 160,0 18,25 0,160 -18,25 -160,0 -18,-25" fill="#FFFFFF"/>
+      <!-- Sinar Diagonal Lembut -->
+      <polygon points="-90,-90 -10,-10 90,90 10,10" fill="#F5C538" opacity="0.75"/>
+      <polygon points="90,-90 10,-10 -90,90 -10,10" fill="#F5C538" opacity="0.75"/>
+      <circle cx="0" cy="0" r="24" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Bintang Satelit Kanan Atas -->
+    <g transform="translate(780, 260)">
+      <polygon points="0,-110 14,-18 110,0 14,18 0,110 -14,18 -110,0 -14,-18" fill="#FFFAD0"/>
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Bintang Satelit Kiri Bawah -->
+    <g transform="translate(220, 740)">
+      <polygon points="0,-95 12,-15 95,0 12,15 0,95 -12,15 -95,0 -12,-15" fill="#FFFAD0"/>
+      <circle cx="0" cy="0" r="8" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Taburan Bintang Kecil & Debu Emas -->
+    <circle cx="320" cy="320" r="14" fill="#F5C538"/>
+    <circle cx="680" cy="680" r="16" fill="#F5C538"/>
+    <circle cx="750" cy="480" r="10" fill="#FFFAD0"/>
+    <circle cx="280" cy="560" r="12" fill="#FFFAD0"/>
+    <circle cx="480" cy="180" r="8" fill="#FFFFFF"/>
+    <circle cx="520" cy="820" r="9" fill="#FFFFFF"/>
+  </g>
+</svg>

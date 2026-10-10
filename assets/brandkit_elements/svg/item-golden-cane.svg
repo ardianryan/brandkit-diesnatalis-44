@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cane-wood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1A0201"/>
+      <stop offset="35%" stop-color="#4A0C08"/>
+      <stop offset="70%" stop-color="#2D0604"/>
+      <stop offset="100%" stop-color="#120101"/>
+    </linearGradient>
+    <radialGradient id="cane-gold-orb" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFAD0"/>
+      <stop offset="25%" stop-color="#FCE16B"/>
+      <stop offset="60%" stop-color="#E09D17"/>
+      <stop offset="90%" stop-color="#9C4505"/>
+      <stop offset="100%" stop-color="#542102"/>
+    </radialGradient>
+    <filter id="cane-shadow" x="-30%" y="-20%" width="160%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#150217" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#cane-shadow)">
+    <!-- Batang Tongkat Mahoni Meruncing -->
+    <polygon points="284,320 316,320 306,1150 294,1150" fill="url(#cane-wood)"/>
+    <!-- Sepatu Ujung Bawah Tongkat (Brass Tip) -->
+    <polygon points="292,1120 308,1120 304,1160 296,1160" fill="#E09D17"/>
+
+    <!-- Cincin Kuningan Emas di Segmen Atas -->
+    <rect x="280" y="320" width="40" height="24" rx="4" fill="url(#cane-gold-orb)"/>
+    <rect x="276" y="348" width="48" height="14" rx="3" fill="url(#cane-gold-orb)"/>
+
+    <!-- Ornamen Kerah Kepala Tongkat (Capital Collar) -->
+    <path d="M 260 280 C 270 310, 330 310, 340 280 L 330 260 L 270 260 Z" fill="url(#cane-gold-orb)"/>
+
+    <!-- Kepala Tongkat Bola Emas Bermahkota (Golden Orb Knob) -->
+    <circle cx="300" cy="180" r="95" fill="url(#cane-gold-orb)"/>
+
+    <!-- Cincin Berukir Melingkar pada Bola -->
+    <ellipse cx="300" cy="180" rx="90" ry="25" fill="none" stroke="#FFFAD0" stroke-width="4" opacity="0.6"/>
+    <!-- Puncak Mahkota Bintang Emas -->
+    <g transform="translate(300, 85)">
+      <polygon points="0,-25 8,-8 25,0 8,8 0,25 -8,8 -25,0 -8,-8" fill="#FFFAD0"/>
+    </g>
+
+    <!-- Kilauan Debu Cahaya Mengitari Kepala Tongkat -->
+    <circle cx="210" cy="130" r="4" fill="#FDF39D" opacity="0.8"/>
+    <circle cx="390" cy="150" r="5" fill="#FDF39D" opacity="0.8"/>
+    <circle cx="230" cy="240" r="3" fill="#FDF39D" opacity="0.7"/>
+    <circle cx="370" cy="220" r="4" fill="#FDF39D" opacity="0.7"/>
+  </g>
+</svg>

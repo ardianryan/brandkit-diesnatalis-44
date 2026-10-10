@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="glasses-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="30%" stop-color="#F5C538"/>
+      <stop offset="70%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#9C4505"/>
+    </linearGradient>
+    <filter id="glasses-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#1E0320" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#glasses-shadow)">
+    <!-- Gagang Kiri & Kanan Tipis Melengkung -->
+    <path d="M 120 250 C 40 220, 20 160, 60 120" fill="none" stroke="url(#glasses-gold)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 880 250 C 960 220, 980 160, 940 120" fill="none" stroke="url(#glasses-gold)" stroke-width="14" stroke-linecap="round"/>
+
+    <!-- Jembatan Hidung Melengkung (Bridge) -->
+    <path d="M 430 230 C 470 190, 530 190, 570 230" fill="none" stroke="url(#glasses-gold)" stroke-width="18" stroke-linecap="round"/>
+
+    <!-- Lensa & Bingkai Kiri Bulat -->
+    <circle cx="300" cy="250" r="140" fill="#FAF3DE" opacity="0.25"/>
+    <circle cx="300" cy="250" r="140" fill="none" stroke="url(#glasses-gold)" stroke-width="22"/>
+    <circle cx="300" cy="250" r="126" fill="none" stroke="#542102" stroke-width="4" opacity="0.5"/>
+    <!-- Highlight Kaca Kiri -->
+    <path d="M 220 180 C 260 150, 340 150, 380 180" fill="none" stroke="#FFFFFF" stroke-width="12" opacity="0.65" stroke-linecap="round"/>
+
+    <!-- Lensa & Bingkai Kanan Bulat -->
+    <circle cx="700" cy="250" r="140" fill="#FAF3DE" opacity="0.25"/>
+    <circle cx="700" cy="250" r="140" fill="none" stroke="url(#glasses-gold)" stroke-width="22"/>
+    <circle cx="700" cy="250" r="126" fill="none" stroke="#542102" stroke-width="4" opacity="0.5"/>
+    <!-- Highlight Kaca Kanan -->
+    <path d="M 620 180 C 660 150, 740 150, 780 180" fill="none" stroke="#FFFFFF" stroke-width="12" opacity="0.65" stroke-linecap="round"/>
+  </g>
+</svg>

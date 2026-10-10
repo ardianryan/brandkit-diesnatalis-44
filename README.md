@@ -264,8 +264,9 @@ diesnat44project/
 │       ├── render_and_verify_v6.py       # Skrip penguji rendering & ekspor PNG
 │       ├── generate_anatomy_diagrams.py  # Skrip generator diagram anatomi visual
 │       ├── trace_dies_natalis_and_44.py  # Skrip tracing logotype bubble modular
-│       ├── generate_supporting_assets.py # Skrip generator aset penyerta & kanvas
-│       └── process_generated_brandkit_assets.py # Skrip pemrosesan latar HD & komposit kontras
+│       ├── generate_supporting_assets.py # Skrip generator ornamen & kanvas dasar
+│       ├── build_accurate_brandkit_backgrounds.py # Skrip generator latar mint pinwheel & velvet
+│       └── generate_modular_brandkit_items.py # Skrip generator katalog item modular (topi, permen, dll)
 │
 ├── tokens/                               # Spesifikasi token desain resmi
 │   ├── design-tokens.json                # Nilai token format JSON W3C

@@ -107,6 +107,23 @@ Seluruh berkas tersimpan pada direktori **`assets/brandkit_elements/`** dalam fo
 
 ---
 
+## 3B. Katalog Elemen Per Item Modular (Iconic Visual Items)
+
+Setiap elemen visual di bawah ini tersedia dalam format **vektor SVG** dan **PNG 32-bit transparan 1200×1200 px** berlatar murni transparan (tanpa latar belakang, siap tempel pada Canva/Photoshop):
+
+| Ikon / Nama Aset | Berkas SVG & PNG | Karakteristik & Rekomendasi Penggunaan |
+| :--- | :--- | :--- |
+| 🎩 **Magic Top Hat** | `item-magic-top-hat.svg`<br>`item-magic-top-hat.png` | Topi pesulap beludru ungu *Imperial Purple* dengan lekukan *dented crown*, brim melengkung, pita emas berkilau, dan bros bintang emas. Cocok diletakkan di atas logo atau tajuk acara. |
+| 🍭 **Swirl Lollipop** | `item-swirl-lollipop.svg`<br>`item-swirl-lollipop.png` | Permen lolipop spiral pastel mint, pink, dan vanilla dengan garis kilau gula dan gagang stik berulir karamel emas. Elemen dekorasi bazar, photobooth, & poster ceria. |
+| 🦯 **Golden Cane / Wand** | `item-golden-cane.svg`<br>`item-golden-cane.png` | Tongkat pesulap berkepala bola emas bermahkota bintang, batang kayu mahoni pekat *Obsidian Mahogany*, dan ujung kuningan. Aksen elegan maskot atau pengarah visual. |
+| 🍬 **Wrapped Bonbon Pink** | `item-wrapped-bonbon-pink.svg`<br>`item-wrapped-bonbon-pink.png` | Permen bungkus klasik oval buncit warna fuchsia pink dengan aksen garis emas/krem dan pita pengikat kuncup mekar di kanan-kiri. |
+| 🎫 **Golden Ticket Badge** | `item-golden-ticket-badge.svg`<br>`item-golden-ticket-badge.png` | Tiket emas mewah berkontur lekukan sudut klasik (*notched corners*), bingkai *filigree* ganda, dan grafis tulisan timbul "DIES NATALIS KE-44 SMAN 1 GEDEG". Cocok untuk kartu peserta, kupon jalan sehat, dan pass VIP. |
+| 🌹 **Confectionery Sugar Rose** | `item-confectionery-rose.svg`<br>`item-confectionery-rose.png` | Mawar gula konfeksi merah anggur (*Wine Crimson*) berlapis kelopak realistis, taburan kristal gula, dan sepasang daun mint toska. Aksen feminin, buket apresiasi, dan bingkai sudut. |
+| 👓 **Whimsical Round Glasses** | `item-whimsical-glasses.svg`<br>`item-whimsical-glasses.png` | Kacamata bulat eksentrik berbingkai dobel kuningan emas berkilau dengan lensa bening reflektif. Ornamen stiker media sosial dan elemen kuis/games. |
+| ✨ **Stardust Sparkle Stars** | `item-stardust-sparkle-stars.svg`<br>`item-stardust-sparkle-stars.png` | Gugusan bintang retro 4-sudut *Canary Glow* dengan inti putih berkilau dan pendaran halo emas. Taburan aksen magis di sekitar tipografi judul dan logo. |
+
+---
+
 ## 4. Katalog Berkas Kanvas Latar Belakang (Ready-to-Use Backgrounds)
 
 | Nama Berkas | Rasio & Dimensi | Deskripsi & Suasana Visual (Sesuai Referensi Poster) |
