@@ -68,6 +68,7 @@
       letter-spacing: 2px;
       background: linear-gradient(135deg, #FFF9D2 0%, #F5C538 50%, #E09D17 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
     }
@@ -373,9 +374,9 @@
   </header>
 
   <div class="studio-container">
-    <div class="viewport-box" id="viewportBox" data-ratio="16:9">
-      <div class="viewport-tag" id="viewportTag">16:9 LANSKAP • 1920×1080 • 60 FPS</div>
-      <canvas id="revealCanvas" width="1920" height="1080"></canvas>
+    <div class="viewport-box" id="viewportBox" data-ratio="4:5">
+      <div class="viewport-tag" id="viewportTag">4:5 FEED PORTRAIT • 1080×1350 • 60 FPS</div>
+      <canvas id="revealCanvas" width="1080" height="1350"></canvas>
     </div>
 
     <div class="controls-bar">
@@ -397,9 +398,9 @@
 
         <!-- Ratio Switcher -->
         <div class="ratio-pills">
-          <button class="ratio-btn active" data-r="16:9">16:9 Lanskap</button>
+          <button class="ratio-btn active" data-r="4:5">4:5 Feed (Hero)</button>
+          <button class="ratio-btn" data-r="16:9">16:9 Lanskap</button>
           <button class="ratio-btn" data-r="9:16">9:16 Vertikal</button>
-          <button class="ratio-btn" data-r="4:5">4:5 Feed</button>
         </div>
 
         <!-- Export Recording / Fullscreen -->
@@ -582,11 +583,14 @@
     const timeCurrent = document.getElementById('timeCurrent');
     const ratioBtns = document.querySelectorAll('.ratio-btn');
 
-    // Load Logo Image
+    // Load Logo Image & Official AVERSA Graphic
     const logoImg = new Image();
     logoImg.src = '../assets/png/logo-color-2048.png';
 
-    let currentRatio = '16:9';
+    const aversaImg = new Image();
+    aversaImg.src = '../assets/png/aversa-standalone-color.png';
+
+    let currentRatio = '4:5';
     let isPlaying = false;
     let currentTime = 0; // 0 to 11.0 seconds
     const DURATION = 11.0;
@@ -838,46 +842,33 @@
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
-        // 1. AVERSA Wordmark
-        ctx.font = `900 ${fontAversaSize}px 'Cinzel', serif`;
-        ctx.fillStyle = '#FFEAA0';
-        ctx.globalAlpha = typoAlpha;
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-        ctx.shadowBlur = 18;
-        ctx.shadowOffsetY = 4;
-        ctx.fillText('AVERSA', cx, yAversa + ySlide);
+        // 1. Official AVERSA Graphic Asset (from assets/png/aversa-standalone-color.png)
+        if (aversaImg.complete && aversaImg.naturalWidth > 0) {
+          // Bounding box of graphic is (174, 741, 1873, 1307) -> 1699 x 566
+          const sx = 174, sy = 741, sw = 1699, sh = 566;
+          let aversaW;
+          if (W > H) {
+            aversaW = W * 0.32;
+          } else if (H / W > 1.6) {
+            aversaW = W * 0.68;
+          } else {
+            aversaW = W * 0.58;
+          }
+          const aversaH = aversaW * (sh / sw);
+          const ay = yAversa + ySlide;
 
-        // 2. Filigree Divider Line (7.0s)
-        if (typoT >= 0.5) {
-          const divProg = Math.min(1.0, (typoT - 0.5) / 1.0);
-          const divLen = W * 0.35 * Math.pow(divProg, 0.7);
-          const yDiv = (yAversa + ySub) / 2 + ySlide;
-
-          ctx.strokeStyle = `rgba(245, 197, 56, ${divProg * 0.75})`;
-          ctx.lineWidth = 2;
-          ctx.shadowBlur = 0;
-
-          ctx.beginPath();
-          ctx.moveTo(cx - divLen, yDiv);
-          ctx.lineTo(cx - 18, yDiv);
-          ctx.moveTo(cx + 18, yDiv);
-          ctx.lineTo(cx + divLen, yDiv);
-          ctx.stroke();
-
-          // Diamond Node
-          ctx.fillStyle = '#FFEAA0';
-          ctx.beginPath();
-          ctx.moveTo(cx, yDiv - 5);
-          ctx.lineTo(cx + 5, yDiv);
-          ctx.lineTo(cx, yDiv + 5);
-          ctx.lineTo(cx - 5, yDiv);
-          ctx.closePath();
-          ctx.fill();
+          ctx.save();
+          ctx.globalAlpha = typoAlpha;
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+          ctx.shadowBlur = 18;
+          ctx.shadowOffsetY = 6;
+          ctx.drawImage(aversaImg, sx, sy, sw, sh, cx - aversaW / 2, ay - aversaH / 2, aversaW, aversaH);
+          ctx.restore();
         }
 
-        // 3. Subtitles (7.3s)
-        if (typoT >= 0.8) {
-          const subProg = Math.min(1.0, (typoT - 0.8) / 1.0);
+        // 2. Subtitles (7.2s) - Clean almamater identity
+        if (typoT >= 0.7) {
+          const subProg = Math.min(1.0, (typoT - 0.7) / 1.0);
           ctx.globalAlpha = subProg;
 
           // DIES NATALIS KE-44 SMAN 1 GEDEG

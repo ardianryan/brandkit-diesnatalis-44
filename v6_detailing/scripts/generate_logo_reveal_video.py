@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-Generator Video Logo Reveal Dies Natalis ke-44 SMAN 1 Gedeg (AVERSA)
-Tema: Teater Akbar Emas & Beludru Ungu (Cinematic Imperial Velvet)
-Durasi: 11 Detik (330 frames @ 30 FPS)
-Format:
-  1. 16:9 Lanskap (1920x1080) - YouTube, Panggung, Videotron
-  2. 9:16 Vertikal (1080x1920) - Instagram Reels, TikTok, Story
-  3. 4:5 Portrait (1080x1350) - Instagram Feed Portrait
+Generator Video 3D Logo Reveal Resmi Dies Natalis ke-44 SMAN 1 Gedeg (AVERSA)
+Spesifikasi:
+  - 3D Polished Gold Emblem dengan Smooth Bevels & Rim Lighting (Octane Render style)
+  - Strict preservation of 100% exact vector geometry & proportions
+  - Wordmark AVERSA diambil langsung dari aset resmi (aversa-standalone-color.png)
+  - Clean Luxury Studio Backdrop: Deep Imperial Velvet (#1C0521), Center Violet Glow (#42084E)
+  - Tanpa elemen garis/node pembatas yang mengganggu di tengah
+  - Durasi: 11 Detik (330 frames @ 30 FPS)
+  - Multi-Format: 4:5 (Instagram Feed), 16:9 (Lanskap Panggung/YouTube), 9:16 (Vertikal Reels/TikTok)
 """
 
 import math
@@ -14,23 +16,22 @@ import os
 import time
 import cv2
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont
 
 FPS = 30
 DURATION_SEC = 11.0
 TOTAL_FRAMES = int(DURATION_SEC * FPS) # 330 frames
 
-FONT_CINZEL_BOLD = "assets/fonts/cinzel/ttf/Cinzel-Bold.ttf"
-FONT_CINZEL_REG = "assets/fonts/cinzel/ttf/Cinzel-Regular.ttf"
 FONT_JAKARTA_BOLD = "assets/fonts/plus-jakarta-sans/ttf/PlusJakartaSans-Bold.ttf"
 FONT_JAKARTA_REG = "assets/fonts/plus-jakarta-sans/ttf/PlusJakartaSans-Regular.ttf"
 LOGO_SYMBOL_PATH = "assets/png/logo-color-2048.png"
+AVERSA_ASSET_PATH = "assets/png/aversa-standalone-color.png"
 
 # Color constants (RGB)
-C_VELVET_DARK = (14, 2, 18)
+C_VELVET_DARK = (15, 2, 20)
 C_VELVET_MID = (38, 7, 45)
-C_VELVET_PLUM = (54, 9, 56)
-C_GOLD_BRIGHT = (255, 234, 160)
+C_VELVET_PLUM = (66, 14, 78)
+C_GOLD_BRIGHT = (255, 240, 185)
 C_GOLD_PRIMARY = (245, 197, 56)
 C_GOLD_DEEP = (224, 157, 23)
 C_WHITE = (255, 255, 255)
@@ -41,389 +42,371 @@ def get_font(path: str, size: int):
     except Exception:
         return ImageFont.load_default()
 
-def ease_out_quad(t: float) -> float:
-    return t * (2 - t)
-
 def ease_out_cubic(t: float) -> float:
-    return 1 - (1 - t) ** 3
+    return 1.0 - (1.0 - t) ** 3
 
 def ease_in_out_quad(t: float) -> float:
-    return 2 * t * t if t < 0.5 else -1 + (4 - 2 * t) * t
+    return 2.0 * t * t if t < 0.5 else -1.0 + (4.0 - 2.0 * t) * t
 
-def create_base_gradient(w: int, h: int) -> np.ndarray:
-    """Precompute base radial velvet background array in BGR uint8."""
+def create_base_gradient(w: int, h: int, cy_glow: int) -> np.ndarray:
+    """Precompute luxury deep velvet backdrop in BGR uint8 with violet center glow."""
     y, x = np.ogrid[:h, :w]
-    cx, cy = w / 2.0, h / 2.0
-    # Normalized radial distance
-    max_dist = math.sqrt(cx**2 + cy**2)
-    dist = np.sqrt((x - cx)**2 + (y - cy)**2) / max_dist
+    cx = w / 2.0
+    max_dist = math.sqrt(cx**2 + (h/2.0)**2)
+    dist = np.sqrt((x - cx)**2 + (y - cy_glow)**2) / max_dist
     dist = np.clip(dist, 0.0, 1.0)
     
-    # Interp from center (plum) to edge (dark velvet)
-    # in BGR
-    b1, g1, r1 = C_VELVET_PLUM[2], C_VELVET_PLUM[1], C_VELVET_PLUM[0]
     b0, g0, r0 = C_VELVET_DARK[2], C_VELVET_DARK[1], C_VELVET_DARK[0]
+    b1, g1, r1 = C_VELVET_PLUM[2], C_VELVET_PLUM[1], C_VELVET_PLUM[0]
     
-    factor = np.power(dist, 1.3)
-    b = (b1 * (1 - factor) + b0 * factor).astype(np.uint8)
-    g = (g1 * (1 - factor) + g0 * factor).astype(np.uint8)
-    r = (r1 * (1 - factor) + r0 * factor).astype(np.uint8)
-    
+    factor = np.power(dist, 1.35)
+    b = (b1 * (1.0 - factor) + b0 * factor).astype(np.uint8)
+    g = (g1 * (1.0 - factor) + g0 * factor).astype(np.uint8)
+    r = (r1 * (1.0 - factor) + r0 * factor).astype(np.uint8)
     return np.dstack([b, g, r])
 
-class LogoRevealRenderer:
+def compute_normal_map(rgba_img: Image.Image, bevel_px: float = 16.0) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Compute 3D surface normal map (nx, ny, nz) and alpha mask from RGBA image."""
+    arr = np.array(rgba_img)
+    alpha = arr[:, :, 3]
+    
+    # Distance transform for smooth bevels
+    dist = cv2.distanceTransform((alpha > 64).astype(np.uint8), cv2.DIST_L2, 5)
+    bevel = np.clip(dist / float(bevel_px), 0.0, 1.0)
+    
+    # Facet luminance
+    gray = cv2.cvtColor(arr[:, :, :3], cv2.COLOR_RGB2GRAY).astype(np.float32) / 255.0
+    height = (bevel * 0.70 + gray * 0.30).astype(np.float32)
+    
+    dx = cv2.Sobel(height, cv2.CV_32F, 1, 0, ksize=3)
+    dy = cv2.Sobel(height, cv2.CV_32F, 0, 1, ksize=3)
+    nz_base = 0.28
+    norm = np.sqrt(dx**2 + dy**2 + nz_base**2)
+    
+    nx = (-dx / norm).astype(np.float32)
+    ny = (-dy / norm).astype(np.float32)
+    nz = (nz_base / norm).astype(np.float32)
+    
+    return nx, ny, nz, alpha
+
+def render_3d_shaded(base_rgb: np.ndarray, nx: np.ndarray, ny: np.ndarray, nz: np.ndarray, alpha: np.ndarray,
+                     light_dir: np.ndarray, spec_power: float = 28.0, rim_intensity: float = 0.75) -> np.ndarray:
+    """Render 3D Blinn-Phong shaded RGBA image with moving specular highlights and rim lighting."""
+    L = light_dir / np.linalg.norm(light_dir)
+    V = np.array([0.0, 0.0, 1.0], dtype=np.float32)
+    H = L + V
+    H /= np.linalg.norm(H)
+    
+    N_dot_L = np.clip(nx * L[0] + ny * L[1] + nz * L[2], 0.0, 1.0)
+    N_dot_H = np.clip(nx * H[0] + ny * H[1] + nz * H[2], 0.0, 1.0)
+    specular = np.power(N_dot_H, spec_power)
+    rim = np.power(1.0 - np.clip(nz, 0.0, 1.0), 2.2) * (alpha > 32).astype(np.float32)
+    
+    base_f = base_rgb.astype(np.float32)
+    # Ambient + Diffuse (warm gold shading)
+    shaded = base_f * (0.35 + 0.65 * N_dot_L[:, :, None])
+    # Intense specular gleam (polished glossy gold)
+    spec_col = np.array([255.0, 248.0, 210.0], dtype=np.float32)
+    shaded += specular[:, :, None] * spec_col * 1.15
+    # Edge rim lighting
+    rim_col = np.array([255.0, 235.0, 170.0], dtype=np.float32)
+    shaded += rim[:, :, None] * rim_col * rim_intensity
+    
+    shaded_u8 = np.clip(shaded, 0, 255).astype(np.uint8)
+    return np.dstack([shaded_u8, alpha])
+
+def get_3d_warp(rgba_img: np.ndarray, yaw_deg: float, pitch_deg: float, f: float = 1500.0) -> np.ndarray:
+    """Apply true 3D perspective rotation (yaw, pitch) using perspective projection."""
+    h, w = rgba_img.shape[:2]
+    rad_y = np.radians(yaw_deg)
+    rad_x = np.radians(pitch_deg)
+    
+    Rx = np.array([[1.0, 0.0, 0.0], [0.0, np.cos(rad_x), -np.sin(rad_x)], [0.0, np.sin(rad_x), np.cos(rad_x)]])
+    Ry = np.array([[np.cos(rad_y), 0.0, np.sin(rad_y)], [0.0, 1.0, 0.0], [-np.sin(rad_y), 0.0, np.cos(rad_y)]])
+    R = Ry @ Rx
+    
+    corners = np.array([
+        [-w/2.0, -h/2.0, 0.0],
+        [ w/2.0, -h/2.0, 0.0],
+        [ w/2.0,  h/2.0, 0.0],
+        [-w/2.0,  h/2.0, 0.0]
+    ])
+    
+    rot_corners = (R @ corners.T).T
+    proj_corners = np.zeros((4, 2), dtype=np.float32)
+    for i in range(4):
+        z = rot_corners[i, 2] + f
+        proj_corners[i, 0] = (rot_corners[i, 0] * f / z) + w/2.0
+        proj_corners[i, 1] = (rot_corners[i, 1] * f / z) + h/2.0
+        
+    src_corners = np.array([[0.0, 0.0], [w, 0.0], [w, h], [0.0, h]], dtype=np.float32)
+    M = cv2.getPerspectiveTransform(src_corners, proj_corners)
+    return cv2.warpPerspective(rgba_img, M, (w, h), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(0,0,0,0))
+
+class LogoReveal3DRenderer:
     def __init__(self, width: int, height: int, name: str):
         self.w = width
         self.h = height
         self.name = name
         self.cx = width // 2
         
-        # Adjust layout based on aspect ratio
-        if width > height:  # 16:9
-            self.cy_logo = int(height * 0.44)
-            self.logo_target_size = int(height * 0.55)
-            self.font_aversa_size = int(height * 0.082)
-            self.font_sub_size = int(height * 0.030)
-            self.font_badge_size = int(height * 0.024)
-            self.y_aversa = int(height * 0.75)
-            self.y_sub = int(height * 0.85)
-            self.y_meta = int(height * 0.90)
-        elif height / width > 1.6:  # 9:16
-            self.cy_logo = int(height * 0.42)
-            self.logo_target_size = int(width * 0.72)
-            self.font_aversa_size = int(width * 0.125)
-            self.font_sub_size = int(width * 0.042)
-            self.font_badge_size = int(width * 0.034)
-            self.y_aversa = int(height * 0.65)
-            self.y_sub = int(height * 0.73)
-            self.y_meta = int(height * 0.78)
-        else:  # 4:5
-            self.cy_logo = int(height * 0.43)
-            self.logo_target_size = int(width * 0.62)
-            self.font_aversa_size = int(width * 0.105)
-            self.font_sub_size = int(width * 0.037)
-            self.font_badge_size = int(width * 0.030)
-            self.y_aversa = int(height * 0.69)
-            self.y_sub = int(height * 0.78)
-            self.y_meta = int(height * 0.83)
+        # Framing configuration per ratio
+        if width == 1080 and height == 1350:  # 4:5 HERO SHOT
+            self.cy_emblem = int(height * 0.40)
+            self.emblem_sz = int(width * 0.62)
+            self.cy_aversa = int(height * 0.72)
+            self.aversa_w = int(width * 0.56)
+            self.y_sub = int(height * 0.82)
+            self.y_meta = int(height * 0.865)
+            self.font_sub_size = 23
+            self.font_meta_size = 18
+        elif width > height:  # 16:9
+            self.cy_emblem = int(height * 0.42)
+            self.emblem_sz = int(height * 0.56)
+            self.cy_aversa = int(height * 0.76)
+            self.aversa_w = int(height * 0.45)
+            self.y_sub = int(height * 0.86)
+            self.y_meta = int(height * 0.905)
+            self.font_sub_size = int(height * 0.028)
+            self.font_meta_size = int(height * 0.021)
+        else:  # 9:16
+            self.cy_emblem = int(height * 0.40)
+            self.emblem_sz = int(width * 0.72)
+            self.cy_aversa = int(height * 0.66)
+            self.aversa_w = int(width * 0.65)
+            self.y_sub = int(height * 0.75)
+            self.y_meta = int(height * 0.795)
+            self.font_sub_size = int(width * 0.040)
+            self.font_meta_size = int(width * 0.030)
 
-        self.font_aversa = get_font(FONT_CINZEL_BOLD, self.font_aversa_size)
         self.font_sub = get_font(FONT_JAKARTA_BOLD, self.font_sub_size)
-        self.font_meta = get_font(FONT_JAKARTA_REG, self.font_badge_size)
+        self.font_meta = get_font(FONT_JAKARTA_REG, self.font_meta_size)
 
-        # Load & pre-scale logo
+        # Base velvet backdrop
+        self.bg_bgr = create_base_gradient(self.w, self.h, self.cy_emblem)
+
+        # 1. Prepare 3D Emblem
         raw_logo = Image.open(LOGO_SYMBOL_PATH).convert("RGBA")
-        self.logo_pil = raw_logo.resize((self.logo_target_size, self.logo_target_size), Image.Resampling.LANCZOS)
-        
-        # Precompute base velvet background
-        self.bg_bgr = create_base_gradient(self.w, self.h)
-        
-        # Pre-seed particle clouds
+        self.emblem_pil = raw_logo.resize((self.emblem_sz, self.emblem_sz), Image.Resampling.LANCZOS)
+        self.emblem_rgb = np.array(self.emblem_pil)[:, :, :3]
+        self.e_nx, self.e_ny, self.e_nz, self.e_alpha = compute_normal_map(self.emblem_pil, bevel_px=14.0)
+
+        # 2. Prepare 3D AVERSA Wordmark (Crop exact asset bounding box)
+        raw_aversa = Image.open(AVERSA_ASSET_PATH).convert("RGBA")
+        bbox = raw_aversa.getbbox()
+        cropped_aversa = raw_aversa.crop(bbox) if bbox else raw_aversa
+        self.aversa_h = int(self.aversa_w * cropped_aversa.size[1] / cropped_aversa.size[0])
+        self.aversa_pil = cropped_aversa.resize((self.aversa_w, self.aversa_h), Image.Resampling.LANCZOS)
+        self.aversa_rgb = np.array(self.aversa_pil)[:, :, :3]
+        self.a_nx, self.a_ny, self.a_nz, self.a_alpha = compute_normal_map(self.aversa_pil, bevel_px=8.0)
+
+        # Floating Energy Dust Particles (Octane ambient field)
         np.random.seed(44)
-        self.num_spiral_particles = 220
-        self.spiral_particles = []
-        for _ in range(self.num_spiral_particles):
-            angle = np.random.uniform(0, 2 * math.pi)
-            dist = np.random.uniform(self.w * 0.25, self.w * 0.95)
-            speed = np.random.uniform(0.6, 1.4)
-            size = np.random.randint(2, 6)
-            alpha = np.random.uniform(0.3, 0.9)
-            color_choice = np.random.choice([0, 1, 2])
-            color = [C_GOLD_BRIGHT, C_GOLD_PRIMARY, C_GOLD_DEEP][color_choice]
-            self.spiral_particles.append({
-                "angle": angle, "dist": dist, "speed": speed, "size": size,
-                "alpha": alpha, "color": color
-            })
-            
-        # Burst particles (for impact at frame 135)
-        self.num_burst = 90
-        self.burst_particles = []
-        for _ in range(self.num_burst):
-            angle = np.random.uniform(0, 2 * math.pi)
-            speed = np.random.uniform(self.w * 0.12, self.w * 0.45)
-            size = np.random.randint(2, 7)
-            color_choice = np.random.choice([0, 1, 2])
-            color = [C_GOLD_BRIGHT, C_WHITE, C_GOLD_PRIMARY][color_choice]
-            self.burst_particles.append({
-                "angle": angle, "speed": speed, "size": size, "color": color
+        self.num_particles = 140
+        self.particles = []
+        for _ in range(self.num_particles):
+            self.particles.append({
+                "x": np.random.uniform(0, self.w),
+                "y": np.random.uniform(0, self.h),
+                "speed_y": np.random.uniform(-0.4, -1.2),
+                "drift_x": np.random.uniform(-0.3, 0.3),
+                "size": np.random.randint(2, 5),
+                "alpha": np.random.uniform(0.2, 0.75),
+                "color": [C_GOLD_BRIGHT, C_GOLD_PRIMARY, C_WHITE][np.random.choice([0, 1, 2])]
             })
 
     def render_frame(self, frame_idx: int) -> np.ndarray:
         t = frame_idx / float(FPS)
-        
-        # Start from base background copy
         frame_bgr = self.bg_bgr.copy()
         
-        # Create PIL overlay image for alpha drawing
+        # PIL overlay for text and particles
         overlay = Image.new("RGBA", (self.w, self.h), (0, 0, 0, 0))
         draw = ImageDraw.Draw(overlay)
-        
-        # =========================================================================
-        # PHASE 1 & 2: VORTEX PARTICLES & GLOW (0.0s - 4.5s / frame 0 - 135)
-        # =========================================================================
-        if t < 4.8:
-            # Swirling stardust spiral converging toward center
-            p_progress = min(1.0, t / 4.4)
-            for p in self.spiral_particles:
-                # inward movement
-                cur_dist = p["dist"] * (1.0 - p_progress * 0.85 * p["speed"])
-                cur_angle = p["angle"] + p_progress * 4.5 * p["speed"]
-                px = int(self.cx + cur_dist * math.cos(cur_angle))
-                py = int(self.cy_logo + cur_dist * math.sin(cur_angle) * 0.7)
-                
-                if 0 <= px < self.w and 0 <= py < self.h:
-                    fade = min(1.0, t / 1.0)
-                    if t > 4.2:
-                        fade *= max(0.0, (4.8 - t) / 0.6)
-                    a = int(255 * p["alpha"] * fade)
-                    sz = p["size"]
-                    c = p["color"]
-                    draw.ellipse([px - sz, py - sz, px + sz, py + sz], fill=(c[0], c[1], c[2], a))
 
-        # Central Gathering Energy Glow (0.8s - 4.5s)
-        if 0.5 <= t <= 4.6:
-            glow_progress = min(1.0, (t - 0.5) / 3.8)
-            glow_r = int(self.logo_target_size * 0.35 * (0.6 + 0.4 * glow_progress))
-            glow_alpha = int(90 * ease_out_quad(glow_progress))
-            if t > 4.2:
-                glow_alpha = int(glow_alpha * (4.6 - t) / 0.4)
-            # Pulsing radial glow rings
-            for r in range(glow_r, 0, -18):
-                a_ring = int(glow_alpha * (1.0 - r / glow_r) ** 1.5)
+        # =========================================================================
+        # 1. FLOATING GOLDEN ENERGY DUST PARTICLES (Continuous subtle movement)
+        # =========================================================================
+        for p in self.particles:
+            cur_x = (p["x"] + p["drift_x"] * frame_idx) % self.w
+            cur_y = (p["y"] + p["speed_y"] * frame_idx) % self.h
+            sz = p["size"]
+            c = p["color"]
+            a = int(255 * p["alpha"])
+            # Fade out at the very end
+            if t >= 10.0:
+                a = int(a * max(0.0, 1.0 - (t - 10.0)))
+            draw.ellipse([cur_x - sz, cur_y - sz, cur_x + sz, cur_y + sz], fill=(c[0], c[1], c[2], a))
+
+        # =========================================================================
+        # 2. 3D EMBLEM PERSPECTIVE & BLINN-PHONG STUDIO LIGHTING
+        # =========================================================================
+        # Dynamic Light Direction moving across the emblem:
+        # Sweeps from left (-0.85) to right (+0.75)
+        sweep_x = -0.85 + (t / 11.0) * 1.6
+        light_dir = np.array([sweep_x, -0.65, 0.85], dtype=np.float32)
+
+        # 3D Spatial Angles (Yaw & Pitch)
+        if t < 2.0:
+            # Subtle hovering in void
+            yaw = -20.0 + math.sin(t * 1.5) * 1.5
+            pitch = 8.0 + math.cos(t * 1.5) * 1.0
+            scale_emblem = 0.92
+            alpha_emblem = min(1.0, t / 1.5) * 0.35 # Mysterious silhouette glow
+            rim_power = 1.2
+        elif 2.0 <= t < 4.5:
+            # Rising tension, slowly rotating toward camera
+            prog = (t - 2.0) / 2.5
+            yaw = -20.0 * (1.0 - ease_in_out_quad(prog) * 0.5)
+            pitch = 8.0 * (1.0 - ease_in_out_quad(prog) * 0.5)
+            scale_emblem = 0.92 + 0.08 * ease_in_out_quad(prog)
+            alpha_emblem = 0.35 + 0.65 * ease_out_cubic(prog)
+            rim_power = 1.0
+        else: # t >= 4.5
+            # Reveal moment: emblem swings smoothly to frontal (0 deg) with soft spring settling
+            dt_rev = t - 4.5
+            decay = math.exp(-dt_rev * 2.8)
+            yaw = -10.0 * decay * math.cos(dt_rev * 5.0)
+            pitch = 4.0 * decay * math.cos(dt_rev * 5.0)
+            scale_emblem = 1.0 + 0.08 * math.exp(-dt_rev * 3.5) * math.cos(dt_rev * 8.0)
+            alpha_emblem = 1.0
+            rim_power = 0.8
+
+        # Render 3D Shaded Emblem
+        shaded_emblem = render_3d_shaded(
+            self.emblem_rgb, self.e_nx, self.e_ny, self.e_nz, self.e_alpha,
+            light_dir, spec_power=30.0, rim_intensity=rim_power
+        )
+
+        # Apply 3D Perspective Warp
+        warped_emblem = get_3d_warp(shaded_emblem, yaw_deg=yaw, pitch_deg=pitch, f=1600.0)
+
+        # Apply Scaling & Opacity
+        if scale_emblem != 1.0 or alpha_emblem < 1.0:
+            new_w = max(10, int(self.emblem_sz * scale_emblem))
+            new_h = max(10, int(self.emblem_sz * scale_emblem))
+            warped_pil = Image.fromarray(warped_emblem).resize((new_w, new_h), Image.Resampling.LANCZOS)
+            if alpha_emblem < 1.0:
+                w_arr = np.array(warped_pil)
+                w_arr[:, :, 3] = (w_arr[:, :, 3] * alpha_emblem).astype(np.uint8)
+                warped_pil = Image.fromarray(w_arr)
+        else:
+            warped_pil = Image.fromarray(warped_emblem)
+
+        # Paste Emblem centered at (cx, cy_emblem)
+        ew, eh = warped_pil.size
+        overlay.paste(warped_pil, (self.cx - ew // 2, self.cy_emblem - eh // 2), mask=warped_pil.split()[3])
+
+        # =========================================================================
+        # 3. IMPACT SHOCKWAVE PULSE AT t = 4.5s
+        # =========================================================================
+        if 4.5 <= t <= 6.2:
+            sw_prog = min(1.0, max(0.0, (t - 4.5) / 1.7))
+            sw_r = int(sw_prog * self.w * 0.65)
+            sw_a = int(220 * (max(0.0, 1.0 - sw_prog) ** 1.8))
+            sw_w = max(2, int(6 * max(0.0, 1.0 - sw_prog)))
+            if sw_a > 0 and sw_r > 0:
                 draw.ellipse(
-                    [self.cx - r, self.cy_logo - r, self.cx + r, self.cy_logo + r],
-                    fill=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], a_ring)
+                    [self.cx - sw_r, self.cy_emblem - sw_r, self.cx + sw_r, self.cy_emblem + sw_r],
+                    outline=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], sw_a),
+                    width=sw_w
                 )
 
-        # Silhouette & Edge Ignition (2.3s - 4.5s)
-        if 2.2 <= t <= 4.5:
-            sil_progress = min(1.0, (t - 2.2) / 2.0)
-            sil_alpha = int(140 * ease_out_quad(sil_progress))
-            # Draw logo silhouette in gold tint
-            logo_scaled = self.logo_pil.copy()
-            # Golden glow tint on logo
-            tint_layer = Image.new("RGBA", logo_scaled.size, (C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], sil_alpha))
-            # Mask with logo alpha
-            r, g, b, a_mask = logo_scaled.split()
-            tint_layer.putalpha(Image.fromarray((np.array(a_mask) * (sil_alpha / 255.0)).astype(np.uint8)))
-            
-            lx = self.cx - self.logo_target_size // 2
-            ly = self.cy_logo - self.logo_target_size // 2
-            overlay.paste(tint_layer, (lx, ly), mask=tint_layer.split()[3])
-
-        # Anamorphic Light Beam Sweep (3.0s - 4.5s)
-        if 3.0 <= t <= 4.5:
-            beam_prog = (t - 3.0) / 1.5
-            beam_x = int(self.w * (beam_prog * 1.4 - 0.2))
-            beam_w = int(self.w * 0.22)
-            beam_alpha = int(180 * math.sin(beam_prog * math.pi))
-            
-            # Horizontal beam line across cy_logo
-            h_half = 6
-            draw.rectangle([0, self.cy_logo - h_half, self.w, self.cy_logo + h_half], fill=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], int(beam_alpha * 0.4)))
-            # Flare center hotspot
-            draw.ellipse([beam_x - 120, self.cy_logo - 35, beam_x + 120, self.cy_logo + 35], fill=(255, 255, 255, beam_alpha))
 
         # =========================================================================
-        # PHASE 3: IMPACT, SHOCKWAVE & FULL LOGO REVEAL (4.5s - 6.5s / frame 135 - 195)
+        # 4. 3D AVERSA WORDMARK (REVEAL FROM ASET RESMI)
         # =========================================================================
-        if t >= 4.5:
-            impact_t = t - 4.5
+        if t >= 6.0:
+            av_t = t - 6.0
+            av_alpha = min(1.0, av_t / 1.0)
+            av_y_slide = int(16 * (1.0 - ease_out_cubic(min(1.0, av_t / 1.2))))
             
-            # 1. Shockwave rings expanding
-            if impact_t < 1.8:
-                sw_prog = impact_t / 1.8
-                sw_r = int(sw_prog * self.w * 0.75)
-                sw_alpha = int(220 * (1.0 - sw_prog) ** 1.6)
-                sw_width = max(2, int(6 * (1.0 - sw_prog)))
-                if sw_alpha > 0 and sw_r > 0:
-                    draw.ellipse(
-                        [self.cx - sw_r, self.cy_logo - sw_r, self.cx + sw_r, self.cy_logo + sw_r],
-                        outline=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], sw_alpha),
-                        width=sw_width
-                    )
-                    # Secondary inner echo ring
-                    sw_r2 = int(sw_r * 0.7)
-                    if sw_r2 > 0:
-                        draw.ellipse(
-                            [self.cx - sw_r2, self.cy_logo - sw_r2, self.cx + sw_r2, self.cy_logo + sw_r2],
-                            outline=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], int(sw_alpha * 0.6)),
-                            width=max(1, sw_width - 2)
-                        )
+            # 3D Shaded AVERSA with subtle moving light sweep
+            av_light = np.array([sweep_x * 0.7, -0.6, 0.8], dtype=np.float32)
+            shaded_aversa = render_3d_shaded(
+                self.aversa_rgb, self.a_nx, self.a_ny, self.a_nz, self.a_alpha,
+                av_light, spec_power=24.0, rim_intensity=0.5
+            )
+            
+            aversa_frame_pil = Image.fromarray(shaded_aversa)
+            if av_alpha < 1.0:
+                av_arr = np.array(aversa_frame_pil)
+                av_arr[:, :, 3] = (av_arr[:, :, 3] * av_alpha).astype(np.uint8)
+                aversa_frame_pil = Image.fromarray(av_arr)
+            
+            cur_y_aversa = self.cy_aversa + av_y_slide
+            overlay.paste(
+                aversa_frame_pil,
+                (self.cx - self.aversa_w // 2, cur_y_aversa - self.aversa_h // 2),
+                mask=aversa_frame_pil.split()[3]
+            )
 
-            # 2. Burst particles shooting outward
-            if impact_t < 2.5:
-                bp_prog = impact_t / 2.5
-                bp_alpha = max(0.0, 1.0 - bp_prog ** 1.3)
-                for bp in self.burst_particles:
-                    b_dist = bp["speed"] * ease_out_quad(bp_prog)
-                    bx = int(self.cx + b_dist * math.cos(bp["angle"]))
-                    by = int(self.cy_logo + b_dist * math.sin(bp["angle"]))
-                    if 0 <= bx < self.w and 0 <= by < self.h:
-                        ba = int(255 * bp_alpha)
-                        sz = max(1, int(bp["size"] * (1.0 - bp_prog * 0.5)))
-                        bc = bp["color"]
-                        draw.ellipse([bx - sz, by - sz, bx + sz, by + sz], fill=(bc[0], bc[1], bc[2], ba))
-
-            # 3. Logo Scaling & Full Alpha Render
-            # Spring scale effect: scale from 1.15 decaying to 1.0
-            scale_spring = 1.0 + 0.14 * math.exp(-impact_t * 3.5) * math.cos(impact_t * 9.0)
-            logo_w = int(self.logo_target_size * scale_spring)
-            logo_h = int(self.logo_target_size * scale_spring)
-            
-            logo_frame = self.logo_pil.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
-            
-            # Fade in opacity (reaches 100% in 0.3s)
-            logo_alpha = min(1.0, impact_t / 0.3)
-            if logo_alpha < 1.0:
-                l_arr = np.array(logo_frame)
-                l_arr[:, :, 3] = (l_arr[:, :, 3] * logo_alpha).astype(np.uint8)
-                logo_frame = Image.fromarray(l_arr)
-            
-            lx = self.cx - logo_w // 2
-            ly = self.cy_logo - logo_h // 2
-            overlay.paste(logo_frame, (lx, ly), mask=logo_frame.split()[3])
-
-            # 4. Specular Diagonal Light Gleam across Logo (t = 5.2s - 7.0s)
-            if 5.2 <= t <= 7.0:
-                gleam_prog = (t - 5.2) / 1.8
-                gleam_offset = -self.logo_target_size * 0.8 + gleam_prog * (self.logo_target_size * 2.2)
+            # =====================================================================
+            # 5. SUBTITLE & IDENTITY TEXT (Clean, Minimalist, No Middle Clutter)
+            # =====================================================================
+            if av_t >= 0.6:
+                sub_p = min(1.0, (av_t - 0.6) / 0.8)
+                sub_a = int(245 * ease_out_cubic(sub_p))
                 
-                # Draw light band clipped to logo
-                gleam_band = Image.new("RGBA", (logo_w, logo_h), (0, 0, 0, 0))
-                g_draw = ImageDraw.Draw(gleam_band)
-                
-                # Diagonal polygon
-                bw = 70
-                gx1 = int(gleam_offset)
-                gx2 = gx1 + bw
-                g_draw.polygon(
-                    [(gx1, 0), (gx2, 0), (gx2 - logo_h // 2, logo_h), (gx1 - logo_h // 2, logo_h)],
-                    fill=(255, 255, 255, 120)
-                )
-                
-                # Mask with logo alpha
-                gleam_arr = np.array(gleam_band)
-                logo_a_arr = np.array(logo_frame.split()[3])
-                gleam_arr[:, :, 3] = np.minimum(gleam_arr[:, :, 3], logo_a_arr)
-                masked_gleam = Image.fromarray(gleam_arr)
-                overlay.paste(masked_gleam, (lx, ly), mask=masked_gleam.split()[3])
-
-        # =========================================================================
-        # PHASE 4: TYPOGRAPHY ELEVATION (6.5s - 9.0s / frame 195 - 270)
-        # =========================================================================
-        if t >= 6.5:
-            typo_t = t - 6.5
-            typo_alpha = min(1.0, typo_t / 1.2)
-            alpha_byte = int(255 * ease_out_quad(typo_alpha))
-            
-            # Subtle upward float into place
-            y_slide = int(18 * (1.0 - ease_out_cubic(min(1.0, typo_t / 1.5))))
-            
-            # 1. AVERSA Wordmark
-            text_aversa = "AVERSA"
-            cur_y_aversa = self.y_aversa + y_slide
-            
-            # Shadow behind AVERSA
-            draw.text((self.cx + 2, cur_y_aversa + 3), text_aversa, font=self.font_aversa, fill=(0, 0, 0, int(alpha_byte * 0.7)), anchor="mm")
-            # Golden Text
-            draw.text((self.cx, cur_y_aversa), text_aversa, font=self.font_aversa, fill=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], alpha_byte), anchor="mm")
-
-            # 2. Golden Filigree Divider Line (fades in 7.0s)
-            if typo_t >= 0.5:
-                div_prog = min(1.0, (typo_t - 0.5) / 1.0)
-                div_len = int(self.w * 0.35 * ease_out_cubic(div_prog))
-                div_a = int(190 * div_prog)
-                y_div = (self.y_aversa + self.y_sub) // 2 + y_slide
-                
-                # Left line & Right line with diamond node in center
-                draw.line([(self.cx - div_len, y_div), (self.cx - 20, y_div)], fill=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], div_a), width=2)
-                draw.line([(self.cx + 20, y_div), (self.cx + div_len, y_div)], fill=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], div_a), width=2)
-                # Diamond center
-                draw.polygon(
-                    [(self.cx, y_div - 5), (self.cx + 5, y_div), (self.cx, y_div + 5), (self.cx - 5, y_div)],
-                    fill=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], div_a)
-                )
-
-            # 3. Subtitles
-            if typo_t >= 0.8:
-                sub_prog = min(1.0, (typo_t - 0.8) / 1.0)
-                sub_a = int(240 * ease_out_quad(sub_prog))
-                
-                # DIES NATALIS KE-44 SMAN 1 GEDEG
+                # Subtitle: DIES NATALIS KE-44 SMAN 1 GEDEG
                 draw.text(
-                    (self.cx, self.y_sub + y_slide),
+                    (self.cx, self.y_sub + av_y_slide),
                     "DIES NATALIS KE-44 SMAN 1 GEDEG",
                     font=self.font_sub,
                     fill=(C_WHITE[0], C_WHITE[1], C_WHITE[2], sub_a),
                     anchor="mm"
                 )
                 
-                # Kurun Waktu & Nilai: 1982—2026
+                # Meta: 1982—2026
                 draw.text(
-                    (self.cx, self.y_meta + y_slide),
-                    "1982—2026 • ADHI DHARMA EKAPRAYA",
+                    (self.cx, self.y_meta + av_y_slide),
+                    "1982—2026",
                     font=self.font_meta,
-                    fill=(C_GOLD_DEEP[0], C_GOLD_DEEP[1], C_GOLD_DEEP[2], int(sub_a * 0.9)),
+                    fill=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], int(sub_a * 0.9)),
                     anchor="mm"
                 )
 
         # =========================================================================
-        # PHASE 5: CELESTIAL TWINKLE & AMBIENT STARDUST (8.5s - 11.0s)
+        # 6. CELESTIAL TWINKLE GLINTS (8.0s - 11.0s)
         # =========================================================================
-        if t >= 7.5:
-            # Twinkle star glints on crown tip & wing tip
-            twinkle_time = t - 7.5
-            glint_pts = [
-                (self.cx + int(self.logo_target_size * 0.16), self.cy_logo - int(self.logo_target_size * 0.28)),
-                (self.cx - int(self.logo_target_size * 0.18), self.cy_logo - int(self.logo_target_size * 0.22)),
-                (self.cx + int(self.logo_target_size * 0.25), self.cy_logo + int(self.logo_target_size * 0.05)),
+        if t >= 8.0:
+            tw_t = t - 8.0
+            # Key sparkle positions on eagle crown & wings
+            glints = [
+                (self.cx + int(self.emblem_sz * 0.16), self.cy_emblem - int(self.emblem_sz * 0.28)),
+                (self.cx - int(self.emblem_sz * 0.18), self.cy_emblem - int(self.emblem_sz * 0.22)),
+                (self.cx + int(self.emblem_sz * 0.25), self.cy_emblem + int(self.emblem_sz * 0.05)),
             ]
-            
-            for idx, (gx, gy) in enumerate(glint_pts):
-                phase = math.sin(twinkle_time * 5.0 + idx * 2.1)
-                if phase > 0.3:
-                    glint_sz = int(14 * (phase - 0.3) / 0.7)
-                    glint_a = int(220 * (phase - 0.3) / 0.7)
-                    # 4-pointed cross star
-                    draw.line([(gx - glint_sz, gy), (gx + glint_sz, gy)], fill=(255, 255, 255, glint_a), width=2)
-                    draw.line([(gx, gy - glint_sz), (gx, gy + glint_sz)], fill=(255, 255, 255, glint_a), width=2)
-                    draw.ellipse([gx - 3, gy - 3, gx + 3, gy + 3], fill=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], glint_a))
+            for idx, (gx, gy) in enumerate(glints):
+                ph = math.sin(tw_t * 5.0 + idx * 2.1)
+                if ph > 0.35:
+                    sz = int(14 * (ph - 0.35) / 0.65)
+                    ga = int(240 * (ph - 0.35) / 0.65)
+                    draw.line([(gx - sz, gy), (gx + sz, gy)], fill=(255, 255, 255, ga), width=2)
+                    draw.line([(gx, gy - sz), (gx, gy + sz)], fill=(255, 255, 255, ga), width=2)
+                    draw.ellipse([gx - 3, gy - 3, gx + 3, gy + 3], fill=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], ga))
 
-        # =========================================================================
-        # IMPACT FLASH AT t = 4.5s
-        # =========================================================================
-        if 4.5 <= t <= 4.85:
-            flash_prog = (t - 4.5) / 0.35
-            flash_a = int(180 * (1.0 - flash_prog) ** 2.0)
-            flash_overlay = Image.new("RGBA", (self.w, self.h), (255, 248, 220, flash_a))
-            overlay = Image.alpha_composite(overlay, flash_overlay)
-
-        # Composite PIL overlay onto OpenCV frame
+        # Composite PIL overlay onto OpenCV BGR frame
         overlay_arr = np.array(overlay)
         alpha_mask = overlay_arr[:, :, 3] / 255.0
         
-        # BGR blending
         for c_idx in range(3):
-            # overlay_arr is RGBA (0:R, 1:G, 2:B) -> OpenCV is BGR (0:B, 1:G, 2:R)
             ch_overlay = overlay_arr[:, :, 2 - c_idx]
             frame_bgr[:, :, c_idx] = (frame_bgr[:, :, c_idx] * (1.0 - alpha_mask) + ch_overlay * alpha_mask).astype(np.uint8)
 
         # =========================================================================
-        # FINAL CINEMATIC FADE TO BLACK (10.2s - 11.0s / last 24 frames)
+        # 7. FINAL CINEMATIC FADE TO BLACK (10.2s - 11.0s)
         # =========================================================================
-        if t >= 10.0:
-            fade_prog = min(1.0, (t - 10.0) / 1.0)
-            fade_factor = 1.0 - ease_in_out_quad(fade_prog)
-            frame_bgr = (frame_bgr * fade_factor).astype(np.uint8)
+        if t >= 10.2:
+            fade_p = min(1.0, (t - 10.2) / 0.8)
+            fade_f = 1.0 - ease_in_out_quad(fade_p)
+            frame_bgr = (frame_bgr * fade_f).astype(np.uint8)
 
         return frame_bgr
 
     def generate_video(self, output_path: str):
-        print(f"\n[VIDEO GENERATOR] Memulai render: {self.name} ({self.w}x{self.h}) -> {output_path}")
+        print(f"\n[VIDEO 3D GENERATOR] Merender format: {self.name} ({self.w}x{self.h}) -> {output_path}")
         t_start = time.time()
         
-        # mp4v codec is universally available in OpenCV on macOS
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         out = cv2.VideoWriter(output_path, fourcc, FPS, (self.w, self.h))
         
@@ -446,26 +429,26 @@ class LogoRevealRenderer:
         print(f"  Selesai! {output_path} ({file_size_mb:.2f} MB) dalam {t_total:.1f} detik.")
 
 def main():
-    print("=" * 70)
-    print("PRODUKSI VIDEO LOGO REVEAL RESMI DIES NATALIS KE-44 SMAN 1 GEDEG")
-    print("TEMA: AVERSA (TEATER AKBAR EMAS & BELUDRU UNGU)")
-    print("=" * 70)
+    print("=" * 75)
+    print("PRODUKSI VIDEO 3D LOGO REVEAL RESMI DIES NATALIS KE-44 SMAN 1 GEDEG")
+    print("TEMA: AVERSA (3D POLISHED GOLD EMBLEM & ROYAL PURPLE STUDIO BACKDROP)")
+    print("=" * 75)
     
     os.makedirs("assets/video", exist_ok=True)
     
     configs = [
+        {"name": "4:5 Portrait (Hero Shot)", "w": 1080, "h": 1350, "path": "assets/video/logo_reveal_4x5.mp4"},
         {"name": "16:9 Lanskap", "w": 1920, "h": 1080, "path": "assets/video/logo_reveal_16x9.mp4"},
         {"name": "9:16 Vertikal", "w": 1080, "h": 1920, "path": "assets/video/logo_reveal_9x16.mp4"},
-        {"name": "4:5 Portrait", "w": 1080, "h": 1350, "path": "assets/video/logo_reveal_4x5.mp4"},
     ]
     
     for cfg in configs:
-        renderer = LogoRevealRenderer(cfg["w"], cfg["h"], cfg["name"])
+        renderer = LogoReveal3DRenderer(cfg["w"], cfg["h"], cfg["name"])
         renderer.generate_video(cfg["path"])
 
-    print("\n" + "=" * 70)
-    print("SEMUA FORMAT VIDEO RESMI TELAH BERHASIL DIRENDER KE assets/video/")
-    print("=" * 70)
+    print("\n" + "=" * 75)
+    print("SEMUA FORMAT VIDEO 3D TELAH BERHASIL DIRENDER KE assets/video/")
+    print("=" * 75)
 
 if __name__ == "__main__":
     main()
