@@ -33,8 +33,19 @@ Berikut adalah diagram diagnostik anatomi lengkap yang memetakan setiap zona lam
 
 ### Rincian Bagian & Makna Filosofis Terperinci:
 
-#### 1. Kepala & Tatapan Visioner Rajawali (Zona Puncak Kiri Atas)
-![Fokus Anatomi 01 - Kepala Rajawali](assets/anatomy/fokus_01_kepala_tatapan_rajawali.png)
+#### 1. Figur Kembar Angka 44 (Zona Inti Lambang)
+![Fokus Anatomi 01 - Figur Kembar Angka 44](assets/anatomy/fokus_01_figur_kembar_angka_44.png)
+
+* **Lokasi Anatomi**: Struktur inti yang membentuk kesatuan lambang secara menyeluruh melalui dua figur angka 4 yang saling menopang dan mengunci secara simetris.
+* **Makna Filosofis**:
+  - **44 Tahun Perjalanan Bersejarah**: Menandai usia ke-44 tahun dedikasi SMA Negeri 1 Gedeg dalam melahirkan putra-putri bangsa yang berprestasi dan berdaya saing tinggi.
+  - **Kedewasaan & Stabilitas Institusi**: Angka 4 pertama berdiri kokoh sebagai fondasi tradisi dan sejarah, sedangkan angka 4 kedua melesat maju sebagai pilar inovasi masa depan.
+  - **Persatuan Antargenerasi**: Simbol keharmonisan ikatan kekeluargaan antarpendidik, tenaga kependidikan, siswa aktif, dan alumni lintas angkatan.
+
+---
+
+#### 2. Tatapan Burung Rajawali (Zona Puncak Kiri Atas)
+![Fokus Anatomi 02 - Tatapan Burung Rajawali](assets/anatomy/fokus_02_tatapan_burung_rajawali.png)
 
 * **Lokasi Anatomi**: Terletak pada puncak figur angka 4 sisi kiri, ditandai siluet paruh melengkung tajam dan mata elang yang mengarah ke kanan atas.
 * **Makna Filosofis**:
@@ -44,21 +55,10 @@ Berikut adalah diagram diagnostik anatomi lengkap yang memetakan setiap zona lam
 
 ---
 
-#### 2. Figur Kembar Angka 44 (Zona Inti Lambang)
-![Fokus Anatomi 02 - Figur Kembar Angka 44](assets/anatomy/fokus_02_figur_kembar_angka_44.png)
+#### 3. Kobaran Lidah Api Abadi (Zona Dasar & Tubuh Bawah)
+![Fokus Anatomi 03 - Kobaran Lidah Api Abadi](assets/anatomy/fokus_03_kobaran_lidah_api_abadi.png)
 
-* **Lokasi Anatomi**: Struktur inti yang membentuk kesatuan lambang secara menyeluruh melalui dua figur angka 4 yang saling menopang dan mengunci secara simetris.
-* **Makna Filosofis**:
-  - **44 Tahun Perjalanan Bersejarah**: Menandai usia ke-44 tahun dedikasi SMA Negeri 1 Gedeg dalam melahirkan putra-putri bangsa yang berprestasi dan berdaya saing tinggi.
-  - **Kedewasaan & Stabilitas Institusi**: Angka 4 pertama berdiri kokoh sebagai fondasi tradisi, sedangkan angka 4 kedua melesat sebagai akselerasi kemajuan zaman.
-  - **Persatuan Antargenerasi**: Simbol keharmonisan ikatan kekeluargaan antarpendidik, tenaga kependidikan, siswa aktif, dan alumni lintas angkatan.
-
----
-
-#### 3. Lidah Api Abadi Berkobar (Zona Dasar & Tubuh Bawah)
-![Fokus Anatomi 03 - Lidah Api Abadi Berkobar](assets/anatomy/fokus_03_lidah_api_abadi_berkobar.png)
-
-* **Lokasi Anatomi**: Sulur kurva dinamis yang mengalir membubung dari pangkal bawah lambang hingga ke sayap atas dengan gradasi tembaga dan merah marun.
+* **Lokasi Anatomi**: Tiga sulur kurva dinamis yang mengalir membubung dari pangkal bawah lambang hingga ke sayap atas dengan gradasi tembaga dan merah marun.
 * **Makna Filosofis**:
   - **Semangat Belajar Pantang Padam**: Api menyimbolkan rasa haus akan ilmu pengetahuan dan gairah berkarya yang tak pernah redup di hati warga sekolah.
   - **Resiliensi & Daya Lenting**: Daya tahan tinggi dalam menghadapi berbagai ujian, perubahan kurikulum, serta rintangan zaman tanpa pernah menyerah.
@@ -66,8 +66,8 @@ Berikut adalah diagram diagnostik anatomi lengkap yang memetakan setiap zona lam
 
 ---
 
-#### 4. Akselerasi Sayap Aerodinamis (Zona Sayap Kanan Atas)
-![Fokus Anatomi 04 - Akselerasi Sayap Aerodinamis](assets/anatomy/fokus_04_akselerasi_sayap_aerodinamis.png)
+#### 4. Sayap Melesat Aerodinamis (Zona Sayap Kanan Atas)
+![Fokus Anatomi 04 - Sayap Melesat Aerodinamis](assets/anatomy/fokus_04_sayap_melesat_aerodinamis.png)
 
 * **Lokasi Anatomi**: Sayap terluar dengan kelengkungan aerodinamis yang menyapu kencang ke sudut kanan atas dengan sudut kemiringan $45^\circ$.
 * **Makna Filosofis**:
@@ -76,8 +76,8 @@ Berikut adalah diagram diagnostik anatomi lengkap yang memetakan setiap zona lam
 
 ---
 
-#### 5. Symmetrical Medial Spine (Tulang Punggung Tengah V6)
-![Fokus Anatomi 05 - Symmetrical Medial Spine](assets/anatomy/fokus_05_symmetrical_medial_spine.png)
+#### 5. Garis Tengah Simetris (Tulang Punggung Simetris V6)
+![Fokus Anatomi 05 - Garis Tengah Simetris](assets/anatomy/fokus_05_garis_tengah_simetris.png)
 
 * **Lokasi Anatomi**: Garis pemisah tengah yang membentang di antara figur faset kiri dan kanan, membentuk tulang punggung simetris berbusur konsentris.
 * **Keunggulan Geometri V6**:
