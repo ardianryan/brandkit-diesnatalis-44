@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <linearGradient id="ticketGala" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#310603" />
+      <stop offset="30%" stop-color="#360538" />
+      <stop offset="70%" stop-color="#7D1B05" />
+      <stop offset="100%" stop-color="#310603" />
+    </linearGradient>
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF39D" />
+      <stop offset="25%" stop-color="#F5C538" />
+      <stop offset="75%" stop-color="#F7D160" />
+      <stop offset="100%" stop-color="#B6580B" />
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#ticketGala)"/>
+  <rect x="80" y="80" width="920" height="1760" fill="none" stroke="url(#goldBorder)" stroke-width="10"/>
+  <rect x="105" y="105" width="870" height="1710" fill="none" stroke="#F5C538" stroke-width="3" stroke-dasharray="14,14" opacity="0.65"/>
+  <circle cx="80" cy="80" r="22" fill="url(#goldBorder)"/>
+  <circle cx="80" cy="80" r="12" fill="#360538"/>
+  <circle cx="1000" cy="80" r="22" fill="url(#goldBorder)"/>
+  <circle cx="1000" cy="80" r="12" fill="#360538"/>
+  <circle cx="80" cy="1840" r="22" fill="url(#goldBorder)"/>
+  <circle cx="80" cy="1840" r="12" fill="#360538"/>
+  <circle cx="1000" cy="1840" r="22" fill="url(#goldBorder)"/>
+  <circle cx="1000" cy="1840" r="12" fill="#360538"/>
+</svg>

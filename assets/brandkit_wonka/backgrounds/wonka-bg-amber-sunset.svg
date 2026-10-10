@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="2048" height="2048">
+  <defs>
+    <radialGradient id="amberGlow" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#F5C538" />
+      <stop offset="35%" stop-color="#E09B17" />
+      <stop offset="70%" stop-color="#B6580B" />
+      <stop offset="92%" stop-color="#7D1B05" />
+      <stop offset="100%" stop-color="#360538" />
+    </radialGradient>
+  </defs>
+  <rect width="2048" height="2048" fill="url(#amberGlow)"/>
+  <path d="M 0 1536.0 Q 512.0 1331.2 1024.0 1638.4 T 2048 1474.56 L 2048 2048 L 0 2048 Z" fill="#360538" opacity="0.85"/>
+  <rect x="40" y="40" width="1968" height="1968" fill="none" stroke="#FDF39D" stroke-width="2" opacity="0.4"/>
+</svg>

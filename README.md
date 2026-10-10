@@ -241,6 +241,10 @@ diesnat44project/
 │   │   ├── logo-symbol-color.png         # Raster 1024x1024 px transparansi alfa
 │   │   ├── logo-color-2048.png           # Raster 2048x2048 px resolusi cetak
 │   │   └── logo-with-grid.png            # Visualisasi cetak grid konstruksi
+│   ├── brandkit_wonka/                   # Aset Penyerta Edisi Magis Willy Wonka
+│   │   ├── svg/                          # Vektor ornamen (Burst, Ribbons, Swirl, Sparkles)
+│   │   ├── png/                          # PNG transparan resolusi tinggi (Canva-ready)
+│   │   └── backgrounds/                  # Preset kanvas latar resmi (Feed 1:1 & Story 9:16)
 │   ├── anatomy/                          # Diagram anatomi dan gambar fokus bagian logo
 │   │   ├── diagram_anatomi_lengkap.png   # Diagram master anatomi lengkap beranotasi
 │   │   ├── fokus_01_kepala_tatapan_rajawali.png
@@ -258,7 +262,9 @@ diesnat44project/
 │   └── scripts/
 │       ├── generate_v6_master.py         # Skrip Python pembangun seluruh aset SVG V6
 │       ├── render_and_verify_v6.py       # Skrip penguji rendering & ekspor PNG
-│       └── generate_anatomy_diagrams.py  # Skrip generator diagram anatomi visual
+│       ├── generate_anatomy_diagrams.py  # Skrip generator diagram anatomi visual
+│       ├── trace_dies_natalis_and_44.py  # Skrip tracing logotype bubble modular
+│       └── generate_wonka_brandkit.py    # Skrip generator aset penyerta tema Wonka
 │
 ├── tokens/                               # Spesifikasi token desain resmi
 │   ├── design-tokens.json                # Nilai token format JSON W3C
@@ -273,7 +279,8 @@ diesnat44project/
 │
 └── docs/                                 # Dokumentasi komprehensif
     ├── BRAND_GUIDELINES.md               # Buku pedoman tata cara penggunaan identitas
-    └── METODOLOGI_TRACING_VEKTOR.md      # Metodologi teknis tracing & algoritma kurva
+    ├── METODOLOGI_TRACING_VEKTOR.md      # Metodologi teknis tracing & algoritma kurva
+    └── WONKA_BRAND_ASSET_GUIDE.md        # Panduan aset penyerta & hirarki warna Wonka
 ```
 
 ---

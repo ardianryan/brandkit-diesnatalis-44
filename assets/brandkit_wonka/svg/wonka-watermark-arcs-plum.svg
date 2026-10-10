@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2800 2000" width="2800" height="2000">
+  <g id="geometric-arcs">
+    <circle cx="400.0" cy="1000.0" r="250" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.40" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="250" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.40" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="420" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.37" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="420" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.37" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="600" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.33" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="600" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.33" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="800" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.29" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="800" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.29" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="1020" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.25" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="1020" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.25" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="1260" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.20" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="1260" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.20" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="1520" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.15" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="1520" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.15" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="1800" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.12" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="1800" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.12" stroke-dasharray="12,12"/>
+    <circle cx="400.0" cy="1000.0" r="2100" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.12" stroke-dasharray="12,12"/>
+    <circle cx="2400.0" cy="1000.0" r="2100" fill="none" stroke="#360538" stroke-width="2.5" opacity="0.12" stroke-dasharray="12,12"/>
+    <line x1="1400.0" y1="100" x2="1400.0" y2="1900" stroke="#360538" stroke-width="3" opacity="0.4" stroke-dasharray="8,8"/>
+    <line x1="200" y1="1000.0" x2="2600" y2="1000.0" stroke="#360538" stroke-width="3" opacity="0.4" stroke-dasharray="8,8"/>
+    <line x1="200" y1="200" x2="2600" y2="1800" stroke="#360538" stroke-width="2" opacity="0.25"/>
+    <line x1="2600" y1="200" x2="200" y2="1800" stroke="#360538" stroke-width="2" opacity="0.25"/>
+    <polygon points="1400.0,400.0 2000.0,1000.0 1400.0,1600.0 800.0,1000.0" fill="none" stroke="#360538" stroke-width="2" opacity="0.2"/>
+    <polygon points="1400.0,0.0 2400.0,1000.0 1400.0,2000.0 400.0,1000.0" fill="none" stroke="#360538" stroke-width="2" opacity="0.2"/>
+    <polygon points="1400.0,-400.0 2800.0,1000.0 1400.0,2400.0 0.0,1000.0" fill="none" stroke="#360538" stroke-width="2" opacity="0.2"/>
+  </g>
+</svg>

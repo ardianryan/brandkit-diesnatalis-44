@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1200" width="2400" height="1200">
+  <defs>
+    <linearGradient id="ribbonGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#360538" />
+      <stop offset="30%" stop-color="#7D1B05" />
+      <stop offset="60%" stop-color="#B6580B" />
+      <stop offset="85%" stop-color="#E09B17" />
+      <stop offset="100%" stop-color="#F5C538" />
+    </linearGradient>
+    <linearGradient id="ribbonGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FDF39D" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#F5C538" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#B6580B" stop-opacity="0.4" />
+    </linearGradient>
+  </defs>
+  <g id="magic-ribbons">
+    <path d="M 100 850 C 500 150, 950 1150, 1450 450 C 1800 -50, 2150 750, 2350 350 L 2300 420 C 2100 820, 1750 20, 1400 520 C 900 1220, 450 220, 100 920 Z" fill="url(#ribbonGrad1)" opacity="0.95" />
+    <path d="M 120 780 C 520 80, 970 1080, 1470 380 C 1820 -120, 2170 680, 2370 280 L 2350 310 C 2150 710, 1800 -90, 1450 410 C 950 1110, 500 110, 120 810 Z" fill="url(#ribbonGrad2)" opacity="0.85" />
+    <path d="M 200 300 C 600 700, 1200 200, 1700 850 C 1950 1150, 2200 900, 2320 750 L 2300 780 C 2180 930, 1930 1180, 1680 880 C 1180 230, 580 730, 200 330 Z" fill="#E09B17" opacity="0.65" />
+    <g transform="translate(480, 150) scale(0.9)">
+      <path d="M 0 -20 Q 0 0 20 0 Q 0 0 0 20 Q 0 0 -20 0 Q 0 0 0 -20 Z" fill="#FDF39D"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(950, 1100) scale(0.7)">
+      <path d="M 0 -20 Q 0 0 20 0 Q 0 0 0 20 Q 0 0 -20 0 Q 0 0 0 -20 Z" fill="#FDF39D"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(1420, 420) scale(1.1)">
+      <path d="M 0 -20 Q 0 0 20 0 Q 0 0 0 20 Q 0 0 -20 0 Q 0 0 0 -20 Z" fill="#FDF39D"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(1800, 80) scale(1.0)">
+      <path d="M 0 -20 Q 0 0 20 0 Q 0 0 0 20 Q 0 0 -20 0 Q 0 0 0 -20 Z" fill="#FDF39D"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(2150, 720) scale(0.8)">
+      <path d="M 0 -20 Q 0 0 20 0 Q 0 0 0 20 Q 0 0 -20 0 Q 0 0 0 -20 Z" fill="#FDF39D"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(1180, 240) scale(0.75)">
+      <path d="M 0 -20 Q 0 0 20 0 Q 0 0 0 20 Q 0 0 -20 0 Q 0 0 0 -20 Z" fill="#FDF39D"/>
+      <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    </g>
+  </g>
+</svg>
