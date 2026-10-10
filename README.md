@@ -1,166 +1,178 @@
-# Identitas Visual & Desain Sistem Dies Natalis ke-44 SMA Negeri 1 Gedeg
+# Identitas Visual & Rekonstruksi Vektor Master V6
+## Dies Natalis ke-44 SMA Negeri 1 Gedeg
 
-Selamat datang di repositori resmi **Brand Identity & Design System Dies Natalis ke-44 SMA Negeri 1 Gedeg**. Repositori ini memuat seluruh aset vektor resolusi tinggi, pedoman filosofis lambang, riwayat perancangan dari sketsa tangan hingga vektor final V6, dokumentasi palet warna resmi, pedoman cendera mata, serta aplikasi web interaktif berbasis **Vite, React, dan Three.js**.
+Selamat datang di repositori resmi **Brand Identity & Rekonstruksi Vektor Dies Natalis ke-44 SMA Negeri 1 Gedeg** (Kabupaten Mojokerto, Jawa Timur). 
+
+Repositori ini memuat seluruh berkas master lambang resmi beresolusi tinggi, dokumentasi metodologi penarikan garis (*vector tracing*), analisis geometris kurva Bezier, spesifikasi palet warna Coolors, dan pedoman penerapan identitas almamater.
 
 ---
 
 ## Daftar Isi
-1. [Filosofi Lambang](#filosofi-lambang)
-2. [Riwayat Evolusi Perancangan](#riwayat-evolusi-perancangan)
-3. [Sistem Warna Resmi](#sistem-warna-resmi)
-4. [Sistem Tipografi](#sistem-tipografi)
-5. [Aplikasi Web 3D Interaktif](#aplikasi-web-3d-interaktif)
-6. [Struktur Repositori](#struktur-repositori)
-7. [Petunjuk Menjalankan Aplikasi](#petunjuk-menjalankan-aplikasi)
-8. [Pedoman Penggunaan & Cendera Mata](#pedoman-penggunaan--cendera-mata)
-9. [Hak Cipta & Lisensi](#hak-cipta--lisensi)
+1. [Filosofi Lambang Resmi](#filosofi-lambang-resmi)
+2. [Metodologi Tracing & Alat Komputasi](#metodologi-tracing--alat-komputasi)
+3. [Riwayat Evolusi Perancangan (Sketsa ke V6)](#riwayat-evolusi-perancangan-sketsa-ke-v6)
+4. [Sistem Palet Warna Resmi (Coolors Spec)](#sistem-palet-warna-resmi-coolors-spec)
+5. [Struktur Repositori & Katalog Aset](#struktur-repositori--katalog-aset)
+6. [Cara Menjalankan Skrip Generator Python](#cara-menjalankan-skrip-generator-python)
+7. [Pedoman Penerapan & Cendera Mata](#pedoman-penerapan--cendera-mata)
+8. [Hak Cipta & Lisensi Kepemilikan](#hak-cipta--lisensi-kepemilikan)
 
 ---
 
-## Filosofi Lambang
+## Filosofi Lambang Resmi
 
-Lambang Dies Natalis ke-44 SMA Negeri 1 Gedeg dirancang dengan memadukan unsur tradisi almamater, ketegasan karakter, dan visi masa depan. Setiap lekukan garis kurva dibangun secara matematis untuk mencerminkan nilai-nilai luhur institusi:
+Lambang Dies Natalis ke-44 SMA Negeri 1 Gedeg memadukan unsur tradisi almamater, ketegasan karakter, dan visi masa depan. Setiap lekukan garis kurva dibangun secara matematis untuk mencerminkan nilai luhur institusi:
 
 ```
-          ▲ Visi Melesat ke Kanan Atas (Masa Depan)
+          ▲ Puncak Visi Intelektual Rajawali
          / \
-        /   \  Kepala & Tatapan Tajam Rajawali
+        /   \  Tatapan Tegas Visioner Masa Depan
        │  4  │ Sinergi Angka Kembar 44
         \   /  Lidah Api Abadi Berkobar
          \_/   Fondasi Karakter & Integritas SMAN 1 Gedeg
 ```
 
 ### 1. Sinergi Angka Kembar 44
-Bentuk dasar lambang menyatukan dua figur angka empat yang saling bertaut dinamis. Figur kembar ini melambangkan keselarasan, persatuan civitas akademika, kedewasaan institusi dalam membina generasi bangsa, dan kebersamaan antargenerasi alumni serta siswa aktif.
+Bentuk dasar lambang menyatukan dua figur angka empat yang saling bertaut dinamis. Figur kembar ini melambangkan keselarasan, persatuan civitas akademika, kedewasaan institusi selama 44 tahun dalam membina generasi bangsa, serta kebersamaan antargenerasi guru, karyawan, siswa, dan alumni.
 
 ### 2. Kepala dan Tatapan Tajam Rajawali
-Pada bagian puncak lambang terpahat siluet kepala rajawali yang menatap tegas ke arah kanan atas. Simbol ini mengekspresikan kewibawaan, ketajaman intelektual, keteguhan hati, dan keberanian civitas akademika dalam meraih prestasi tingkat nasional maupun global.
+Pada bagian puncak lambang terpahat siluet kepala rajawali yang menatap tegas ke arah kanan atas. Simbol ini mengekspresikan kewibawaan almamater, ketajaman intelektual, keteguhan hati, dan keberanian civitas akademika dalam meraih prestasi tingkat nasional maupun global.
 
-### 3. Lidah Api Abadi
-Lekukan yang mengalir dari dasar hingga puncak lambang melambangkan lidah api abadi. Api merepresentasikan semangat belajar yang tidak pernah padam, kreativitas, daya juang pantang menyerah, dan energi kepemimpinan yang menghangatkan serta menerangi lingkungan sekitar.
+### 3. Lidah Api Abadi Berkobar
+Lekukan yang mengalir dari dasar hingga puncak lambang melambangkan lidah api abadi. Api merepresentasikan semangat belajar yang tidak pernah padam, daya lenting (*resilience*) menghadapi tantangan zaman, kreativitas tanpa henti, dan energi kepemimpinan yang menerangi lingkungan sekitar.
 
 ### 4. Akselerasi Kurva Aerodinamis
-Sayap luar dirancang dengan kelengkungan aerodinamis yang meluncur cepat ke arah kanan atas. Arah ini melambangkan orientasi masa depan, percepatan transformasi pendidikan digital, dan kemajuan yang berkesinambungan (*continuous advancement*).
+Sayap luar dirancang dengan kelengkungan aerodinamis yang meluncur cepat ke arah kanan atas. Arah ini melambangkan orientasi masa depan, percepatan transformasi pendidikan, dan kemajuan yang berkesinambungan (*continuous advancement*).
 
 ### 5. Harmoni Tulang Punggung Medial (*Symmetrical Medial Spine*)
-Pada pembaruan versi V6 Master, tulang punggung tengah (*medial spine*) disempurnakan dengan busur lingkaran konsentris simetris. Harmoni garis ini menghasilkan dimensi visual trimatra (3D) yang anggun, tegas, dan bebas dari distorsi sudut tajam.
+Pada pembaruan versi **V6 Master Final**, tulang punggung tengah (*medial spine*) disempurnakan dengan busur lingkaran konsentris simetris 100%. Harmoni garis ini menghasilkan dimensi visual trimatra (3D) yang anggun, kokoh, dan bebas dari distorsi sudut tajam.
 
 ---
 
-## Riwayat Evolusi Perancangan
+## Metodologi Tracing & Alat Komputasi
 
-Perancangan identitas visual ini melalui empat tahapan proses kreatif:
+Seluruh proses digitalisasi dan kalibrasi kurva dari sketsa pensil manual hingga vektor master V6 dikerjakan secara komputasional (*algorithmic vectorization*) menggunakan ekosistem **Python 3.10+**.
 
-| Tahapan | Nama Berkas / Versi | Deskripsi Teknis |
+### Perangkat Lunak & Pustaka (*Tools & Libraries*):
+* **OpenCV (`cv2`)**: Digunakan untuk pengolahan citra digital tahap awal, mencakup pemisahan latar belakang kertas (*Otsu thresholding*), perataan kontras (*CLAHE*), dan ekstraksi kontur piksel (`cv2.findContours`).
+* **NumPy**: Digunakan untuk kalkulasi matriks koordinat $(x, y)$, perhitungan jarak euklides, dan normalisasi vektor tangen antartitik lengkung.
+* **SciPy (`scipy.interpolate`)**: Digunakan untuk interpolasi *spline* dan penyesuaian parameter kurva Bezier kubik guna menjamin kontinuitas lengkungan (*$C^1$ smooth continuity*).
+* **svgwrite**: Digunakan untuk menyusun sintaks XML SVG vektor murni berstandar W3C beresolusi tak terbatas (*lossless scaling*).
+* **CairoSVG**: Digunakan untuk merender berkas SVG menjadi berkas raster cetak PNG ultra-tinggi (2048x2048 piksel) dengan transparansi alfa sempurna.
+* **Matplotlib**: Digunakan untuk inspeksi kisi-kisi matematis (*geometric construction grid inspection*) pada busur rasio keemasan.
+
+Dokumentasi matematis dan algoritma lengkap dapat dibaca pada [docs/METODOLOGI_TRACING_VEKTOR.md](docs/METODOLOGI_TRACING_VEKTOR.md).
+
+---
+
+## Riwayat Evolusi Perancangan (Sketsa ke V6)
+
+Perancangan identitas visual ini melalui enam tahapan iterasi:
+
+| Tahapan | Berkas Masukan / Hasil | Deskripsi Teknis |
 | :--- | :--- | :--- |
-| **01. Sketsa Awal** | `raw draw.jpeg` | Sketsa tangan pensil di atas kertas gambar. Berisi eksplorasi proporsi angka kembar 44, arah hadap rajawali, dan lingkaran pandu geometris awal. |
-| **02. Sketsa Digital** | `digital hand draw.PNG` | Pewarnaan tangan digital berbasis raster. Menentukan persebaran warna gradasi api, kontras paruh, dan transisi ketebalan siluet. |
-| **03. Vektorisasi Presisi** | `archive/v1` s.d. `v5` | Digitalisasi kurva Bezier, eksplorasi varian garis potong (*line-cut*), kalibrasi kelengkungan ekor, dan perbaikan simetri busur tengah. |
-| **04. Master Final V6** | `assets/svg/` & `assets/png/` | Hasil akhir yang disempurnakan dengan kurva lingkaran sempurna, bebas distorsi sudut, serta siap untuk penerapan lintas media. |
+| **01. Sketsa Pensil Awal** | `raw draw.jpeg` | Sketsa tangan pensil grafit asli di atas kertas gambar. Berisi proporsi dasar angka kembar 44, arah paruh rajawali, dan lingkaran pandu manual. |
+| **02. Lukisan Tangan Digital** | `digital hand draw.PNG` | Pewarnaan tangan digital berbasis raster (RGB 24-bit). Menentukan sebaran gradasi api, kontras paruh, dan transisi ketebalan siluet. |
+| **03. Vektor Kontur Awal (V1–V2)** | `archive/v1/`, `archive/v2/` | Ekstraksi kontur biner otomatis awal. Masih ditemukan sudut tajam bergerigi pada lengkungan ekor. |
+| **04. Blueprint Geometris (V3)** | `archive/v3/` | Penerapan grid busur lingkaran rasio keemasan pada sayap dan kepala rajawali. |
+| **05. Kalibrasi Line-Cut & Ekor (V4–V5)**| `archive/v4/`, `archive/v5/` | Penyetaraan celah antar-garis (*kerning gap*) dan perbaikan kelengkungan ujung ekor agar tidak kaku. |
+| **06. Master Final V6** | `assets/` & `v6_detailing/` | **Penyempurnaan akhir**: Rekonstruksi total *medial spine* simetris 100%, 4 faset kedalaman 3D, dan standarisasi warna Coolors resmi. |
 
 ---
 
-## Sistem Warna Resmi
+## Sistem Palet Warna Resmi (Coolors Spec)
 
-Palet warna resmi diadaptasi langsung dari spesifikasi keemasan dan api pada dokumen palet warna (`coolors.jpeg`):
+Palet warna resmi dikalibrasi secara presisi mengacu pada dokumen `coolors.jpeg`:
 
 | Nama Warna | Kode Hex | RGB | CMYK | Karakter & Peruntukan |
 | :--- | :--- | :--- | :--- | :--- |
-| **Obsidian Mahogany** | `#310603` | 49, 6, 3 | 48, 88, 76, 75 | Bayangan terdalam, kontras monokrom gelap, batas luar lambang. |
-| **Crimson Fire** | `#7D1B05` | 125, 27, 5 | 24, 96, 100, 27 | Pangkal lidah api, pembangun dimensi kedalaman dan ketegasan. |
-| **Bronze Shadow** | `#B6580B` | 182, 88, 11 | 18, 73, 100, 7 | Nada transisi hangat antara bayangan tembaga dan keemasan utama. |
-| **Marigold Gold** | `#E09B17` | 224, 155, 23 | 9, 39, 99, 0 | Warna inti tubuh lambang; memancarkan aura kemuliaan almamater. |
+| **Obsidian Mahogany** | `#310603` | 49, 6, 3 | 48, 88, 76, 75 | Bayangan terdalam, batas siluet luar lambang, kontras monokrom pekat. |
+| **Crimson Fire** | `#7D1B05` | 125, 27, 5 | 24, 96, 100, 27 | Pangkal lidah api berkobar, pembangun dimensi kedalaman. |
+| **Bronze Shadow** | `#B6580B` | 182, 88, 11 | 18, 73, 100, 7 | Nada transisi hangat lekukan lipatan faset trimatra. |
+| **Marigold Gold** | `#E09B17` | 224, 155, 23 | 9, 39, 99, 0 | Warna inti tubuh lambang dan sayap; memancarkan aura kemuliaan. |
 | **Vivid Gold** | `#F5C538` | 245, 197, 56 | 3, 21, 84, 0 | Kilau keemasan medial spine dan aksentuasi garis dinamis utama. |
 | **Champagne Gold** | `#F7D160` | 247, 209, 96 | 2, 16, 68, 0 | Sorotan cahaya puncak (*specular highlight*) pada permukaan lambang. |
-| **Canary Glow** | `#FDF39D` | 253, 243, 157 | 1, 2, 44, 0 | Pendaran cahaya tertinggi, digunakan untuk gradasi aksen puncak. |
-| **Midnight Plum** | `#360538` | 54, 5, 56 | 72, 98, 38, 56 | Latar belakang premium dan aplikasi media berkarakter elegan gelap. |
+| **Canary Glow** | `#FDF39D` | 253, 243, 157 | 1, 2, 44, 0 | Pendaran cahaya tertinggi, digunakan untuk gradasi aksen paruh dan api. |
+| **Midnight Plum** | `#360538` | 54, 5, 56 | 72, 98, 38, 56 | Latar belakang beludru panggung gala dan cendera mata eksklusif. |
 
 ---
 
-## Sistem Tipografi
+## Struktur Repositori & Katalog Aset
 
-1. **Huruf Judul Utama**: **Cinzel** (*Weights*: 700 Bold / 900 Black)
-   - Digunakan untuk penulisan tajuk resmi "DIES NATALIS 44", piagam, plakat, dan judul sertifikat. Memancarkan aura klasik, kokoh, dan berwibawa.
-2. **Huruf Teks & Antarmuka**: **Plus Jakarta Sans** (*Weights*: 400 Regular, 500 Medium, 600 Semi-Bold, 700 Bold)
-   - Huruf *humanist sans-serif* modern karya desainer Indonesia dengan keterbacaan tinggi di berbagai resolusi layar maupun cetak.
-
----
-
-## Aplikasi Web 3D Interaktif
-
-Repositori ini dilengkapi aplikasi web interaktif generasi modern yang dibangun menggunakan:
-- **React 19 & Vite**: Pemuatan halaman instan dan arsitektur komponen modular.
-- **Three.js**: Mesin grafis WebGL untuk menampilkan lambang 3D secara fotorealistis dengan *PBR Metallic Gold Shader*.
-- **Pembedahan Komponen 3D**: Menyorot dan mengisolasi komponen lambang (Figur 44, Paruh Rajawali, Lidah Api, dan Medial Spine) saat pengguna memilih penjelasan filosofis.
-- **Tema Tiga Mode**: Mendukung mode Terang (*Light*), Gelap (*Dark*), dan Otomatis sesuai preferensi sistem operasi (*Default by System*).
-
----
-
-## Struktur Repositori
-
+```text
+diesnat44project/
+├── raw draw.jpeg                         # Sketsa pensil asli di atas kertas
+├── digital hand draw.PNG                 # Sketsa digital raster berwarna
+├── coolors.jpeg                          # Dokumen palet warna resmi almamater
+├── LICENSE                               # Dokumen lisensi kepemilikan tertutup (Proprietary)
+├── README.md                             # Ringkasan utama repositori (berkas ini)
+│
+├── assets/                               # Kumpulan berkas ekspor master siap pakai
+│   ├── svg/                              # Berkas vektor SVG resolusi tak terbatas
+│   │   ├── logo-symbol-color.svg         # Simbol utama warna penuh (Master V6)
+│   │   ├── logo-linecut-black.svg        # Garis kontur presisi (Line-cut)
+│   │   ├── logo-horizontal-color.svg     # Susunan horizontal teks SMAN 1 Gedeg
+│   │   ├── logo-vertical-color.svg       # Susunan vertikal (Format poster)
+│   │   ├── logo-monochrome-black.svg     # Versi monokrom hitam pekat
+│   │   ├── logo-monochrome-white.svg     # Versi monokrom putih bersih (Inverted)
+│   │   └── logo-with-grid.svg            # Konstruksi kurva & lingkaran rasio emas
+│   └── png/                              # Berkas raster PNG resolusi ultra-tinggi
+│       ├── logo-symbol-color.png         # Raster 1024x1024 px transparansi alfa
+│       ├── logo-color-2048.png           # Raster 2048x2048 px resolusi cetak
+│       └── logo-with-grid.png            # Visualisasi cetak grid konstruksi
+│
+├── v6_detailing/                         # Sumber kode dan skrip generator V6
+│   └── scripts/
+│       ├── generate_v6_master.py         # Skrip Python pembangun seluruh aset SVG V6
+│       └── render_and_verify_v6.py       # Skrip penguji rendering & ekspor PNG
+│
+├── tokens/                               # Spesifikasi token desain resmi
+│   ├── design-tokens.json                # Nilai token format JSON W3C
+│   └── design-tokens.css                 # Variabel CSS warna & tipografi
+│
+├── archive/                              # Arsip riwayat pembuatan versi terdahulu
+│   ├── v1_initial_trace/                 # Berkas arsip versi 1
+│   ├── v2_refined/                       # Berkas arsip versi 2
+│   ├── v3_revisi/                        # Berkas arsip versi 3
+│   ├── v4_revisi/                        # Berkas arsip versi 4
+│   └── v5_revisi/                        # Berkas arsip versi 5
+│
+└── docs/                                 # Dokumentasi komprehensif
+    ├── BRAND_GUIDELINES.md               # Buku pedoman tata cara penggunaan identitas
+    └── METODOLOGI_TRACING_VEKTOR.md      # Metodologi teknis tracing & algoritma kurva
 ```
-├── assets/
-│   ├── svg/                     # Berkas vektor master V6 (Color, Linecut, Monochrome, Tight, Grid)
-│   └── png/                     # Berkas raster resolusi tinggi (2048px dan ukuran master)
-├── docs/
-│   └── BRAND_GUIDELINES.md      # Pedoman merek komprehensif
-├── tokens/
-│   ├── design-tokens.css        # Variabel CSS warna, tipografi, dan radius
-│   └── design-tokens.json       # Format pertukaran token desain
-├── src/
-│   ├── components/              # Komponen React (3D Viewer, Timeline, Filosofi, Merchandise)
-│   ├── App.jsx                  # Halaman aplikasi utama
-│   ├── main.jsx                 # Titik masuk React
-│   └── index.css                # Gaya antarmuka kustom dan sistem tema
-├── raw draw.jpeg                # Foto asli sketsa pensil di atas kertas
-├── digital hand draw.PNG        # Foto asli sketsa raster digital berwarna
-├── coolors.jpeg                 # Dokumen asli palet warna resmi
-├── LICENSE                      # Lisensi tertutup (Proprietary All Rights Reserved)
-├── package.json                 # Konfigurasi dependensi Node.js & Vite
-└── README.md                    # Dokumentasi resmi ini
+
+---
+
+## Cara Menjalankan Skrip Generator Python
+
+Untuk mereproduksi seluruh berkas SVG dan PNG master secara mandiri dari terminal:
+
+```bash
+# 1. Pasang pustaka dependensi Python
+pip install opencv-python numpy scipy svgwrite cairosvg matplotlib
+
+# 2. Jalankan skrip pembangun vektor master V6
+python3 v6_detailing/scripts/generate_v6_master.py
+
+# 3. Jalankan skrip verifikasi rendering dan ekspor PNG 2048px
+python3 v6_detailing/scripts/render_and_verify_v6.py
 ```
 
 ---
 
-## Petunjuk Menjalankan Aplikasi
+## Pedoman Penerapan & Cendera Mata
 
-Pastikan Node.js (versi 18 atau yang lebih baru) telah terpasang di komputer Anda.
-
-1. **Pasang dependensi**:
-   ```bash
-   npm install
-   ```
-
-2. **Jalankan peladen pengembangan lokal (*development server*)**:
-   ```bash
-   npm run dev
-   ```
-   Buka peramban di alamat `http://localhost:3000`.
-
-3. **Kompilasi produksi**:
-   ```bash
-   npm run build
-   ```
+Pedoman lengkap mengenai ukuran minimum (*minimum size*), zona bebas (*clear space*), aturan bordir kaos polo, sablon totebag, lencana pin enamel sepuh emas 24K, dan plakat akrilik dapat dipelajari secara rinci pada [docs/BRAND_GUIDELINES.md](docs/BRAND_GUIDELINES.md).
 
 ---
 
-## Pedoman Penggunaan & Cendera Mata
+## Hak Cipta & Lisensi Kepemilikan
 
-Standar visual lambang telah diuji untuk penerapan pada berbagai media resmi:
-- **Tali Gantung (*Lanyard*) & Kartu Identitas Panitia**: Menggunakan varian horizontal dengan latar belakang *Midnight Plum* dan pita satin bergradasi emas.
-- **Kaus Berkerah (*Polo Shirt*)**: Bordir presisi tinggi lambang warna penuh pada dada kiri dengan warna kain hitam pekat atau merah marun.
-- **Tas Jinjing (*Tote Bag*) Kanvas**: Varian monokrom hitam pada kain kanvas krem (*raw canvas*) atau cetak emas pada kain hitam.
-- **Lencana Logam (*Enamel Pin*)**: Logam sepuhan emas dengan resin pelindung timbul (*dome resin finish*).
-- **Latar Belakang Panggung (*Backdrop*)**: Format vektor resolusi tak terbatas dengan grid pandu keamanan visual (*clear space*).
+Seluruh karya cipta grafis, lambang, skrip komputasi, dan dokumentasi di dalam repositori ini dilindungi oleh undang-undang hak cipta Republik Indonesia.
 
----
+Status lisensi adalah **PROPRIETARY / ALL RIGHTS RESERVED (LISENSI TERTUTUP MUTLAK)** milik:
+* **SMA Negeri 1 Gedeg, Kabupaten Mojokerto**
+* **Ardian Ryan**
 
-## Hak Cipta & Lisensi
-
-**HAK CIPTA DILINDUNGI UNDANG-UNDANG (ALL RIGHTS RESERVED).**
-
-Seluruh materi di dalam repositori ini—termasuk desain lambang, nama, sistem warna, model 3D, dan kode sumber—adalah kekayaan intelektual eksklusif milik **Ardian Ryan** dan **SMA Negeri 1 Gedeg**. 
-
-Karya ini **BUKAN** perangkat lunak sumber terbuka (*open source*) dan **TIDAK DAPAT DIGUNAKAN OLEH SIAPA PUN** tanpa izin tertulis resmi dari pemegang hak cipta. Dilarang keras menyalin, memodifikasi, mempublikasikan ulang, mendistribusikan, atau memanfaatkan karya ini untuk tujuan komersial maupun non-komersial pihak ketiga.
-
-Silakan membaca berkas [`LICENSE`](file:///Users/ardianryan/Documents/diesnat44project/LICENSE) untuk pernyataan hukum lengkap.
+Dilarang keras menyalin, memodifikasi, mendistribusikan, mempublikasikan ulang, atau menggunakan materi ini untuk kepentingan pihak ketiga tanpa izin tertulis resmi dari pemegang hak cipta. Teks hukum lengkap tercantum pada berkas [LICENSE](LICENSE).
