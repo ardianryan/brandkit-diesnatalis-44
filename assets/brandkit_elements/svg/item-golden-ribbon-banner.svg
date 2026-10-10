@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ribbon-front-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C2820A"/>
+      <stop offset="20%" stop-color="#F5C538"/>
+      <stop offset="50%" stop-color="#FFF9D2"/>
+      <stop offset="80%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#C2820A"/>
+    </linearGradient>
+    <linearGradient id="ribbon-back-fold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7A4B02"/>
+      <stop offset="100%" stop-color="#3D2200"/>
+    </linearGradient>
+    <linearGradient id="ribbon-tail-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A36B04"/>
+      <stop offset="50%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#8A5802"/>
+    </linearGradient>
+    <filter id="ribbon-shadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#120114" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#ribbon-shadow)">
+    <!-- 1. Ekor Pita Belakang Kiri (Left Swallowtail) -->
+    <path d="M 280 280 L 100 240 L 160 350 L 100 460 L 280 400 Z" fill="url(#ribbon-tail-grad)" stroke="#8A5802" stroke-width="3"/>
+    <!-- Lipatan Bayangan Kiri -->
+    <polygon points="280,280 280,400 360,350" fill="url(#ribbon-back-fold)"/>
+
+    <!-- 2. Ekor Pita Belakang Kanan (Right Swallowtail) -->
+    <path d="M 1320 280 L 1500 240 L 1440 350 L 1500 460 L 1320 400 Z" fill="url(#ribbon-tail-grad)" stroke="#8A5802" stroke-width="3"/>
+    <!-- Lipatan Bayangan Kanan -->
+    <polygon points="1320,280 1320,400 1240,350" fill="url(#ribbon-back-fold)"/>
+
+    <!-- 3. Pita Depan Lengkung Utama (Main Front Arch Ribbon) -->
+    <path d="M 280 280
+             C 500 220, 1100 220, 1320 280
+             L 1320 400
+             C 1100 340, 500 340, 280 400
+             Z"
+          fill="url(#ribbon-front-gold)" stroke="#8A5802" stroke-width="3"/>
+
+    <!-- Garis Lis Jahitan Emas Halus (Filigree Dashed Inset) -->
+    <path d="M 300 295 C 510 240, 1090 240, 1300 295" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.8"/>
+    <path d="M 300 385 C 510 325, 1090 325, 1300 385" fill="none" stroke="#7A4B02" stroke-width="2"/>
+  </g>
+</svg>

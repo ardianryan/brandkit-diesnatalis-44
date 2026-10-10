@@ -58,6 +58,15 @@ def build_html():
     img_rose = get_base64_img("assets/brandkit_elements/png/item-confectionery-rose.png")
     img_glasses = get_base64_img("assets/brandkit_elements/png/item-whimsical-glasses.png")
     img_stardust = get_base64_img("assets/brandkit_elements/png/item-stardust-sparkle-stars.png")
+
+    img_chocolate = get_base64_img("assets/brandkit_elements/png/item-golden-chocolate-bar.png")
+    img_candycane = get_base64_img("assets/brandkit_elements/png/item-swirl-candy-cane.png")
+    img_truffle = get_base64_img("assets/brandkit_elements/png/item-gourmet-praline-truffle.png")
+    img_sugargem = get_base64_img("assets/brandkit_elements/png/item-confectionery-sugar-gem.png")
+    img_ribbon = get_base64_img("assets/brandkit_elements/png/item-golden-ribbon-banner.png")
+    img_filigree = get_base64_img("assets/brandkit_elements/png/item-ornate-corner-filigree.png")
+    img_divider = get_base64_img("assets/brandkit_elements/png/item-decorative-divider-line.png")
+    img_drip = get_base64_img("assets/brandkit_elements/png/item-molten-chocolate-drip-border.png")
     
     img_bg_pinwheel = get_base64_img("assets/brandkit_elements/backgrounds/bg-theatrical-pinwheel-mint.png")
     img_bg_velvet = get_base64_img("assets/brandkit_elements/backgrounds/bg-imperial-velvet-stardust.png")
@@ -1211,14 +1220,14 @@ def build_html():
   </div>
 
 
-  <!-- ==================== HALAMAN 12: ELEMEN GRAFIS PENDUKUNG ==================== -->
+  <!-- ==================== HALAMAN 12: ELEMEN GRAFIS PENDUKUNG (BAGIAN 1) ==================== -->
   <div class="page">
     <div class="page-header">
       <div>
-        <div class="header-tagline cinzel">BAB 11 • ELEMEN PENDUKUNG</div>
-        <div class="header-title">8 ELEMEN GRAFIS PENDUKUNG RESMI</div>
+        <div class="header-tagline cinzel">BAB 11 • ELEMEN PENDUKUNG (BAGIAN 1)</div>
+        <div class="header-title">8 ELEMEN ILUSTRASI & IKON FANTASI</div>
       </div>
-      <div class="header-meta">ELEMEN GRAFIS</div>
+      <div class="header-meta">ILUSTRASI & IKON</div>
     </div>
 
     <div class="content-area">
@@ -1320,11 +1329,120 @@ def build_html():
   </div>
 
 
-  <!-- ==================== HALAMAN 13: LATAR BELAKANG RESMI ==================== -->
+  <!-- ==================== HALAMAN 13: ELEMEN PENDUKUNG (BAGIAN 2) ==================== -->
   <div class="page">
     <div class="page-header">
       <div>
-        <div class="header-tagline cinzel">BAB 12 • LATAR BELAKANG</div>
+        <div class="header-tagline cinzel">BAB 12 • ELEMEN PENDUKUNG (BAGIAN 2)</div>
+        <div class="header-title">8 ELEMEN COKELAT, PERMEN & ORNAMEN DEKORATIF</div>
+      </div>
+      <div class="header-meta">COKELAT & UTILITAS</div>
+    </div>
+
+    <div class="content-area">
+      <div class="grid-4" style="height: 100%;">
+        <!-- Item 9: Golden Chocolate Bar -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_chocolate}" alt="Batang Cokelat Foil Emas">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">BATANG COKELAT FOIL EMAS</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Balok cokelat pekat dengan bungkus emas mewah untuk perayaan manis dan lezat.</p>
+          </div>
+        </div>
+
+        <!-- Item 10: Swirl Candy Cane -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_candycane}" alt="Tongkat Permen Spiral">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">TONGKAT PERMEN SPIRAL</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Tongkat permen melengkung garis spiral mint, marun, dan vanilla untuk dekorasi sudut.</p>
+          </div>
+        </div>
+
+        <!-- Item 11: Gourmet Praline Truffle -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_truffle}" alt="Truffle Praline Emas">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">TRUFFLE PRALINE EMAS</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Permen cokelat bulat gourmet berlapis emas murni dan kakao untuk sajian grafis eksklusif.</p>
+          </div>
+        </div>
+
+        <!-- Item 12: Sugar Gem -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_sugargem}" alt="Permata Gula Kristal">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">PERMATA GULA KRISTAL</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Kristal gula faset berkilau zamrud toska dan emas untuk sentuhan aksen keajaiban visual.</p>
+          </div>
+        </div>
+
+        <!-- Item 13: Golden Ribbon Banner -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_ribbon}" alt="Pita Spanduk Emas">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">PITA SPANDUK EMAS</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Spanduk pita emas berkibar berlipat tiga untuk wadah subjudul, tanggal, dan pengumuman.</p>
+          </div>
+        </div>
+
+        <!-- Item 14: Corner Filigree -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_filigree}" alt="Sudut Bingkai Filigri">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">SUDUT BINGKAI FILIGRI</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Ornamen sudut ukir emas klasik untuk memperindah keempat sudut sertifikat dan plakat.</p>
+          </div>
+        </div>
+
+        <!-- Item 15: Decorative Divider -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_divider}" alt="Garis Pembatas Hias">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">GARIS PEMBATAS HIAS</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Garis pembatas horizontal bermotif simetris untuk memisahkan bab atau subbagian naskah.</p>
+          </div>
+        </div>
+
+        <!-- Item 16: Chocolate Drip Border -->
+        <div class="panel" style="padding: 3mm;">
+          <div class="img-box" style="height: 38mm;">
+            <img src="{img_drip}" alt="Border Lelehan Cokelat">
+          </div>
+          <div style="margin-top: 2.5mm;">
+            <strong style="color: #FFEAA0; font-size: 12px;">BORDER LELEHAN COKELAT</strong>
+            <p style="font-size: 11px; margin-top: 1mm;">Aksen lelehan cokelat pekat dan sirup karamel emas untuk bingkai atas atau bawah desain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div>BUKU PEDOMAN IDENTITAS VISUAL • DIES NATALIS KE-44 SMAN 1 GEDEG</div>
+      <div class="page-num">HALAMAN 13</div>
+    </div>
+  </div>
+
+
+  <!-- ==================== HALAMAN 14: LATAR BELAKANG RESMI ==================== -->
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <div class="header-tagline cinzel">BAB 13 • LATAR BELAKANG</div>
         <div class="header-title">PILIHAN LATAR MEDIA SOSIAL DAN PANGGUNG</div>
       </div>
       <div class="header-meta">FEED (1:1) DAN STORY (9:16)</div>
@@ -1362,16 +1480,16 @@ def build_html():
 
     <div class="page-footer">
       <div>BUKU PEDOMAN IDENTITAS VISUAL • DIES NATALIS KE-44 SMAN 1 GEDEG</div>
-      <div class="page-num">HALAMAN 13</div>
+      <div class="page-num">HALAMAN 14</div>
     </div>
   </div>
 
 
-  <!-- ==================== HALAMAN 14: APLIKASI CENDERA MATA ==================== -->
+  <!-- ==================== HALAMAN 15: APLIKASI CENDERA MATA ==================== -->
   <div class="page">
     <div class="page-header">
       <div>
-        <div class="header-tagline cinzel">BAB 13 • CENDERA MATA</div>
+        <div class="header-tagline cinzel">BAB 14 • CENDERA MATA</div>
         <div class="header-title">PENERAPAN IDENTITAS PADA CENDERA MATA RESMI</div>
       </div>
       <div class="header-meta">CONTOH PRODUK</div>
@@ -1431,16 +1549,16 @@ def build_html():
 
     <div class="page-footer">
       <div>BUKU PEDOMAN IDENTITAS VISUAL • DIES NATALIS KE-44 SMAN 1 GEDEG</div>
-      <div class="page-num">HALAMAN 14</div>
+      <div class="page-num">HALAMAN 15</div>
     </div>
   </div>
 
 
-  <!-- ==================== HALAMAN 15: PANDUAN KETEPATAN (DO'S & DON'TS) ==================== -->
+  <!-- ==================== HALAMAN 16: PANDUAN KETEPATAN (DO'S & DON'TS) ==================== -->
   <div class="page">
     <div class="page-header">
       <div>
-        <div class="header-tagline cinzel">BAB 14 • KEPATUHAN DESAIN</div>
+        <div class="header-tagline cinzel">BAB 15 • KEPATUHAN DESAIN</div>
         <div class="header-title">PANDUAN KETEPATAN DAN LARANGAN PENGGUNAAN</div>
       </div>
       <div class="header-meta">ATURAN PENGGUNAAN</div>
@@ -1504,16 +1622,16 @@ def build_html():
 
     <div class="page-footer">
       <div>BUKU PEDOMAN IDENTITAS VISUAL • DIES NATALIS KE-44 SMAN 1 GEDEG</div>
-      <div class="page-num">HALAMAN 15</div>
+      <div class="page-num">HALAMAN 16</div>
     </div>
   </div>
 
 
-  <!-- ==================== HALAMAN 16: TIM KREATIF & ATRIBUSI KARYA SENI ==================== -->
+  <!-- ==================== HALAMAN 17: TIM KREATIF & ATRIBUSI KARYA SENI ==================== -->
   <div class="page">
     <div class="page-header">
       <div>
-        <div class="header-tagline cinzel">BAB 15 • ATRIBUSI KARYA</div>
+        <div class="header-tagline cinzel">BAB 16 • ATRIBUSI KARYA</div>
         <div class="header-title">TIM KREATIF DIES NATALIS KE-44 SMAN 1 GEDEG</div>
       </div>
       <div class="header-meta">KOLABORASI SISWA DAN GURU</div>
@@ -1606,16 +1724,16 @@ def build_html():
 
     <div class="page-footer">
       <div>BUKU PEDOMAN IDENTITAS VISUAL • DIES NATALIS KE-44 SMAN 1 GEDEG</div>
-      <div class="page-num">HALAMAN 16</div>
+      <div class="page-num">HALAMAN 17</div>
     </div>
   </div>
 
 
-  <!-- ==================== HALAMAN 17: PANDUAN PENGGUNAAN & UNDUHAN BERKAS ==================== -->
+  <!-- ==================== HALAMAN 18: PANDUAN PENGGUNAAN & UNDUHAN BERKAS ==================== -->
   <div class="page" style="justify-content: space-between;">
     <div class="page-header">
       <div>
-        <div class="header-tagline cinzel">BAB 16 • PANDUAN BERKAS</div>
+        <div class="header-tagline cinzel">BAB 17 • PANDUAN BERKAS</div>
         <div class="header-title">PANDUAN PRAKTIS UNDUHAN DAN FORMAT BERKAS</div>
       </div>
       <div class="header-meta">PANDUAN BERKAS</div>
@@ -1644,7 +1762,7 @@ def build_html():
             </div>
             <div style="background: rgba(0,0,0,0.3); padding: 2mm; border-left: 3.5px solid #FDF39D; border-radius: 4px;">
               <strong style="color:#FFEAA0;">Folder Elemen Pendukung dan Latar:</strong><br>
-              <code class="mono" style="color:#F7D160; font-size:11px;">assets/brandkit_elements/</code> &bull; 8 ornamen modular dan preset latar feed/story.
+              <code class="mono" style="color:#F7D160; font-size:11px;">assets/brandkit_elements/</code> &bull; 16 ornamen modular (SVG/PNG) dan preset latar feed/story.
             </div>
           </div>
         </div>
@@ -1716,7 +1834,7 @@ def build_html():
 
     <div class="page-footer">
       <div>BUKU PEDOMAN IDENTITAS VISUAL • DIES NATALIS KE-44 SMAN 1 GEDEG</div>
-      <div class="page-num">HALAMAN 17 (SELESAI)</div>
+      <div class="page-num">HALAMAN 18 (SELESAI)</div>
     </div>
   </div>
 

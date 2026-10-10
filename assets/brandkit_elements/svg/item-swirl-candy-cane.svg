@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cane-base-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EBE3D3"/>
+      <stop offset="35%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#FFFDF5"/>
+      <stop offset="100%" stop-color="#D9CBB0"/>
+    </linearGradient>
+    <linearGradient id="stripe-mint-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B2E7DB"/>
+      <stop offset="50%" stop-color="#77C9B6"/>
+      <stop offset="100%" stop-color="#469C89"/>
+    </linearGradient>
+    <linearGradient id="stripe-red-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BD2A3C"/>
+      <stop offset="50%" stop-color="#8C1322"/>
+      <stop offset="100%" stop-color="#5E0813"/>
+    </linearGradient>
+    <linearGradient id="ribbon-bow-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="45%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#B6580B"/>
+    </linearGradient>
+    <filter id="cane-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#120114" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#cane-shadow)">
+    <!-- Tongkat Dasar (Cane Base Shape) -->
+    <!-- Menggunakan path tebal bergaris ganda dengan clip-path untuk spiral stripes -->
+    <path d="M 680 1250 L 680 500 C 680 200, 320 200, 320 500 L 320 580"
+          fill="none" stroke="url(#cane-base-grad)" stroke-width="140" stroke-linecap="round"/>
+
+    <!-- Strip Garis Mint & Red (Simulasi Spiral Striping via overlay stroke segmen) -->
+    <!-- Garis Spiral Merah -->
+    <path d="M 620 1200 L 740 1140" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 1060 L 740 1000" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 920 L 740 860" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 780 L 740 720" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 640 L 740 580" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 645 490 L 735 435" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    
+    <!-- Lengkungan Atas Striping -->
+    <path d="M 620 330 L 690 260" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 520 230 L 550 150" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 390 230 L 360 160" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 270 330 L 350 370" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 260 480 L 380 490" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+
+    <!-- Kilau Mengkilap Tabung (Gloss Highlight) -->
+    <path d="M 650 1240 L 650 500 C 650 250, 350 250, 350 500 L 350 570"
+          fill="none" stroke="#FFFFFF" stroke-width="16" opacity="0.65" stroke-linecap="round"/>
+
+    <!-- Pita Kupu-Kupu Emas di Leher Tongkat -->
+    <g transform="translate(680, 520)">
+      <!-- Sayap Pita Kiri & Kanan -->
+      <path d="M 0 0 C -80 -80, -140 -20, -110 40 C -80 70, -20 20, 0 0 Z" fill="url(#ribbon-bow-gold)"/>
+      <path d="M 0 0 C 80 -80, 140 -20, 110 40 C 80 70, 20 20, 0 0 Z" fill="url(#ribbon-bow-gold)"/>
+      <!-- Ekor Pita -->
+      <path d="M -15 20 L -50 130 L -10 110 L 0 130 L 15 20 Z" fill="#D49012"/>
+      <path d="M 15 20 L 50 130 L 10 110 L 0 130 L -15 20 Z" fill="#D49012"/>
+      <!-- Simpul Tengah Bulat -->
+      <circle cx="0" cy="5" r="24" fill="#FFF2A3" stroke="#B6580B" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

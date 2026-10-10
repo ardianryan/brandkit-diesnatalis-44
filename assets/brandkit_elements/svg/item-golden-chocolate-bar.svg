@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="choc-block-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#542314"/>
+      <stop offset="40%" stop-color="#3A150B"/>
+      <stop offset="100%" stop-color="#200A04"/>
+    </linearGradient>
+    <linearGradient id="choc-bevel-light" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#73321E"/>
+      <stop offset="100%" stop-color="#3A150B"/>
+    </linearGradient>
+    <linearGradient id="choc-bevel-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2A0E06"/>
+      <stop offset="100%" stop-color="#140401"/>
+    </linearGradient>
+    <linearGradient id="gold-foil-grad" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#FFF2A3"/>
+      <stop offset="25%" stop-color="#E2A21B"/>
+      <stop offset="50%" stop-color="#FFF9D2"/>
+      <stop offset="75%" stop-color="#C2820A"/>
+      <stop offset="100%" stop-color="#FFF2A3"/>
+    </linearGradient>
+    <linearGradient id="wrapper-plum-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#550858"/>
+      <stop offset="50%" stop-color="#360538"/>
+      <stop offset="100%" stop-color="#1C021E"/>
+    </linearGradient>
+    <filter id="choc-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#120114" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#choc-shadow)" transform="translate(600, 600) rotate(-14) translate(-600, -600)">
+    <!-- 1. Balok Cokelat Utama (Chocolate Slab) -->
+    <rect x="360" y="240" width="480" height="700" rx="20" fill="url(#choc-block-grad)"/>
+
+    <!-- Petak-petak Cokelat (Chocolate Tiles) -->
+    <!-- Baris 1 -->
+    <g transform="translate(390, 270)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(535, 270)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(680, 270)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+
+    <!-- Baris 2 -->
+    <g transform="translate(390, 425)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(535, 425)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(680, 425)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+
+    <!-- 2. Lapisan Foil Aluminium Emas Berlipit (Golden Foil Layer) -->
+    <path d="M 340 540 
+             L 375 500 L 430 535 L 490 495 L 560 540 L 630 490 L 710 535 L 770 490 L 855 530
+             L 865 720 L 335 720 Z" 
+          fill="url(#gold-foil-grad)" stroke="#B67B08" stroke-width="2"/>
+    <path d="M 350 525 L 420 540 L 490 510 L 560 550 L 640 505 L 720 545 L 845 510" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
+
+    <!-- 3. Bungkus Luar Ungu Beludru (Outer Plum Wrapper) -->
+    <rect x="335" y="600" width="530" height="360" rx="12" fill="url(#wrapper-plum-grad)"/>
+    <rect x="350" y="615" width="500" height="330" rx="8" fill="none" stroke="#F5C538" stroke-width="3" stroke-dasharray="8 4"/>
+
+    <!-- Pita Label Tengah Emas -->
+    <rect x="370" y="670" width="460" height="150" rx="10" fill="#200324" stroke="#F5C538" stroke-width="2"/>
+    <text x="600" y="735" font-family="'Cinzel', Georgia, serif" font-size="34" font-weight="900" fill="#F5C538" text-anchor="middle" letter-spacing="4">SMAN 1 GEDEG</text>
+    <text x="600" y="775" font-family="'Cinzel', Georgia, serif" font-size="22" font-weight="700" fill="#FFEAA0" text-anchor="middle" letter-spacing="3">★ DIES NATALIS 44 ★</text>
+  </g>
+</svg>

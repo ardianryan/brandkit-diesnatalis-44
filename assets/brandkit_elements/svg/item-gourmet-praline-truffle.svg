@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <defs>
+    <radialGradient id="truffle-body" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#5E2316"/>
+      <stop offset="35%" stop-color="#3D130A"/>
+      <stop offset="75%" stop-color="#230803"/>
+      <stop offset="100%" stop-color="#110301"/>
+    </radialGradient>
+    <linearGradient id="cup-pleat-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9C6B0D"/>
+      <stop offset="25%" stop-color="#F5C538"/>
+      <stop offset="50%" stop-color="#FFEFA3"/>
+      <stop offset="75%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#805304"/>
+    </linearGradient>
+    <linearGradient id="caramel-drizzle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2A3"/>
+      <stop offset="50%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#9E5D04"/>
+    </linearGradient>
+    <filter id="truffle-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#120114" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#truffle-shadow)">
+    <!-- Cangkir Kertas Berlipit Emas (Pleated Paper Cup) -->
+    <g transform="translate(500, 680)">
+      <ellipse cx="0" cy="80" rx="360" ry="110" fill="#1C0320" opacity="0.4"/>
+      <!-- Badan Mangkuk Kertas -->
+      <path d="M -320 20 L -250 110 C -120 160, 120 160, 250 110 L 320 20 C 180 60, -180 60, -320 20 Z" fill="url(#cup-pleat-gold)"/>
+      <!-- Lipatan-lipatan Vertikal -->
+      <path d="M -290 30 L -220 120 M -230 40 L -160 135 M -160 45 L -90 145 M -80 48 L -20 150 M 0 50 L 0 152 M 80 48 L 20 150 M 160 45 L 90 145 M 230 40 L 160 135 M 290 30 L 220 120"
+            stroke="#6B4103" stroke-width="4" opacity="0.7"/>
+    </g>
+
+    <!-- Bola Cokelat Truffle Bulat Mengilap -->
+    <circle cx="500" cy="500" r="260" fill="url(#truffle-body)"/>
+
+    <!-- Highlight Lengkungan Bola -->
+    <ellipse cx="440" cy="380" rx="160" ry="90" fill="#7A3222" opacity="0.35" transform="rotate(-20, 440, 380)"/>
+    <ellipse cx="410" cy="340" rx="60" ry="30" fill="#FFFFFF" opacity="0.25" transform="rotate(-20, 410, 340)"/>
+
+    <!-- Saus Karamel Melingkar di Atasnya (Caramel Drizzle Wave) -->
+    <path d="M 340 460 C 400 400, 480 580, 560 420 C 610 320, 680 470, 720 400"
+          fill="none" stroke="url(#caramel-drizzle)" stroke-width="26" stroke-linecap="round"/>
+    <path d="M 380 530 C 440 480, 510 620, 610 490 C 660 410, 700 520, 730 480"
+          fill="none" stroke="url(#caramel-drizzle)" stroke-width="16" stroke-linecap="round"/>
+
+    <!-- Serpihan Debu Emas (Edible Gold Flakes) -->
+    <polygon points="480,360 495,370 485,385 470,375" fill="#FFF5B8"/>
+    <polygon points="530,340 545,350 535,365 520,355" fill="#F5C538"/>
+    <polygon points="460,420 472,428 465,440 452,432" fill="#F5C538"/>
+    <polygon points="560,400 575,410 568,422 552,415" fill="#FFF5B8"/>
+    <polygon points="510,430 520,438 515,448 502,442" fill="#FFF5B8"/>
+  </g>
+</svg>

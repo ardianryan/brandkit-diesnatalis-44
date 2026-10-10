@@ -474,10 +474,501 @@ def get_stardust_sparkle_cluster_svg():
 
 
 # ==============================================================================
-# PIPELINE EKSEKUSI PEMBANGUNAN SELURUH ASET ITEM
+# ELEMEN BARU: PERMEN, COKELAT & UTILITAS DESAIN
+# ==============================================================================
+
+def get_golden_chocolate_bar_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="choc-block-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#542314"/>
+      <stop offset="40%" stop-color="#3A150B"/>
+      <stop offset="100%" stop-color="#200A04"/>
+    </linearGradient>
+    <linearGradient id="choc-bevel-light" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#73321E"/>
+      <stop offset="100%" stop-color="#3A150B"/>
+    </linearGradient>
+    <linearGradient id="choc-bevel-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2A0E06"/>
+      <stop offset="100%" stop-color="#140401"/>
+    </linearGradient>
+    <linearGradient id="gold-foil-grad" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#FFF2A3"/>
+      <stop offset="25%" stop-color="#E2A21B"/>
+      <stop offset="50%" stop-color="#FFF9D2"/>
+      <stop offset="75%" stop-color="#C2820A"/>
+      <stop offset="100%" stop-color="#FFF2A3"/>
+    </linearGradient>
+    <linearGradient id="wrapper-plum-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#550858"/>
+      <stop offset="50%" stop-color="#360538"/>
+      <stop offset="100%" stop-color="#1C021E"/>
+    </linearGradient>
+    <filter id="choc-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#120114" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#choc-shadow)" transform="translate(600, 600) rotate(-14) translate(-600, -600)">
+    <!-- 1. Balok Cokelat Utama (Chocolate Slab) -->
+    <rect x="360" y="240" width="480" height="700" rx="20" fill="url(#choc-block-grad)"/>
+
+    <!-- Petak-petak Cokelat (Chocolate Tiles) -->
+    <!-- Baris 1 -->
+    <g transform="translate(390, 270)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(535, 270)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(680, 270)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+
+    <!-- Baris 2 -->
+    <g transform="translate(390, 425)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(535, 425)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+    <g transform="translate(680, 425)">
+      <rect x="0" y="0" width="125" height="135" rx="8" fill="url(#choc-block-grad)"/>
+      <polygon points="0,0 125,0 105,18 20,18" fill="url(#choc-bevel-light)"/>
+      <polygon points="0,0 20,18 20,117 0,135" fill="url(#choc-bevel-light)"/>
+      <polygon points="125,0 125,135 105,117 105,18" fill="url(#choc-bevel-dark)"/>
+      <polygon points="0,135 125,135 105,117 20,117" fill="url(#choc-bevel-dark)"/>
+      <rect x="20" y="18" width="85" height="99" rx="4" fill="#3D170D"/>
+      <circle cx="62" cy="67" r="14" fill="#4E2013" opacity="0.8"/>
+    </g>
+
+    <!-- 2. Lapisan Foil Aluminium Emas Berlipit (Golden Foil Layer) -->
+    <path d="M 340 540 
+             L 375 500 L 430 535 L 490 495 L 560 540 L 630 490 L 710 535 L 770 490 L 855 530
+             L 865 720 L 335 720 Z" 
+          fill="url(#gold-foil-grad)" stroke="#B67B08" stroke-width="2"/>
+    <path d="M 350 525 L 420 540 L 490 510 L 560 550 L 640 505 L 720 545 L 845 510" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
+
+    <!-- 3. Bungkus Luar Ungu Beludru (Outer Plum Wrapper) -->
+    <rect x="335" y="600" width="530" height="360" rx="12" fill="url(#wrapper-plum-grad)"/>
+    <rect x="350" y="615" width="500" height="330" rx="8" fill="none" stroke="#F5C538" stroke-width="3" stroke-dasharray="8 4"/>
+
+    <!-- Pita Label Tengah Emas -->
+    <rect x="370" y="670" width="460" height="150" rx="10" fill="#200324" stroke="#F5C538" stroke-width="2"/>
+    <text x="600" y="735" font-family="'Cinzel', Georgia, serif" font-size="34" font-weight="900" fill="#F5C538" text-anchor="middle" letter-spacing="4">SMAN 1 GEDEG</text>
+    <text x="600" y="775" font-family="'Cinzel', Georgia, serif" font-size="22" font-weight="700" fill="#FFEAA0" text-anchor="middle" letter-spacing="3">★ DIES NATALIS 44 ★</text>
+  </g>
+</svg>'''
+
+
+def get_swirl_candy_cane_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cane-base-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EBE3D3"/>
+      <stop offset="35%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#FFFDF5"/>
+      <stop offset="100%" stop-color="#D9CBB0"/>
+    </linearGradient>
+    <linearGradient id="stripe-mint-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B2E7DB"/>
+      <stop offset="50%" stop-color="#77C9B6"/>
+      <stop offset="100%" stop-color="#469C89"/>
+    </linearGradient>
+    <linearGradient id="stripe-red-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BD2A3C"/>
+      <stop offset="50%" stop-color="#8C1322"/>
+      <stop offset="100%" stop-color="#5E0813"/>
+    </linearGradient>
+    <linearGradient id="ribbon-bow-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="45%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#B6580B"/>
+    </linearGradient>
+    <filter id="cane-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#120114" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#cane-shadow)">
+    <!-- Tongkat Dasar (Cane Base Shape) -->
+    <!-- Menggunakan path tebal bergaris ganda dengan clip-path untuk spiral stripes -->
+    <path d="M 680 1250 L 680 500 C 680 200, 320 200, 320 500 L 320 580"
+          fill="none" stroke="url(#cane-base-grad)" stroke-width="140" stroke-linecap="round"/>
+
+    <!-- Strip Garis Mint & Red (Simulasi Spiral Striping via overlay stroke segmen) -->
+    <!-- Garis Spiral Merah -->
+    <path d="M 620 1200 L 740 1140" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 1060 L 740 1000" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 920 L 740 860" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 780 L 740 720" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 620 640 L 740 580" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 645 490 L 735 435" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    
+    <!-- Lengkungan Atas Striping -->
+    <path d="M 620 330 L 690 260" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 520 230 L 550 150" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 390 230 L 360 160" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 270 330 L 350 370" stroke="url(#stripe-mint-grad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M 260 480 L 380 490" stroke="url(#stripe-red-grad)" stroke-width="32" stroke-linecap="round"/>
+
+    <!-- Kilau Mengkilap Tabung (Gloss Highlight) -->
+    <path d="M 650 1240 L 650 500 C 650 250, 350 250, 350 500 L 350 570"
+          fill="none" stroke="#FFFFFF" stroke-width="16" opacity="0.65" stroke-linecap="round"/>
+
+    <!-- Pita Kupu-Kupu Emas di Leher Tongkat -->
+    <g transform="translate(680, 520)">
+      <!-- Sayap Pita Kiri & Kanan -->
+      <path d="M 0 0 C -80 -80, -140 -20, -110 40 C -80 70, -20 20, 0 0 Z" fill="url(#ribbon-bow-gold)"/>
+      <path d="M 0 0 C 80 -80, 140 -20, 110 40 C 80 70, 20 20, 0 0 Z" fill="url(#ribbon-bow-gold)"/>
+      <!-- Ekor Pita -->
+      <path d="M -15 20 L -50 130 L -10 110 L 0 130 L 15 20 Z" fill="#D49012"/>
+      <path d="M 15 20 L 50 130 L 10 110 L 0 130 L -15 20 Z" fill="#D49012"/>
+      <!-- Simpul Tengah Bulat -->
+      <circle cx="0" cy="5" r="24" fill="#FFF2A3" stroke="#B6580B" stroke-width="3"/>
+    </g>
+  </g>
+</svg>'''
+
+
+def get_gourmet_praline_truffle_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <defs>
+    <radialGradient id="truffle-body" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#5E2316"/>
+      <stop offset="35%" stop-color="#3D130A"/>
+      <stop offset="75%" stop-color="#230803"/>
+      <stop offset="100%" stop-color="#110301"/>
+    </radialGradient>
+    <linearGradient id="cup-pleat-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9C6B0D"/>
+      <stop offset="25%" stop-color="#F5C538"/>
+      <stop offset="50%" stop-color="#FFEFA3"/>
+      <stop offset="75%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#805304"/>
+    </linearGradient>
+    <linearGradient id="caramel-drizzle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2A3"/>
+      <stop offset="50%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#9E5D04"/>
+    </linearGradient>
+    <filter id="truffle-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#120114" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#truffle-shadow)">
+    <!-- Cangkir Kertas Berlipit Emas (Pleated Paper Cup) -->
+    <g transform="translate(500, 680)">
+      <ellipse cx="0" cy="80" rx="360" ry="110" fill="#1C0320" opacity="0.4"/>
+      <!-- Badan Mangkuk Kertas -->
+      <path d="M -320 20 L -250 110 C -120 160, 120 160, 250 110 L 320 20 C 180 60, -180 60, -320 20 Z" fill="url(#cup-pleat-gold)"/>
+      <!-- Lipatan-lipatan Vertikal -->
+      <path d="M -290 30 L -220 120 M -230 40 L -160 135 M -160 45 L -90 145 M -80 48 L -20 150 M 0 50 L 0 152 M 80 48 L 20 150 M 160 45 L 90 145 M 230 40 L 160 135 M 290 30 L 220 120"
+            stroke="#6B4103" stroke-width="4" opacity="0.7"/>
+    </g>
+
+    <!-- Bola Cokelat Truffle Bulat Mengilap -->
+    <circle cx="500" cy="500" r="260" fill="url(#truffle-body)"/>
+
+    <!-- Highlight Lengkungan Bola -->
+    <ellipse cx="440" cy="380" rx="160" ry="90" fill="#7A3222" opacity="0.35" transform="rotate(-20, 440, 380)"/>
+    <ellipse cx="410" cy="340" rx="60" ry="30" fill="#FFFFFF" opacity="0.25" transform="rotate(-20, 410, 340)"/>
+
+    <!-- Saus Karamel Melingkar di Atasnya (Caramel Drizzle Wave) -->
+    <path d="M 340 460 C 400 400, 480 580, 560 420 C 610 320, 680 470, 720 400"
+          fill="none" stroke="url(#caramel-drizzle)" stroke-width="26" stroke-linecap="round"/>
+    <path d="M 380 530 C 440 480, 510 620, 610 490 C 660 410, 700 520, 730 480"
+          fill="none" stroke="url(#caramel-drizzle)" stroke-width="16" stroke-linecap="round"/>
+
+    <!-- Serpihan Debu Emas (Edible Gold Flakes) -->
+    <polygon points="480,360 495,370 485,385 470,375" fill="#FFF5B8"/>
+    <polygon points="530,340 545,350 535,365 520,355" fill="#F5C538"/>
+    <polygon points="460,420 472,428 465,440 452,432" fill="#F5C538"/>
+    <polygon points="560,400 575,410 568,422 552,415" fill="#FFF5B8"/>
+    <polygon points="510,430 520,438 515,448 502,442" fill="#FFF5B8"/>
+  </g>
+</svg>'''
+
+
+def get_confectionery_sugar_gem_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gem-mint-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4F5ED"/>
+      <stop offset="50%" stop-color="#A0D9CA"/>
+      <stop offset="100%" stop-color="#6DBCA9"/>
+    </linearGradient>
+    <linearGradient id="gem-mint-mid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#80CBB9"/>
+      <stop offset="100%" stop-color="#469C89"/>
+    </linearGradient>
+    <linearGradient id="gem-mint-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#357D6D"/>
+      <stop offset="100%" stop-color="#1B4D42"/>
+    </linearGradient>
+    <filter id="gem-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#082A22" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#gem-shadow)">
+    <!-- Faset Kristal Permata Permen (Octagonal Gem Facets) -->
+    <!-- Table Face (Muka Tengah Atas) -->
+    <polygon points="360,280 640,280 740,380 740,620 640,720 360,720 260,620 260,380" fill="url(#gem-mint-mid)"/>
+
+    <!-- Faset Mahkota (Crown Facets) -->
+    <polygon points="360,280 640,280 570,350 430,350" fill="url(#gem-mint-light)"/>
+    <polygon points="640,280 740,380 650,430 570,350" fill="#90D5C5"/>
+    <polygon points="740,380 740,620 650,570 650,430" fill="url(#gem-mint-mid)"/>
+    <polygon points="740,620 640,720 570,650 650,570" fill="url(#gem-mint-dark)"/>
+    <polygon points="640,720 360,720 430,650 570,650" fill="#255E52"/>
+    <polygon points="360,720 260,620 350,570 430,650" fill="url(#gem-mint-dark)"/>
+    <polygon points="260,620 260,380 350,430 350,570" fill="#58AC9A"/>
+    <polygon points="260,380 360,280 430,350 350,430" fill="url(#gem-mint-light)"/>
+
+    <!-- Meja Tengah Kristal (Inner Table) -->
+    <polygon points="430,350 570,350 650,430 650,570 570,650 430,650 350,570 350,430" fill="#E6FAF5"/>
+
+    <!-- Kilau Sudut Berlian (Sparkle Glints) -->
+    <polygon points="430,350 470,380 400,410" fill="#FFFFFF" opacity="0.9"/>
+    <polygon points="570,350 610,390 540,390" fill="#FFFFFF" opacity="0.75"/>
+    <circle cx="360" cy="280" r="16" fill="#FFFFFF"/>
+    <circle cx="640" cy="280" r="12" fill="#FFFFFF"/>
+  </g>
+</svg>'''
+
+
+def get_molten_chocolate_drip_border_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="drip-choc-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4E1C10"/>
+      <stop offset="60%" stop-color="#2D0B04"/>
+      <stop offset="100%" stop-color="#140301"/>
+    </linearGradient>
+    <linearGradient id="drip-caramel-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFEAA0"/>
+      <stop offset="50%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#9C5D05"/>
+    </linearGradient>
+    <filter id="drip-shadow" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#120114" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#drip-shadow)">
+    <!-- 1. Lapisan Belakang: Lelehan Karamel Emas -->
+    <path d="M 0 0 L 1600 0 L 1600 120
+             C 1520 150, 1480 320, 1440 320 C 1400 320, 1370 160, 1310 160
+             C 1260 160, 1220 270, 1180 270 C 1140 270, 1110 150, 1050 150
+             C 990 150, 960 380, 900 380 C 850 380, 830 180, 770 180
+             C 720 180, 680 340, 640 340 C 600 340, 580 150, 520 150
+             C 470 150, 440 290, 400 290 C 360 290, 330 140, 260 140
+             C 210 140, 180 350, 130 350 C 90 350, 60 160, 0 160 Z"
+          fill="url(#drip-caramel-grad)"/>
+
+    <!-- 2. Lapisan Depan: Lelehan Cokelat Kental Utama -->
+    <path d="M 0 0 L 1600 0 L 1600 80
+             C 1550 120, 1510 240, 1470 240 C 1430 240, 1410 120, 1360 120
+             C 1310 120, 1280 360, 1230 360 C 1180 360, 1160 100, 1100 100
+             C 1050 100, 1020 260, 970 260 C 930 260, 900 120, 840 120
+             C 790 120, 760 440, 700 440 C 650 440, 630 130, 570 130
+             C 520 130, 490 280, 440 280 C 400 280, 380 90, 320 90
+             C 270 90, 240 380, 180 380 C 130 380, 110 110, 0 110 Z"
+          fill="url(#drip-choc-grad)"/>
+
+    <!-- 3. Highlight Kilau Lengkungan Cokelat (Gloss Highlights) -->
+    <path d="M 40 40 Q 200 40 350 40" stroke="#7A3222" stroke-width="12" fill="none" opacity="0.6"/>
+    <path d="M 180 180 C 180 340, 160 360, 180 360" stroke="#7A3222" stroke-width="8" fill="none" opacity="0.7"/>
+    <path d="M 700 200 C 700 400, 680 420, 700 420" stroke="#7A3222" stroke-width="10" fill="none" opacity="0.7"/>
+    <path d="M 1230 180 C 1230 320, 1210 340, 1230 340" stroke="#7A3222" stroke-width="8" fill="none" opacity="0.7"/>
+  </g>
+</svg>'''
+
+
+def get_golden_ribbon_banner_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ribbon-front-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C2820A"/>
+      <stop offset="20%" stop-color="#F5C538"/>
+      <stop offset="50%" stop-color="#FFF9D2"/>
+      <stop offset="80%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#C2820A"/>
+    </linearGradient>
+    <linearGradient id="ribbon-back-fold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7A4B02"/>
+      <stop offset="100%" stop-color="#3D2200"/>
+    </linearGradient>
+    <linearGradient id="ribbon-tail-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A36B04"/>
+      <stop offset="50%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#8A5802"/>
+    </linearGradient>
+    <filter id="ribbon-shadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#120114" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#ribbon-shadow)">
+    <!-- 1. Ekor Pita Belakang Kiri (Left Swallowtail) -->
+    <path d="M 280 280 L 100 240 L 160 350 L 100 460 L 280 400 Z" fill="url(#ribbon-tail-grad)" stroke="#8A5802" stroke-width="3"/>
+    <!-- Lipatan Bayangan Kiri -->
+    <polygon points="280,280 280,400 360,350" fill="url(#ribbon-back-fold)"/>
+
+    <!-- 2. Ekor Pita Belakang Kanan (Right Swallowtail) -->
+    <path d="M 1320 280 L 1500 240 L 1440 350 L 1500 460 L 1320 400 Z" fill="url(#ribbon-tail-grad)" stroke="#8A5802" stroke-width="3"/>
+    <!-- Lipatan Bayangan Kanan -->
+    <polygon points="1320,280 1320,400 1240,350" fill="url(#ribbon-back-fold)"/>
+
+    <!-- 3. Pita Depan Lengkung Utama (Main Front Arch Ribbon) -->
+    <path d="M 280 280
+             C 500 220, 1100 220, 1320 280
+             L 1320 400
+             C 1100 340, 500 340, 280 400
+             Z"
+          fill="url(#ribbon-front-gold)" stroke="#8A5802" stroke-width="3"/>
+
+    <!-- Garis Lis Jahitan Emas Halus (Filigree Dashed Inset) -->
+    <path d="M 300 295 C 510 240, 1090 240, 1300 295" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.8"/>
+    <path d="M 300 385 C 510 325, 1090 325, 1300 385" fill="none" stroke="#7A4B02" stroke-width="2"/>
+  </g>
+</svg>'''
+
+
+def get_ornate_corner_filigree_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="filigree-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="40%" stop-color="#F5C538"/>
+      <stop offset="80%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#9C5D05"/>
+    </linearGradient>
+    <filter id="filigree-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#120114" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#filigree-shadow)">
+    <!-- Garis Bingkai Sudut L-Shape Dasar -->
+    <path d="M 100 700 L 100 100 L 700 100" fill="none" stroke="url(#filigree-gold)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 125 650 L 125 125 L 650 125" fill="none" stroke="url(#filigree-gold)" stroke-width="4" stroke-dasharray="10 6"/>
+
+    <!-- Sulur Daun & Spiral Pojok Luar -->
+    <path d="M 100 100 C 100 240, 240 100, 100 100 Z" fill="url(#filigree-gold)"/>
+    <path d="M 100 100 C 160 160, 200 200, 280 280 C 220 320, 180 260, 140 220 Z" fill="url(#filigree-gold)"/>
+
+    <!-- Sulur Daun Melingkar Atas -->
+    <path d="M 280 100 C 340 60, 420 80, 450 125 C 410 140, 360 120, 280 100 Z" fill="url(#filigree-gold)"/>
+    <path d="M 450 100 C 520 70, 580 80, 600 120" fill="none" stroke="url(#filigree-gold)" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Sulur Daun Melingkar Sisi Kiri -->
+    <path d="M 100 280 C 60 340, 80 420, 125 450 C 140 410, 120 360, 100 280 Z" fill="url(#filigree-gold)"/>
+    <path d="M 100 450 C 70 520, 80 580, 120 600" fill="none" stroke="url(#filigree-gold)" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Bunga / Intan Rosetta Pojok Tengah (Corner Rosette) -->
+    <g transform="translate(200, 200)">
+      <circle cx="0" cy="0" r="30" fill="url(#filigree-gold)"/>
+      <circle cx="0" cy="0" r="14" fill="#FFFFFF"/>
+      <!-- 4 Kelopak Bunga Emas -->
+      <polygon points="0,-60 16,-20 0,0 -16,-20" fill="url(#filigree-gold)"/>
+      <polygon points="0,60 16,20 0,0 -16,20" fill="url(#filigree-gold)"/>
+      <polygon points="-60,0 -20,-16 0,0 -20,16" fill="url(#filigree-gold)"/>
+      <polygon points="60,0 20,-16 0,0 20,16" fill="url(#filigree-gold)"/>
+    </g>
+  </g>
+</svg>'''
+
+
+def get_decorative_divider_line_svg():
+    return '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="divider-gold-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E09D17" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#FFF3B0"/>
+    </linearGradient>
+    <linearGradient id="divider-gold-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="60%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#E09D17" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="star-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="30%" stop-color="#FFF9D2"/>
+      <stop offset="70%" stop-color="#F5C538"/>
+      <stop offset="100%" stop-color="#F5C538" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="div-shadow" x="-5%" y="-20%" width="110%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#120114" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#div-shadow)">
+    <!-- Garis Kiri Meruncing ke Tengah -->
+    <path d="M 80 120 L 700 120" stroke="url(#divider-gold-left)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 240 108 L 680 108" stroke="url(#divider-gold-left)" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+    <!-- Garis Kanan Meruncing ke Tengah -->
+    <path d="M 900 120 L 1520 120" stroke="url(#divider-gold-right)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 920 108 L 1360 108" stroke="url(#divider-gold-right)" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+    <!-- Ornamen Pusat Tengah (Bintang Stardust & Intan Berlian) -->
+    <g transform="translate(800, 120)">
+      <circle cx="0" cy="0" r="70" fill="url(#star-glow)"/>
+      <!-- Bintang 4-Sudut Emas Besar -->
+      <polygon points="0,-80 12,-16 80,0 12,16 0,80 -12,16 -80,0 -12,-16" fill="#FFF9D2"/>
+      <polygon points="0,-50 8,-10 50,0 8,10 0,50 -8,10 -50,0 -8,-10" fill="#FFFFFF"/>
+      <!-- 2 Intan Berlian Satelit Kiri & Kanan -->
+      <polygon points="-120,0 -105,-12 -90,0 -105,12" fill="#F5C538"/>
+      <polygon points="120,0 105,-12 90,0 105,12" fill="#F5C538"/>
+      <!-- Titik Mutiara -->
+      <circle cx="-145" cy="0" r="4" fill="#FFEAA0"/>
+      <circle cx="145" cy="0" r="4" fill="#FFEAA0"/>
+    </g>
+  </g>
+</svg>'''
+
+
+# ==============================================================================
+# PIPELINE EKSEKUSI PEMBANGUNAN SELURUH ASET ITEM (16 ASET LENGKAP)
 # ==============================================================================
 
 ITEMS = [
+    # Koleksi 1: Aset Eksisting
     ("item-magic-top-hat", get_magic_top_hat_svg, 1200, 1200),
     ("item-swirl-lollipop", get_swirl_lollipop_svg, 1200, 1400),
     ("item-golden-cane", get_golden_cane_svg, 800, 1500),
@@ -486,12 +977,24 @@ ITEMS = [
     ("item-confectionery-rose", get_confectionery_rose_svg, 1100, 1100),
     ("item-whimsical-glasses", get_whimsical_glasses_svg, 1400, 800),
     ("item-stardust-sparkle-stars", get_stardust_sparkle_cluster_svg, 1200, 1200),
+    
+    # Koleksi 2: Cokelat & Permen Fantasi
+    ("item-golden-chocolate-bar", get_golden_chocolate_bar_svg, 1200, 1200),
+    ("item-swirl-candy-cane", get_swirl_candy_cane_svg, 1000, 1400),
+    ("item-gourmet-praline-truffle", get_gourmet_praline_truffle_svg, 1000, 1000),
+    ("item-confectionery-sugar-gem", get_confectionery_sugar_gem_svg, 1000, 1000),
+    ("item-molten-chocolate-drip-border", get_molten_chocolate_drip_border_svg, 1600, 500),
+    
+    # Koleksi 3: Utilitas & Bingkai Desain
+    ("item-golden-ribbon-banner", get_golden_ribbon_banner_svg, 1600, 600),
+    ("item-ornate-corner-filigree", get_ornate_corner_filigree_svg, 800, 800),
+    ("item-decorative-divider-line", get_decorative_divider_line_svg, 1600, 240),
 ]
 
 
 def build_all_items():
     print("==================================================================")
-    print(" MEMBANGUN KATALOG ASET MODULAR ITEM (SVG & TRANSPARENT PNG)")
+    print(" MEMBANGUN KATALOG 16 ASET MODULAR LENGKAP (SVG & TRANSPARENT PNG)")
     print("==================================================================")
 
     for name, svg_func, w, h in ITEMS:
@@ -507,8 +1010,9 @@ def build_all_items():
         render_svg_to_png(svg_file, png_file, width=w, height=h)
         print(f"✓ {name}: {svg_file} & {png_file} ({w}x{h} px)")
 
-    print("\n✓ SELURUH ASET ITEM MODULAR TELAH BERHASIL DIPRODUKSI 100%!")
+    print("\n✓ SELURUH 16 ASET ITEM MODULAR TELAH BERHASIL DIPRODUKSI 100%!")
 
 
 if __name__ == "__main__":
     build_all_items()
+

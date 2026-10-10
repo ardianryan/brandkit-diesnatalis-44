@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="filigree-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="40%" stop-color="#F5C538"/>
+      <stop offset="80%" stop-color="#E09D17"/>
+      <stop offset="100%" stop-color="#9C5D05"/>
+    </linearGradient>
+    <filter id="filigree-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#120114" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#filigree-shadow)">
+    <!-- Garis Bingkai Sudut L-Shape Dasar -->
+    <path d="M 100 700 L 100 100 L 700 100" fill="none" stroke="url(#filigree-gold)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 125 650 L 125 125 L 650 125" fill="none" stroke="url(#filigree-gold)" stroke-width="4" stroke-dasharray="10 6"/>
+
+    <!-- Sulur Daun & Spiral Pojok Luar -->
+    <path d="M 100 100 C 100 240, 240 100, 100 100 Z" fill="url(#filigree-gold)"/>
+    <path d="M 100 100 C 160 160, 200 200, 280 280 C 220 320, 180 260, 140 220 Z" fill="url(#filigree-gold)"/>
+
+    <!-- Sulur Daun Melingkar Atas -->
+    <path d="M 280 100 C 340 60, 420 80, 450 125 C 410 140, 360 120, 280 100 Z" fill="url(#filigree-gold)"/>
+    <path d="M 450 100 C 520 70, 580 80, 600 120" fill="none" stroke="url(#filigree-gold)" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Sulur Daun Melingkar Sisi Kiri -->
+    <path d="M 100 280 C 60 340, 80 420, 125 450 C 140 410, 120 360, 100 280 Z" fill="url(#filigree-gold)"/>
+    <path d="M 100 450 C 70 520, 80 580, 120 600" fill="none" stroke="url(#filigree-gold)" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Bunga / Intan Rosetta Pojok Tengah (Corner Rosette) -->
+    <g transform="translate(200, 200)">
+      <circle cx="0" cy="0" r="30" fill="url(#filigree-gold)"/>
+      <circle cx="0" cy="0" r="14" fill="#FFFFFF"/>
+      <!-- 4 Kelopak Bunga Emas -->
+      <polygon points="0,-60 16,-20 0,0 -16,-20" fill="url(#filigree-gold)"/>
+      <polygon points="0,60 16,20 0,0 -16,20" fill="url(#filigree-gold)"/>
+      <polygon points="-60,0 -20,-16 0,0 -20,16" fill="url(#filigree-gold)"/>
+      <polygon points="60,0 20,-16 0,0 20,16" fill="url(#filigree-gold)"/>
+    </g>
+  </g>
+</svg>
