@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 800" width="2400" height="800">
+  <defs>
+    <linearGradient id="curtainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#310603" />
+      <stop offset="30%" stop-color="#7D1B05" />
+      <stop offset="70%" stop-color="#9D1B68" />
+      <stop offset="95%" stop-color="#D4428D" />
+      <stop offset="100%" stop-color="#360538" />
+    </linearGradient>
+    <linearGradient id="curtainGoldTrim" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B6580B" />
+      <stop offset="50%" stop-color="#F5C538" />
+      <stop offset="100%" stop-color="#FDF39D" />
+    </linearGradient>
+  </defs>
+  <g id="theater-curtain-drape">
+    <path d="M 0.0 0 L 400.0 0 L 400.0 80 Q 200.0 380.0 0.0 80 Z" fill="url(#curtainGrad)" opacity="0.95"/>
+    <path d="M 100.0 20 Q 100.0 304.0 200.0 365.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 105.0 20 Q 105.0 304.0 205.0 365.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 200.0 20 Q 200.0 304.0 200.0 365.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 205.0 20 Q 205.0 304.0 205.0 365.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 300.0 20 Q 300.0 304.0 200.0 365.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 305.0 20 Q 305.0 304.0 205.0 365.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 0.0 80 Q 200.0 380.0 400.0 80" fill="none" stroke="url(#curtainGoldTrim)" stroke-width="10"/>
+    <path d="M 0.0 80 Q 200.0 380.0 400.0 80" fill="none" stroke="#FDF39D" stroke-width="3" stroke-dasharray="6,6"/>
+    <path d="M 400.0 0 L 800.0 0 L 800.0 80 Q 600.0 460.0 400.0 80 Z" fill="url(#curtainGrad)" opacity="0.95"/>
+    <path d="M 500.0 20 Q 500.0 368.0 600.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 505.0 20 Q 505.0 368.0 605.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 600.0 20 Q 600.0 368.0 600.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 605.0 20 Q 605.0 368.0 605.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 700.0 20 Q 700.0 368.0 600.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 705.0 20 Q 705.0 368.0 605.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 400.0 80 Q 600.0 460.0 800.0 80" fill="none" stroke="url(#curtainGoldTrim)" stroke-width="10"/>
+    <path d="M 400.0 80 Q 600.0 460.0 800.0 80" fill="none" stroke="#FDF39D" stroke-width="3" stroke-dasharray="6,6"/>
+    <path d="M 800.0 0 L 1200.0 0 L 1200.0 80 Q 1000.0 460.0 800.0 80 Z" fill="url(#curtainGrad)" opacity="0.95"/>
+    <path d="M 900.0 20 Q 900.0 368.0 1000.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 905.0 20 Q 905.0 368.0 1005.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1000.0 20 Q 1000.0 368.0 1000.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1005.0 20 Q 1005.0 368.0 1005.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1100.0 20 Q 1100.0 368.0 1000.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1105.0 20 Q 1105.0 368.0 1005.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 800.0 80 Q 1000.0 460.0 1200.0 80" fill="none" stroke="url(#curtainGoldTrim)" stroke-width="10"/>
+    <path d="M 800.0 80 Q 1000.0 460.0 1200.0 80" fill="none" stroke="#FDF39D" stroke-width="3" stroke-dasharray="6,6"/>
+    <path d="M 1200.0 0 L 1600.0 0 L 1600.0 80 Q 1400.0 460.0 1200.0 80 Z" fill="url(#curtainGrad)" opacity="0.95"/>
+    <path d="M 1300.0 20 Q 1300.0 368.0 1400.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1305.0 20 Q 1305.0 368.0 1405.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1400.0 20 Q 1400.0 368.0 1400.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1405.0 20 Q 1405.0 368.0 1405.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1500.0 20 Q 1500.0 368.0 1400.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1505.0 20 Q 1505.0 368.0 1405.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1200.0 80 Q 1400.0 460.0 1600.0 80" fill="none" stroke="url(#curtainGoldTrim)" stroke-width="10"/>
+    <path d="M 1200.0 80 Q 1400.0 460.0 1600.0 80" fill="none" stroke="#FDF39D" stroke-width="3" stroke-dasharray="6,6"/>
+    <path d="M 1600.0 0 L 2000.0 0 L 2000.0 80 Q 1800.0 460.0 1600.0 80 Z" fill="url(#curtainGrad)" opacity="0.95"/>
+    <path d="M 1700.0 20 Q 1700.0 368.0 1800.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1705.0 20 Q 1705.0 368.0 1805.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1800.0 20 Q 1800.0 368.0 1800.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1805.0 20 Q 1805.0 368.0 1805.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1900.0 20 Q 1900.0 368.0 1800.0 445.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 1905.0 20 Q 1905.0 368.0 1805.0 445.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 1600.0 80 Q 1800.0 460.0 2000.0 80" fill="none" stroke="url(#curtainGoldTrim)" stroke-width="10"/>
+    <path d="M 1600.0 80 Q 1800.0 460.0 2000.0 80" fill="none" stroke="#FDF39D" stroke-width="3" stroke-dasharray="6,6"/>
+    <path d="M 2000.0 0 L 2400.0 0 L 2400.0 80 Q 2200.0 380.0 2000.0 80 Z" fill="url(#curtainGrad)" opacity="0.95"/>
+    <path d="M 2100.0 20 Q 2100.0 304.0 2200.0 365.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 2105.0 20 Q 2105.0 304.0 2205.0 365.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 2200.0 20 Q 2200.0 304.0 2200.0 365.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 2205.0 20 Q 2205.0 304.0 2205.0 365.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 2300.0 20 Q 2300.0 304.0 2200.0 365.0" stroke="#310603" stroke-width="6" opacity="0.4" fill="none"/>
+    <path d="M 2305.0 20 Q 2305.0 304.0 2205.0 365.0" stroke="#D4428D" stroke-width="2.5" opacity="0.6" fill="none"/>
+    <path d="M 2000.0 80 Q 2200.0 380.0 2400.0 80" fill="none" stroke="url(#curtainGoldTrim)" stroke-width="10"/>
+    <path d="M 2000.0 80 Q 2200.0 380.0 2400.0 80" fill="none" stroke="#FDF39D" stroke-width="3" stroke-dasharray="6,6"/>
+  <rect x="0" y="0" width="2400" height="45" fill="#310603"/>
+  <rect x="0" y="45" width="2400" height="8" fill="url(#curtainGoldTrim)"/>
+  </g>
+</svg>

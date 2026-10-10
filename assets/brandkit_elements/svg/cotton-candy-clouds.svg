@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1000" width="2400" height="1000">
+  <defs>
+    <linearGradient id="cloudPink" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#9D1B68" stop-opacity="0.8" />
+      <stop offset="45%" stop-color="#D4428D" stop-opacity="0.85" />
+      <stop offset="85%" stop-color="#F5A8D0" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <g id="cotton-candy-clouds">
+  <g opacity="0.9">
+    <circle cx="450" cy="650" r="320" fill="url(#cloudPink)"/>
+    <circle cx="242.0" cy="682.0" r="240.0" fill="url(#cloudPink)"/>
+    <circle cx="658.0" cy="698.0" r="249.60000000000002" fill="url(#cloudPink)"/>
+    <circle cx="338.0" cy="506.0" r="217.60000000000002" fill="url(#cloudPink)"/>
+    <circle cx="562.0" cy="522.0" r="224.0" fill="url(#cloudPink)"/>
+    <circle cx="450" cy="474.0" r="198.4" fill="url(#cloudPink)"/>
+  </g>
+  <g opacity="0.9">
+    <circle cx="1200" cy="580" r="420" fill="url(#cloudPink)"/>
+    <circle cx="927.0" cy="622.0" r="315.0" fill="url(#cloudPink)"/>
+    <circle cx="1473.0" cy="643.0" r="327.6" fill="url(#cloudPink)"/>
+    <circle cx="1053.0" cy="391.0" r="285.6" fill="url(#cloudPink)"/>
+    <circle cx="1347.0" cy="412.0" r="294.0" fill="url(#cloudPink)"/>
+    <circle cx="1200" cy="349.0" r="260.4" fill="url(#cloudPink)"/>
+  </g>
+  <g opacity="0.9">
+    <circle cx="1950" cy="640" r="350" fill="url(#cloudPink)"/>
+    <circle cx="1722.5" cy="675.0" r="262.5" fill="url(#cloudPink)"/>
+    <circle cx="2177.5" cy="692.5" r="273.0" fill="url(#cloudPink)"/>
+    <circle cx="1827.5" cy="482.5" r="238.00000000000003" fill="url(#cloudPink)"/>
+    <circle cx="2072.5" cy="500.0" r="244.99999999999997" fill="url(#cloudPink)"/>
+    <circle cx="1950" cy="447.5" r="217.0" fill="url(#cloudPink)"/>
+  </g>
+  </g>
+</svg>
