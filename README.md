@@ -281,8 +281,7 @@ diesnat44project/
 └── docs/                                 # Dokumentasi komprehensif
     ├── BRAND_GUIDELINES.md               # Buku pedoman tata cara penggunaan identitas
     ├── METODOLOGI_TRACING_VEKTOR.md      # Metodologi teknis tracing & algoritma kurva
-    ├── SUPPORTING_ASSETS_GUIDE.md        # Panduan aset penyerta & hirarki warna kanvas
-    └── mockups/                          # Hasil komposit pengujian kontras logo emas
+    └── SUPPORTING_ASSETS_GUIDE.md        # Panduan aset penyerta & hirarki warna kanvas
 ```
 
 ---

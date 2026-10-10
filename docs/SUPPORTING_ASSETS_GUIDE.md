@@ -109,38 +109,31 @@ Seluruh berkas tersimpan pada direktori **`assets/brandkit_elements/`** dalam fo
 
 ## 4. Katalog Berkas Kanvas Latar Belakang (Ready-to-Use Backgrounds)
 
-| Nama Berkas | Rasio & Dimensi | Deskripsi & Suasana Visual |
+| Nama Berkas | Rasio & Dimensi | Deskripsi & Suasana Visual (Sesuai Referensi Poster) |
 | :--- | :--- | :--- |
-| `bg-hypnotic-purple-swirl` | Feed (2048x2048) & Story (1080x1920) | Pusaran spiral ungu plum, violet, dan pink berry dengan sentral glow. **Sangat direkomendasikan untuk logo emas!** |
-| `bg-fantasy-confectionery-stage` | Feed (2048x2048) & Story (1080x1920) | Draperi tirai teater magenta emas di atas, spiral pastel pelangi di tengah, panggung plum di bawah. |
-| `bg-confectionery-icon-wallpaper` | Feed (2048x2048) & Story (1080x1920) | Motif wallpaper chic ungu plum dengan ikon topi pesulap, permen, bintang, dan awan gula. |
-| `bg-deep-plum-stage` | Feed (2048x2048) & Story (1080x1920) | Beludru ungu pekat malam dengan pencahayaan kerucut teater. |
-| `bg-amber-sunset` | Feed (2048x2048) & Story (1080x1920) | Gradasi karamel oranye ceria ke emas dengan aksen ombak plum di bawah. |
-| `bg-golden-ticket-gala` | Feed (2048x2048) & Story (1080x1920) | Bingkai list emas ganda klasik, roset sudut, dan kanvas marun pekat. |
+| **`bg-theatrical-pinwheel-mint`** | Feed (2048x2048) & Story (1080x1920) | **Poster Panggung Teatrikal (Gambar 1 & 2)**: Pusaran kipas spiral 2D selang-seling warna **Mint Toska Pastel (`#6CC1AA`)** dan **Krem Vanilla (`#FAF3DE`)** dengan pendaran cahaya hangat di pusatnya dan bias pink lembut di tepi. |
+| **`bg-imperial-velvet-stardust`** | Feed (2048x2048) & Story (1080x1920) | **Teaser Resmi Topi & Logo (Gambar 3)**: Latar **Ungu Beludru Malam Pekat (*Imperial Velvet Purple*)** dengan sorotan *spotlight* sentral dan **Lengkungan Debu Bintang Emas (*Golden Stardust Arc Swoosh*)** yang melingkari logo. |
+| **`bg-imperial-velvet-clean`** | Feed (2048x2048) & Story (1080x1920) | Varian ungu beludru polos tanpa lengkungan debu bintang (kanvas bersih bebas tumpukan). |
+| **`bg-confectionery-pattern-wallpaper`** | Feed (2048x2048) | Motif wallpaper chic ungu gelap bertabur topi pesulap emas, pita karamel, permen pink, dan bintang kristal. |
+| **`bg-golden-ticket-gala`** | Feed (2048x2048) & Story (1080x1920) | Bingkai list emas ganda klasik, roset sudut, dan kanvas marun pekat untuk sertifikat dan piagam. |
 
 ---
 
 ## 5. Formula Desain Terbaik Dies Natalis 44 (Anti "Warna Mati")
 
 > [!TIP]
-> **Resep Kombinasi Terbaik Agar Logo Emas Berkilau Maksimal**:
-> 1. **Latar Belakang**: Pilih **`bg-hypnotic-swirl-vortex.png`** atau **`bg-fantasy-theater-stage.png`**.
-> 2. **Objek Utama**: Pasang **`logo-symbol-color.png` (44)** tepat di tengah pendaran cahaya.
-> 3. **Tipografi Pendukung**: Pasang **`aversa-logotype-horizontal.png`** atau **`aversa-logotype-vertical.png`** di bawah angka 44.
-> 4. **Aksen Ekstra**: Pasang **`theater-curtain-drape-premium.png`** di bagian atas untuk membingkai panggung gala festival.
-> 5. **Hasil**: Kontras antara emas hangat dengan latar ungu/pink berry membuat karya tampil sangat mewah, sinematik, dan memukau mata audiens dari kejauhan!
+> **2 Resep Kombinasi Terbaik Sesuai Poster Referensi**:
+> 
+> 🎪 **Opsi 1: Nuansa Panggung Teatrikal (Terinspirasi Poster Utama Chalamet)**
+> 1. Gunakan kanvas **`bg-theatrical-pinwheel-mint.png`** (Feed) atau **`-story.png`** (Story).
+> 2. Tempelkan draperi **`theater-curtain-drape-premium.png`** di tepi atas poster.
+> 3. Letakkan **`logo-symbol-color.png` (44)** tepat di pusat pendaran cahaya spiral.
+> 4. Pasang **`aversa-logotype-horizontal.png`** di bawah angka 44.
+> 
+> 🎩 **Opsi 2: Nuansa Teaser Gala Mewah (Terinspirasi Teaser Hat & Logo)**
+> 1. Gunakan kanvas **`bg-imperial-velvet-stardust.png`** (atau pasang **`golden-stardust-arc-swoosh.png`** secara mandiri).
+> 2. Posisikan **`logo-symbol-color.png` (44)** tepat di tengah lengkungan debu bintang emas.
+> 3. Logo emas akan menyala dramatis berkat kontras maksimal terhadap latar ungu beludru pekat!
 
----
 
-## 6. Hasil Uji Komposit Visual & Mockup Kontras
-
-Dua berkas komposit pengujian telah dibuat di direktori `docs/mockups/` untuk memverifikasi kontras keterbacaan logo emas di atas latar belakang baru:
-
-1. **`docs/mockups/preview_logo_on_hypnotic_swirl.png`**:
-   - Komposit: Latar pusaran spiral ungu-magenta + Tirai draperi beludru di atas + Logo Utama 44 di pusat cahaya + Logotype AVERSA di bawah.
-   - Analisis: Logo emas 44 memancar sangat kuat, garis sayap aerodinamis dan lidah api abadi terlihat tajam berkat kontras latar ungu tua komplementer.
-
-2. **`docs/mockups/preview_logo_on_theater_stage.png`**:
-   - Komposit: Panggung fantasi konfeksi + Tirai teater beludru berumbai emas + Logo Utama 44 mengambang di atas panggung + AVERSA di bawah.
-   - Analisis: Tampilan layaknya poster sinematik musikal festival perayaan kelas dunia.
 
