@@ -1,5 +1,6 @@
 import os
 from typing import TypedDict
+import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -14,148 +15,246 @@ class Callout(TypedDict):
     dot_pos: tuple[int, int]
     anchor: str
 
+# Official Colors
+C_PURPLE_BASE = (28, 5, 33)        # #1C0521 (Deep Imperial Purple)
+C_PURPLE_VIOLET = (66, 8, 78)      # #42084E (Center Velvet Glow)
+C_PURPLE_CARD = (40, 8, 48, 240)   # High-contrast Velvet Card Panel
+C_GOLD_PRIMARY = (245, 197, 56)    # #F5C538
+C_GOLD_BRIGHT = (255, 234, 160)    # #FFEAA0
+C_GOLD_DEEP = (224, 157, 23)       # #E09D17
+C_WHITE = (248, 250, 252)
+C_MUTED = (220, 195, 230)
+
+def create_purple_canvas(w: int, h: int, cx: int, cy: int, glow_r: int = 800) -> Image.Image:
+    """Membuat latar belakang ungu velvet mewah dengan radial glow ungu violet."""
+    canvas = Image.new("RGBA", (w, h), (C_PURPLE_BASE[0], C_PURPLE_BASE[1], C_PURPLE_BASE[2], 255))
+    
+    # Radial Violet Glow
+    glow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    glow_draw = ImageDraw.Draw(glow)
+    
+    steps = 45
+    for i in range(steps, 0, -1):
+        frac = i / steps
+        r = int(glow_r * frac)
+        alpha = int(145 * (1.0 - frac) ** 1.6)
+        glow_draw.ellipse(
+            [cx - r, cy - r, cx + r, cy + r],
+            fill=(C_PURPLE_VIOLET[0], C_PURPLE_VIOLET[1], C_PURPLE_VIOLET[2], alpha)
+        )
+    canvas = Image.alpha_composite(canvas, glow)
+    
+    # Ambient Gold Dust Sparkles
+    np.random.seed(44)
+    dust = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    dust_draw = ImageDraw.Draw(dust)
+    for _ in range(90):
+        px = np.random.randint(40, w - 40)
+        py = np.random.randint(40, h - 40)
+        sz = np.random.randint(1, 4)
+        alpha = np.random.randint(35, 150)
+        dust_draw.ellipse([px - sz, py - sz, px + sz, py + sz], fill=(255, 234, 160, alpha))
+    
+    return Image.alpha_composite(canvas, dust)
+
+def get_fonts():
+    """Memuat font sistem dengan fallback aman."""
+    font_bold_path = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+    font_reg_path = "/System/Library/Fonts/Supplemental/Arial.ttf"
+    
+    def load(path, size):
+        try:
+            return ImageFont.truetype(path, size)
+        except Exception:
+            return ImageFont.load_default()
+            
+    return {
+        "header_title": load(font_bold_path, 48),
+        "header_sub": load(font_bold_path, 24),
+        "badge": load(font_bold_path, 18),
+        "num": load(font_bold_path, 26),
+        "title": load(font_bold_path, 25),
+        "tag": load(font_bold_path, 17),
+        "desc": load(font_reg_path, 19),
+        "desc_lg": load(font_reg_path, 22),
+        "footer": load(font_reg_path, 15)
+    }
+
+def extract_logo_components(logo_cv):
+    """Mengekstrak kedua komponen figur utama dari logo master."""
+    alpha = (logo_cv[:, :, 3] > 20).astype(np.uint8)
+    num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(alpha)
+    
+    # Component 1: Figur Kiri (Kepala Rajawali & Sayap Kiri = Figur 4 Pertama)
+    c1 = logo_cv.copy()
+    c1[labels != 1] = 0
+    y1, x1 = np.where(labels == 1)
+    crop_c1 = c1[y1.min():y1.max()+1, x1.min():x1.max()+1]
+    
+    # Component 2: Figur Kanan (Kobaran Lidah Api & Sayap Kanan = Figur 4 Kedua)
+    c2 = logo_cv.copy()
+    c2[labels != 2] = 0
+    y2, x2 = np.where(labels == 2)
+    crop_c2 = c2[y2.min():y2.max()+1, x2.min():x2.max()+1]
+    
+    # Component 2 with outer wing highlighted (dim inner flames)
+    c2_highlight_wing = c2.copy()
+    # Region of inner flames: x < 1220
+    inner_mask = (labels == 2) & (np.arange(logo_cv.shape[1])[None, :] < 1220)
+    c2_highlight_wing[inner_mask, 3] = (c2_highlight_wing[inner_mask, 3] * 0.35).astype(np.uint8)
+    crop_wing = c2_highlight_wing[y2.min():y2.max()+1, x2.min():x2.max()+1]
+
+    return (
+        Image.fromarray(cv2.cvtColor(crop_c1, cv2.COLOR_BGRA2RGBA)),
+        Image.fromarray(cv2.cvtColor(crop_c2, cv2.COLOR_BGRA2RGBA)),
+        Image.fromarray(cv2.cvtColor(crop_wing, cv2.COLOR_BGRA2RGBA))
+    )
+
+def add_contour_glow(canvas: Image.Image, piece_pil: Image.Image, pos_x: int, pos_y: int, glow_color: tuple[int, int, int], radius: int = 24):
+    """Menambahkan pendaran emas halus mengikuti kontur asli objek (bukan bulatan lingkaran datar)."""
+    alpha_mask = piece_pil.split()[3]
+    glow_img = Image.new("RGBA", piece_pil.size, (glow_color[0], glow_color[1], glow_color[2], 0))
+    # Fill with color where alpha exists
+    g_arr = np.array(glow_img)
+    g_arr[:, :, 3] = (np.array(alpha_mask) * 0.65).astype(np.uint8)
+    glow_pil = Image.fromarray(g_arr).filter(ImageFilter.GaussianBlur(radius=radius))
+    
+    # Layer di kanvas
+    canvas.paste(glow_pil, (pos_x, pos_y), mask=glow_pil.split()[3])
+
 def create_anatomy_diagrams():
     os.makedirs("assets/anatomy", exist_ok=True)
     
-    # Load 2048x2048 logo
     logo_path = "assets/png/logo-color-2048.png"
     if not os.path.exists(logo_path):
-        print(f"Error: {logo_path} not found")
+        print(f"Error: {logo_path} tidak ditemukan")
         return
 
-    logo_rgba = Image.open(logo_path).convert("RGBA")
-    
-    # Canvas dimensions for master diagram: 2400 x 1800 px (Ultra-HD 4:3 presentation)
+    logo_cv = cv2.imread(logo_path, cv2.IMREAD_UNCHANGED)
+    logo_raw = Image.open(logo_path).convert("RGBA")
+    fonts = get_fonts()
+
+    # Ekstraksi komponen vektor terisolasi
+    left_eagle_pil, right_flames_pil, outer_wing_pil = extract_logo_components(logo_cv)
+
+    # =========================================================================
+    # 1. DIAGRAM MASTER UTAMA (2400 x 1800 - Ultra-HD)
+    # =========================================================================
     W, H = 2400, 1800
-    
-    # Background: Luxury Deep Space Obsidian with subtle warm radial glow
-    bg = Image.new("RGBA", (W, H), (7, 9, 15, 255))
-    
-    # Radial glow layer in center
-    glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    glow_draw = ImageDraw.Draw(glow)
     cx, cy = W // 2, H // 2 - 20
-    for r in range(700, 0, -25):
-        alpha = int((1 - r / 700) ** 1.8 * 65)
-        glow_draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(245, 197, 56, alpha))
-    bg = Image.alpha_composite(bg, glow)
     
-    # Resize and place logo in center
+    # Latar belakang ungu velvet mewah (BUKAN hitam!)
+    bg = create_purple_canvas(W, H, cx, cy, glow_r=850)
+    bg_draw = ImageDraw.Draw(bg)
+    bg_draw.rounded_rectangle([32, 32, W - 32, H - 32], radius=24, outline=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], 55), width=2)
+    bg_draw.rounded_rectangle([38, 38, W - 38, H - 38], radius=20, outline=(C_GOLD_BRIGHT[0], C_GOLD_BRIGHT[1], C_GOLD_BRIGHT[2], 25), width=1)
+
+    # Resize dan letakkan logo di tengah
     logo_size = 1180
-    logo_scaled = logo_rgba.resize((logo_size, logo_size), Image.Resampling.LANCZOS)
-    
+    logo_scaled = logo_raw.resize((logo_size, logo_size), Image.Resampling.LANCZOS)
     logo_pos_x = (W - logo_size) // 2
     logo_pos_y = (H - logo_size) // 2 - 10
     
-    # Subtle drop shadow for logo
+    # Ambient Gold Aura & Shadow di belakang logo
+    aura = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    aura_draw = ImageDraw.Draw(aura)
+    for r in range(560, 0, -20):
+        a = int((1.0 - r / 560) ** 2.0 * 85)
+        aura_draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(245, 197, 56, a))
+    bg = Image.alpha_composite(bg, aura)
+
     shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    shadow.paste((0, 0, 0, 160), (logo_pos_x + 10, logo_pos_y + 18), mask=logo_scaled.split()[3])
-    shadow = shadow.filter(ImageFilter.GaussianBlur(radius=28))
+    shadow.paste((10, 2, 14, 210), (logo_pos_x + 12, logo_pos_y + 24), mask=logo_scaled.split()[3])
+    shadow = shadow.filter(ImageFilter.GaussianBlur(radius=32))
     bg = Image.alpha_composite(bg, shadow)
     
-    # Paste logo
+    # Tempel Logo Utama
     bg.paste(logo_scaled, (logo_pos_x, logo_pos_y), mask=logo_scaled.split()[3])
-    
     draw = ImageDraw.Draw(bg)
-    
-    # Fonts setup (fallback to default if specific fonts missing)
-    try:
-        font_header_title = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 52)
-        font_header_sub = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial.ttf", 26)
-        font_badge = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 20)
-        font_num = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 28)
-        font_title = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 26)
-        font_tag = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 18)
-        font_desc = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial.ttf", 19)
-    except Exception:
-        font_header_title = ImageFont.load_default()
-        font_header_sub = ImageFont.load_default()
-        font_badge = font_num = font_title = font_tag = font_desc = ImageFont.load_default()
 
-    # Draw Header at top
-    draw.text((cx, 80), "DIAGNOSTIK ANATOMI & FILOSOFI LAMBANG", fill=(248, 250, 252), font=font_header_title, anchor="mt")
-    draw.text((cx, 145), "DIES NATALIS KE-44 SMA NEGERI 1 GEDEG • VERSI MASTER V6 FINAL", fill=(245, 197, 56), font=font_header_sub, anchor="mt")
-    
-    # 5 Anatomical Callout Points
-    # Format: target_x, target_y, card_x, card_y, align, num, title, tag, desc_lines
+    # Header Master
+    draw.text((cx, 75), "DIAGNOSTIK ANATOMI & FILOSOFI LAMBANG", fill=C_WHITE, font=fonts["header_title"], anchor="mt")
+    draw.text((cx, 138), "DIES NATALIS KE-44 SMAN 1 GEDEG • PEDOMAN IDENTITAS VISUAL RESMI", fill=C_GOLD_PRIMARY, font=fonts["header_sub"], anchor="mt")
+
+    # 5 ELEMEN ANATOMI RESMI (100% KONSISTEN DENGAN PDF GUIDELINE BAB 3)
     callouts: list[Callout] = [
         {
             "num": "01",
-            "title": "Kepala & Tatapan Rajawali",
-            "tag": "VISI VISIONER & KEWIBAWAAN",
+            "title": "FIGUR KEMBAR ANGKA 44",
+            "tag": "FONDASI TRADISI & INOVASI MASA DEPAN",
             "desc": [
-                "Siluet paruh dan tatapan tajam burung",
-                "rajawali yang menghadap ke kanan atas.",
-                "Simbol ketajaman visi intelektual dan",
-                "keberanian moral menegakkan integritas."
+                "Menandai usia ke-44 tahun almamater.",
+                "Angka 4 pertama berdiri kokoh sebagai",
+                "fondasi tradisi; angka 4 kedua melesat maju",
+                "sebagai pilar inovasi masa depan."
             ],
-            "color": (253, 243, 157),
-            "target": (logo_pos_x + 580, logo_pos_y + 245),
-            "card_box": (160, 260, 680, 500),
-            "dot_pos": (680, 360),
-            "anchor": "right"
-        },
-        {
-            "num": "02",
-            "title": "Figur Kembar Angka 44",
-            "tag": "FONDASI ALMAMATER & 44 TAHUN",
-            "desc": [
-                "Dua figur angka 4 yang saling bertaut erat.",
-                "Menandai kedewasaan perjalanan 44 tahun",
-                "SMA Negeri 1 Gedeg dalam mendidik insan",
-                "unggul dan mempererat ikatan antargenerasi."
-            ],
-            "color": (224, 155, 23),
+            "color": C_GOLD_PRIMARY,
             "target": (logo_pos_x + 360, logo_pos_y + 680),
-            "card_box": (160, 750, 680, 990),
+            "card_box": (140, 740, 680, 990),
             "dot_pos": (680, 850),
             "anchor": "right"
         },
         {
-            "num": "03",
-            "title": "Lidah Api Abadi Berkobar",
-            "tag": "SEMANGAT JUANG PANTANG PADAM",
+            "num": "02",
+            "title": "TATAPAN BURUNG RAJAWALI",
+            "tag": "PANDANGAN VISIONER & KEBERANIAN MORAL",
             "desc": [
-                "Sulur api dinamis yang meliuk membubung",
-                "tinggi dari dasar hingga puncak lambang.",
-                "Melambangkan gairah menuntut ilmu, daya",
-                "lenting (resiliensi), dan kreativitas tanpa batas."
+                "Siluet kepala rajawali menatap mantap",
+                "ke arah kanan atas, menyimbolkan pandangan",
+                "visioner, ketajaman intelektual, dan",
+                "keberanian moral menegakkan integritas."
             ],
-            "color": (182, 88, 11),
+            "color": C_GOLD_BRIGHT,
+            "target": (logo_pos_x + 580, logo_pos_y + 245),
+            "card_box": (140, 250, 680, 500),
+            "dot_pos": (680, 360),
+            "anchor": "right"
+        },
+        {
+            "num": "03",
+            "title": "KOBARAN LIDAH API ABADI",
+            "tag": "SEMANGAT BELAJAR PANTANG PADAM",
+            "desc": [
+                "Tiga sulur api yang menyala melambangkan",
+                "semangat belajar pantang padam, ketangguhan",
+                "menghadapi tantangan, dan daya cipta",
+                "yang senantiasa memberi kemanfaatan."
+            ],
+            "color": C_GOLD_DEEP,
             "target": (logo_pos_x + 520, logo_pos_y + 980),
-            "card_box": (160, 1240, 680, 1480),
+            "card_box": (140, 1230, 680, 1480),
             "dot_pos": (680, 1340),
             "anchor": "right"
         },
         {
             "num": "04",
-            "title": "Akselerasi Sayap Aerodinamis",
-            "tag": "MOMENTUM MELESAT KE MASA DEPAN",
+            "title": "SAYAP MELESAT AERODINAMIS",
+            "tag": "AKSELERASI PRESTASI & CITA-CITA MULIA",
             "desc": [
-                "Sayap aerodinamis luar yang menyapu cepat",
-                "ke kuadran kanan atas (masa depan).",
-                "Simbol percepatan prestasi siswa, inovasi",
-                "teknologi cerdas, dan gerak progresif almamater."
+                "Sapuan sayap melengkung ke atas mencerminkan",
+                "percepatan prestasi sekolah serta tekad teguh",
+                "untuk terus terbang tinggi meraih cita-cita",
+                "mulia almamater menuju era keemasan."
             ],
-            "color": (212, 137, 17),
+            "color": C_GOLD_PRIMARY,
             "target": (logo_pos_x + 850, logo_pos_y + 440),
-            "card_box": (1720, 360, 2240, 600),
+            "card_box": (1720, 350, 2260, 600),
             "dot_pos": (1720, 460),
             "anchor": "left"
         },
         {
             "num": "05",
-            "title": "Symmetrical Medial Spine",
-            "tag": "PRESI KONSENTRIS MASTER V6",
+            "title": "GARIS TENGAH SIMETRIS",
+            "tag": "KESERASIAN BENTUK KONSENTRIS",
             "desc": [
-                "Penyempurnaan radikal versi V6 berupa tulang",
-                "punggung simetris murni 100% konsentris.",
-                "Menciptakan kedalaman trimatra (3D) faset",
-                "yang harmonis dan bebas distorsi sudut."
+                "Garis tengah simetris konsentris menyatukan",
+                "seluruh elemen dalam keserasian bentuk",
+                "yang bersih, anggun, dan berwibawa",
+                "bebas dari distorsi faset sudut."
             ],
-            "color": (245, 197, 56),
+            "color": (230, 175, 30),
             "target": (logo_pos_x + 640, logo_pos_y + 730),
-            "card_box": (1720, 1020, 2240, 1260),
+            "card_box": (1720, 1010, 2260, 1260),
             "dot_pos": (1720, 1120),
             "anchor": "left"
         }
@@ -167,101 +266,222 @@ def create_anatomy_diagrams():
         x1, y1, x2, y2 = item["card_box"]
         col = item["color"]
         
-        # 1. Draw glowing target ring on logo
-        draw.ellipse([tx - 18, ty - 18, tx + 18, ty + 18], fill=(col[0], col[1], col[2], 50), outline=col, width=3)
+        # 1. Target Pin on Logo
+        draw.ellipse([tx - 18, ty - 18, tx + 18, ty + 18], fill=(col[0], col[1], col[2], 55), outline=col, width=3)
         draw.ellipse([tx - 6, ty - 6, tx + 6, ty + 6], fill=(255, 255, 255, 240))
         
-        # 2. Draw connector pointer line
-        # Elbow routing: tx,ty -> midx, ty -> dx, dy
+        # 2. Connector Pointer Line
         mid_x = (tx + dx) // 2
         draw.line([(tx, ty), (mid_x, ty), (dx, dy)], fill=col, width=2)
-        
-        # Target node ring on card edge
         draw.ellipse([dx - 5, dy - 5, dx + 5, dy + 5], fill=col)
         
-        # 3. Draw Card Background Box
+        # 3. Card Background Box (Velvet Card Style)
         card_img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         c_draw = ImageDraw.Draw(card_img)
-        # Rounded rectangle
-        c_draw.rounded_rectangle([x1, y1, x2, y2], radius=16, fill=(16, 23, 40, 220), outline=(col[0], col[1], col[2], 120), width=2)
+        c_draw.rounded_rectangle([x1, y1, x2, y2], radius=16, fill=C_PURPLE_CARD, outline=(col[0], col[1], col[2], 140), width=2)
         bg = Image.alpha_composite(bg, card_img)
         draw = ImageDraw.Draw(bg)
         
         # 4. Card Content
-        pad = 26
-        # Number pill
-        draw.rounded_rectangle([x1 + pad, y1 + pad - 2, x1 + pad + 48, y1 + pad + 34], radius=8, fill=(col[0], col[1], col[2], 40), outline=col, width=1)
-        draw.text((x1 + pad + 24, y1 + pad + 16), item["num"], fill=col, font=font_num, anchor="mm")
+        pad = 24
+        # Number Pill (Dark purple fill + gold outline + visible text)
+        pill_box = [x1 + pad, y1 + pad - 2, x1 + pad + 48, y1 + pad + 34]
+        draw.rounded_rectangle(pill_box, radius=8, fill=(50, 10, 60), outline=col, width=1)
+        draw.text((x1 + pad + 24, y1 + pad + 16), item["num"], fill=C_GOLD_BRIGHT, font=fonts["num"], anchor="mm")
         
         # Title & Tag
-        draw.text((x1 + pad + 60, y1 + pad + 3), item["title"], fill=(248, 250, 252), font=font_title)
-        draw.text((x1 + pad + 60, y1 + pad + 32), item["tag"], fill=col, font=font_tag)
+        draw.text((x1 + pad + 60, y1 + pad + 3), item["title"], fill=C_WHITE, font=fonts["title"])
+        draw.text((x1 + pad + 60, y1 + pad + 32), item["tag"], fill=col, font=fonts["tag"])
         
         # Separator line
-        draw.line([(x1 + pad, y1 + pad + 56), (x2 - pad, y1 + pad + 56)], fill=(255, 255, 255, 25), width=1)
+        draw.line([(x1 + pad, y1 + pad + 56), (x2 - pad, y1 + pad + 56)], fill=(255, 255, 255, 30), width=1)
         
         # Description lines
-        curr_y = y1 + pad + 70
+        curr_y = y1 + pad + 68
         for line in item["desc"]:
-            draw.text((x1 + pad, curr_y), line, fill=(203, 213, 225), font=font_desc)
-            curr_y += 28
+            draw.text((x1 + pad, curr_y), line, fill=C_MUTED, font=fonts["desc"])
+            curr_y += 27
 
-    # Footer note at bottom
-    footer_text = "DOKUMEN RESMI IDENTITAS VISUAL • SMA NEGERI 1 GEDEG • HAK CIPTA DILINDUNGI UNDANG-UNDANG"
-    draw.text((cx, H - 70), footer_text, fill=(148, 163, 184), font=font_badge, anchor="mt")
+    # Footer Master
+    footer_text = "BUKU PEDOMAN IDENTITAS VISUAL RESMI • DIES NATALIS KE-44 SMAN 1 GEDEG • VERSI V6 FINAL"
+    draw.text((cx, H - 70), footer_text, fill=(180, 150, 195), font=fonts["badge"], anchor="mt")
 
     output_master = "assets/anatomy/diagram_anatomi_lengkap.png"
     bg.convert("RGB").save(output_master, "PNG", quality=95)
-    print(f"Master anatomy diagram saved to: {output_master}")
+    print(f"[ANATOMI MASTER] Berhasil disimpan ke: {output_master}")
 
-    # Generate 5 isolated focus images
-    # We create high-resolution focused crops highlighting each specific area
-    for idx, item in enumerate(callouts, 1):
-        focus_canvas = Image.new("RGBA", (1200, 900), (13, 17, 30, 255))
-        f_draw = ImageDraw.Draw(focus_canvas)
+    # =========================================================================
+    # 2. GAMBAR FOKUS ANATOMI PER ELEMEN (1920 x 1080 - FULL HD)
+    # FOKUS PADA POTONGAN ASLI ELEMEN LOGO DENGAN LATAR UNGU VELVET
+    # =========================================================================
+    FW, FH = 1920, 1080
+    fcx, fcy = FW // 2, FH // 2
+
+    filenames = [
+        "fokus_01_figur_kembar_angka_44.png",
+        "fokus_02_tatapan_burung_rajawali.png",
+        "fokus_03_kobaran_lidah_api_abadi.png",
+        "fokus_04_sayap_melesat_aerodinamis.png",
+        "fokus_05_garis_tengah_simetris.png"
+    ]
+
+    for idx, (item, fname) in enumerate(zip(callouts, filenames), 1):
+        fcanvas = create_purple_canvas(FW, FH, fcx, fcy, glow_r=750)
+        fdraw = ImageDraw.Draw(fcanvas)
         
-        # Center the focus on target with a nice crop
-        crop_size = 850
-        tx, ty = item["target"]
+        # Outer Gold Border Inset
+        fdraw.rounded_rectangle([24, 24, FW - 24, FH - 24], radius=18, outline=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], 45), width=2)
+
+        # ---------------------------------------------------------------------
+        # HEADER SLIDE
+        # ---------------------------------------------------------------------
+        fdraw.text((60, 48), f"BAB 3 • ANATOMI LAMBANG RESMI DIES NATALIS KE-44", fill=C_GOLD_PRIMARY, font=fonts["badge"])
+        fdraw.text((60, 80), f"ANATOMI 0{idx}: {item['title']}", fill=C_WHITE, font=fonts["header_title"])
+        fdraw.text((60, 140), f"DOKTRIN FILOSOFI: {item['tag']}", fill=item["color"], font=fonts["header_sub"])
+
+        # ---------------------------------------------------------------------
+        # KOTAK KIRI (X: 60 - 640): KONTEKS POSISI PADA LAMBANG LENGKAP
+        # ---------------------------------------------------------------------
+        k_box = (60, 195, 640, 840)
+        fdraw.rounded_rectangle(k_box, radius=14, fill=C_PURPLE_CARD, outline=(item["color"][0], item["color"][1], item["color"][2], 100), width=2)
+        fdraw.text((k_box[0] + 20, k_box[1] + 16), "POSISI PADA LAMBANG LENGKAP", fill=C_GOLD_BRIGHT, font=fonts["badge"])
         
-        # Paste scaled logo
-        l_x = 600 - (tx - logo_pos_x)
-        l_y = 450 - (ty - logo_pos_y)
+        # Render ghosted context logo
+        ghost_sz = 520
+        ghost_logo = logo_raw.resize((ghost_sz, ghost_sz), Image.Resampling.LANCZOS)
+        g_arr = np.array(ghost_logo)
+        g_arr[:, :, 3] = (g_arr[:, :, 3] * 0.32).astype(np.uint8)
+        ghost_faded = Image.fromarray(g_arr)
         
-        # Dim background logo slightly
-        dim_logo = logo_scaled.copy()
-        alpha_data = np.array(dim_logo.split()[3])
-        alpha_data = (alpha_data * 0.45).astype(np.uint8)
-        dim_logo.putalpha(Image.fromarray(alpha_data))
+        gx = k_box[0] + (k_box[2] - k_box[0] - ghost_sz) // 2
+        gy = k_box[1] + 55 + (k_box[3] - k_box[1] - 55 - ghost_sz) // 2
+        fcanvas.paste(ghost_faded, (gx, gy), mask=ghost_faded.split()[3])
+
+        # Target spotlight ring on ghost logo
+        scale_f = ghost_sz / 2048.0
+        orig_tx = (item["target"][0] - logo_pos_x) * (2048.0 / logo_size)
+        orig_ty = (item["target"][1] - logo_pos_y) * (2048.0 / logo_size)
+        gtx = int(gx + orig_tx * scale_f)
+        gty = int(gy + orig_ty * scale_f)
         
-        focus_canvas.paste(dim_logo, (l_x, l_y), mask=dim_logo.split()[3])
+        # Spotlight pulse
+        fdraw.ellipse([gtx - 24, gty - 24, gtx + 24, gty + 24], fill=(item["color"][0], item["color"][1], item["color"][2], 70), outline=item["color"], width=3)
+        fdraw.ellipse([gtx - 8, gty - 8, gtx + 8, gty + 8], fill=(255, 255, 255, 230))
+
+        # ---------------------------------------------------------------------
+        # KOTAK KANAN (X: 670 - 1860): HERO CUT-OUT ELEMEN ANATOMI ASLI
+        # ---------------------------------------------------------------------
+        h_box = (670, 195, 1860, 840)
+        fdraw.rounded_rectangle(h_box, radius=14, fill=C_PURPLE_CARD, outline=(item["color"][0], item["color"][1], item["color"][2], 120), width=2)
+        fdraw.text((h_box[0] + 28, h_box[1] + 18), "ISOLASI POTONGAN GEOMETRI ELEMEN (HERO CUT-OUT)", fill=C_GOLD_BRIGHT, font=fonts["badge"])
+
+        if idx == 1:
+            # 01: DUAL FIGUR 44 BERDAMPINGAN
+            th = 480
+            lw = int(left_eagle_pil.width * (th / left_eagle_pil.height))
+            l_scaled = left_eagle_pil.resize((lw, th), Image.Resampling.LANCZOS)
+            rw = int(right_flames_pil.width * (th / right_flames_pil.height))
+            r_scaled = right_flames_pil.resize((rw, th), Image.Resampling.LANCZOS)
+            
+            total_w = lw + rw + 70
+            start_x = h_box[0] + (h_box[2] - h_box[0] - total_w) // 2
+            pos_y = h_box[1] + 75
+            
+            # Contour glow
+            add_contour_glow(fcanvas, l_scaled, start_x, pos_y, C_GOLD_PRIMARY, radius=20)
+            fcanvas.paste(l_scaled, (start_x, pos_y), mask=l_scaled.split()[3])
+            fdraw.text((start_x + lw // 2, pos_y + th + 15), "FIGUR 4 PERTAMA (FONDASI & TRADISI)", fill=C_GOLD_BRIGHT, font=fonts["badge"], anchor="mt")
+            
+            sep_x = start_x + lw + 35
+            fdraw.text((sep_x, pos_y + th // 2), "+", fill=C_WHITE, font=fonts["header_title"], anchor="mm")
+            
+            rx = start_x + lw + 70
+            add_contour_glow(fcanvas, r_scaled, rx, pos_y, C_GOLD_PRIMARY, radius=20)
+            fcanvas.paste(r_scaled, (rx, pos_y), mask=r_scaled.split()[3])
+            fdraw.text((rx + rw // 2, pos_y + th + 15), "FIGUR 4 KEDUA (INOVASI & MASA DEPAN)", fill=C_GOLD_PRIMARY, font=fonts["badge"], anchor="mt")
+
+        elif idx == 2:
+            # 02: KEPALA & TATAPAN RAJAWALI (Clean Cutout Left Eagle)
+            th = 520
+            tw = int(left_eagle_pil.width * (th / left_eagle_pil.height))
+            p_scaled = left_eagle_pil.resize((tw, th), Image.Resampling.LANCZOS)
+            
+            px = h_box[0] + (h_box[2] - h_box[0] - tw) // 2
+            py = h_box[1] + 65
+            
+            add_contour_glow(fcanvas, p_scaled, px, py, C_GOLD_BRIGHT, radius=24)
+            fcanvas.paste(p_scaled, (px, py), mask=p_scaled.split()[3])
+            fdraw = ImageDraw.Draw(fcanvas)
+            fdraw.text((px + tw // 2, py + th + 18), "POTONGAN RESMI: SILUET PARUH & KEPALA VISIONER", fill=C_GOLD_BRIGHT, font=fonts["badge"], anchor="mt")
+
+        elif idx == 3:
+            # 03: KOBARAN LIDAH API ABADI (Clean Cutout Right Flames)
+            th = 520
+            tw = int(right_flames_pil.width * (th / right_flames_pil.height))
+            p_scaled = right_flames_pil.resize((tw, th), Image.Resampling.LANCZOS)
+            
+            px = h_box[0] + (h_box[2] - h_box[0] - tw) // 2
+            py = h_box[1] + 65
+            
+            add_contour_glow(fcanvas, p_scaled, px, py, C_GOLD_DEEP, radius=24)
+            fcanvas.paste(p_scaled, (px, py), mask=p_scaled.split()[3])
+            fdraw = ImageDraw.Draw(fcanvas)
+            fdraw.text((px + tw // 2, py + th + 18), "POTONGAN RESMI: 3 SULUR LIDAH API BERKOBAR MENJULANG", fill=C_GOLD_DEEP, font=fonts["badge"], anchor="mt")
+
+        elif idx == 4:
+            # 04: SAYAP MELESAT AERODINAMIS (Highlight Outer Sweeping Wing)
+            th = 520
+            tw = int(outer_wing_pil.width * (th / outer_wing_pil.height))
+            p_scaled = outer_wing_pil.resize((tw, th), Image.Resampling.LANCZOS)
+            
+            px = h_box[0] + (h_box[2] - h_box[0] - tw) // 2
+            py = h_box[1] + 65
+            
+            add_contour_glow(fcanvas, p_scaled, px, py, C_GOLD_PRIMARY, radius=24)
+            fcanvas.paste(p_scaled, (px, py), mask=p_scaled.split()[3])
+            fdraw = ImageDraw.Draw(fcanvas)
+            fdraw.text((px + tw // 2, py + th + 18), "POTONGAN RESMI: SAPUAN SAYAP AERODINAMIS KUADRAN KANAN ATAS", fill=C_GOLD_PRIMARY, font=fonts["badge"], anchor="mt")
+
+        elif idx == 5:
+            # 05: GARIS TENGAH SIMETRIS (Kedua figur dengan aksis simetri konsentris bersinar)
+            th = 510
+            tw = int(logo_raw.width * (th / logo_raw.height))
+            p_scaled = logo_raw.resize((tw, th), Image.Resampling.LANCZOS)
+            
+            px = h_box[0] + (h_box[2] - h_box[0] - tw) // 2
+            py = h_box[1] + 75
+            
+            add_contour_glow(fcanvas, p_scaled, px, py, (230, 175, 30), radius=22)
+            fcanvas.paste(p_scaled, (px, py), mask=p_scaled.split()[3])
+            fdraw = ImageDraw.Draw(fcanvas)
+            
+            # Aksis Garis Simetri Emas Bersinar
+            axis_x = px + int(tw * 0.495)
+            fdraw.line([(axis_x, py), (axis_x, py + th)], fill=C_GOLD_BRIGHT, width=3)
+            fdraw.text((axis_x, py - 18), "AKSIS SIMETRI KONSENTRIS", fill=C_GOLD_BRIGHT, font=fonts["badge"], anchor="mm")
+            fdraw.text((axis_x, py + th + 18), "KESELARASAN BIDANG FASET KIRI DAN KANAN MURNI SIMETRIS", fill=C_GOLD_PRIMARY, font=fonts["badge"], anchor="mt")
+
+        # ---------------------------------------------------------------------
+        # FOOTER CARD (X: 60 - 1860, Y: 865 - 1030): DESKRIPSI RESMI PDF
+        # ---------------------------------------------------------------------
+        info_box = (60, 865, 1860, 1030)
+        fdraw.rounded_rectangle(info_box, radius=12, fill=(24, 4, 30, 245), outline=(C_GOLD_PRIMARY[0], C_GOLD_PRIMARY[1], C_GOLD_PRIMARY[2], 95), width=2)
         
-        # Highlight circle around target
-        for r in range(160, 0, -10):
-            al = int((1 - r / 160) * 120)
-            f_draw.ellipse([600 - r, 450 - r, 600 + r, 450 + r], fill=(item["color"][0], item["color"][1], item["color"][2], al))
+        # Pill Nomor (Dark purple fill + gold outline + visible text)
+        fdraw.rounded_rectangle([info_box[0] + 20, info_box[1] + 18, info_box[0] + 75, info_box[1] + 62], radius=8, fill=(50, 10, 60), outline=item["color"], width=1)
+        fdraw.text((info_box[0] + 47, info_box[1] + 40), f"0{idx}", fill=C_GOLD_BRIGHT, font=fonts["num"], anchor="mm")
         
-        # Paste un-dimmed section on top
-        mask_circle = Image.new("L", logo_scaled.size, 0)
-        m_draw = ImageDraw.Draw(mask_circle)
-        target_in_logo_x = tx - logo_pos_x
-        target_in_logo_y = ty - logo_pos_y
-        m_draw.ellipse([target_in_logo_x - 180, target_in_logo_y - 180, target_in_logo_x + 180, target_in_logo_y + 180], fill=255)
-        # Combine with original alpha
-        orig_alpha = logo_scaled.split()[3]
-        final_mask = Image.fromarray(np.minimum(np.array(orig_alpha), np.array(mask_circle)))
-        focus_canvas.paste(logo_scaled, (l_x, l_y), mask=final_mask)
+        # Judul & Uraian Filosofis Resmi
+        fdraw.text((info_box[0] + 90, info_box[1] + 18), f"{item['title']} — {item['tag']}", fill=C_WHITE, font=fonts["title"])
+        full_desc = " ".join(item["desc"])
+        fdraw.text((info_box[0] + 90, info_box[1] + 58), full_desc, fill=C_MUTED, font=fonts["desc_lg"])
         
-        # Text Overlay Header & Description
-        f_draw.rounded_rectangle([40, 40, 1160, 180], radius=16, fill=(7, 9, 15, 230), outline=item["color"], width=2)
-        f_draw.text((70, 70), f"ANATOMI 0{idx}: {item['title'].upper()}", fill=(248, 250, 252), font=font_title)
-        f_draw.text((70, 105), item["tag"], fill=item["color"], font=font_tag)
-        desc_text = " ".join(item["desc"])
-        f_draw.text((70, 138), desc_text[:110] + "...", fill=(203, 213, 225), font=font_desc)
-        
-        f_name = f"assets/anatomy/fokus_0{idx}_{item['title'].lower().replace(' ', '_').replace('&_', '')}.png"
-        focus_canvas.convert("RGB").save(f_name, "PNG", quality=95)
-        print(f"Focus image saved: {f_name}")
+        # Metadata almamater
+        fdraw.text((info_box[2] - 25, info_box[1] + 115), "DOKUMEN RESMI IDENTITAS VISUAL • SMA NEGERI 1 GEDEG", fill=(170, 140, 185), font=fonts["footer"], anchor="ra")
+
+        out_path = f"assets/anatomy/{fname}"
+        fcanvas.convert("RGB").save(out_path, "PNG", quality=95)
+        print(f"[ANATOMI FOKUS 0{idx}] Berhasil disimpan ke: {out_path}")
 
 if __name__ == "__main__":
     create_anatomy_diagrams()
