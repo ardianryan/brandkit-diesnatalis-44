@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   DIES NATALIS 44 — IMPECCABLE DESIGN SYSTEM & EDITORIAL SYLVA TOKENS
-   Calibrated for SMAN 1 Gedeg Official Identity & PBR 3D Three.js Studio
+   DIES NATALIS 44 — IMPECCABLE LUXURY DESIGN SYSTEM
+   SMA NEGERI 1 GEDEG OFFICIAL BRAND IDENTITY & 3D STUDIO
    ========================================================================== */
 
 :root {
@@ -19,14 +19,13 @@
   --c-canary: #FDF39D;
   --c-plum: #360538;
 
-  /* Default Dark Mode (Deep Space Obsidian & Golden Ember Aura) */
+  /* Dark Mode (Deep Space Obsidian & Golden Ember Aura) */
   --bg-primary: #07090F;
-  --bg-secondary: #0D111E;
-  --bg-tertiary: #141A29;
-  --bg-card: rgba(16, 22, 38, 0.72);
-  --bg-card-hover: rgba(24, 33, 56, 0.88);
-  --bg-dock: rgba(13, 17, 30, 0.82);
-  --bg-input: rgba(18, 24, 42, 0.7);
+  --bg-secondary: #0E1322;
+  --bg-tertiary: #161D31;
+  --bg-card: rgba(16, 23, 40, 0.85);
+  --bg-card-hover: rgba(24, 34, 58, 0.95);
+  --bg-dock: rgba(11, 16, 28, 0.92);
 
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
@@ -34,55 +33,45 @@
   --text-inverse: #07090F;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(245, 197, 56, 0.16);
+  --border-card: rgba(245, 197, 56, 0.2);
+  --border-card-hover: rgba(245, 197, 56, 0.45);
   --border-gold: rgba(245, 197, 56, 0.4);
-  --border-gold-glow: rgba(245, 197, 56, 0.7);
 
-  --shadow-ambient: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
-  --shadow-gold: 0 10px 30px -5px rgba(245, 197, 56, 0.25);
-  --shadow-dock: 0 15px 35px -5px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-ambient: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 16px 36px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-gold: 0 10px 30px -5px rgba(245, 197, 56, 0.3);
 
-  --accent-gold-glow: rgba(245, 197, 56, 0.18);
-  --accent-flame-glow: rgba(125, 27, 5, 0.25);
-  --nav-blur: blur(20px);
-  --grid-line: rgba(255, 255, 255, 0.04);
-  --ghost-text: rgba(255, 255, 255, 0.035);
-
-  --gold-gradient: linear-gradient(135deg, #FDF39D 0%, #F5C538 35%, #E09B17 70%, #B6580B 100%);
-  --gold-gradient-soft: linear-gradient(135deg, rgba(245, 197, 56, 0.15) 0%, rgba(224, 155, 23, 0.05) 100%);
+  --gold-gradient: linear-gradient(135deg, #FDF39D 0%, #F5C538 40%, #E09B17 75%, #B6580B 100%);
+  --gold-gradient-bg: linear-gradient(135deg, #F5C538 0%, #E09B17 50%, #B6580B 100%);
+  --hero-glow: radial-gradient(circle at 50% 25%, rgba(245, 197, 56, 0.12) 0%, rgba(125, 27, 5, 0.05) 50%, transparent 80%);
 }
 
 [data-theme="light"] {
-  /* Editorial Light Mode (Warm Ivory Alabaster & Royal Mahogany Bronze) */
-  --bg-primary: #FAF8F5;
-  --bg-secondary: #F3EFE8;
-  --bg-tertiary: #EBE5DB;
-  --bg-card: rgba(255, 255, 255, 0.88);
-  --bg-card-hover: rgba(255, 255, 255, 0.98);
-  --bg-dock: rgba(255, 255, 255, 0.9);
-  --bg-input: rgba(245, 240, 232, 0.95);
+  /* High-Contrast Luxury Light Mode (Warm Ivory Limestone & Rich Mahogany Ink) */
+  --bg-primary: #F3EFE8;
+  --bg-secondary: #EBE5DC;
+  --bg-tertiary: #E0D7CB;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FCFBF9;
+  --bg-dock: rgba(255, 255, 255, 0.95);
 
-  --text-primary: #1C130E;
-  --text-secondary: #5C4D43;
-  --text-tertiary: #8C7B70;
+  --text-primary: #1C120C;
+  --text-secondary: #4A3B32;
+  --text-tertiary: #7D6B60;
   --text-inverse: #FFFFFF;
 
-  --border-subtle: rgba(49, 6, 3, 0.08);
-  --border-card: rgba(182, 88, 11, 0.18);
-  --border-gold: rgba(224, 155, 23, 0.45);
-  --border-gold-glow: rgba(182, 88, 11, 0.6);
+  --border-subtle: rgba(49, 6, 3, 0.1);
+  --border-card: rgba(182, 88, 11, 0.22);
+  --border-card-hover: rgba(182, 88, 11, 0.5);
+  --border-gold: rgba(224, 155, 23, 0.5);
 
-  --shadow-ambient: 0 20px 40px -15px rgba(49, 6, 3, 0.08);
-  --shadow-gold: 0 10px 25px -5px rgba(182, 88, 11, 0.2);
-  --shadow-dock: 0 12px 30px -5px rgba(49, 6, 3, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
-  --accent-gold-glow: rgba(224, 155, 23, 0.12);
-  --accent-flame-glow: rgba(125, 27, 5, 0.08);
-  --grid-line: rgba(49, 6, 3, 0.04);
-  --ghost-text: rgba(49, 6, 3, 0.03);
+  --shadow-ambient: 0 20px 45px -15px rgba(49, 6, 3, 0.12);
+  --shadow-card: 0 14px 34px -8px rgba(49, 6, 3, 0.1), 0 2px 6px -1px rgba(49, 6, 3, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --shadow-gold: 0 10px 25px -5px rgba(182, 88, 11, 0.25);
 
   --gold-gradient: linear-gradient(135deg, #7D1B05 0%, #B6580B 35%, #D48911 70%, #9A3412 100%);
-  --gold-gradient-soft: linear-gradient(135deg, rgba(224, 155, 23, 0.12) 0%, rgba(182, 88, 11, 0.04) 100%);
+  --gold-gradient-bg: linear-gradient(135deg, #E09B17 0%, #B6580B 100%);
+  --hero-glow: radial-gradient(circle at 50% 25%, rgba(245, 197, 56, 0.2) 0%, rgba(182, 88, 11, 0.08) 50%, transparent 80%);
 }
 
 /* ==========================================================================
@@ -106,7 +95,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
-  transition: background-color 0.35s ease, color 0.35s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -120,85 +109,45 @@ body {
   font-family: var(--font-sans);
 }
 
-/* ==========================================================================
-   Editorial Sylva Blueprint Grid & Ambient Pool
-   ========================================================================== */
-.blueprint-guides {
+/* Hero Background Glow */
+.hero-ambient-glow {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.blueprint-guides i {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, transparent 0%, var(--grid-line) 15%, var(--grid-line) 85%, transparent 100%);
-}
-
-.ghost-wordmark {
-  position: absolute;
-  font-family: var(--font-serif);
-  font-weight: 900;
-  color: var(--ghost-text);
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-  z-index: 1;
-  line-height: 0.8;
-  letter-spacing: 0.05em;
-}
-
-/* Ambient Radial Glow Pools */
-.ambient-pool-gold {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-gold-glow) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.ambient-pool-flame {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-flame-glow) 0%, transparent 70%);
+  background: var(--hero-glow);
   pointer-events: none;
   z-index: 0;
 }
 
 /* ==========================================================================
-   Glassmorphism & Surface Tokens
+   High-Craft Card & Surface Tokens
    ========================================================================== */
-.glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+.card-themed {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
   border: 1px solid var(--border-card);
   border-radius: 20px;
-  box-shadow: var(--shadow-ambient);
+  box-shadow: var(--shadow-card);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.glass-panel:hover {
-  border-color: var(--border-gold);
+.card-themed:hover {
+  border-color: var(--border-card-hover);
+}
+
+.glass-nav {
+  background-color: var(--bg-dock);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-card);
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
 }
 
 .glass-dock {
-  background: var(--bg-dock);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background-color: var(--bg-dock);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-card);
-  border-radius: 9999px;
-  box-shadow: var(--shadow-dock);
-}
-
-.card-themed {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  border: 1px solid var(--border-card);
-  box-shadow: var(--shadow-ambient);
+  box-shadow: var(--shadow-card);
 }
 
 .title-primary {
@@ -221,11 +170,9 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* ==========================================================================
-   Interactive Buttons & Controls
-   ========================================================================== */
+/* Buttons */
 .btn-gold-primary {
-  background: linear-gradient(135deg, #F5C538 0%, #E09B17 60%, #B6580B 100%);
+  background: var(--gold-gradient-bg);
   color: #1A0D00;
   font-weight: 700;
   padding: 0.75rem 1.6rem;
@@ -238,16 +185,17 @@ body {
   box-shadow: var(--shadow-gold);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-gold-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px -4px rgba(245, 197, 56, 0.45);
-  background: linear-gradient(135deg, #FDF39D 0%, #F5C538 50%, #E09B17 100%);
+  filter: brightness(1.08);
 }
 
 .btn-glass {
-  background: var(--bg-card);
+  background-color: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--border-card);
   font-weight: 600;
@@ -257,33 +205,16 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-glass:hover {
-  background: var(--bg-card-hover);
+  background-color: var(--bg-card-hover);
   border-color: var(--border-gold);
   transform: translateY(-1px);
-}
-
-/* 3D Canvas Studio Background */
-.canvas-hero-wrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  overflow: hidden;
-}
-
-/* Pointer Parallax Helper */
-.par-layer {
-  will-change: transform;
-  transform: perspective(1200px)
-             translate3d(calc(var(--px, 0) * var(--pd, 0) * -1px),
-                         calc(var(--py, 0) * var(--pd, 0) * -0.65px),
-                         0)
-             rotateY(calc(var(--px, 0) * var(--pr, 0) * 1.2deg))
-             rotateX(calc(var(--py, 0) * var(--pr, 0) * -0.8deg));
 }
 
 /* Custom Scrollbar */

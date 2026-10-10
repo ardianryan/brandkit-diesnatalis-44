@@ -95,7 +95,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
 
     // 2. Camera
     const camera = new THREE.PerspectiveCamera(42, width / height, 1, 3500);
-    camera.position.set(0, 0, 520);
+    camera.position.set(0, 0, 680);
     cameraRef.current = camera;
 
     // 3. Renderer with ACES Filmic Tone Mapping
@@ -415,7 +415,7 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
   // Reset Camera View
   const handleResetCamera = useCallback(() => {
     if (cameraRef.current && controlsRef.current) {
-      cameraRef.current.position.set(0, 0, 520);
+      cameraRef.current.position.set(0, 0, 680);
       controlsRef.current.target.set(0, 0, 0);
       controlsRef.current.update();
       setIsExploded(false);
@@ -428,7 +428,10 @@ export default function Logo3DViewer({ activeComponent = 'all', onSelectComponen
   const activeDetail = COMPONENT_DETAILS[activeComponent] || COMPONENT_DETAILS.all;
 
   return (
-    <div className="relative w-full rounded-3xl overflow-hidden glass-panel border border-[var(--border-card)] shadow-2xl">
+    <div 
+      className="relative w-full rounded-3xl overflow-hidden border border-[var(--border-card)] shadow-2xl"
+      style={{ background: 'radial-gradient(circle at 50% 45%, #182033 0%, #0B101D 70%, #060912 100%)' }}
+    >
       {/* Three.js Canvas Container */}
       <div
         ref={containerRef}
