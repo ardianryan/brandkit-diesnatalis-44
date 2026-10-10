@@ -16,7 +16,8 @@ Repositori ini memuat seluruh berkas master logo vektor matematis, dokumentasi a
 6. [Sistem Palet Warna Resmi (Coolors Spec)](#sistem-palet-warna-resmi-coolors-spec)
 7. [Struktur Repositori & Katalog Aset Master](#struktur-repositori--katalog-aset-master)
 8. [Cara Menjalankan Skrip Generator Python](#cara-menjalankan-skrip-generator-python)
-9. [Hak Cipta & Lisensi Kepemilikan](#hak-cipta--lisensi-kepemilikan)
+9. [Tim Kreatif & Atribusi Karya (Creative Credits)](#tim-kreatif--atribusi-karya-creative-credits--authorship)
+10. [Hak Cipta & Lisensi Kepemilikan](#hak-cipta--lisensi-kepemilikan)
 
 ---
 
@@ -294,6 +295,33 @@ python3 v6_detailing/scripts/render_and_verify_v6.py
 # 4. Jalankan skrip pembuat diagram anatomi visual
 python3 v6_detailing/scripts/generate_anatomy_diagrams.py
 ```
+
+---
+
+## Tim Kreatif & Atribusi Karya (Creative Credits & Authorship)
+
+> **Dedikasi Khusus**: Karya seni dan sistem identitas visual ini dirancang secara kolaboratif serta dipersembahkan seutuhnya untuk memperingati **Dies Natalis ke-44 SMA Negeri 1 Gedeg, Kabupaten Mojokerto (1982 – 2026)**.
+
+Keberhasilan perancangan identitas visual ini merupakan hasil sinergi artistik lintas disiplin antara seni rupa murni analog (*traditional illustration*), seni lukis digital (*digital painting*), seni tipografi kustom (*hand-lettering typography*), dan rekayasa geometri kurva vektor (*precision vector engineering*):
+
+| Peran Artistik & Spesialisasi | Nama Kreator | Afiliasi / Angkatan | Kontribusi Visual & Deskripsi Karya Seni |
+| :--- | :--- | :--- | :--- |
+| **Creative Director & Project Initiator** | **Ryan Ardian** | Almamater SMAN 1 Gedeg | Penggagas inisiatif proyek, pengarah artistik (*art direction*), orkestrasi perancangan identitas visual terpadu, dan supervisi standar *brand kit*. |
+| **Lead Concept Artist & Traditional Sketch Visualizer** | **Putri Nur Azizah** | Angkatan '42 (XII 6) | Kreator sketsa tangan analog asli (*raw graphite concept art*). Merumuskan gestur figuratif elang rajawali, proporsi angka kembar 44, serta anatomi dasar lambang utama di atas kertas grafit. |
+| **Custom Lettering Artist & Fluid Typographer** | **Naysila Zahra Alsabella** | Angkatan '43 (XI 1) | Perancang tipografi tangan tema (*hand-drawn theme wordmark*). Menggubah seni tipografi gelembung cair (*liquid molten bubble lettering*) AVERSA yang dinamis, ekspresif, dan ceria. |
+| **Digital Colorists & Visual Rendering Artists** | **Culvar Zamiiryaser Setyaji**<br>**Farel Indra Febrihansen** | Angkatan '42 (XI 4)<br>Angkatan '42 (XI 4) | Seniman olah rona & pencahayaan digital (*digital painting & shading*). Mengembangkan translasi warna raster awal, distribusi gradasi api, dan kedalaman dimensional sketsa manual. |
+| **Lead Vector Reconstructionist & Precision Geometry Engineer** | **Ryan Ardian** | Almamater SMAN 1 Gedeg | Rekonstruksi vektor komputasional matematis ($C^1/C^2$ *cubic Bézier splines*), perbaikan simetri *medial spine*, kurasi palet Coolors resmi, isolasi alpha murni, dan arsitek berkas master SVG/PNG beresolusi tak terbatas. |
+
+---
+
+### Alur Sinergi Penciptaan Karya (*Artistic Creation Continuum*):
+
+1. **Ideasi Tradisional (*Analog Ideation & Concept Sketching*)**:
+   Goresan pensil grafit di atas kertas oleh **Putri Nur Azizah** melahirkan proporsi dasar figuratif rajawali dan angka 44, sementara **Naysila Zahra Alsabella** mengeksplorasi tipografi organik AVERSA dengan aliran bentuk cair (*fluid morphology*).
+2. **Pewarnaan & Pencahayaan Digital (*Digital Painting & Illumination*)**:
+   **Culvar Zamiiryaser Setyaji** bersama **Farel Indra Febrihansen** menerjemahkan garis sketsa manual menjadi lukisan digital raster penuh rona, menyuntikkan atmosfer visual hangat dan sebaran gradasi lidah api keemasan.
+3. **Rekonstruksi Geometris Vektor (*Computational Vector Mastery*)**:
+   **Ryan Ardian** merekonstruksi citra raster menjadi kurva vektor kontinu berstandar industri grafis internasional, menyempurnakan simetri faset trimatra, mengeliminasi distorsi, serta membakukan seluruh berkas master SVG dan PNG siap produksi.
 
 ---
 
