@@ -29,6 +29,9 @@ import cv2
 import numpy as np
 import subprocess
 from scipy.interpolate import splprep, splev
+import matplotlib.font_manager as fm
+from matplotlib.textpath import TextPath
+from matplotlib.path import Path
 
 CHROME_PATH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 SOURCE_IMAGE = "assets/source/dies_natalis_handdraw.jpg"
@@ -161,53 +164,77 @@ def extract_artwork_letters():
     letters.sort(key=lambda item: item["bbox"][0])
     return letters
 
+def path_to_svg_d(path, scale=1.0, tx=0.0, ty=0.0, flip_y=True):
+    cmds = []
+    i = 0
+    verts = path.vertices
+    codes = path.codes
+    n = len(codes)
+    while i < n:
+        code = codes[i]
+        if code == Path.MOVETO:
+            x = verts[i][0] * scale + tx
+            y = (-verts[i][1] if flip_y else verts[i][1]) * scale + ty
+            cmds.append(f"M {x:.2f} {y:.2f}")
+            i += 1
+        elif code == Path.LINETO:
+            x = verts[i][0] * scale + tx
+            y = (-verts[i][1] if flip_y else verts[i][1]) * scale + ty
+            cmds.append(f"L {x:.2f} {y:.2f}")
+            i += 1
+        elif code == Path.CURVE3:
+            cx = verts[i][0] * scale + tx
+            cy = (-verts[i][1] if flip_y else verts[i][1]) * scale + ty
+            x = verts[i+1][0] * scale + tx
+            y = (-verts[i+1][1] if flip_y else verts[i+1][1]) * scale + ty
+            cmds.append(f"Q {cx:.2f} {cy:.2f} {x:.2f} {y:.2f}")
+            i += 2
+        elif code == Path.CURVE4:
+            c1x = verts[i][0] * scale + tx
+            c1y = (-verts[i][1] if flip_y else verts[i][1]) * scale + ty
+            c2x = verts[i+1][0] * scale + tx
+            c2y = (-verts[i+1][1] if flip_y else verts[i+1][1]) * scale + ty
+            x = verts[i+2][0] * scale + tx
+            y = (-verts[i+2][1] if flip_y else verts[i+2][1]) * scale + ty
+            cmds.append(f"C {c1x:.2f} {c1y:.2f}, {c2x:.2f} {c2y:.2f}, {x:.2f} {y:.2f}")
+            i += 3
+        elif code == Path.CLOSEPOLY:
+            cmds.append("Z")
+            i += 1
+        else:
+            i += 1
+    return " ".join(cmds)
+
 def build_letter_m(letter_n):
     """
-    Constructs a clean 3-pillar chubby bubble letter M from letter N.
+    Constructs an authentic, unmistakable uppercase bubble letter 'M'.
+    Features:
+    - Two plump, bouncy outer peaks (left and right)
+    - Distinct central V valley with graceful inner clefts
+    - Two sturdy, rounded outer legs resting on the baseline
+    - Delicate specular crescent highlights on both upper peaks
     """
-    bx, by, bw, bh = letter_n["bbox"]
-    img = cv2.imread(SOURCE_IMAGE)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    mask = (gray < 235).astype(np.uint8) * 255
+    prop = fm.FontProperties(fname="assets/fonts/DynaPuff.ttf")
+    tp_m = TextPath((0, 0), "M", size=300, prop=prop)
+    ext = tp_m.get_extents()
     
-    n_sub = mask[by:by+bh, bx:bx+bw].copy()
-    h, w = n_sub.shape
+    target_h = letter_n["height"]
+    sc = target_h / ext.height
     
-    # Remove any stray bottom edge pixels
-    n_sub[h-6:, :] = 0
+    m_d = path_to_svg_d(tp_m, scale=sc, tx=-ext.x0 * sc, ty=ext.y1 * sc, flip_y=True)
+    m_w = ext.width * sc
+    m_h = target_h
     
-    # Pillar spacing
-    shift = int(w * 0.48)
-    m_w = w + shift
-    m_mask = np.zeros((h, m_w), dtype=np.uint8)
-    m_mask[:, :w] = np.maximum(m_mask[:, :w], n_sub)
-    m_mask[:, shift:shift+w] = np.maximum(m_mask[:, shift:shift+w], n_sub)
+    # Specular highlights for both upper peaks matching N and I
+    # Left peak is at ~22% width, Right peak is at ~78% width
+    hl_left = f"M {m_w*0.14:.2f} {m_h*0.24:.2f} C {m_w*0.12:.2f} {m_h*0.16:.2f}, {m_w*0.16:.2f} {m_h*0.09:.2f}, {m_w*0.24:.2f} {m_h*0.07:.2f} C {m_w*0.27:.2f} {m_h*0.06:.2f}, {m_w*0.28:.2f} {m_h*0.09:.2f}, {m_w*0.25:.2f} {m_h*0.11:.2f} C {m_w*0.19:.2f} {m_h*0.13:.2f}, {m_w*0.17:.2f} {m_h*0.18:.2f}, {m_w*0.18:.2f} {m_h*0.26:.2f} Z"
+    hl_right = f"M {m_w*0.68:.2f} {m_h*0.22:.2f} C {m_w*0.67:.2f} {m_h*0.15:.2f}, {m_w*0.72:.2f} {m_h*0.08:.2f}, {m_w*0.80:.2f} {m_h*0.06:.2f} C {m_w*0.83:.2f} {m_h*0.05:.2f}, {m_w*0.84:.2f} {m_h*0.08:.2f}, {m_w*0.81:.2f} {m_h*0.10:.2f} C {m_w*0.75:.2f} {m_h*0.12:.2f}, {m_w*0.72:.2f} {m_h*0.17:.2f}, {m_w*0.73:.2f} {m_h*0.24:.2f} Z"
     
-    # Morphological smooth bridge
-    k_close = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
-    m_mask = cv2.morphologyEx(m_mask, cv2.MORPH_CLOSE, k_close)
-    k_open = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
-    m_mask = cv2.morphologyEx(m_mask, cv2.MORPH_OPEN, k_open)
-    
-    cnts, _ = cv2.findContours(m_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    largest = max(cnts, key=cv2.contourArea)
-    
-    m_pts = smooth_contour(largest, epsilon=1.8, s_factor=2.8, num_points=320)
-    m_d = points_to_svg_cubic_bezier_path(m_pts)
-    
-    # Extract highlights for the 3 crests
-    hl_paths = []
-    if letter_n["highlights"]:
-        hl_paths.append(letter_n["highlights"][0])
-        # Generate offset highlight for middle and right crests
-        for h_str in letter_n["highlights"]:
-            hl_paths.append(h_str)
-            
     return {
         "combined_d": m_d,
-        "highlights": hl_paths,
+        "highlights": [hl_left, hl_right],
         "width": m_w,
-        "height": h,
+        "height": m_h,
     }
 
 def main():
@@ -252,7 +279,7 @@ def main():
     kerning_table = {
         ("T", "I"): -20.0,
         ("I", "M"): -15.0,
-        ("M", "E"): -25.0,
+        ("M", "E"): -5.0,
         ("E", "L"): -20.0,
         ("L", "I"): -15.0,
         ("I", "N"): -15.0,
