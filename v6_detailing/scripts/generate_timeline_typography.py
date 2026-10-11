@@ -2,29 +2,22 @@
 """
 generate_timeline_typography.py
 =============================================================================
-Generates official identity typography for:
-"Timeline" & "TIMELINE"
-Matching the exact visual DNA of AVERSA, DIES NATALIS, and MEET THE CREATIVE MINDS:
-- Playful, bouncy bubble typography (DynaPuff Bold)
-- Wonka golden chocolate fantasy aesthetic
-- Multi-layer 3D mahogany bevel contour (#310603 / #7D1B05)
-- Rich 5-stop metallic honey-gold gradient (#E09B17 -> #F5C538 -> #B6580B)
-- Clipped inner specular gloss reflections (#FDF39D -> #F7D160 & #FFFEEA)
-- Wonka diamond shimmer sparkle accents
+Generates official identity typography for "Timeline" & "TIMELINE"
+Pure 100% Match with ARKESA / AVERSA and DIES NATALIS Vector DNA:
+- Authentic Honey-Gold 5-stop vertical gradient (#E09B17 -> #F5C538 -> #B6580B)
+- Curved specular crest highlight (#FDF39D -> #F7D160 & #FFFEEA)
+- Clean, bold, organic display curves (Titan One)
+- ZERO dark chocolate 3D extrusion, ZERO brown bevel borders, ZERO cartoon sparkles
+- Pure, clean vector silhouettes (color, white, dark)
 - Output formats:
-  * Title Case: "Timeline"
-  * ALL CAPS: "TIMELINE"
-- Color variants for each format:
-  * color (Official gold & mahogany 3D bevel)
-  * white (Pure white silhouette with soft depth opacity)
-  * dark (Deep obsidian mahogany / slate monochrome)
-- High-res PNG exports (3200px canvas) via Google Chrome Headless
+  * Title Case: "Timeline" (assets/svg/timeline-bubble-*.svg & assets/png/timeline-bubble-*.png)
+  * ALL CAPS: "TIMELINE" (assets/svg/timeline-caps-*.svg & assets/png/timeline-caps-*.png)
+- Canvas: 3200 x 1000 px, Google Chrome Headless transparent alpha rendering
 =============================================================================
 """
 
 import os
 import subprocess
-import numpy as np
 import matplotlib.font_manager as fm
 from matplotlib.textpath import TextPath
 from matplotlib.path import Path
@@ -37,11 +30,17 @@ PNG_OUT_DIR = "assets/png"
 os.makedirs(SVG_OUT_DIR, exist_ok=True)
 os.makedirs(PNG_OUT_DIR, exist_ok=True)
 
+# Official Coolors Gold Spec matching AVERSA & DIES NATALIS
+PALETTE = {
+    "marigold": "#E09B17",
+    "gold_vivid": "#F5C538",
+    "champagne": "#F7D160",
+    "canary": "#FDF39D",
+    "bronze": "#B6580B",
+    "dark_slate": "#07090F",
+}
+
 def path_to_svg_d(path, scale=1.0, tx=0.0, ty=0.0, flip_y=True):
-    """
-    Converts matplotlib Path into exact standard SVG path commands.
-    In matplotlib, Y points upwards (Cartesian), so flip_y=True converts it to SVG downwards Y.
-    """
     cmds = []
     i = 0
     verts = path.vertices
@@ -82,33 +81,7 @@ def path_to_svg_d(path, scale=1.0, tx=0.0, ty=0.0, flip_y=True):
             i += 1
     return " ".join(cmds)
 
-def get_sparkle_path(cx, cy, radius=24, thinness=0.18):
-    """
-    Generates a 4-point diamond star sparkle (Wonka gold shimmer).
-    """
-    r_outer = radius
-    r_inner = radius * thinness
-    pts = [
-        (cx, cy - r_outer),
-        (cx + r_inner, cy - r_inner),
-        (cx + r_outer, cy),
-        (cx + r_inner, cy + r_inner),
-        (cx, cy + r_outer),
-        (cx - r_inner, cy + r_inner),
-        (cx - r_outer, cy),
-        (cx - r_inner, cy - r_inner),
-    ]
-    d = f"M {pts[0][0]:.2f} {pts[0][1]:.2f} "
-    d += f"Q {cx:.2f} {cy:.2f} {pts[2][0]:.2f} {pts[2][1]:.2f} "
-    d += f"Q {cx:.2f} {cy:.2f} {pts[4][0]:.2f} {pts[4][1]:.2f} "
-    d += f"Q {cx:.2f} {cy:.2f} {pts[6][0]:.2f} {pts[6][1]:.2f} "
-    d += f"Q {cx:.2f} {cy:.2f} {pts[0][0]:.2f} {pts[0][1]:.2f} Z"
-    return d
-
 def render_svg_to_png_chrome(svg_path, png_path, width, height):
-    """
-    Renders SVG to transparent PNG using Google Chrome Headless.
-    """
     cmd = [
         CHROME_PATH,
         "--headless",
@@ -121,87 +94,56 @@ def render_svg_to_png_chrome(svg_path, png_path, width, height):
     subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print(f"  ✓ Rendered PNG: {png_path} ({width}x{height})")
 
-def generate_timeline_asset(variant="title", mode="color"):
+def generate_clean_timeline_asset(variant="title", mode="color"):
     """
     variant:
-      - 'title': Title Case ("Timeline")
-      - 'caps': ALL CAPS ("TIMELINE")
+      - 'title': "Timeline"
+      - 'caps': "TIMELINE"
     mode:
-      - 'color': Official honey gold & mahogany 3D bevel
-      - 'white': Pure white silhouette with depth opacity
-      - 'dark': Deep obsidian mahogany / jet black
+      - 'color': Official honey gold & specular crest highlight
+      - 'white': Clean white monochrome
+      - 'dark': Deep obsidian slate monochrome
     """
-    font_path = os.path.join(FONTS_DIR, "DynaPuff.ttf")
-    vw, vh = 3200, 1100
-    
+    font_path = os.path.join(FONTS_DIR, "TitanOne.ttf")
+    vw, vh = 3200, 1000
+
     if variant == "title":
         text_str = "Timeline"
-        font_size = 420
+        font_size = 380
         fp = fm.FontProperties(fname=font_path, size=font_size, weight="bold")
         tp = TextPath((0, 0), text_str, prop=fp)
         bb = tp.get_extents()
-        
+
         tx = (vw - bb.width) / 2.0 - bb.x0
-        ty = (vh + bb.height) / 2.0 - 25
-        
+        ty = (vh + bb.height) / 2.0 - 20
         d_path = path_to_svg_d(tp, scale=1.0, tx=tx, ty=ty, flip_y=True)
-        
-        sparkles = [
-            (tx - 35, ty - bb.height + 65, 34),              # Near top of 'T'
-            (tx + 420, ty - bb.height - 15, 26),             # Above 'i' dot
-            (tx + bb.width * 0.52, ty - bb.height + 25, 30), # Above 'l'
-            (tx + bb.width + 45, ty - 50, 36),               # After 'e'
-            (tx + bb.width * 0.28, ty + 15, 22),             # Under 'm'
-        ]
-        ext_depth = 34
-        bevel_w = 22
 
     else: # caps
         text_str = "TIMELINE"
-        font_size = 390
+        font_size = 340
         fp = fm.FontProperties(fname=font_path, size=font_size, weight="bold")
         tp = TextPath((0, 0), text_str, prop=fp)
         bb = tp.get_extents()
-        
+
         tx = (vw - bb.width) / 2.0 - bb.x0
-        ty = (vh + bb.height) / 2.0 - 20
-        
+        ty = (vh + bb.height) / 2.0 - 15
         d_path = path_to_svg_d(tp, scale=1.0, tx=tx, ty=ty, flip_y=True)
-        
-        sparkles = [
-            (tx - 35, ty - bb.height + 60, 36),              # Near top of 'T'
-            (tx + 720, ty - bb.height - 20, 26),             # Above 'M'
-            (tx + bb.width * 0.62, ty - bb.height + 30, 32), # Above 'L'
-            (tx + bb.width + 45, ty - 55, 36),               # After 'E'
-            (tx + bb.width * 0.35, ty + 15, 22),             # Under 'E'
-        ]
-        ext_depth = 34
-        bevel_w = 22
 
     defs_block = f"""
   <defs>
-    <linearGradient id="tlGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#E09B17" />
-      <stop offset="25%" stop-color="#F5C538" />
-      <stop offset="55%" stop-color="#F5C538" />
-      <stop offset="85%" stop-color="#E09B17" />
-      <stop offset="100%" stop-color="#B6580B" />
+    <linearGradient id="aversaGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{PALETTE['marigold']}"/>
+      <stop offset="25%" stop-color="{PALETTE['gold_vivid']}"/>
+      <stop offset="55%" stop-color="{PALETTE['gold_vivid']}"/>
+      <stop offset="85%" stop-color="{PALETTE['marigold']}"/>
+      <stop offset="100%" stop-color="{PALETTE['bronze']}"/>
     </linearGradient>
-    <linearGradient id="tlBevelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#7D1B05" />
-      <stop offset="100%" stop-color="#310603" />
+    <linearGradient id="aversaHighlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{PALETTE['canary']}" stop-opacity="0.92"/>
+      <stop offset="65%" stop-color="{PALETTE['champagne']}" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="{PALETTE['gold_vivid']}" stop-opacity="0.0"/>
     </linearGradient>
-    <linearGradient id="tlHighlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FDF39D" stop-opacity="0.95" />
-      <stop offset="65%" stop-color="#F7D160" stop-opacity="0.55" />
-      <stop offset="100%" stop-color="#F5C538" stop-opacity="0.0" />
-    </linearGradient>
-    <linearGradient id="tlSparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="45%" stop-color="#FDF39D" />
-      <stop offset="100%" stop-color="#F5C538" />
-    </linearGradient>
-    <clipPath id="tlClip">
+    <clipPath id="timelineClip">
       <path d="{d_path}"/>
     </clipPath>
   </defs>"""
@@ -209,109 +151,51 @@ def generate_timeline_asset(variant="title", mode="color"):
     svg_content = [
         f'<?xml version="1.0" encoding="UTF-8"?>',
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {vw} {vh}" width="{vw}" height="{vh}">',
-        f'  <title>{text_str} Typography ({variant} - {mode})</title>',
+        f'  <title>{text_str} Logotype - AVERSA &amp; DIES NATALIS Style ({mode})</title>',
         defs_block,
     ]
 
     if mode == "color":
-        # 1. 3D Solid Mahogany Extrusion Block
-        svg_content.append('  <!-- 3D Mahogany Extrusion Block -->')
-        svg_content.append('  <g id="3d-extrusion">')
-        step_offsets = list(range(ext_depth, 2, -4))
-        for off in step_offsets:
-            svg_content.append(
-                f'    <path d="{d_path}" fill="#310603" stroke="#310603" stroke-width="{ext_depth}" '
-                f'stroke-linejoin="round" stroke-linecap="round" transform="translate(0, {off})"/>'
-            )
-        svg_content.append('  </g>')
-
-        # 2. Rich Rust / Mahogany Bevel Contour
-        svg_content.append('  <!-- Bevel Rim -->')
+        # Pure clean Honey Gold body
+        svg_content.append('  <!-- Main Letter Body (Official Honey Gold Gradient) -->')
+        svg_content.append(f'  <path id="letters-body" d="{d_path}" fill="url(#aversaGoldGrad)" fill-rule="evenodd"/>')
+        
+        # Specular Highlight (matching AVERSA / DIES NATALIS crest gleam)
+        svg_content.append('  <!-- Specular Highlights -->')
+        svg_content.append('  <g id="letters-highlights" clip-path="url(#timelineClip)">')
         svg_content.append(
-            f'  <path id="bevel-rim" d="{d_path}" fill="#7D1B05" stroke="#7D1B05" '
-            f'stroke-width="{bevel_w}" stroke-linejoin="round" stroke-linecap="round"/>'
+            f'    <path d="{d_path}" fill="none" stroke="url(#aversaHighlightGrad)" '
+            f'stroke-width="28" stroke-linejoin="round" stroke-linecap="round" '
+            f'transform="translate(0, 12)" opacity="0.94"/>'
         )
-
-        # 3. Main Honey-Gold Letter Body
-        svg_content.append('  <!-- Golden Letter Body -->')
-        svg_content.append(
-            f'  <path id="letters-body" d="{d_path}" fill="url(#tlGoldGrad)" '
-            f'stroke="#E09B17" stroke-width="4" stroke-linejoin="round"/>'
-        )
-
-        # 4. Inner Specular Gloss Highlights (Clipped to letter body for clean bevel reflection)
-        svg_content.append('  <!-- Inner Specular Gloss Reflections -->')
-        svg_content.append('  <g clip-path="url(#tlClip)">')
-        # Soft top glow rim
-        svg_content.append(
-            f'    <path d="{d_path}" fill="none" stroke="url(#tlHighlightGrad)" '
-            f'stroke-width="26" stroke-linejoin="round" stroke-linecap="round" '
-            f'transform="translate(0, 10)" opacity="0.92"/>'
-        )
-        # Sharp white specular crest
         svg_content.append(
             f'    <path d="{d_path}" fill="none" stroke="#FFFEEA" '
             f'stroke-width="8" stroke-linejoin="round" stroke-linecap="round" '
-            f'transform="translate(0, 6)" opacity="0.80"/>'
+            f'transform="translate(0, 8)" opacity="0.82"/>'
         )
-        svg_content.append('  </g>')
-
-        # 5. Wonka Candy Shimmer Diamond Sparkles
-        svg_content.append('  <!-- Wonka Shimmer Diamond Sparkles -->')
-        svg_content.append('  <g id="sparkles">')
-        for (sx, sy, srad) in sparkles:
-            sp_d = get_sparkle_path(sx, sy, radius=srad)
-            svg_content.append(f'    <path d="{sp_d}" fill="url(#tlSparkleGrad)"/>')
-            svg_content.append(f'    <circle cx="{sx:.2f}" cy="{sy:.2f}" r="{srad*0.25:.2f}" fill="#FFFFFF"/>')
         svg_content.append('  </g>')
 
     elif mode == "white":
-        # Pure White Monochrome (Ideal for dark velvet / royal purple backgrounds)
-        svg_content.append('  <!-- 3D Shadow Layer -->')
-        svg_content.append(
-            f'  <path d="{d_path}" fill="rgba(255,255,255,0.18)" '
-            f'transform="translate(0, 18)"/>'
-        )
-        svg_content.append('  <!-- Main White Body -->')
-        svg_content.append(
-            f'  <path d="{d_path}" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>'
-        )
-        svg_content.append('  <!-- Sparkles -->')
-        svg_content.append('  <g id="sparkles">')
-        for (sx, sy, srad) in sparkles:
-            sp_d = get_sparkle_path(sx, sy, radius=srad)
-            svg_content.append(f'    <path d="{sp_d}" fill="#FFFFFF"/>')
-        svg_content.append('  </g>')
+        # Pure White Silhouette
+        svg_content.append('  <!-- White Silhouette -->')
+        svg_content.append(f'  <path id="letters-white" d="{d_path}" fill="#FFFFFF" fill-rule="evenodd"/>')
 
     elif mode == "dark":
-        # Deep Obsidian Mahogany / Dark Slate (Ideal for light backgrounds)
-        svg_content.append('  <!-- 3D Shadow Layer -->')
-        svg_content.append(
-            f'  <path d="{d_path}" fill="#07090F" '
-            f'transform="translate(0, 18)"/>'
-        )
-        svg_content.append('  <!-- Main Dark Body -->')
-        svg_content.append(
-            f'  <path d="{d_path}" fill="#310603" stroke="#07090F" stroke-width="4" stroke-linejoin="round"/>'
-        )
-        svg_content.append('  <!-- Sparkles -->')
-        svg_content.append('  <g id="sparkles">')
-        for (sx, sy, srad) in sparkles:
-            sp_d = get_sparkle_path(sx, sy, radius=srad)
-            svg_content.append(f'    <path d="{sp_d}" fill="#B6580B"/>')
-        svg_content.append('  </g>')
+        # Pure Obsidian Dark Silhouette
+        svg_content.append('  <!-- Dark Silhouette -->')
+        svg_content.append(f'  <path id="letters-dark" d="{d_path}" fill="#0B0F19" fill-rule="evenodd"/>')
 
     svg_content.append('</svg>\n')
     full_svg = "\n".join(svg_content)
 
-    # File naming convention
+    # File naming matching existing convention
     suffix = "bubble" if variant == "title" else "caps"
     svg_filename = f"timeline-{suffix}-{mode}.svg"
     png_filename = f"timeline-{suffix}-{mode}.png"
-    
+
     svg_path = os.path.join(SVG_OUT_DIR, svg_filename)
     png_path = os.path.join(PNG_OUT_DIR, png_filename)
-    
+
     with open(svg_path, "w", encoding="utf-8") as f:
         f.write(full_svg)
     print(f"✓ Saved SVG: {svg_path}")
@@ -321,8 +205,8 @@ def generate_timeline_asset(variant="title", mode="color"):
 
 def main():
     print("=" * 70)
-    print("GENERATING TIMELINE IDENTITY TYPOGRAPHY ASSETS")
-    print("Matching exact AVERSA & Wonka Honey Gold DNA")
+    print("RE-GENERATING TIMELINE LOGOTYPE ASSETS")
+    print("Style: 100% Identical to ARKESA / AVERSA & DIES NATALIS")
     print("=" * 70)
 
     variants = ["title", "caps"]
@@ -331,10 +215,10 @@ def main():
     for var in variants:
         for m in modes:
             print(f"\nProcessing: variant={var}, mode={m}...")
-            generate_timeline_asset(variant=var, mode=m)
+            generate_clean_timeline_asset(variant=var, mode=m)
 
     print("\n" + "=" * 70)
-    print("SUCCESS: All Timeline Typography assets generated successfully!")
+    print("SUCCESS: Clean AVERSA-style Timeline assets ready!")
     print("=" * 70)
 
 if __name__ == "__main__":
