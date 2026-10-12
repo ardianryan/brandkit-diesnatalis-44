@@ -357,9 +357,53 @@ def main():
     # -------------------------------------------------------------
     # Coordinates in 820 x 460 space scaled by 2.22
     svc_sc = 2.22
+    # -------------------------------------------------------------
+    # 2. Championship Tournament Ribbon Banner (Form from REFFERENCE.jpeg, Color from hand draw)
+    # -------------------------------------------------------------
+    # Center of arc: CX = 2100, CY = 6700
+    # Main Arch:
+    # R_top = 3980 (Peak Y = 6700 - 3980 = 2720, sits right below SVC tip at Y ~ 2680)
+    # R_bot = 3680 (Peak Y = 6700 - 3680 = 3020) -> Thickness = 300 px
+    # Span angle +/- 22 degrees (0.3839 rad)
+    ribbon_body_d = "M 609 3010 A 3980 3980 0 0 1 3591 3010 L 3478 3288 A 3680 3680 0 0 0 722 3288 Z"
+    ribbon_rim_top_d = "M 609 3010 A 3980 3980 0 0 1 3591 3010 L 3580 3045 A 3945 3945 0 0 0 620 3045 Z"
+    ribbon_rim_bot_d = "M 711 3253 A 3715 3715 0 0 1 3489 3253 L 3478 3288 A 3680 3680 0 0 0 722 3288 Z"
+
+    # Folds & Swallowtail Wings from REFFERENCE.jpeg
+    ribbon_fold_left_d = "M 609 3010 L 722 3288 L 615 3160 Z"
+    ribbon_tail_left_d = "M 609 3010 L 370 3110 L 485 3245 L 360 3380 L 722 3288 Z"
+    ribbon_tail_left_bevel_d = "M 609 3010 L 370 3110 L 485 3245 L 470 3225 L 385 3125 L 615 3030 Z"
+
+    ribbon_fold_right_d = "M 3591 3010 L 3478 3288 L 3585 3160 Z"
+    ribbon_tail_right_d = "M 3591 3010 L 3830 3110 L 3715 3245 L 3840 3380 L 3478 3288 Z"
+    ribbon_tail_right_bevel_d = "M 3591 3010 L 3830 3110 L 3715 3245 L 3730 3225 L 3815 3125 L 3585 3030 Z"
+
+    # Text Arc: R = 3805 (perfect vertical center inside main arch body without overlapping folds)
+    ribbon_text_path_d = "M 810 3125 A 3805 3805 0 0 1 3390 3125"
+    
+    # -------------------------------------------------------------
+    # 3. Towering Panda Mascot Placement
+    # -------------------------------------------------------------
+    p_sc = 2200.0 / panda["width"]
+    p_tx = CX - (panda["width"] * p_sc) / 2.0
+    p_ty = 180.0
+    
+    # -------------------------------------------------------------
+    # 4. Optically Centered AVERSA Wordmark Placement
+    # -------------------------------------------------------------
+    av_sc = 0.38
+    av_center_x = 1587.30 - 18.0
+    av_tx = CX - av_center_x * av_sc
+    av_ty = 1460.0
+    
+    # -------------------------------------------------------------
+    # 5. Smooth Athletic 3D SVC Typography Placement (hand draw SVC.PNG)
+    # -------------------------------------------------------------
+    # Coordinates in 820 x 460 space scaled by 2.22
+    svc_sc = 2.22
     svc_box_cx = 410.0
     svc_tx = CX - svc_box_cx * svc_sc
-    svc_ty = 1800.0
+    svc_ty = 1760.0
     
     defs_block = f"""
   <defs>
@@ -421,8 +465,8 @@ def main():
       <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#020408" flood-opacity="0.95"/>
     </filter>
 
-    <!-- Concentric Arched Text Path for Emblem Banner -->
-    <path id="emblemTextArc" d="{emblem_text_path_d}"/>
+    <!-- Concentric Arched Text Path for Tournament Ribbon -->
+    <path id="ribbonTextArc" d="{ribbon_text_path_d}"/>
   </defs>"""
 
     # Generate 3 Master Crest Variants: color, white, dark
@@ -476,31 +520,36 @@ def main():
                 lines.append(f'      <path d="{d_hl}" fill="{av_hl_fill}"/>')
         lines.append('    </g>')
 
-        # 3. ARCHED EMBLEM BANNER (COVERED FULLY BY TEXT)
-        lines.append('    <!-- 3. ARCHED EMBLEM BANNER (COVERED FULLY BY TEXT) -->')
+        # 3. CHAMPIONSHIP TOURNAMENT RIBBON BANNER (REFERENCE FORM + HAND-DRAW COLOR)
+        lines.append('    <!-- 3. CHAMPIONSHIP TOURNAMENT RIBBON BANNER -->')
         banner_filter = ' filter="url(#masterDropGlow)"' if is_color else ''
-        lines.append(f'    <g id="arched-emblem-banner"{banner_filter}>')
+        lines.append(f'    <g id="tournament-ribbon-banner"{banner_filter}>')
         if is_color:
-            lines.append(f'      <path d="{emblem_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["black_ink"]}" stroke-width="32" stroke-linejoin="round"/>')
-            lines.append(f'      <path d="{emblem_rim_top_d}" fill="url(#goldLightFacet)"/>')
-            lines.append(f'      <path d="{emblem_rim_bot_d}" fill="url(#goldDarkFacet)"/>')
+            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["black_ink"]}" stroke-width="26" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{ribbon_tail_left_bevel_d} {ribbon_tail_right_bevel_d}" fill="url(#goldLightFacet)"/>')
+            lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="{PALETTE["mahogany"]}" stroke="{PALETTE["black_ink"]}" stroke-width="18"/>')
+            lines.append(f'      <path d="{ribbon_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["black_ink"]}" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{ribbon_rim_top_d}" fill="url(#goldLightFacet)"/>')
+            lines.append(f'      <path d="{ribbon_rim_bot_d}" fill="url(#goldDarkFacet)"/>')
             text_fill = PALETTE["black_ink"]
-            lines.append(f'      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="134" font-weight="900" letter-spacing="2.2" fill="{text_fill}" stroke="{text_fill}" stroke-width="5" stroke-linejoin="round">')
-            lines.append('        <textPath href="#emblemTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
+            lines.append(f'      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="120" font-weight="900" letter-spacing="1.8" fill="{text_fill}" stroke="{text_fill}" stroke-width="4.5" stroke-linejoin="round">')
+            lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         elif is_white:
-            lines.append(f'      <path d="{emblem_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="32" stroke-linejoin="round"/>')
-            lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="134" font-weight="900" letter-spacing="2.2" fill="#000000" stroke="#000000" stroke-width="5" stroke-linejoin="round">')
-            lines.append('        <textPath href="#emblemTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
+            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#FFFFFF" stroke="#000000" stroke-width="26" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{ribbon_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="120" font-weight="900" letter-spacing="1.8" fill="#000000" stroke="#000000" stroke-width="4.5" stroke-linejoin="round">')
+            lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         else:
-            lines.append(f'      <path d="{emblem_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="32" stroke-linejoin="round"/>')
-            lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="134" font-weight="900" letter-spacing="2.2" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round">')
-            lines.append('        <textPath href="#emblemTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
+            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#1E293B" stroke="#020408" stroke-width="26" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{ribbon_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="120" font-weight="900" letter-spacing="1.8" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">')
+            lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         lines.append('    </g>')
 
-        # 4. SMOOTH ATHLETIC 3D "SVC" TYPOGRAPHY
+        # 4. SMOOTH ATHLETIC 3D "SVC" TYPOGRAPHY (EXACT HAND-DRAW SVC.PNG)
         lines.append('    <!-- 4. SMOOTH ATHLETIC 3D "SVC" TYPOGRAPHY -->')
         filter_attr = ' filter="url(#masterDropGlow)"' if is_color else ''
         lines.append(f'    <g id="svc-letters" transform="translate({svc_tx:.2f}, {svc_ty:.2f}) scale({svc_sc:.4f})"{filter_attr}>')
