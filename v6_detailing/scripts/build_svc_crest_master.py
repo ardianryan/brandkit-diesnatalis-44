@@ -5,36 +5,28 @@ build_svc_crest_master.py
 Reconstructs and vectorizes the official SVC (Smansage Volleyball Competition)
 emblem into high-precision, infinitely scalable SVG and ultra-HD PNG assets.
 
-Components:
-1. Panda Mascot (Header Crest):
-   - Fierce esport facial expression, ears, black eye patches, nose, mouth
-   - High-contrast 2-tone shading: white face, gray shadow, slate arms
-   - Metallic gold claws grasping the upper rim of the shield
-   - Glowing golden eyes & shoulder fur highlights
-   - Clean polygon masking isolating mascot without legacy sketch artifacts
-2. Beveled Triangular Shield (Crest):
-   - Outer bevel frame: Metallic Platinum / Silver (#94A3B8 -> #E2E8F0 -> #475569)
-   - Inner bevel frame: Metallic Gold (#B6580B -> #E09B17 -> #F5C538 -> #FDF39D)
-   - Split-lighting Midnight Navy Field (Left #0F172A, Right #070A12)
-   - Precision V-notch resting cradle for the mascot
-3. Wordmark "AVERSA":
-   - Authentic official AVERSA letterforms imported from assets/svg/aversa-standalone-color.svg
-4. Akronim "SVC" (Centerpiece):
-   - Bold athletic display typography (S, V, C) with Plus Jakarta Sans ExtraBold DNA
-   - Multi-layered 3D bevels (deep shadow, gold outer bevel, gold face, inner highlight)
-   - V letter slightly taller and extending lower, matching tournament crest aesthetic
-5. Lower Arched Banner:
-   - Golden curved ribbon with side folds
-   - Text: "SMANSAGE VOLLEYBALL COMPETITION" (No "since", no year)
-6. Deliverables:
-   - assets/svg/svc-crest-color.svg, svc-crest-white.svg, svc-crest-dark.svg
-   - assets/svg/svc-mascot-standalone.svg
-   - assets/png/svc-crest-color.png, svc-crest-white.png, svc-crest-dark.png
-   - assets/png/svc-mascot-standalone.png
+Key Architectural Updates (Precision V2.1):
+1. 5-Sided Heraldic Shield (Pentagonal Crest):
+   - Corrected from simple triangle to authentic 5-sided tournament crest
+   - Steep upper diagonal slopes to mid-knuckles, gentle lower taper to base tip
+   - 3D mitered platinum/silver outer bevel & metallic gold inner bevel
+   - Split midnight navy field (Left #0F172A, Right #070A12)
+2. Towering Panda Mascot (Header Crest):
+   - Elevated upwards so full head, ears, and glare tower proudly above shield
+   - Claws securely grasping the upper golden rim cradle
+   - Multi-layer vector tracing (white face, gray shadow, slate arms, gold claws/eyes)
+3. 100% Authentic Hand-Drawn "SVC" Typography:
+   - S, V, C letters isolated without boundary artifacts or shield rim spikes
+   - V letter with angled triangular bevel caps, spine ridge, and flat chamfered base
+   - S and C letters with 3D chamfered terminal wedges and faceted body shading
+4. Concentric Arched Ribbon Banner:
+   - True mathematical concentric circular arc (equal top/bottom rim thickness)
+   - Text "SMANSAGE VOLLEYBALL COMPETITION" centered along arc centerline
 =============================================================================
 """
 
 import os
+import math
 import cv2
 import numpy as np
 import subprocess
@@ -79,7 +71,7 @@ PALETTE = {
     "black_ink": "#020408",
 }
 
-def trace_mask_potrace(mask_u8, name, alphamax=1.2):
+def trace_mask_potrace(mask_u8, name, alphamax=1.0):
     bmp = f"scratch/svc_clean_{name}.bmp"
     svg = f"scratch/svc_clean_{name}.svg"
     cleaned = cv2.medianBlur(mask_u8, 3)
@@ -100,14 +92,14 @@ def extract_panda_vector_layers():
     h, w = p_crop.shape[:2]
     rgb = cv2.cvtColor(p_crop, cv2.COLOR_BGR2RGB)
     
-    # 1. Background flood fill
+    # Background flood fill
     flood = p_crop.copy()
     mask = np.zeros((h + 2, w + 2), np.uint8)
     cv2.floodFill(flood, mask, (0, 0), (0, 255, 0), (5, 5, 5), (5, 5, 5))
     cv2.floodFill(flood, mask, (w - 1, 0), (0, 255, 0), (5, 5, 5), (5, 5, 5))
     panda_fg = ~((flood[:, :, 0] == 0) & (flood[:, :, 1] == 255) & (flood[:, :, 2] == 0))
     
-    # 2. Precision contour clipping: isolates arms, paws, claws, and chin while excluding legacy sketch shield bar
+    # Precision contour polygon clipping: eliminates legacy shield bar
     pts = [
         [0, 0],
         [0, 300],
@@ -143,22 +135,12 @@ def extract_panda_vector_layers():
     clean_fg = panda_fg & (mask_poly > 0)
     
     # Layers:
-    # 1. Outer Silhouette (Base Black)
     base_sil = (clean_fg.astype(np.uint8)) * 255
-    
-    # 2. White Face Fur (rgb > 155 in face)
     white_mask = clean_fg & (rgb[:, :, 0] > 155) & (rgb[:, :, 1] > 155) & (rgb[:, :, 2] > 155)
-    
-    # 3. Soft Gray Face Shadows
     gray_mask = white_mask & (rgb[:, :, 0] < 225)
-    
-    # 4. Slate Navy Fur Shading (Arms & Chest)
     slate_mask = clean_fg & (rgb[:, :, 2] > rgb[:, :, 0] + 5) & (rgb[:, :, 2] > 40) & (rgb[:, :, 2] < 125) & (rgb[:, :, 0] < 90)
-    
-    # 5. Black Facial Features (Ears, Eye patches, Nose, Mouth, Arm creases)
     black_feat_mask = clean_fg & (rgb[:, :, 0] < 45) & (rgb[:, :, 1] < 45) & (rgb[:, :, 2] < 45)
     
-    # 6. Gold Claws, Shoulder Fur, and Eyes
     gold_fur_mask = clean_fg & (rgb[:, :, 0] > 140) & (rgb[:, :, 1] > 85) & (rgb[:, :, 2] < 95) & (rgb[:, :, 0] > rgb[:, :, 2] + 45)
     eyes_box = np.zeros((h, w), dtype=bool)
     eyes_box[200:255, 350:405] = True
@@ -168,13 +150,13 @@ def extract_panda_vector_layers():
     gold_total_mask = gold_fur_mask | eyes_mask
     gold_bright_mask = gold_total_mask & (rgb[:, :, 1] > 135)
     
-    sil_d = trace_mask_potrace(base_sil, "sil")
-    white_d = trace_mask_potrace(white_mask.astype(np.uint8) * 255, "white")
-    gray_d = trace_mask_potrace(gray_mask.astype(np.uint8) * 255, "gray")
-    slate_d = trace_mask_potrace(slate_mask.astype(np.uint8) * 255, "slate")
-    black_d = trace_mask_potrace(black_feat_mask.astype(np.uint8) * 255, "black")
-    gold_d = trace_mask_potrace(gold_total_mask.astype(np.uint8) * 255, "gold")
-    gold_br_d = trace_mask_potrace(gold_bright_mask.astype(np.uint8) * 255, "gold_br")
+    sil_d = trace_mask_potrace(base_sil, "p_sil")
+    white_d = trace_mask_potrace(white_mask.astype(np.uint8) * 255, "p_white")
+    gray_d = trace_mask_potrace(gray_mask.astype(np.uint8) * 255, "p_gray")
+    slate_d = trace_mask_potrace(slate_mask.astype(np.uint8) * 255, "p_slate")
+    black_d = trace_mask_potrace(black_feat_mask.astype(np.uint8) * 255, "p_black")
+    gold_d = trace_mask_potrace(gold_total_mask.astype(np.uint8) * 255, "p_gold")
+    gold_br_d = trace_mask_potrace(gold_bright_mask.astype(np.uint8) * 255, "p_gold_br")
     
     return {
         "width": w,
@@ -209,19 +191,63 @@ def get_aversa_vector():
                 
     return letters_paths, hl_paths
 
-def get_beveled_svc_paths():
+def extract_svc_typography_layers():
     """
-    Returns high-impact athletic display typography for S, V, C.
-    Derived from Plus Jakarta Sans ExtraBold with esport crest beveling.
+    Extracts authentic 3D faceted letterforms (S, V, C) directly from hand draw SVC.PNG.
+    Components are cleanly segmented to remove shield rim artifacts on sides and bottom.
     """
-    s_path = "M 234.81 504.81 Q 206.81 504.81 182.19 494.62 Q 157.62 484.38 139.81 465.62 Q 122.00 446.81 113.19 421.19 L 164.00 398.38 Q 175.19 422.81 195.00 436.81 Q 214.81 450.81 238.81 450.81 Q 257.62 450.81 269.00 442.25 Q 280.38 433.62 280.38 419.19 Q 280.38 398.38 254.00 389.62 L 195.62 370.38 Q 124.00 346.81 124.00 286.00 Q 124.00 259.62 137.00 239.62 Q 150.00 219.62 173.38 208.44 Q 196.81 197.19 227.19 197.19 Q 267.62 197.19 298.19 217.44 Q 328.81 237.62 341.19 272.81 L 290.81 295.62 Q 282.38 274.81 265.56 263.00 Q 248.81 251.19 227.19 251.19 Q 208.38 251.19 196.75 260.19 Q 185.19 269.19 185.19 283.62 Q 185.19 304.81 212.38 314.00 L 269.62 332.38 Q 341.19 355.62 341.19 415.62 Q 341.19 441.62 327.56 461.81 Q 314.00 482.00 290.19 493.44 Q 266.38 504.81 234.81 504.81 Z"
-    v_path = "M 534.35 515.00 L 424.70 194.65 L 497.80 194.65 L 573.05 429.00 L 648.30 194.65 L 721.40 194.65 L 611.75 515.00 L 534.35 515.00 Z"
-    c_path = "M 958.00 504.81 Q 926.00 504.81 898.56 493.25 Q 871.19 481.62 850.75 460.81 Q 830.38 440.00 819.00 412.00 Q 807.62 384.00 807.62 350.81 Q 807.62 317.62 818.81 289.44 Q 830.00 261.19 850.38 240.62 Q 870.81 220.00 898.19 208.62 Q 925.62 197.19 958.00 197.19 Q 990.38 197.19 1016.19 208.00 Q 1042.00 218.81 1060.00 236.81 Q 1078.00 254.81 1085.62 276.81 L 1030.81 303.19 Q 1023.19 281.62 1004.19 267.44 Q 985.19 253.19 958.00 253.19 Q 931.62 253.19 911.62 265.62 Q 891.62 278.00 880.62 299.81 Q 869.62 321.62 869.62 350.81 Q 869.62 380.00 880.62 402.00 Q 891.62 424.00 911.62 436.44 Q 931.62 448.81 958.00 448.81 Q 985.19 448.81 1004.19 434.62 Q 1023.19 420.38 1030.81 398.81 L 1085.62 425.19 Q 1078.00 447.19 1060.00 465.19 Q 1042.00 483.19 1016.19 494.00 Q 990.38 504.81 958.00 504.81 Z"
-    return f"{s_path} {v_path} {c_path}"
+    print("-> Extracting authentic 3D faceted SVC typography from hand draw SVC.PNG...")
+    img = cv2.imread(HAND_DRAW_PATH)
+    crop = img[750:1300, 800:1600]
+    h, w = crop.shape[:2]
+    rgb = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
+    
+    is_gold = (rgb[:, :, 0] > 120) & (rgb[:, :, 1] > 70) & (rgb[:, :, 2] < 90)
+    num, labels, stats, centroids = cv2.connectedComponentsWithStats(is_gold.astype(np.uint8))
+    
+    s_mask = (labels == 47)
+    v_mask = (labels == 18)
+    c_mask = (labels == 49)
+    
+    # 1. Clean S letter
+    s_mask[425:, :] = False
+    for y in range(260, 425):
+        for x in range(125):
+            s_mask[y, x] = False
+            
+    # 2. Clean C letter
+    c_mask[430:, :] = False
+    c_mask[140:220, 715:] = False
+    c_mask[220:330, 710:] = False
+    for y in range(320, 430):
+        for x in range(745, w):
+            c_mask[y, x] = False
+            
+    total_clean = s_mask | v_mask | c_mask
+    
+    # Multi-layer color masks
+    sil_mask = total_clean.astype(np.uint8) * 255
+    face_mask = (total_clean & (rgb[:, :, 0] > 195) & (rgb[:, :, 1] > 150)).astype(np.uint8) * 255
+    mid_mask = (total_clean & (rgb[:, :, 0] > 165) & (rgb[:, :, 1] > 115) & (face_mask == 0)).astype(np.uint8) * 255
+    facet_mask = (total_clean & (face_mask == 0) & (mid_mask == 0)).astype(np.uint8) * 255
+    
+    sil_d = trace_mask_potrace(sil_mask, "svc_sil", alphamax=1.0)
+    face_d = trace_mask_potrace(face_mask, "svc_face", alphamax=1.0)
+    mid_d = trace_mask_potrace(mid_mask, "svc_mid", alphamax=1.0)
+    facet_d = trace_mask_potrace(facet_mask, "svc_facet", alphamax=1.0)
+    
+    return {
+        "width": w,
+        "height": h,
+        "sil_d": sil_d,
+        "face_d": face_d,
+        "mid_d": mid_d,
+        "facet_d": facet_d,
+    }
 
 def main():
     print("=" * 70)
-    print("RECONSTRUCTING SVC EMBLEM (Smansage Volleyball Competition)")
+    print("RECONSTRUCTING SVC EMBLEM (Smansage Volleyball Competition) - V2.1")
     print("=" * 70)
     
     # 1. Panda Mascot Vectors
@@ -230,66 +256,78 @@ def main():
     # 2. Master AVERSA Vectors
     aversa_letters, aversa_highlights = get_aversa_vector()
     
-    # 3. Athletic 3D Beveled SVC Paths
-    svc_combined_d = get_beveled_svc_paths()
+    # 3. Authentic 3D Faceted SVC Typography
+    svc_data = extract_svc_typography_layers()
     
+    # =============================================================
     # Geometry Layout Calculations (Canvas 4200 x 4200 px)
-    # -------------------------------------------------------------
-    # Triangular Shield Geometry:
-    # Outer Silhouette Path:
-    shield_outer_d = "M 550 1180 L 1380 1180 L 2100 1550 L 2820 1180 L 3650 1180 L 2100 3780 Z"
-    
-    # Shield Outer Platinum / Silver Rim (Inset):
-    shield_silver_rim_d = "M 550 1180 L 1380 1180 L 2100 1550 L 2820 1180 L 3650 1180 L 2100 3780 Z M 670 1280 L 2100 3620 L 3530 1280 L 2780 1280 L 2100 1630 L 1420 1280 Z"
-    
-    # Shield Inner Gold Rim (Inset):
-    shield_gold_rim_d = "M 670 1280 L 1420 1280 L 2100 1630 L 2780 1280 L 3530 1280 L 2100 3620 Z M 780 1370 L 2100 3470 L 3420 1370 L 2740 1370 L 2100 1700 L 1460 1370 Z"
-    
-    # Shield Midnight Navy Field (Split-Lit):
-    shield_navy_left_d = "M 780 1370 L 1460 1370 L 2100 1700 L 2100 3470 Z"
-    shield_navy_right_d = "M 2100 1700 L 2740 1370 L 3420 1370 L 2100 3470 Z"
+    # =============================================================
     
     # -------------------------------------------------------------
-    # Lower Ribbon / Banner Geometry:
-    ribbon_body_d = "M 880 3270 Q 2100 2930 3320 3270 L 3320 3510 Q 2100 3170 880 3510 Z"
-    ribbon_rim_top_d = "M 880 3270 Q 2100 2930 3320 3270 L 3320 3310 Q 2100 2970 880 3310 Z"
-    ribbon_rim_bot_d = "M 880 3470 Q 2100 3130 3320 3470 L 3320 3510 Q 2100 3170 880 3510 Z"
+    # 1. 5-Sided Heraldic Pentagonal Shield Geometry
+    # -------------------------------------------------------------
+    # Outer Shield Silhouette (Mitered 5-sided crest with top V-cradle):
+    shield_outer_d = "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z"
     
-    ribbon_tail_left_d = "M 880 3270 L 640 3340 L 730 3460 L 640 3580 L 880 3510 Z"
-    ribbon_fold_left_d = "M 880 3270 L 880 3510 L 790 3420 Z"
+    # Outer Platinum / Silver Rim (Inset):
+    shield_silver_rim_d = (
+        "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z "
+        "M 760 1150 L 1195 2815 L 2100 3650 L 3005 2815 L 3440 1150 L 2620 1150 L 2100 1420 L 1580 1150 Z"
+    )
     
-    ribbon_tail_right_d = "M 3320 3270 L 3560 3340 L 3470 3460 L 3560 3580 L 3320 3510 Z"
-    ribbon_fold_right_d = "M 3320 3270 L 3320 3510 L 3410 3420 Z"
+    # Inner Gold Rim (Inset):
+    shield_gold_rim_d = (
+        "M 760 1150 L 1580 1150 L 2100 1420 L 2620 1150 L 3440 1150 L 3005 2815 L 2100 3650 L 1195 2815 Z "
+        "M 860 1240 L 1260 2780 L 2100 3530 L 2940 2780 L 3340 1240 L 2590 1240 L 2100 1490 L 1610 1240 Z"
+    )
     
-    ribbon_text_path_d = "M 960 3455 Q 2100 3115 3240 3455"
+    # Split Midnight Navy Field:
+    shield_navy_left_d = "M 860 1240 L 1610 1240 L 2100 1490 L 2100 3530 L 1260 2780 Z"
+    shield_navy_right_d = "M 2100 1490 L 2590 1240 L 3340 1240 L 2940 2780 L 2100 3530 Z"
     
     # -------------------------------------------------------------
-    # Panda Mascot Scaling & Placement:
-    # Mascot sits perched on the shield rim, paws grasping the cradle
+    # 2. Concentric Arched Ribbon Banner Geometry
+    # -------------------------------------------------------------
+    # Mathematical concentric circular arcs centered at (X0=2100, Y0=7000)
+    # Radii: R_top=3900, R_mid=3770 (text centerline), R_bot=3640 (thickness=260 px)
+    ribbon_body_d = "M 895 3291 A 3900 3900 0 0 1 3305 3291 L 3225 3538 A 3640 3640 0 0 0 975 3538 Z"
+    ribbon_rim_top_d = "M 895 3291 A 3900 3900 0 0 1 3305 3291 L 3290 3330 A 3860 3860 0 0 0 910 3330 Z"
+    ribbon_rim_bot_d = "M 960 3500 A 3680 3680 0 0 1 3240 3500 L 3225 3538 A 3640 3640 0 0 0 975 3538 Z"
+    
+    # Side fold ribbon tails:
+    ribbon_tail_left_d = "M 895 3291 L 630 3360 L 730 3485 L 630 3610 L 975 3538 Z"
+    ribbon_fold_left_d = "M 895 3291 L 975 3538 L 870 3440 Z"
+    ribbon_tail_right_d = "M 3305 3291 L 3570 3360 L 3470 3485 L 3570 3610 L 3225 3538 Z"
+    ribbon_fold_right_d = "M 3305 3291 L 3225 3538 L 3330 3440 Z"
+    
+    ribbon_text_path_d = "M 935 3415 A 3770 3770 0 0 1 3265 3415"
+    
+    # -------------------------------------------------------------
+    # 3. Towering Panda Mascot Placement
+    # -------------------------------------------------------------
+    # Elevated so entire head & glare tower proudly above the shield crest
     p_sc = 2200.0 / panda["width"]
     p_tx = CX - (panda["width"] * p_sc) / 2.0
-    p_ty = 490.0
+    p_ty = 180.0
     
     # -------------------------------------------------------------
-    # AVERSA Wordmark Placement:
-    # Placed below the panda chin & claws, above SVC acronym
+    # 4. AVERSA Wordmark Placement
+    # -------------------------------------------------------------
+    # Placed in the spacious upper navy field below chin and above SVC
     av_sc = 0.44
     av_tx = CX - (2700 * av_sc) / 2.0
-    av_ty = 1760.0
+    av_ty = 1600.0
     
     # -------------------------------------------------------------
-    # SVC Wordmark Placement:
-    # Centered at CX=2100, Y=2620, width ~ 2260 px
-    svc_box_w = 973.0
-    svc_box_h = 321.0
-    svc_target_w = 2260.0
-    svc_scale = svc_target_w / svc_box_w
-    svc_center_x = 600.0
-    svc_center_y = 354.5
-    svc_target_cx = CX
-    svc_target_cy = 2520.0
-    svc_tx = svc_target_cx - svc_center_x * svc_scale
-    svc_ty = svc_target_cy - svc_center_y * svc_scale
+    # 5. Authentic 3D Faceted SVC Placement
+    # -------------------------------------------------------------
+    # Centered at CX=2100, Y=2400 with width ~ 2300 px
+    svc_w = svc_data["width"]
+    svc_h = svc_data["height"]
+    svc_target_w = 2300.0
+    svc_sc = svc_target_w / svc_w
+    svc_tx = CX - (svc_w * svc_sc) / 2.0
+    svc_ty = 1960.0
     
     defs_block = f"""
   <defs>
@@ -311,11 +349,18 @@ def main():
       <stop offset="100%" stop-color="{PALETTE['mahogany']}"/>
     </linearGradient>
 
-    <linearGradient id="svcGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <linearGradient id="svcGoldFaceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="{PALETTE['canary']}"/>
-      <stop offset="22%" stop-color="{PALETTE['vivid_gold']}"/>
-      <stop offset="68%" stop-color="{PALETTE['marigold']}"/>
-      <stop offset="100%" stop-color="{PALETTE['bronze']}"/>
+      <stop offset="25%" stop-color="{PALETTE['champagne']}"/>
+      <stop offset="70%" stop-color="{PALETTE['vivid_gold']}"/>
+      <stop offset="100%" stop-color="{PALETTE['marigold']}"/>
+    </linearGradient>
+
+    <linearGradient id="svcGoldFacetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="{PALETTE['marigold']}"/>
+      <stop offset="40%" stop-color="{PALETTE['bronze']}"/>
+      <stop offset="80%" stop-color="{PALETTE['mahogany']}"/>
+      <stop offset="100%" stop-color="{PALETTE['deep_crevice']}"/>
     </linearGradient>
 
     <linearGradient id="goldFacetLight" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -341,7 +386,7 @@ def main():
       <stop offset="100%" stop-color="{PALETTE['obsidian']}"/>
     </linearGradient>
 
-    <!-- Text Path Curve for Ribbon -->
+    <!-- Concentric Arched Text Path for Ribbon -->
     <path id="ribbonTextArc" d="{ribbon_text_path_d}"/>
   </defs>"""
 
@@ -357,8 +402,8 @@ def main():
         lines.append(defs_block)
         lines.append('  <g id="master-crest">')
         
-        # 1. TRIANGULAR SHIELD FOUNDATION
-        lines.append('    <!-- 1. TRIANGULAR SHIELD FOUNDATION -->')
+        # 1. 5-SIDED HERALDIC SHIELD FOUNDATION
+        lines.append('    <!-- 1. 5-SIDED HERALDIC SHIELD FOUNDATION -->')
         lines.append('    <g id="shield-base">')
         if is_color:
             lines.append(f'      <path d="{shield_outer_d}" fill="{PALETTE["obsidian"]}" stroke="{PALETTE["black_ink"]}" stroke-width="48" stroke-linejoin="round"/>')
@@ -383,7 +428,6 @@ def main():
         av_fill = "url(#goldRimGrad)" if is_color else ("#FFFFFF" if is_white else "#CBD5E1")
         av_hl_fill = "url(#goldFacetLight)" if is_color else ("#FFFFFF" if is_white else "#94A3B8")
         lines.append(f'    <g id="aversa-wordmark" transform="translate({av_tx:.2f}, {av_ty:.2f}) scale({av_sc:.4f})">')
-        # Drop shadow for AVERSA
         if is_color:
             lines.append('      <g transform="translate(0, 14)" opacity="0.9">')
             for d_str in aversa_letters:
@@ -397,74 +441,67 @@ def main():
                 lines.append(f'      <path d="{d_hl}" fill="{av_hl_fill}"/>')
         lines.append('    </g>')
 
-        # 3. ATHLETIC 3D BEVELED "SVC"
-        lines.append('    <!-- 3. ATHLETIC 3D BEVELED "SVC" TYPOGRAPHY -->')
-        lines.append(f'    <g id="svc-letters" transform="translate({svc_tx:.2f}, {svc_ty:.2f}) scale({svc_scale:.4f})">')
+        # 3. 100% AUTHENTIC 3D FACETED "SVC" TYPOGRAPHY
+        lines.append('    <!-- 3. AUTHENTIC 3D FACETED "SVC" TYPOGRAPHY -->')
+        lines.append(f'    <g id="svc-letters" transform="translate({svc_tx:.2f}, {svc_ty:.2f}) scale({svc_sc:.4f})">')
+        lines.append(f'      <g transform="translate(0, {svc_h}) scale(0.1, -0.1)">')
         if is_color:
             # Layer 1: Heavy black drop shadow
-            lines.append(f'      <g transform="translate(0, 16)" fill="none" stroke="{PALETTE["obsidian"]}" stroke-width="48" stroke-linejoin="round">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
-            # Layer 2: Beveled Gold Outer Stroke
-            lines.append(f'      <g fill="none" stroke="url(#goldRimGrad)" stroke-width="32" stroke-linejoin="round">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
-            # Layer 3: Solid Face Gold
-            lines.append(f'      <g fill="url(#svcGoldGrad)">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
-            # Layer 4: Inner Bevel Inset Highlight Stroke
-            lines.append(f'      <g fill="none" stroke="{PALETTE["canary"]}" stroke-width="6" opacity="0.8" stroke-linejoin="round">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
+            lines.append(f'        <g transform="translate(0, -18)">')
+            lines.append(f'          <path d="{svc_data["sil_d"]}" fill="{PALETTE["obsidian"]}" stroke="{PALETTE["black_ink"]}" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append('        </g>')
+            # Layer 2: Beveled Gold Outer Base
+            lines.append(f'        <path d="{svc_data["sil_d"]}" fill="{PALETTE["bronze"]}" stroke="{PALETTE["mahogany"]}" stroke-width="20" stroke-linejoin="round"/>')
+            # Layer 3: 3D Shadow Facets (Bevels & Central Spine)
+            lines.append(f'        <path d="{svc_data["facet_d"]}" fill="url(#svcGoldFacetGrad)"/>')
+            # Layer 4: Rich Mid Gold Body
+            lines.append(f'        <path d="{svc_data["mid_d"]}" fill="url(#goldRimGrad)"/>')
+            # Layer 5: Brilliant Canary Face
+            lines.append(f'        <path d="{svc_data["face_d"]}" fill="url(#svcGoldFaceGrad)"/>')
+            # Layer 6: Inset Highlights
+            lines.append(f'        <path d="{svc_data["face_d"]}" fill="none" stroke="{PALETTE["canary"]}" stroke-width="4" opacity="0.6"/>')
         elif is_white:
-            lines.append(f'      <g fill="none" stroke="#000000" stroke-width="36" stroke-linejoin="round">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
-            lines.append(f'      <g fill="#FFFFFF">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
-            lines.append(f'      <g fill="none" stroke="#FFFFFF" stroke-width="6" opacity="0.6" stroke-linejoin="round">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
+            lines.append(f'        <path d="{svc_data["sil_d"]}" fill="#000000" stroke="#000000" stroke-width="24" stroke-linejoin="round"/>')
+            lines.append(f'        <path d="{svc_data["sil_d"]}" fill="#FFFFFF"/>')
+            lines.append(f'        <path d="{svc_data["facet_d"]}" fill="#E2E8F0"/>')
+            lines.append(f'        <path d="{svc_data["face_d"]}" fill="#FFFFFF"/>')
         else:
-            lines.append(f'      <g fill="none" stroke="{PALETTE["black_ink"]}" stroke-width="40" stroke-linejoin="round">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
-            lines.append(f'      <g fill="#1E293B" stroke="#64748B" stroke-width="14">')
-            lines.append(f'        <path d="{svc_combined_d}"/>')
-            lines.append('      </g>')
+            lines.append(f'        <path d="{svc_data["sil_d"]}" fill="{PALETTE["black_ink"]}" stroke="{PALETTE["black_ink"]}" stroke-width="24" stroke-linejoin="round"/>')
+            lines.append(f'        <path d="{svc_data["sil_d"]}" fill="#1E293B"/>')
+            lines.append(f'        <path d="{svc_data["facet_d"]}" fill="#070E1B"/>')
+            lines.append(f'        <path d="{svc_data["face_d"]}" fill="#334155"/>')
+        lines.append('      </g>')
         lines.append('    </g>')
 
-        # 4. LOWER ARCHED RIBBON BANNER
-        lines.append('    <!-- 4. LOWER ARCHED BANNER (SMANSAGE VOLLEYBALL COMPETITION) -->')
+        # 4. CONCENTRIC ARCHED RIBBON BANNER
+        lines.append('    <!-- 4. CONCENTRIC ARCHED RIBBON BANNER -->')
         lines.append('    <g id="ribbon-banner">')
         if is_color:
             lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="{PALETTE["bronze"]}" stroke="{PALETTE["obsidian"]}" stroke-width="16"/>')
             lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="{PALETTE["mahogany"]}"/>')
-            lines.append(f'      <path d="{ribbon_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["obsidian"]}" stroke-width="20"/>')
+            lines.append(f'      <path d="{ribbon_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["obsidian"]}" stroke-width="24" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{ribbon_rim_top_d}" fill="url(#goldFacetLight)"/>')
             lines.append(f'      <path d="{ribbon_rim_bot_d}" fill="url(#goldFacetDark)"/>')
             text_fill = PALETTE["black_ink"]
-            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="94" font-weight="900" letter-spacing="9" fill="{text_fill}">')
+            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="84" font-weight="900" letter-spacing="8" fill="{text_fill}">')
             lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         elif is_white:
-            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="none" stroke="#FFFFFF" stroke-width="20"/>')
-            lines.append(f'      <path d="{ribbon_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="16"/>')
-            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="94" font-weight="900" letter-spacing="9" fill="#000000">')
+            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#FFFFFF" stroke="#000000" stroke-width="20"/>')
+            lines.append(f'      <path d="{ribbon_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="24"/>')
+            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="84" font-weight="900" letter-spacing="8" fill="#000000">')
             lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         else:
             lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#1E293B" stroke="#020408" stroke-width="20"/>')
-            lines.append(f'      <path d="{ribbon_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="20"/>')
-            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="94" font-weight="900" letter-spacing="9" fill="#FFFFFF">')
+            lines.append(f'      <path d="{ribbon_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="24"/>')
+            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="84" font-weight="900" letter-spacing="8" fill="#FFFFFF">')
             lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         lines.append('    </g>')
 
-        # 5. PANDA MASCOT (HEADER CREST - TOPMOST LAYER)
-        lines.append('    <!-- 5. PANDA MASCOT (HEADER CREST) -->')
+        # 5. TOWERING PANDA MASCOT (HEADER CREST - TOPMOST LAYER)
+        lines.append('    <!-- 5. TOWERING PANDA MASCOT (HEADER CREST) -->')
         lines.append(f'    <g id="panda-mascot-crest" transform="translate({p_tx:.2f}, {p_ty:.2f}) scale({p_sc:.4f})">')
         lines.append(f'      <g transform="translate(0, {panda["height"]}) scale(0.1, -0.1)">')
         if is_color:
@@ -551,7 +588,7 @@ def main():
     print(f"  ✓ Rendered Standalone Mascot PNG: {mascot_png_file} ({mascot_canvas_w}x{mascot_canvas_h})")
 
     print("\n" + "=" * 70)
-    print("SUCCESS: ALL SVC EMBLEM ASSETS GENERATED & RENDERED!")
+    print("SUCCESS: ALL PRECISION V2.1 SVC ASSETS GENERATED & RENDERED!")
     print("=" * 70)
 
 if __name__ == "__main__":
