@@ -195,147 +195,108 @@ def get_aversa_vector():
 
 def build_chiseled_svc_svg(mode):
     """
-    Constructs 100% geometric, razor-sharp 3D faceted athletic display typography
-    for S, V, C matching the design anatomy of hand draw SVC.PNG.
-    Canvas bounds: 1400 x 650 px.
+    Constructs smooth athletic curved 3D typography for S, V, C
+    matching hand draw SVC.PNG exactly.
+    Coordinate space: 820 x 460 px.
     """
     is_color = (mode == "color")
     is_white = (mode == "white")
     
-    # 3D Extrusion offsets
-    edx, edy = 26, 32
-
-    # Fills & Strokes
     if is_color:
         face_fill = "url(#goldFace)"
         light_fill = "url(#goldLightFacet)"
         dark_fill = "url(#goldDarkFacet)"
         depth_fill = "url(#goldDepth)"
-        cap_fill = "url(#goldCap)"
         bp_fill = "#05080E"
         bp_stroke = "#05080E"
         front_stroke = "#78350F"
-        spine_stroke = "#FFFFFF"
+        spine_light = "#FFFDF0"
+        spine_gold = "#FEF08A"
         show_highlights = True
     elif is_white:
         face_fill = "#FFFFFF"
         light_fill = "#FFFFFF"
-        dark_fill = "#F1F5F9"
-        depth_fill = "#E2E8F0"
-        cap_fill = "#FFFFFF"
+        dark_fill = "#E2E8F0"
+        depth_fill = "#CBD5E1"
         bp_fill = "#FFFFFF"
         bp_stroke = "#000000"
         front_stroke = "#000000"
-        spine_stroke = "#000000"
+        spine_light = "#000000"
+        spine_gold = "#000000"
         show_highlights = False
     else:
         face_fill = "#94A3B8"
         light_fill = "#CBD5E1"
         dark_fill = "#475569"
         depth_fill = "#1E293B"
-        cap_fill = "#64748B"
         bp_fill = "#020408"
         bp_stroke = "#020408"
         front_stroke = "#334155"
-        spine_stroke = "#E2E8F0"
+        spine_light = "#F8FAFC"
+        spine_gold = "#94A3B8"
         show_highlights = True
     
     lines = []
     
-    # 0. OBSIDIAN BACKPLATE / HEAVY SPORT CONTOUR (42px)
-    lines.append('      <!-- 0. HEAVY SPORT OUTLINE BACKPLATE -->')
-    lines.append(f'      <g id="svc-backplate" stroke="{bp_stroke}" stroke-width="42" stroke-linejoin="round" stroke-linecap="round" fill="{bp_fill}">')
-    # S Outline (Shadow + Normal)
-    lines.append(f'        <path d="M 235 110 L 390 110 L 440 155 L 440 230 L 395 265 L 340 265 L 340 215 L 255 215 L 255 240 L 390 300 L 440 345 L 440 470 L 390 520 L 210 520 L 155 470 L 155 390 L 245 390 L 245 435 L 335 435 L 350 415 L 350 375 L 225 320 L 155 270 L 155 160 Z" transform="translate({edx},{edy})"/>')
-    lines.append('        <path d="M 235 110 L 390 110 L 440 155 L 440 230 L 395 265 L 340 265 L 340 215 L 255 215 L 255 240 L 390 300 L 440 345 L 440 470 L 390 520 L 210 520 L 155 470 L 155 390 L 245 390 L 245 435 L 335 435 L 350 415 L 350 375 L 225 320 L 155 270 L 155 160 Z"/>')
-    # V Outline (Shadow + Normal)
-    lines.append(f'        <path d="M 525 95 L 595 55 L 670 100 L 700 280 L 730 100 L 805 55 L 875 95 L 755 530 L 645 530 Z" transform="translate({edx},{edy})"/>')
-    lines.append('        <path d="M 525 95 L 595 55 L 670 100 L 700 280 L 730 100 L 805 55 L 875 95 L 755 530 L 645 530 Z"/>')
-    # C Outline (Shadow + Normal)
-    lines.append(f'        <path d="M 1210 230 L 1210 160 L 1165 110 L 1010 110 L 960 160 L 960 470 L 1010 520 L 1175 520 L 1220 470 L 1220 395 L 1125 395 L 1125 435 L 1055 435 L 1045 415 L 1045 215 L 1055 195 L 1125 195 L 1125 230 Z" transform="translate({edx},{edy})"/>')
-    lines.append('        <path d="M 1210 230 L 1210 160 L 1165 110 L 1010 110 L 960 160 L 960 470 L 1010 520 L 1175 520 L 1220 470 L 1220 395 L 1125 395 L 1125 435 L 1055 435 L 1045 415 L 1045 215 L 1055 195 L 1125 195 L 1125 230 Z"/>')
+    # 0. OBSIDIAN BACKPLATE / SPORT CONTOUR
+    lines.append('      <!-- 0. OBSIDIAN BACKPLATE SILHOUETTE -->')
+    lines.append(f'      <g id="svc-backplate" stroke="{bp_stroke}" stroke-width="26" stroke-linejoin="round" stroke-linecap="round" fill="{bp_fill}">')
+    lines.append('        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z"/>')
+    lines.append('        <path d="M 80 325 L 62 335 C 62 400 105 442 175 442 C 245 442 284 395 284 340 L 272 335 C 272 385 238 420 175 420 C 112 420 80 380 80 325 Z"/>')
+    lines.append('        <polygon points="270,95 330,58 375,95 402,368 436,398 402,414 368,398"/>')
+    lines.append('        <polygon points="430,95 475,58 535,95 436,398 402,368 368,398"/>')
+    lines.append('        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z"/>')
+    lines.append('        <path d="M 605 155 C 575 185 565 220 565 252 C 565 285 575 320 605 350 L 590 365 C 550 330 538 290 538 252 C 538 212 550 170 590 140 Z"/>')
     lines.append('      </g>')
-
-    # 1. 3D EXTRUSION DEPTH FACETS
-    lines.append('      <!-- 1. 3D EXTRUSION DEPTH FACETS -->')
-    lines.append(f'      <g id="svc-extrusion" fill="{depth_fill}" stroke="{front_stroke}" stroke-width="4">')
-    # S Depth Walls
-    lines.append('        <polygon points="390,110  416,142  466,187  440,155"/>')
-    lines.append('        <polygon points="440,155  466,187  466,262  440,230"/>')
-    lines.append('        <polygon points="440,230  466,262  421,297  395,265"/>')
-    lines.append('        <polygon points="440,345  466,377  466,502  440,470"/>')
-    lines.append('        <polygon points="440,470  466,502  416,552  390,520"/>')
-    lines.append('        <polygon points="390,520  416,552  236,552  210,520"/>')
-    lines.append('        <polygon points="210,520  236,552  181,502  155,470"/>')
-    lines.append('        <polygon points="245,390  271,422  271,467  245,435"/>')
-    lines.append('        <polygon points="335,435  361,467  376,447  350,415"/>')
-    lines.append('        <polygon points="350,375  376,407  251,352  225,320"/>')
-    # V Depth Walls
-    lines.append('        <polygon points="875,95   901,127  781,562  755,530"/>')
-    lines.append('        <polygon points="755,530  781,562  671,562  645,530"/>')
-    lines.append('        <polygon points="645,530  671,562  655,545  645,530"/>')
-    # C Depth Walls
-    lines.append('        <polygon points="1210,160 1236,192 1236,262 1210,230"/>')
-    lines.append('        <polygon points="1220,395 1246,427 1246,502 1220,470"/>')
-    lines.append('        <polygon points="1220,470 1246,502 1201,552 1175,520"/>')
-    lines.append('        <polygon points="1175,520 1201,552 1036,552 1010,520"/>')
-    lines.append('        <polygon points="1010,520 1036,552  986,502  960,470"/>')
-    lines.append('        <polygon points="1125,395 1151,427 1151,467 1125,435"/>')
-    lines.append('        <polygon points="1125,195 1151,227 1151,262 1125,230"/>')
+    
+    # 1. 3D EXTRUSION DEPTH
+    lines.append('      <!-- 1. 3D EXTRUSION DEPTH -->')
+    lines.append('      <g id="svc-extrusion">')
+    lines.append(f'        <path d="M 80 325 L 62 335 C 62 400 105 442 175 442 C 245 442 284 395 284 340 L 272 335 C 272 385 238 420 175 420 C 112 420 80 380 80 325 Z" fill="{depth_fill}"/>')
+    lines.append(f'        <polygon points="80,325 80,380 62,390 62,335" fill="{dark_fill}"/>')
+    lines.append(f'        <polygon points="275,178 208,178 245,148" fill="{dark_fill}"/>')
+    lines.append(f'        <path d="M 605 155 C 575 185 565 220 565 252 C 565 285 575 320 605 350 L 590 365 C 550 330 538 290 538 252 C 538 212 550 170 590 140 Z" fill="{depth_fill}"/>')
+    lines.append(f'        <polygon points="725,148 668,188 702,198" fill="{dark_fill}"/>')
+    lines.append(f'        <polygon points="725,355 668,315 702,305" fill="{dark_fill}"/>')
     lines.append('      </g>')
-
-    # 2. FRONT FACES & CHISEL FACETS
-    lines.append('      <!-- 2. FRONT FACES & CHISEL FACETS -->')
-    # LETTER S FRONT
+    
+    # 2. FRONT FACES (Smooth athletic curves & faceted prism)
+    lines.append('      <!-- 2. FRONT FACES (Smooth athletic curves & faceted prism) -->')
+    lines.append('      <!-- LETTER S FRONT -->')
     lines.append('      <g id="letter-S-front">')
-    lines.append(f'        <path d="M 235 110 L 390 110 L 440 155 L 440 230 L 395 265 L 340 265 L 340 215 L 255 215 L 255 240 L 390 300 L 440 345 L 440 470 L 390 520 L 210 520 L 155 470 L 155 390 L 245 390 L 245 435 L 335 435 L 350 415 L 350 375 L 225 320 L 155 270 L 155 160 Z" fill="{face_fill}" stroke="{front_stroke}" stroke-width="4"/>')
-    lines.append(f'        <polygon points="235,110 390,110 365,140 235,140" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="390,110 440,155 410,165 365,140" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="210,520 390,520 365,490 235,490" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="155,470 210,520 235,490 185,450" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="155,160 235,110 235,140 180,180" fill="{light_fill}"/>')
+    lines.append(f'        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z" fill="{face_fill}" stroke="{front_stroke}" stroke-width="2"/>')
     lines.append('      </g>')
-
-    # LETTER V FRONT (HERO CHISELED PRISM)
+    
+    lines.append('      <!-- LETTER V FRONT -->')
     lines.append('      <g id="letter-V-front">')
-    lines.append(f'        <polygon points="525,95 595,55 690,495 645,530" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="595,55 670,100 700,280 690,495" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="700,280 730,100 805,55 710,495" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="805,55 875,95 755,530 710,495" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="525,95 595,55 670,100" fill="{cap_fill}" stroke="{spine_stroke}" stroke-width="2.5"/>')
-    lines.append(f'        <polygon points="730,100 805,55 875,95" fill="{cap_fill}" stroke="{spine_stroke}" stroke-width="2.5"/>')
-    lines.append(f'        <polygon points="645,530 690,495 710,495 755,530" fill="{dark_fill}" stroke="{spine_stroke}" stroke-width="2.5"/>')
-    lines.append(f'        <line x1="595" y1="55" x2="690" y2="495" stroke="{spine_stroke}" stroke-width="5" stroke-linecap="round"/>')
-    lines.append(f'        <line x1="805" y1="55" x2="710" y2="495" stroke="{spine_stroke}" stroke-width="5" stroke-linecap="round"/>')
+    lines.append(f'        <polygon points="270,95 330,58 402,368 368,398" fill="{light_fill}"/>')
+    lines.append(f'        <polygon points="475,58 535,95 436,398 402,368" fill="{dark_fill}"/>')
+    lines.append(f'        <polygon points="270,95 330,58 350,95" fill="{light_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
+    lines.append(f'        <polygon points="350,95 330,58 375,95" fill="{dark_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
+    lines.append(f'        <polygon points="430,95 475,58 455,95" fill="{light_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
+    lines.append(f'        <polygon points="455,95 475,58 535,95" fill="{dark_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
+    lines.append(f'        <polygon points="368,398 402,368 436,398 402,414" fill="{dark_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
+    lines.append(f'        <line x1="330" y1="58" x2="402" y2="368" stroke="{spine_light}" stroke-width="4" stroke-linecap="round"/>')
+    lines.append(f'        <line x1="475" y1="58" x2="402" y2="368" stroke="{spine_gold}" stroke-width="2.5" stroke-linecap="round"/>')
     lines.append('      </g>')
-
-    # LETTER C FRONT
+    
+    lines.append('      <!-- LETTER C FRONT -->')
     lines.append('      <g id="letter-C-front">')
-    lines.append(f'        <path d="M 1210 230 L 1210 160 L 1165 110 L 1010 110 L 960 160 L 960 470 L 1010 520 L 1175 520 L 1220 470 L 1220 395 L 1125 395 L 1125 435 L 1055 435 L 1045 415 L 1045 215 L 1055 195 L 1125 195 L 1125 230 Z" fill="{face_fill}" stroke="{front_stroke}" stroke-width="4"/>')
-    lines.append(f'        <polygon points="1010,110 1165,110 1135,140 1030,140" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="960,160 1010,110 1030,140 985,175" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="1010,520 1175,520 1145,490 1035,490" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="960,470 1010,520 1035,490 985,455" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="1175,520 1220,470 1190,450 1145,490" fill="{dark_fill}"/>')
+    lines.append(f'        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z" fill="{face_fill}" stroke="{front_stroke}" stroke-width="2"/>')
     lines.append('      </g>')
-
-    # 3. WHITE SPECULAR LIGHT ACCENTS
+    
     if show_highlights:
-        lines.append('      <!-- 3. SPECULAR LIGHT ACCENTS -->')
-        lines.append('      <g id="specular-highlights" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.9">')
-        lines.append('        <line x1="240" y1="113" x2="385" y2="113"/>')
-        lines.append('        <line x1="158" y1="165" x2="158" y2="265"/>')
-        lines.append('        <line x1="250" y1="394" x2="250" y2="430"/>')
-        lines.append('        <line x1="1015" y1="113" x2="1160" y2="113"/>')
-        lines.append('        <line x1="964" y1="165" x2="964" y2="465"/>')
-        lines.append('        <line x1="1049" y1="200" x2="1049" y2="420"/>')
+        lines.append('      <!-- 3. SPECULAR HIGHLIGHTS -->')
+        lines.append('      <g id="specular-highlights" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85">')
+        lines.append('        <path d="M 175 90 C 235 90 268 120 268 160"/>')
+        lines.append('        <path d="M 602 90 C 655 90 690 105 715 145"/>')
         lines.append('      </g>')
     
     return "\n".join(lines)
 
 def main():
     print("=" * 70)
-    print("RECONSTRUCTING SVC EMBLEM (Smansage Volleyball Competition) - V4")
+    print("RECONSTRUCTING SVC EMBLEM (Smansage Volleyball Competition) - V5 PRECISION")
     print("=" * 70)
     
     # 1. Panda Mascot Vectors
@@ -351,40 +312,30 @@ def main():
     # -------------------------------------------------------------
     # 1. 5-Sided Heraldic Pentagonal Shield Geometry
     # -------------------------------------------------------------
-    # Outer Shield Silhouette (Mitered 5-sided crest with top V-cradle):
     shield_outer_d = "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z"
-    
-    # Outer Platinum / Silver Rim (Inset):
     shield_silver_rim_d = (
         "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z "
         "M 760 1150 L 1195 2815 L 2100 3650 L 3005 2815 L 3440 1150 L 2620 1150 L 2100 1420 L 1580 1150 Z"
     )
-    
-    # Inner Gold Rim (Inset):
     shield_gold_rim_d = (
         "M 760 1150 L 1580 1150 L 2100 1420 L 2620 1150 L 3440 1150 L 3005 2815 L 2100 3650 L 1195 2815 Z "
         "M 860 1240 L 1260 2780 L 2100 3530 L 2940 2780 L 3340 1240 L 2590 1240 L 2100 1490 L 1610 1240 Z"
     )
-    
-    # Split Midnight Navy Field:
     shield_navy_left_d = "M 860 1240 L 1610 1240 L 2100 1490 L 2100 3530 L 1260 2780 Z"
     shield_navy_right_d = "M 2100 1490 L 2590 1240 L 3340 1240 L 2940 2780 L 2100 3530 Z"
     
     # -------------------------------------------------------------
-    # 2. Concentric Arched Ribbon Banner Geometry (Span +/- 21.5 deg, R_top=3890, R_bot=3630)
+    # 2. Concentric Arched Emblem Banner (No Tails - Exact Hand Draw Matching)
     # -------------------------------------------------------------
-    ribbon_body_d = "M 674 3381 A 3890 3890 0 0 1 3526 3381 L 3431 3623 A 3630 3630 0 0 0 769 3623 Z"
-    ribbon_rim_top_d = "M 674 3381 A 3890 3890 0 0 1 3526 3381 L 3515 3418 A 3855 3855 0 0 0 685 3418 Z"
-    ribbon_rim_bot_d = "M 758 3585 A 3665 3665 0 0 1 3442 3585 L 3431 3623 A 3630 3630 0 0 0 769 3623 Z"
+    # Concentric circular arc with bold, thick athletic championship typography
+    # Center of arc: CX = 2100, CY = 6500
+    emblem_body_d = "M 621 3328 A 3500 3500 0 0 1 3579 3328 L 3461 3582 A 3220 3220 0 0 0 739 3582 Z"
+    emblem_rim_top_d = "M 621 3328 A 3500 3500 0 0 1 3579 3328 L 3568 3362 A 3464 3464 0 0 0 632 3362 Z"
+    emblem_rim_bot_d = "M 728 3548 A 3256 3256 0 0 1 3472 3548 L 3461 3582 A 3220 3220 0 0 0 739 3582 Z"
     
-    # Side fold ribbon tails:
-    ribbon_tail_left_d = "M 674 3381 L 390 3445 L 490 3575 L 390 3705 L 769 3623 Z"
-    ribbon_fold_left_d = "M 674 3381 L 769 3623 L 655 3525 Z"
-    ribbon_tail_right_d = "M 3526 3381 L 3810 3445 L 3710 3575 L 3810 3705 L 3431 3623 Z"
-    ribbon_fold_right_d = "M 3526 3381 L 3431 3623 L 3545 3525 Z"
-    
-    # Baseline text arc: R=3760 (perfect vertical midpoint between 3890 & 3630)
-    ribbon_text_path_d = "M 572 3563 A 3760 3760 0 0 1 3628 3563"
+    # Baseline text arc: R = 3340 (centered vertically between 3500 and 3220)
+    # Text covers the arched emblem completely from end to end
+    emblem_text_path_d = "M 540 3510 A 3340 3340 0 0 1 3660 3510"
     
     # -------------------------------------------------------------
     # 3. Towering Panda Mascot Placement
@@ -396,21 +347,19 @@ def main():
     # -------------------------------------------------------------
     # 4. Optically Centered AVERSA Wordmark Placement
     # -------------------------------------------------------------
-    # In aversa-standalone-color.svg, bounds: X=57.37..3117.24 (mid=1587.30)
-    # Optical center adjustment: shifting +18 px aligns 3 letters AVE and 3 letters RSA exactly at CX=2100.
-    av_sc = 0.39
+    av_sc = 0.38
     av_center_x = 1587.30 - 18.0
     av_tx = CX - av_center_x * av_sc
-    av_ty = 1485.0  # Clear space above SVC!
+    av_ty = 1460.0
     
     # -------------------------------------------------------------
-    # 5. Chiseled 3D Faceted SVC Placement
+    # 5. Smooth Athletic 3D SVC Typography Placement
     # -------------------------------------------------------------
-    # Using the perfect 1400 x 650 athletic geometry
-    svc_sc = 1.72
-    svc_box_cx = 700.0
+    # Coordinates in 820 x 460 space scaled by 2.22
+    svc_sc = 2.22
+    svc_box_cx = 410.0
     svc_tx = CX - svc_box_cx * svc_sc
-    svc_ty = 1940.0
+    svc_ty = 1800.0
     
     defs_block = f"""
   <defs>
@@ -433,8 +382,8 @@ def main():
     </linearGradient>
 
     <linearGradient id="goldFace" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFF8B0"/>
-      <stop offset="20%" stop-color="#FED049"/>
+      <stop offset="0%" stop-color="#FFFAD2"/>
+      <stop offset="20%" stop-color="#FED75B"/>
       <stop offset="55%" stop-color="#F59E0B"/>
       <stop offset="100%" stop-color="#D97706"/>
     </linearGradient>
@@ -452,15 +401,9 @@ def main():
     </linearGradient>
 
     <linearGradient id="goldDepth" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#92400E"/>
-      <stop offset="50%" stop-color="#78350F"/>
-      <stop offset="100%" stop-color="#451A03"/>
-    </linearGradient>
-
-    <linearGradient id="goldCap" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FEF08A"/>
-      <stop offset="50%" stop-color="#FDE047"/>
-      <stop offset="100%" stop-color="#F59E0B"/>
+      <stop offset="0%" stop-color="#B45309"/>
+      <stop offset="60%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#3B1502"/>
     </linearGradient>
 
     <!-- Midnight Navy Shield Field Gradients -->
@@ -475,11 +418,11 @@ def main():
     </linearGradient>
 
     <filter id="masterDropGlow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="24" stdDeviation="20" flood-color="#020408" flood-opacity="0.95"/>
+      <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#020408" flood-opacity="0.95"/>
     </filter>
 
-    <!-- Concentric Arched Text Path for Ribbon -->
-    <path id="ribbonTextArc" d="{ribbon_text_path_d}"/>
+    <!-- Concentric Arched Text Path for Emblem Banner -->
+    <path id="emblemTextArc" d="{emblem_text_path_d}"/>
   </defs>"""
 
     # Generate 3 Master Crest Variants: color, white, dark
@@ -533,38 +476,35 @@ def main():
                 lines.append(f'      <path d="{d_hl}" fill="{av_hl_fill}"/>')
         lines.append('    </g>')
 
-        # 3. CHISELED 3D FACETED "SVC" TYPOGRAPHY
-        lines.append('    <!-- 3. CHISELED 3D FACETED "SVC" TYPOGRAPHY -->')
+        # 3. ARCHED EMBLEM BANNER (COVERED FULLY BY TEXT)
+        lines.append('    <!-- 3. ARCHED EMBLEM BANNER (COVERED FULLY BY TEXT) -->')
+        banner_filter = ' filter="url(#masterDropGlow)"' if is_color else ''
+        lines.append(f'    <g id="arched-emblem-banner"{banner_filter}>')
+        if is_color:
+            lines.append(f'      <path d="{emblem_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["black_ink"]}" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{emblem_rim_top_d}" fill="url(#goldLightFacet)"/>')
+            lines.append(f'      <path d="{emblem_rim_bot_d}" fill="url(#goldDarkFacet)"/>')
+            text_fill = PALETTE["black_ink"]
+            lines.append(f'      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="134" font-weight="900" letter-spacing="2.2" fill="{text_fill}" stroke="{text_fill}" stroke-width="5" stroke-linejoin="round">')
+            lines.append('        <textPath href="#emblemTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
+            lines.append('      </text>')
+        elif is_white:
+            lines.append(f'      <path d="{emblem_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="134" font-weight="900" letter-spacing="2.2" fill="#000000" stroke="#000000" stroke-width="5" stroke-linejoin="round">')
+            lines.append('        <textPath href="#emblemTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
+            lines.append('      </text>')
+        else:
+            lines.append(f'      <path d="{emblem_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="32" stroke-linejoin="round"/>')
+            lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="134" font-weight="900" letter-spacing="2.2" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round">')
+            lines.append('        <textPath href="#emblemTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
+            lines.append('      </text>')
+        lines.append('    </g>')
+
+        # 4. SMOOTH ATHLETIC 3D "SVC" TYPOGRAPHY
+        lines.append('    <!-- 4. SMOOTH ATHLETIC 3D "SVC" TYPOGRAPHY -->')
         filter_attr = ' filter="url(#masterDropGlow)"' if is_color else ''
         lines.append(f'    <g id="svc-letters" transform="translate({svc_tx:.2f}, {svc_ty:.2f}) scale({svc_sc:.4f})"{filter_attr}>')
         lines.append(build_chiseled_svc_svg(mode))
-        lines.append('    </g>')
-
-        # 4. CONCENTRIC ARCHED RIBBON BANNER (EXTRA BOLD & IMPACTFUL)
-        lines.append('    <!-- 4. CONCENTRIC ARCHED RIBBON BANNER -->')
-        lines.append('    <g id="ribbon-banner">')
-        if is_color:
-            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="{PALETTE["bronze"]}" stroke="{PALETTE["obsidian"]}" stroke-width="18"/>')
-            lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="{PALETTE["mahogany"]}"/>')
-            lines.append(f'      <path d="{ribbon_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["obsidian"]}" stroke-width="28" stroke-linejoin="round"/>')
-            lines.append(f'      <path d="{ribbon_rim_top_d}" fill="url(#goldLightFacet)"/>')
-            lines.append(f'      <path d="{ribbon_rim_bot_d}" fill="url(#goldDarkFacet)"/>')
-            text_fill = PALETTE["black_ink"]
-            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="116" font-weight="900" letter-spacing="2.6" fill="{text_fill}" stroke="{text_fill}" stroke-width="4">')
-            lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
-            lines.append('      </text>')
-        elif is_white:
-            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#FFFFFF" stroke="#000000" stroke-width="20"/>')
-            lines.append(f'      <path d="{ribbon_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="28"/>')
-            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="116" font-weight="900" letter-spacing="2.6" fill="#000000" stroke="#000000" stroke-width="4">')
-            lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
-            lines.append('      </text>')
-        else:
-            lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#1E293B" stroke="#020408" stroke-width="20"/>')
-            lines.append(f'      <path d="{ribbon_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="28"/>')
-            lines.append(f'      <text font-family="Plus Jakarta Sans, Montserrat, Arial, sans-serif" font-size="116" font-weight="900" letter-spacing="2.6" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4">')
-            lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
-            lines.append('      </text>')
         lines.append('    </g>')
 
         # 5. TOWERING PANDA MASCOT (HEADER CREST - TOPMOST LAYER)
