@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <!-- Master Pure Metallic Gold Facets calibrated from original hand draw SVC.PNG -->
+    <linearGradient id="goldLightFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFAD0"/>
+      <stop offset="35%" stop-color="#FAD758"/>
+      <stop offset="70%" stop-color="#F2BF3E"/>
+      <stop offset="100%" stop-color="#EAA82C"/>
+    </linearGradient>
+
+    <linearGradient id="goldShadeFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EDA82C"/>
+      <stop offset="50%" stop-color="#DB8E26"/>
+      <stop offset="100%" stop-color="#C57418"/>
+    </linearGradient>
+
+    <linearGradient id="goldBevelFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CB7B20"/>
+      <stop offset="100%" stop-color="#A85B12"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="1000" fill="#0A0E17"/>
+
+  <!-- Master SVC Letters Container (Centered at cx=500, cy=500) -->
+  <g id="svc-letters">
+
+    <!-- ========================================================================= -->
+    <!-- 1. LETTER S (True Athletic Letterform - Ridge-aligned chiseled bevels)    -->
+    <!-- ========================================================================= -->
+    <g id="letter-S" transform="translate(104.0, 315.0) scale(0.6826)">
+      <!-- Light Gold Facet (Facing Up/Top-Left) -->
+      <path d="M 286.0 150.0 L 345.0 194.0 C 346.7 194.0 348.3 194.0 350.0 194.0 C 349.3 178.1 351.3 161.2 349.0 146.0 C 349.2 126.3 343.4 109.0 337.0 92.0 C 290.4 1.1 158.8 -10.0 79.0 38.0 C 60.5 50.4 43.9 67.4 32.0 86.0 C 28.8 94.1 23.6 101.3 22.0 110.0 C 16.6 124.3 14.2 139.9 13.0 156.0 C 10.1 179.2 12.8 203.7 20.0 224.0 C 26.4 253.0 49.7 278.0 75.0 295.0 C 103.1 312.1 133.2 324.4 164.0 335.0 C 190.4 344.0 223.9 361.1 228.0 393.0 C 227.4 398.6 229.3 405.1 227.0 410.0 C 224.8 457.3 145.3 462.0 134.0 417.0 C 130.8 411.0 129.0 404.3 129.0 397.0 C 126.7 388.1 128.6 377.5 128.0 368.0 L 69.0 412.0 C 72.8 426.5 80.3 439.8 90.0 451.2 C 98.0 460.7 107.4 468.9 117.9 475.4 C 125.8 480.2 134.1 484.1 142.9 486.8 C 151.5 489.4 160.5 490.9 169.6 490.8 C 241.5 488.9 284.0 405.2 265.5 341.3 C 256.5 319.5 235.6 306.0 215.9 294.6 C 198.7 284.9 180.5 277.2 162.6 268.9 C 151.7 263.9 141.0 258.6 130.9 252.1 C 58.0 214.3 72.0 86.2 154.5 70.9 C 163.5 68.8 172.7 68.1 181.8 68.7 C 193.9 69.5 205.7 72.7 216.7 77.6 C 230.7 83.8 243.4 92.7 254.4 103.3 C 267.9 116.5 279.0 132.4 286.0 150.0 Z" fill="url(#goldLightFacet)" stroke="none"/>
+
+      <!-- Shade Gold Facet (Facing Down/Bottom-Right) -->
+      <path d="M 69.0 412.0 L 10.0 368.0 C 10.7 383.9 8.7 400.8 11.0 416.0 C 11.4 429.1 13.8 441.4 18.0 453.0 C 20.7 466.4 27.8 478.0 34.0 490.0 C 81.4 557.6 175.9 559.5 250.0 542.0 C 262.7 537.6 274.9 532.0 287.0 526.0 C 328.5 501.4 350.1 457.4 352.0 411.0 C 354.5 389.4 353.0 365.8 348.0 346.0 C 343.0 314.9 326.4 287.3 300.0 266.0 C 274.3 248.4 246.8 235.0 218.0 225.0 C 191.8 212.0 153.6 205.7 143.0 173.0 C 143.6 167.8 141.8 161.5 144.0 157.0 C 148.4 114.0 222.7 118.6 224.0 161.0 C 226.0 166.1 226.1 172.0 226.0 178.0 C 228.2 182.5 226.4 188.8 227.0 194.0 L 286.0 150.0 C 279.0 132.4 267.9 116.5 254.4 103.3 C 243.4 92.7 230.7 83.8 216.7 77.6 C 205.7 72.7 193.9 69.5 181.8 68.7 C 172.7 68.1 163.5 68.8 154.5 70.9 C 72.0 86.2 58.0 214.3 130.9 252.1 C 141.0 258.6 151.7 263.9 162.6 268.9 C 180.5 277.2 198.7 284.9 215.9 294.6 C 235.6 306.0 256.5 319.5 265.5 341.3 C 284.0 405.2 241.5 488.9 169.6 490.8 C 160.5 490.9 151.5 489.4 142.9 486.8 C 134.1 484.1 125.8 480.2 117.9 475.4 C 107.4 468.9 98.0 460.7 90.0 451.2 C 80.3 439.8 72.8 426.5 69.0 412.0 Z" fill="url(#goldShadeFacet)" stroke="none"/>
+
+      <!-- Top Terminal Bevel Wedge -->
+      <polygon points="227,194 345,194 286,150" fill="url(#goldBevelFacet)" stroke="none"/>
+
+      <!-- Bottom Terminal Bevel Wedge -->
+      <polygon points="10,368 128,368 69,412" fill="url(#goldBevelFacet)" stroke="none"/>
+    </g>
+
+    <!-- ========================================================================= -->
+    <!-- 2. LETTER V (Pure Geometric Chiseled Prism - Mathematically Symmetrical) -->
+    <!-- ========================================================================= -->
+    <g id="letter-V" transform="translate(357.0, 315.0) scale(0.6826)">
+      <!-- Top Left Bevel Wedge (Points down to center ridge) -->
+      <polygon points="10,11 139,11 74,48" fill="url(#goldBevelFacet)" stroke="none"/>
+
+      <!-- Top Right Bevel Wedge (Points down to center ridge) -->
+      <polygon points="298,11 427,11 362,48" fill="url(#goldBevelFacet)" stroke="none"/>
+
+      <!-- Left Leg Outer Face (Warm Amber Shade - matching reference lighting) -->
+      <polygon points="10,11 74,48 187.4,505 156.3,505" fill="url(#goldShadeFacet)" stroke="none"/>
+
+      <!-- Left Leg Inner Face (Radiant Light Gold - illuminated inner face) -->
+      <polygon points="139,11 74,48 187.4,505 218.5,505 218.5,352" fill="url(#goldLightFacet)" stroke="none"/>
+
+      <!-- Right Leg Inner Face (Radiant Light Gold - illuminated inner face meeting at center) -->
+      <polygon points="218.5,352 218.5,505 249.6,505 362,48 298,11" fill="url(#goldLightFacet)" stroke="none"/>
+
+      <!-- Right Leg Outer Face (Warm Amber Shade - matching reference lighting) -->
+      <polygon points="427,11 362,48 249.6,505 280.7,505" fill="url(#goldShadeFacet)" stroke="none"/>
+
+      <!-- Bottom Bevel Wedge (Proportional, symmetrical athletic chamfer) -->
+      <polygon points="156.3,505 280.7,505 270,541 167,541" fill="url(#goldBevelFacet)" stroke="none"/>
+    </g>
+
+    <!-- ========================================================================= -->
+    <!-- 3. LETTER C (True Athletic Collegiate C - Dual Chiseled Facets)           -->
+    <!-- ========================================================================= -->
+    <g id="letter-C" transform="translate(660.0, 315.0) scale(0.6826)">
+      <!-- Outer Face (Light Gold) -->
+      <path d="M 290.0 168.0 L 354.0 206.0 C 354.9 158.4 354.7 111.2 328.0 75.0 C 304.4 43.4 270.6 25.8 236.0 16.0 C 163.5 1.1 82.7 14.5 36.0 76.0 C 30.8 84.1 26.5 92.6 22.0 101.0 C 16.7 115.3 13.4 130.5 11.0 146.0 C 9.4 234.2 9.4 324.8 11.0 413.0 C 12.4 420.5 13.1 428.3 14.0 436.0 C 18.3 452.8 24.2 469.0 33.0 484.0 C 86.8 563.2 208.5 567.3 285.0 525.0 C 297.0 517.0 308.4 507.5 319.0 496.0 C 351.2 457.5 355.3 407.4 354.0 355.0 L 290.0 393.0 C 290.0 393.0 290.0 365.1 290.0 365.1 C 290.2 384.6 289.0 404.2 284.2 423.1 C 277.9 444.3 265.8 464.5 246.7 476.3 C 188.8 513.5 97.7 487.5 79.9 417.5 C 77.7 410.1 77.1 406.8 75.5 399.2 C 73.1 389.6 73.8 379.7 73.0 370.0 C 72.1 360.0 72.7 350.0 72.5 340.0 C 72.5 323.2 72.5 306.4 72.5 289.6 C 72.5 272.8 72.5 256.0 72.5 239.2 C 72.7 225.9 72.0 212.5 73.0 199.2 C 72.3 189.3 73.9 179.6 75.5 170.0 C 77.3 160.8 79.6 151.6 83.3 143.0 C 106.6 76.6 195.7 51.7 252.1 91.7 C 273.5 106.1 285.3 131.1 288.7 156.2 C 291.2 170.1 289.3 231.4 290.0 168.0 Z" fill="url(#goldLightFacet)" stroke="none"/>
+
+      <!-- Inner Face (Warm Amber Shade) -->
+      <path d="M 290.0 168.0 L 226.0 206.0 C 226.2 187.4 226.8 168.7 220.0 153.0 C 213.3 141.3 201.5 134.0 189.0 132.0 C 171.2 130.8 155.2 134.1 144.0 149.0 C 139.8 155.0 138.2 162.2 136.0 169.0 C 133.7 238.9 135.6 310.5 135.0 381.0 C 136.6 388.4 136.7 396.4 138.0 404.0 C 139.9 410.3 142.5 416.3 146.0 422.0 C 164.1 442.7 204.0 441.3 218.0 417.0 C 226.9 398.9 226.3 376.9 226.0 355.0 L 290.0 393.0 C 290.0 393.0 290.0 365.1 290.0 365.1 C 290.2 384.6 289.0 404.2 284.2 423.1 C 277.9 444.3 265.8 464.5 246.7 476.3 C 188.8 513.5 97.7 487.5 79.9 417.5 C 77.7 410.1 77.1 406.8 75.5 399.2 C 73.1 389.6 73.8 379.7 73.0 370.0 C 72.1 360.0 72.7 350.0 72.5 340.0 C 72.5 323.2 72.5 306.4 72.5 289.6 C 72.5 272.8 72.5 256.0 72.5 239.2 C 72.7 225.9 72.0 212.5 73.0 199.2 C 72.3 189.3 73.9 179.6 75.5 170.0 C 77.3 160.8 79.6 151.6 83.3 143.0 C 106.6 76.6 195.7 51.7 252.1 91.7 C 273.5 106.1 285.3 131.1 288.7 156.2 C 291.2 170.1 289.3 231.4 290.0 168.0 Z" fill="url(#goldShadeFacet)" stroke="none"/>
+
+      <!-- Top Terminal Bevel Wedge -->
+      <polygon points="226,206 354,206 290,168" fill="url(#goldBevelFacet)" stroke="none"/>
+
+      <!-- Bottom Terminal Bevel Wedge -->
+      <polygon points="226,355 354,355 290,393" fill="url(#goldBevelFacet)" stroke="none"/>
+    </g>
+
+  </g>
+</svg>
