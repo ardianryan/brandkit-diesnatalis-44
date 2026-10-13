@@ -207,86 +207,62 @@ def build_chiseled_svc_svg(mode):
         light_fill = "url(#goldLightFacet)"
         dark_fill = "url(#goldDarkFacet)"
         depth_fill = "url(#goldDepth)"
-        bp_fill = "#05080E"
-        bp_stroke = "#05080E"
-        front_stroke = "#78350F"
-        spine_light = "#FFFDF0"
-        spine_gold = "#FEF08A"
+        poly_stroke = ""
         show_highlights = True
     elif is_white:
         face_fill = "#FFFFFF"
         light_fill = "#FFFFFF"
         dark_fill = "#E2E8F0"
         depth_fill = "#CBD5E1"
-        bp_fill = "#FFFFFF"
-        bp_stroke = "#000000"
-        front_stroke = "#000000"
-        spine_light = "#000000"
-        spine_gold = "#000000"
+        poly_stroke = ' stroke="#000000" stroke-width="3" stroke-linejoin="round"'
         show_highlights = False
     else:
         face_fill = "#94A3B8"
         light_fill = "#CBD5E1"
         dark_fill = "#475569"
         depth_fill = "#1E293B"
-        bp_fill = "#020408"
-        bp_stroke = "#020408"
-        front_stroke = "#334155"
-        spine_light = "#F8FAFC"
-        spine_gold = "#94A3B8"
+        poly_stroke = ""
         show_highlights = True
     
     lines = []
     
-    # 0. OBSIDIAN BACKPLATE / SPORT CONTOUR
-    lines.append('      <!-- 0. OBSIDIAN BACKPLATE SILHOUETTE -->')
-    lines.append(f'      <g id="svc-backplate" stroke="{bp_stroke}" stroke-width="26" stroke-linejoin="round" stroke-linecap="round" fill="{bp_fill}">')
-    lines.append('        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z"/>')
-    lines.append('        <path d="M 80 325 L 62 335 C 62 400 105 442 175 442 C 245 442 284 395 284 340 L 272 335 C 272 385 238 420 175 420 C 112 420 80 380 80 325 Z"/>')
-    lines.append('        <polygon points="270,95 330,58 375,95 402,368 436,398 402,414 368,398"/>')
-    lines.append('        <polygon points="430,95 475,58 535,95 436,398 402,368 368,398"/>')
-    lines.append('        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z"/>')
-    lines.append('        <path d="M 605 155 C 575 185 565 220 565 252 C 565 285 575 320 605 350 L 590 365 C 550 330 538 290 538 252 C 538 212 550 170 590 140 Z"/>')
+    # 1. LETTER S (Extrusions + Face)
+    lines.append('      <!-- 1. LETTER S -->')
+    lines.append('      <g id="letter-S">')
+    lines.append(f'        <path d="M 80 325 L 62 335 C 62 400 105 442 175 442 C 245 442 284 395 284 340 L 272 335 C 272 385 238 420 175 420 C 112 420 80 380 80 325 Z" fill="{depth_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="80,325 80,380 62,390 62,335" fill="{dark_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="275,178 208,178 245,148" fill="{dark_fill}"{poly_stroke}/>')
+    lines.append(f'        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z" fill="{face_fill}"{poly_stroke}/>')
     lines.append('      </g>')
     
-    # 1. 3D EXTRUSION DEPTH
-    lines.append('      <!-- 1. 3D EXTRUSION DEPTH -->')
-    lines.append('      <g id="svc-extrusion">')
-    lines.append(f'        <path d="M 80 325 L 62 335 C 62 400 105 442 175 442 C 245 442 284 395 284 340 L 272 335 C 272 385 238 420 175 420 C 112 420 80 380 80 325 Z" fill="{depth_fill}"/>')
-    lines.append(f'        <polygon points="80,325 80,380 62,390 62,335" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="275,178 208,178 245,148" fill="{dark_fill}"/>')
-    lines.append(f'        <path d="M 605 155 C 575 185 565 220 565 252 C 565 285 575 320 605 350 L 590 365 C 550 330 538 290 538 252 C 538 212 550 170 590 140 Z" fill="{depth_fill}"/>')
-    lines.append(f'        <polygon points="725,148 668,188 702,198" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="725,355 668,315 702,305" fill="{dark_fill}"/>')
+    # 2. LETTER C (Extrusions + Face)
+    lines.append('      <!-- 2. LETTER C -->')
+    lines.append('      <g id="letter-C">')
+    lines.append(f'        <path d="M 605 155 C 575 185 565 220 565 252 C 565 285 575 320 605 350 L 590 365 C 550 330 538 290 538 252 C 538 212 550 170 590 140 Z" fill="{depth_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="725,148 668,188 702,198" fill="{dark_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="725,355 668,315 702,305" fill="{dark_fill}"{poly_stroke}/>')
+    lines.append(f'        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z" fill="{face_fill}"{poly_stroke}/>')
     lines.append('      </g>')
-    
-    # 2. FRONT FACES (Smooth athletic curves & faceted prism)
-    lines.append('      <!-- 2. FRONT FACES (Smooth athletic curves & faceted prism) -->')
-    lines.append('      <!-- LETTER S FRONT -->')
-    lines.append('      <g id="letter-S-front">')
-    lines.append(f'        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z" fill="{face_fill}" stroke="{front_stroke}" stroke-width="2"/>')
-    lines.append('      </g>')
-    
-    lines.append('      <!-- LETTER V FRONT -->')
-    lines.append('      <g id="letter-V-front">')
-    lines.append(f'        <polygon points="270,95 330,58 402,368 368,398" fill="{light_fill}"/>')
-    lines.append(f'        <polygon points="475,58 535,95 436,398 402,368" fill="{dark_fill}"/>')
-    lines.append(f'        <polygon points="270,95 330,58 350,95" fill="{light_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
-    lines.append(f'        <polygon points="350,95 330,58 375,95" fill="{dark_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
-    lines.append(f'        <polygon points="430,95 475,58 455,95" fill="{light_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
-    lines.append(f'        <polygon points="455,95 475,58 535,95" fill="{dark_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
-    lines.append(f'        <polygon points="368,398 402,368 436,398 402,414" fill="{dark_fill}" stroke="{spine_gold}" stroke-width="1.5"/>')
-    lines.append(f'        <line x1="330" y1="58" x2="402" y2="368" stroke="{spine_light}" stroke-width="4" stroke-linecap="round"/>')
-    lines.append(f'        <line x1="475" y1="58" x2="402" y2="368" stroke="{spine_gold}" stroke-width="2.5" stroke-linecap="round"/>')
-    lines.append('      </g>')
-    
-    lines.append('      <!-- LETTER C FRONT -->')
-    lines.append('      <g id="letter-C-front">')
-    lines.append(f'        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z" fill="{face_fill}" stroke="{front_stroke}" stroke-width="2"/>')
+
+    # 3. LETTER V (Pure Faceted Prism - Flat Tops, Flat Bottom, Downward Facets)
+    lines.append('      <!-- 3. LETTER V (PURE FACETED PRISM MATCHING HAND DRAW) -->')
+    lines.append('      <g id="letter-V">')
+    # Inner V Cavity (Seamless unified bright gold cavity)
+    lines.append(f'        <polygon points="352,80 316,114 376,380 428,380 488,114 452,80 402,310" fill="{light_fill}"{poly_stroke}/>')
+    # Left Leg Outer Face
+    lines.append(f'        <polygon points="272,80 316,114 376,380 366,408" fill="{face_fill}"{poly_stroke}/>')
+    # Left Leg Top Bevel Facet (Downward Triangle)
+    lines.append(f'        <polygon points="272,80 352,80 316,114" fill="{dark_fill}"{poly_stroke}/>')
+    # Right Leg Outer Extrusion Facet
+    lines.append(f'        <polygon points="532,80 488,114 428,380 438,408" fill="{depth_fill}"{poly_stroke}/>')
+    # Right Leg Top Bevel Facet (Downward Triangle)
+    lines.append(f'        <polygon points="452,80 532,80 488,114" fill="{dark_fill}"{poly_stroke}/>')
+    # Bottom Trapezoid Bevel Facet
+    lines.append(f'        <polygon points="376,380 428,380 438,408 366,408" fill="{dark_fill}"{poly_stroke}/>')
     lines.append('      </g>')
     
     if show_highlights:
-        lines.append('      <!-- 3. SPECULAR HIGHLIGHTS -->')
+        lines.append('      <!-- 4. SPECULAR HIGHLIGHTS -->')
         lines.append('      <g id="specular-highlights" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85">')
         lines.append('        <path d="M 175 90 C 235 90 268 120 268 160"/>')
         lines.append('        <path d="M 602 90 C 655 90 690 105 715 145"/>')
