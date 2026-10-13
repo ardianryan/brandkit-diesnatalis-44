@@ -229,18 +229,26 @@ def build_chiseled_svc_svg(mode):
     # 1. LETTER S (Extrusions + Face)
     lines.append('      <!-- 1. LETTER S -->')
     lines.append('      <g id="letter-S">')
-    lines.append(f'        <path d="M 80 325 L 62 335 C 62 400 105 442 175 442 C 245 442 284 395 284 340 L 272 335 C 272 385 238 420 175 420 C 112 420 80 380 80 325 Z" fill="{depth_fill}"{poly_stroke}/>')
-    lines.append(f'        <polygon points="80,325 80,380 62,390 62,335" fill="{dark_fill}"{poly_stroke}/>')
-    lines.append(f'        <polygon points="275,178 208,178 245,148" fill="{dark_fill}"{poly_stroke}/>')
+    # Top scoop inner bevel:
+    lines.append(f'        <polygon points="275,178 208,178 245,150" fill="{dark_fill}"{poly_stroke}/>')
+    # Bottom terminal bevel cut:
+    lines.append(f'        <polygon points="80,325 64,343 126,343 142,325" fill="{dark_fill}"{poly_stroke}/>')
+    # Bottom belly curved extrusion (smoothly following belly curvature without jagged flap or step):
+    lines.append(f'        <path d="M 80 325 L 64 343 C 54 395 95 438 175 438 C 235 438 272 405 272 355 L 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 Z" fill="{depth_fill}"{poly_stroke}/>')
+    # S Front Face:
     lines.append(f'        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z" fill="{face_fill}"{poly_stroke}/>')
     lines.append('      </g>')
     
     # 2. LETTER C (Extrusions + Face)
     lines.append('      <!-- 2. LETTER C -->')
     lines.append('      <g id="letter-C">')
-    lines.append(f'        <path d="M 605 155 C 575 185 565 220 565 252 C 565 285 575 320 605 350 L 590 365 C 550 330 538 290 538 252 C 538 212 550 170 590 140 Z" fill="{depth_fill}"{poly_stroke}/>')
-    lines.append(f'        <polygon points="725,148 668,188 702,198" fill="{dark_fill}"{poly_stroke}/>')
-    lines.append(f'        <polygon points="725,355 668,315 702,305" fill="{dark_fill}"{poly_stroke}/>')
+    # Top terminal bevel:
+    lines.append(f'        <polygon points="725,148 668,188 642,206 698,166" fill="{dark_fill}"{poly_stroke}/>')
+    # Bottom terminal bevel:
+    lines.append(f'        <polygon points="725,355 668,315 642,298 698,338" fill="{dark_fill}"{poly_stroke}/>')
+    # Inner wall 3D depth facet (smoothly following inner curve of C from top bevel to bottom bevel):
+    lines.append(f'        <path d="M 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 642 298 C 625 325 615 344 585 344 C 550 344 530 305 530 252 C 530 198 550 160 585 160 C 615 160 625 178 642 206 Z" fill="{depth_fill}"{poly_stroke}/>')
+    # C Front Face:
     lines.append(f'        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z" fill="{face_fill}"{poly_stroke}/>')
     lines.append('      </g>')
 
@@ -288,6 +296,10 @@ def main():
     # -------------------------------------------------------------
     # 1. 5-Sided Heraldic Pentagonal Shield Geometry
     # -------------------------------------------------------------
+    # Solid shield foundation (covers full height to Y=1050 behind collar - eliminates hole under panda)
+    shield_solid_base_d = "M 650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z"
+    shield_throat_left_d = "M 1550 1050 L 2100 1050 L 2100 1340 Z"
+    shield_throat_right_d = "M 2100 1050 L 2650 1050 L 2100 1340 Z"
     shield_outer_d = "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z"
     shield_silver_rim_d = (
         "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z "
@@ -345,14 +357,14 @@ def main():
     ribbon_rim_top_d = "M 609 3010 A 3980 3980 0 0 1 3591 3010 L 3580 3045 A 3945 3945 0 0 0 620 3045 Z"
     ribbon_rim_bot_d = "M 711 3253 A 3715 3715 0 0 1 3489 3253 L 3478 3288 A 3680 3680 0 0 0 722 3288 Z"
 
-    # Folds & Swallowtail Wings from REFFERENCE.jpeg
-    ribbon_fold_left_d = "M 609 3010 L 722 3288 L 615 3160 Z"
-    ribbon_tail_left_d = "M 609 3010 L 370 3110 L 485 3245 L 360 3380 L 722 3288 Z"
-    ribbon_tail_left_bevel_d = "M 609 3010 L 370 3110 L 485 3245 L 470 3225 L 385 3125 L 615 3030 Z"
+    # Swallowtail Wings tucking deeply BEHIND main body (no visible seams or slits):
+    ribbon_tail_left_d = "M 680 3040 L 360 3140 L 475 3260 L 350 3390 L 760 3270 Z"
+    ribbon_tail_left_bevel_d = "M 680 3040 L 360 3140 L 475 3260 L 460 3240 L 375 3155 L 680 3060 Z"
+    ribbon_fold_left_d = "M 625 3040 L 722 3288 L 635 3230 Z"
 
-    ribbon_fold_right_d = "M 3591 3010 L 3478 3288 L 3585 3160 Z"
-    ribbon_tail_right_d = "M 3591 3010 L 3830 3110 L 3715 3245 L 3840 3380 L 3478 3288 Z"
-    ribbon_tail_right_bevel_d = "M 3591 3010 L 3830 3110 L 3715 3245 L 3730 3225 L 3815 3125 L 3585 3030 Z"
+    ribbon_tail_right_d = "M 3520 3040 L 3840 3140 L 3725 3260 L 3850 3390 L 3440 3270 Z"
+    ribbon_tail_right_bevel_d = "M 3520 3040 L 3840 3140 L 3725 3260 L 3740 3240 L 3825 3155 L 3520 3060 Z"
+    ribbon_fold_right_d = "M 3575 3040 L 3478 3288 L 3565 3230 Z"
 
     # Text Arc: R = 3805 (perfect vertical center inside main arch body without overlapping folds)
     ribbon_text_path_d = "M 810 3125 A 3805 3805 0 0 1 3390 3125"
@@ -461,17 +473,23 @@ def main():
         lines.append('    <!-- 1. 5-SIDED HERALDIC SHIELD FOUNDATION -->')
         lines.append('    <g id="shield-base">')
         if is_color:
+            lines.append(f'      <path d="{shield_solid_base_d}" fill="{PALETTE["obsidian"]}"/>')
+            lines.append(f'      <path d="{shield_throat_left_d}" fill="url(#navyLeftGrad)"/>')
+            lines.append(f'      <path d="{shield_throat_right_d}" fill="url(#navyRightGrad)"/>')
             lines.append(f'      <path d="{shield_outer_d}" fill="{PALETTE["obsidian"]}" stroke="{PALETTE["black_ink"]}" stroke-width="48" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{shield_silver_rim_d}" fill="url(#silverRimGrad)" fill-rule="evenodd"/>')
             lines.append(f'      <path d="{shield_gold_rim_d}" fill="url(#goldRimGrad)" fill-rule="evenodd"/>')
             lines.append(f'      <path d="{shield_navy_left_d}" fill="url(#navyLeftGrad)"/>')
             lines.append(f'      <path d="{shield_navy_right_d}" fill="url(#navyRightGrad)"/>')
         elif is_white:
+            lines.append(f'      <path d="{shield_solid_base_d}" fill="#FFFFFF"/>')
             lines.append(f'      <path d="{shield_outer_d}" fill="#FFFFFF" stroke="#000000" stroke-width="48" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{shield_silver_rim_d}" fill="#000000" fill-rule="evenodd" opacity="0.15"/>')
             lines.append(f'      <path d="{shield_gold_rim_d}" fill="#000000" fill-rule="evenodd" opacity="0.08"/>')
-            lines.append(f'      <path d="{shield_navy_left_d} {shield_navy_right_d}" fill="#FFFFFF" stroke="#000000" stroke-width="16"/>')
+            lines.append(f'      <path d="{shield_navy_left_d} {shield_navy_right_d} {shield_throat_left_d} {shield_throat_right_d}" fill="#FFFFFF" stroke="#000000" stroke-width="16"/>')
         else:
+            lines.append(f'      <path d="{shield_solid_base_d}" fill="{PALETTE["obsidian"]}"/>')
+            lines.append(f'      <path d="{shield_throat_left_d} {shield_throat_right_d}" fill="#0A0E17"/>')
             lines.append(f'      <path d="{shield_outer_d}" fill="{PALETTE["obsidian"]}" stroke="{PALETTE["black_ink"]}" stroke-width="36"/>')
             lines.append(f'      <path d="{shield_silver_rim_d}" fill="#334155" fill-rule="evenodd"/>')
             lines.append(f'      <path d="{shield_gold_rim_d}" fill="#1E293B" fill-rule="evenodd"/>')
@@ -503,7 +521,7 @@ def main():
         if is_color:
             lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["black_ink"]}" stroke-width="26" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{ribbon_tail_left_bevel_d} {ribbon_tail_right_bevel_d}" fill="url(#goldLightFacet)"/>')
-            lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="{PALETTE["mahogany"]}" stroke="{PALETTE["black_ink"]}" stroke-width="18"/>')
+            lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="{PALETTE["mahogany"]}" stroke="{PALETTE["black_ink"]}" stroke-width="14" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{ribbon_body_d}" fill="url(#goldRimGrad)" stroke="{PALETTE["black_ink"]}" stroke-width="32" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{ribbon_rim_top_d}" fill="url(#goldLightFacet)"/>')
             lines.append(f'      <path d="{ribbon_rim_bot_d}" fill="url(#goldDarkFacet)"/>')
@@ -513,12 +531,14 @@ def main():
             lines.append('      </text>')
         elif is_white:
             lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#FFFFFF" stroke="#000000" stroke-width="26" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="#000000" stroke="#000000" stroke-width="14" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{ribbon_body_d}" fill="#FFFFFF" stroke="#000000" stroke-width="32" stroke-linejoin="round"/>')
             lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="120" font-weight="900" letter-spacing="1.8" fill="#000000" stroke="#000000" stroke-width="4.5" stroke-linejoin="round">')
             lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
             lines.append('      </text>')
         else:
             lines.append(f'      <path d="{ribbon_tail_left_d} {ribbon_tail_right_d}" fill="#1E293B" stroke="#020408" stroke-width="26" stroke-linejoin="round"/>')
+            lines.append(f'      <path d="{ribbon_fold_left_d} {ribbon_fold_right_d}" fill="#0A0E17" stroke="#020408" stroke-width="14" stroke-linejoin="round"/>')
             lines.append(f'      <path d="{ribbon_body_d}" fill="#0A0E17" stroke="#334155" stroke-width="32" stroke-linejoin="round"/>')
             lines.append('      <text font-family="\'Plus Jakarta Sans\', Montserrat, \'Arial Black\', sans-serif" font-size="120" font-weight="900" letter-spacing="1.8" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="4.5" stroke-linejoin="round">')
             lines.append('        <textPath href="#ribbonTextArc" startOffset="50%" text-anchor="middle">SMANSAGE VOLLEYBALL COMPETITION</textPath>')
