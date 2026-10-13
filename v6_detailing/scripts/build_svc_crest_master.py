@@ -101,7 +101,7 @@ def extract_panda_vector_layers():
     cv2.floodFill(flood, mask, (w - 1, 0), (0, 255, 0), (5, 5, 5), (5, 5, 5))
     panda_fg = ~((flood[:, :, 0] == 0) & (flood[:, :, 1] == 255) & (flood[:, :, 2] == 0))
     
-    # Precision contour polygon clipping: eliminates legacy shield bar
+    # Precision contour polygon clipping: hugs paws and claws without clipping inner paws
     pts = [
         [0, 0],
         [0, 300],
@@ -114,11 +114,17 @@ def extract_panda_vector_layers():
         [320, 560], # left claw 2 tip
         [335, 515], # notch
         [358, 545], # left claw 3 tip
-        [375, 460], # left inner wrist
-        [400, 420], # chin left
-        [450, 435], # chin center
-        [500, 420], # chin right
-        [525, 460], # right inner wrist
+        [395, 510], # paw inner curve
+        [380, 480], # paw top edge
+        [350, 450], # outer arm tuck
+        [350, 419], # meets chevron top
+        [400, 449], # follows chevron top
+        [460, 485], # chevron top center apex
+        [520, 449], # follows chevron top
+        [570, 419], # meets chevron top
+        [570, 450], # right outer arm tuck
+        [540, 480], # right paw top edge
+        [525, 510], # right paw inner curve
         [542, 545], # right claw 1 tip
         [565, 515], # notch
         [580, 560], # right claw 2 tip
@@ -226,30 +232,90 @@ def build_chiseled_svc_svg(mode):
     
     lines = []
     
-    # 1. LETTER S (Extrusions + Face)
-    lines.append('      <!-- 1. LETTER S -->')
+    # 1. LETTER S (Fully Beveled Prism matching hand draw SVC.PNG)
+    lines.append('      <!-- 1. LETTER S (FULLY BEVELED PRISM) -->')
     lines.append('      <g id="letter-S">')
-    # Top scoop inner bevel:
-    lines.append(f'        <polygon points="275,178 208,178 245,150" fill="{dark_fill}"{poly_stroke}/>')
-    # Bottom terminal bevel cut:
-    lines.append(f'        <polygon points="80,325 64,343 126,343 142,325" fill="{dark_fill}"{poly_stroke}/>')
-    # Bottom belly curved extrusion (smoothly following belly curvature without jagged flap or step):
-    lines.append(f'        <path d="M 80 325 L 64 343 C 54 395 95 438 175 438 C 235 438 272 405 272 355 L 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 Z" fill="{depth_fill}"{poly_stroke}/>')
-    # S Front Face:
-    lines.append(f'        <path d="M 175 88 C 242 88 275 120 275 178 L 208 178 C 208 148 195 138 175 138 C 148 138 132 152 132 176 C 132 210 152 225 188 240 C 238 260 272 288 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 L 142 325 C 142 355 155 368 175 368 C 198 368 212 355 212 330 C 212 298 190 282 154 268 C 108 248 72 220 72 165 C 72 108 115 88 175 88 Z" fill="{face_fill}"{poly_stroke}/>')
+    # S 3D Depth Extrusion (Bottom belly drop shadow):
+    lines.append(f'        <path d="M 80 325 L 64 345 C 50 395 90 438 175 438 C 235 438 272 405 272 355 L 272 350 C 272 415 238 420 175 420 C 112 420 80 385 80 325 Z" fill="{depth_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="80,325 64,345 126,345 145,325" fill="{depth_fill}"{poly_stroke}/>')
+    
+    # Top terminal triangular bevel facet (cuts inward to central ridge):
+    lines.append(f'        <polygon points="275,178 208,178 241,155" fill="{dark_fill}"{poly_stroke}/>')
+    # Bottom terminal triangular bevel facet:
+    lines.append(f'        <polygon points="80,325 145,325 112,350" fill="{dark_fill}"{poly_stroke}/>')
+    
+    # S Facet 1 (Outer / Upper Light Gold Facet):
+    lines.append(f'''        <path d="M 241 155 
+                 C 241 118 215 88 175 88 
+                 C 115 88 72 108 72 165 
+                 C 72 220 108 248 154 268 
+                 C 190 282 212 298 212 330 
+                 C 212 355 198 368 175 368 
+                 C 155 368 145 355 145 325 
+                 L 112 350 
+                 C 112 370 135 394 175 394 
+                 C 220 394 242 370 242 350 
+                 C 242 315 225 279 168 252 
+                 C 125 232 102 215 102 176 
+                 C 102 135 125 113 175 113 
+                 C 215 113 241 125 241 155 Z" fill="{light_fill}"{poly_stroke}/>''')
+                 
+    # S Facet 2 (Inner / Lower Shaded Amber Facet):
+    lines.append(f'''        <path d="M 275 178 
+                 L 241 155 
+                 C 241 125 215 113 175 113 
+                 C 125 113 102 135 102 176 
+                 C 102 215 125 232 168 252 
+                 C 225 279 242 315 242 350 
+                 C 242 370 220 394 175 394 
+                 C 135 394 112 370 112 350 
+                 L 80 325 
+                 C 80 385 112 420 175 420 
+                 C 238 420 272 415 272 350 
+                 C 272 288 238 260 188 240 
+                 C 152 225 132 210 132 176 
+                 C 132 152 148 138 175 138 
+                 C 195 138 208 148 208 178 
+                 L 275 178 Z" fill="{dark_fill}"{poly_stroke}/>''')
     lines.append('      </g>')
     
-    # 2. LETTER C (Extrusions + Face)
-    lines.append('      <!-- 2. LETTER C -->')
+    # 2. LETTER C (Fully Beveled Prism matching hand draw SVC.PNG)
+    lines.append('      <!-- 2. LETTER C (FULLY BEVELED PRISM) -->')
     lines.append('      <g id="letter-C">')
-    # Top terminal bevel:
-    lines.append(f'        <polygon points="725,148 668,188 642,206 698,166" fill="{dark_fill}"{poly_stroke}/>')
-    # Bottom terminal bevel:
-    lines.append(f'        <polygon points="725,355 668,315 642,298 698,338" fill="{dark_fill}"{poly_stroke}/>')
-    # Inner wall 3D depth facet (smoothly following inner curve of C from top bevel to bottom bevel):
-    lines.append(f'        <path d="M 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 642 298 C 625 325 615 344 585 344 C 550 344 530 305 530 252 C 530 198 550 160 585 160 C 615 160 625 178 642 206 Z" fill="{depth_fill}"{poly_stroke}/>')
-    # C Front Face:
-    lines.append(f'        <path d="M 725 148 L 668 188 C 650 160 635 142 602 142 C 560 142 542 188 542 252 C 542 316 560 362 602 362 C 635 362 650 344 668 315 L 725 355 C 698 400 660 415 602 415 C 520 415 480 345 480 252 C 480 158 520 88 602 88 C 660 88 698 105 725 148 Z" fill="{face_fill}"{poly_stroke}/>')
+    # 3D Depth Extrusions:
+    lines.append(f'        <polygon points="715,152 665,188 642,206 692,170" fill="{depth_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="715,352 665,315 642,297 692,334" fill="{depth_fill}"{poly_stroke}/>')
+    lines.append(f'        <path d="M 665 188 C 630 148 595 148 560 148 C 515 148 498 188 498 252 C 498 316 515 355 560 355 C 595 355 630 355 665 315 L 642 297 C 615 335 585 335 550 335 C 505 335 486 296 486 252 C 486 208 505 168 550 168 C 585 168 615 168 642 206 Z" fill="{depth_fill}"{poly_stroke}/>')
+
+    # Terminal Triangular Bevel Facets:
+    lines.append(f'        <polygon points="715,152 665,188 690,170" fill="{dark_fill}"{poly_stroke}/>')
+    lines.append(f'        <polygon points="715,352 665,315 690,334" fill="{dark_fill}"{poly_stroke}/>')
+
+    # C Facet 1 (Outer Light Gold Facet):
+    lines.append(f'''        <path d="M 690 170 
+                 L 715 152 
+                 C 655 88 610 88 560 88 
+                 C 475 88 440 158 440 252 
+                 C 440 345 475 415 560 415 
+                 C 610 415 655 415 715 352 
+                 L 690 334 
+                 C 645 385 605 385 560 385 
+                 C 495 385 469 330 469 252 
+                 C 469 174 495 118 560 118 
+                 C 605 118 645 118 690 170 Z" fill="{light_fill}"{poly_stroke}/>''')
+
+    # C Facet 2 (Inner Shaded Amber Facet):
+    lines.append(f'''        <path d="M 690 170 
+                 L 665 188 
+                 C 630 148 595 148 560 148 
+                 C 515 148 498 188 498 252 
+                 C 498 316 515 355 560 355 
+                 C 595 355 630 355 665 315 
+                 L 690 334 
+                 C 645 385 605 385 560 385 
+                 C 495 385 469 330 469 252 
+                 C 469 174 495 118 560 118 
+                 C 605 118 645 118 690 170 Z" fill="{dark_fill}"{poly_stroke}/>''')
     lines.append('      </g>')
 
     # 3. LETTER V (Pure Faceted Prism - Flat Tops, Flat Bottom, Downward Facets)
@@ -268,13 +334,6 @@ def build_chiseled_svc_svg(mode):
     # Bottom Trapezoid Bevel Facet
     lines.append(f'        <polygon points="376,380 428,380 438,408 366,408" fill="{dark_fill}"{poly_stroke}/>')
     lines.append('      </g>')
-    
-    if show_highlights:
-        lines.append('      <!-- 4. SPECULAR HIGHLIGHTS -->')
-        lines.append('      <g id="specular-highlights" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85">')
-        lines.append('        <path d="M 175 90 C 235 90 268 120 268 160"/>')
-        lines.append('        <path d="M 602 90 C 655 90 690 105 715 145"/>')
-        lines.append('      </g>')
     
     return "\n".join(lines)
 
@@ -296,55 +355,39 @@ def main():
     # -------------------------------------------------------------
     # 1. 5-Sided Heraldic Pentagonal Shield Geometry
     # -------------------------------------------------------------
-    # Solid shield foundation (covers full height to Y=1050 behind collar - eliminates hole under panda)
+    # Solid shield foundation (eliminates any holes or transparency under panda)
     shield_solid_base_d = "M 650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z"
-    shield_throat_left_d = "M 1550 1050 L 2100 1050 L 2100 1340 Z"
-    shield_throat_right_d = "M 2100 1050 L 2650 1050 L 2100 1340 Z"
-    shield_outer_d = "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z"
+    # Throat plate behind panda chin (extends well into chest/chin)
+    shield_throat_left_d = "M 1200 800 L 2100 800 L 2100 1340 Z"
+    shield_throat_right_d = "M 2100 800 L 3000 800 L 2100 1340 Z"
+    
+    # Outer Shield boundary:
+    # Chevron enters under panda paws as a straight continuous diagonal line
+    shield_outer_d = (
+        "M 650 1050 L 1200 1050 L 1200 800 L 2100 1340 L 3000 800 L 3000 1050 L 3550 1050 "
+        "L 3080 2850 L 2100 3780 L 1120 2850 Z"
+    )
+    
+    # Silver Rim (Outer metallic platinum band):
     shield_silver_rim_d = (
-        "M 650 1050 L 1550 1050 L 2100 1340 L 2650 1050 L 3550 1050 L 3080 2850 L 2100 3780 L 1120 2850 Z "
-        "M 760 1150 L 1195 2815 L 2100 3650 L 3005 2815 L 3440 1150 L 2620 1150 L 2100 1420 L 1580 1150 Z"
+        "M 650 1050 L 1200 1050 L 1200 800 L 2100 1340 L 3000 800 L 3000 1050 L 3550 1050 "
+        "L 3080 2850 L 2100 3780 L 1120 2850 Z "
+        "M 760 1150 L 1195 2815 L 2100 3650 L 3005 2815 L 3440 1150 L 3000 1150 "
+        "L 3000 880 L 2100 1420 L 1200 880 L 1200 1150 Z"
     )
+    
+    # Gold Rim (Inner heavy gold metallic band):
     shield_gold_rim_d = (
-        "M 760 1150 L 1580 1150 L 2100 1420 L 2620 1150 L 3440 1150 L 3005 2815 L 2100 3650 L 1195 2815 Z "
-        "M 860 1240 L 1260 2780 L 2100 3530 L 2940 2780 L 3340 1240 L 2590 1240 L 2100 1490 L 1610 1240 Z"
+        "M 760 1150 L 1200 1150 L 1200 880 L 2100 1420 L 3000 880 L 3000 1150 L 3440 1150 "
+        "L 3005 2815 L 2100 3650 L 1195 2815 Z "
+        "M 860 1240 L 1260 2780 L 2100 3530 L 2940 2780 L 3340 1240 L 3000 1240 "
+        "L 3000 950 L 2100 1490 L 1200 950 L 1200 1240 Z"
     )
-    shield_navy_left_d = "M 860 1240 L 1610 1240 L 2100 1490 L 2100 3530 L 1260 2780 Z"
-    shield_navy_right_d = "M 2100 1490 L 2590 1240 L 3340 1240 L 2940 2780 L 2100 3530 Z"
     
-    # -------------------------------------------------------------
-    # 2. Concentric Arched Emblem Banner (No Tails - Exact Hand Draw Matching)
-    # -------------------------------------------------------------
-    # Concentric circular arc with bold, thick athletic championship typography
-    # Center of arc: CX = 2100, CY = 6500
-    emblem_body_d = "M 621 3328 A 3500 3500 0 0 1 3579 3328 L 3461 3582 A 3220 3220 0 0 0 739 3582 Z"
-    emblem_rim_top_d = "M 621 3328 A 3500 3500 0 0 1 3579 3328 L 3568 3362 A 3464 3464 0 0 0 632 3362 Z"
-    emblem_rim_bot_d = "M 728 3548 A 3256 3256 0 0 1 3472 3548 L 3461 3582 A 3220 3220 0 0 0 739 3582 Z"
+    # Midnight Navy Field:
+    shield_navy_left_d = "M 860 1240 L 1200 1240 L 1200 950 L 2100 1490 L 2100 3530 L 1260 2780 Z"
+    shield_navy_right_d = "M 2100 1490 L 3000 950 L 3000 1240 L 3340 1240 L 2940 2780 L 2100 3530 Z"
     
-    # Baseline text arc: R = 3340 (centered vertically between 3500 and 3220)
-    # Text covers the arched emblem completely from end to end
-    emblem_text_path_d = "M 540 3510 A 3340 3340 0 0 1 3660 3510"
-    
-    # -------------------------------------------------------------
-    # 3. Towering Panda Mascot Placement
-    # -------------------------------------------------------------
-    p_sc = 2200.0 / panda["width"]
-    p_tx = CX - (panda["width"] * p_sc) / 2.0
-    p_ty = 180.0
-    
-    # -------------------------------------------------------------
-    # 4. Optically Centered AVERSA Wordmark Placement
-    # -------------------------------------------------------------
-    av_sc = 0.38
-    av_center_x = 1587.30 - 18.0
-    av_tx = CX - av_center_x * av_sc
-    av_ty = 1460.0
-    
-    # -------------------------------------------------------------
-    # 5. Smooth Athletic 3D SVC Typography Placement
-    # -------------------------------------------------------------
-    # Coordinates in 820 x 460 space scaled by 2.22
-    svc_sc = 2.22
     # -------------------------------------------------------------
     # 2. Championship Tournament Ribbon Banner (Form from REFFERENCE.jpeg, Color from hand draw)
     # -------------------------------------------------------------
@@ -389,7 +432,8 @@ def main():
     # -------------------------------------------------------------
     # Coordinates in 820 x 460 space scaled by 2.22
     svc_sc = 2.22
-    svc_box_cx = 410.0
+    # Exact optical midpoint: gap(S, left_rim) == gap(C, right_rim)
+    svc_box_cx = 394.0
     svc_tx = CX - svc_box_cx * svc_sc
     svc_ty = 1760.0
     
